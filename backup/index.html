@@ -10,14 +10,192 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 
+<script>
+/* Applica subito tema e zoom salvati, per evitare lampi di colore al caricamento */
+try {
+  var t = localStorage.getItem('a1-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', t);
+  var z = parseInt(localStorage.getItem('a1-zoom'), 10) || 100;
+  document.documentElement.style.setProperty('--z', z / 100);
+} catch (e) {}
+</script>
 
+<style>
+:root {
+  --z: 1;
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --ink: #161a22;
+  --muted: #667085;
+  --line: #dfe3ea;
+  --accent: #3552c9;
+  --accent-soft: #e8ecfb;
+  --box: #eceff4;
+  --shadow: 0 10px 32px rgba(16, 24, 40, .14);
+  --ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --serif: 'Source Serif 4', 'Iowan Old Style', Georgia, serif;
+}
+[data-theme="dark"] {
+  --bg: #17181b;
+  --surface: #222429;
+  --ink: #e6e8ec;
+  --muted: #9299a6;
+  --line: #33363d;
+  --accent: #93a9ff;
+  --accent-soft: #272c47;
+  --box: #1f2126;
+  --shadow: 0 10px 32px rgba(0, 0, 0, .55);
+}
 
-<!--CSS -->
-<link rel="stylesheet" href="style.css" >
+* { box-sizing: border-box; }
+html { font-size: calc(var(--z) * 17px); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.72;
+  transition: background .2s ease, color .2s ease;
+}
+button { font: inherit; color: inherit; }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-<!-- defer significa che lo script viene caricato in background, dopo che HTML è stato caricato -->
-<script src="script.js" defer></script> 
+/* ---------- Barra in alto ---------- */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 14px 0 20px;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  z-index: 20; font-family: var(--ui);
+}
+.brand { font-size: 14px; font-weight: 500; color: var(--muted); }
+.aa {
+  height: 38px; min-width: 46px; padding: 0 12px;
+  display: inline-flex; align-items: baseline; justify-content: center; gap: 1px;
+  border: 1px solid transparent; border-radius: 10px; background: transparent;
+  cursor: pointer; line-height: 38px; font-family: var(--serif); color: var(--ink);
+}
+.aa:hover, .aa[aria-expanded="true"] { background: var(--surface); border-color: var(--line); }
+.aa .s { font-size: 15px; }
+.aa .l { font-size: 21px; }
 
+.settings {
+  position: fixed; top: 58px; right: 12px; width: 268px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  box-shadow: var(--shadow); padding: 14px; z-index: 40; font-family: var(--ui);
+  transform-origin: top right; animation: pop .14s ease-out;
+}
+.settings[hidden], .day-menu[hidden] { display: none; }
+.settings .row + .row { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+.lbl { display: block; font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+.stepper { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.stepper button {
+  width: 44px; height: 38px; border-radius: 10px; border: 1px solid var(--line);
+  background: var(--bg); cursor: pointer; font-size: 20px; line-height: 1;
+}
+.stepper button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.stepper button:disabled { opacity: .35; cursor: default; }
+.stepper output { flex: 1; text-align: center; font-size: 16px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.themes { display: flex; gap: 8px; }
+.th {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px;
+  height: 42px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); cursor: pointer;
+}
+.th svg { width: 18px; height: 18px; }
+.th .rd { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--muted); transition: all .12s; }
+.th[aria-pressed="true"] { border-color: var(--accent); }
+.th[aria-pressed="true"] .rd { background: var(--accent); border-color: var(--accent); box-shadow: inset 0 0 0 2px var(--surface); }
+
+@keyframes pop { from { opacity: 0; transform: scale(.96) translateY(-4px); } to { opacity: 1; transform: none; } }
+@keyframes pop-up { from { opacity: 0; transform: translateX(-50%) translateY(6px) scale(.98); } to { opacity: 1; transform: translateX(-50%); } }
+
+/* ---------- Contenuto ---------- */
+main { max-width: 46rem; margin: 0 auto; padding: 84px 22px 150px; }
+main.fade { animation: fade .22s ease-out; }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+.eyebrow { margin: 0 0 .2rem; font: 500 .82rem var(--ui); color: var(--muted); }
+h1 { margin: 0 0 1.6rem; font-size: 2rem; line-height: 1.2; font-weight: 700; letter-spacing: -.015em; text-wrap: balance; }
+h2 { margin: 2.8rem 0 .8rem; padding-top: 1.4rem; border-top: 1px solid var(--line); font-size: 1.5rem; line-height: 1.25; font-weight: 700; letter-spacing: -.01em; }
+h2:first-of-type { border-top: 0; padding-top: 0; margin-top: 2rem; }
+h3 { margin: 2rem 0 .5rem; font-size: 1.15rem; line-height: 1.3; font-weight: 700; }
+p { margin: .8rem 0; }
+ul, ol { margin: .7rem 0; padding-left: 1.5rem; }
+li { margin: .3rem 0; }
+li::marker { color: var(--muted); }
+strong { font-weight: 700; }
+
+.box {
+  margin: 1.5rem 0; padding: .95rem 1.2rem 1rem 1.25rem;
+  background: var(--box); border-left: 3px solid var(--bc, var(--muted)); border-radius: 0 10px 10px 0;
+}
+.box > .bt { margin: 0 0 .4rem; font-weight: 700; }
+.box > :last-child { margin-bottom: 0; }
+.box > p:first-of-type { margin-top: 0; }
+.thm { --bc: var(--accent); }
+.def { --bc: #2f9e8f; }
+.warn { --bc: #d9822b; }
+.ex { --bc: var(--muted); }
+
+.tbl { overflow-x: auto; margin: 1.3rem 0; }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { padding: .5rem .8rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+th { font: 600 .85rem var(--ui); color: var(--muted); border-bottom: 1px solid var(--muted); }
+
+.katex { font-size: 1.08em; }
+.katex-display { margin: 1.1rem 0; padding: .2rem 0; overflow-x: auto; overflow-y: hidden; }
+
+/* ---------- Navigatore in basso ---------- */
+.nav {
+  position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 4px; padding: 5px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+  box-shadow: var(--shadow); z-index: 30; font-family: var(--ui);
+}
+.arrow {
+  width: 40px; height: 40px; border: 0; border-radius: 50%; background: transparent;
+  display: grid; place-items: center; cursor: pointer;
+}
+.arrow svg { width: 20px; height: 20px; }
+.arrow:hover:not(:disabled), .dots:hover, .dots[aria-expanded="true"] { background: var(--accent-soft); }
+.arrow:disabled { opacity: .28; cursor: default; }
+.dots {
+  height: 40px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent;
+  display: flex; align-items: center; gap: 9px; cursor: pointer;
+}
+.dot { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); opacity: .38; transition: all .15s; }
+.dot.edge { transform: scale(.66); opacity: .28; }
+.dot.on { width: 11px; height: 11px; background: var(--accent); opacity: 1; }
+
+.day-menu {
+  position: fixed; left: 50%; bottom: 76px; transform: translateX(-50%);
+  width: min(460px, calc(100vw - 24px)); max-height: min(58vh, 440px); overflow-y: auto;
+  padding: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+  box-shadow: var(--shadow); z-index: 40; font-family: var(--ui);
+  animation: pop-up .14s ease-out;
+}
+.day-item {
+  width: 100%; display: flex; align-items: baseline; gap: 12px; padding: 10px 12px;
+  border: 0; border-radius: 10px; background: transparent; text-align: left; cursor: pointer;
+  font-size: 15px; line-height: 1.4;
+}
+.day-item:hover { background: var(--accent-soft); }
+.day-item .mk { color: var(--accent); flex: none; font-size: 13px; }
+.day-item.cur { background: var(--accent-soft); font-weight: 600; }
+
+@media (max-width: 560px) {
+  main { padding-left: 16px; padding-right: 16px; }
+  h1 { font-size: 1.7rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+@media print {
+  .topbar, .nav, .settings, .day-menu { display: none !important; }
+  main { padding: 0; }
+}
+</style>
 </head>
 <body>
 
@@ -885,6 +1063,156 @@ $$z=\rho(\cos\theta+i\sin\theta), \qquad \rho=|z|, \qquad x=\rho\cos\theta, \qqu
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var root = document.documentElement;
 
+  /* ---------- Dati: un Day per ogni <template class="day"> ---------- */
+  var days = Array.prototype.slice.call(document.querySelectorAll('template.day'))
+    .map(function (t) { return { n: parseInt(t.dataset.n, 10), title: t.dataset.title, tpl: t }; })
+    .sort(function (a, b) { return a.n - b.n; });
+
+  var main = $('content'), menu = $('dayMenu'), dotsBtn = $('dotsBtn');
+  var prevBtn = $('prevBtn'), nextBtn = $('nextBtn');
+  var aaBtn = $('aaBtn'), settings = $('settings');
+  var cur = 0;
+
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+
+  /* ---------- Formule ---------- */
+  function renderMath() {
+    if (window.renderMathInElement) {
+      renderMathInElement(main, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
+      return true;
+    }
+    return false;
+  }
+
+  /* ---------- Mostra un Day ---------- */
+  function show(i, animate) {
+    if (!days.length) { main.innerHTML = '<p>Nessun appunto ancora.</p>'; return; }
+    cur = Math.max(0, Math.min(days.length - 1, i));
+    var d = days[cur];
+    main.innerHTML = '<p class="eyebrow">Day ' + d.n + '</p><h1></h1>' + d.tpl.innerHTML;
+    main.querySelector('h1').textContent = d.title;
+    renderMath();
+    if (animate) { main.classList.remove('fade'); void main.offsetWidth; main.classList.add('fade'); }
+    window.scrollTo(0, 0);
+    store('a1-day', d.n);
+    try { history.replaceState(null, '', '#day-' + d.n); } catch (e) {}
+    updateNav();
+  }
+
+  /* ---------- Navigatore ---------- */
+  function updateNav() {
+    var N = days.length, W = 9, s = 0, e = N;
+    if (N > W) { s = Math.min(Math.max(cur - Math.floor(W / 2), 0), N - W); e = s + W; }
+    dotsBtn.innerHTML = '';
+    for (var k = s; k < e; k++) {
+      var sp = document.createElement('span');
+      var edge = (k === s && s > 0) || (k === e - 1 && e < N);
+      sp.className = 'dot' + (k === cur ? ' on' : '') + (edge && k !== cur ? ' edge' : '');
+      dotsBtn.appendChild(sp);
+    }
+    dotsBtn.setAttribute('aria-label', 'Scegli il Day (ora: Day ' + days[cur].n + ')');
+    prevBtn.disabled = cur === 0;
+    nextBtn.disabled = cur === N - 1;
+    Array.prototype.forEach.call(menu.children, function (btn, k) {
+      var on = k === cur;
+      btn.classList.toggle('cur', on);
+      btn.querySelector('.mk').textContent = on ? '\u25CF' : '\u25CB';
+      if (on) btn.setAttribute('aria-current', 'true'); else btn.removeAttribute('aria-current');
+    });
+  }
+
+  function buildMenu() {
+    menu.innerHTML = '';
+    days.forEach(function (d, k) {
+      var b = document.createElement('button');
+      b.className = 'day-item'; b.setAttribute('role', 'menuitem');
+      var mk = document.createElement('span'); mk.className = 'mk'; mk.textContent = '\u25CB';
+      var tx = document.createElement('span'); tx.textContent = d.n + '. ' + d.title;
+      b.appendChild(mk); b.appendChild(tx);
+      b.addEventListener('click', function () { closeAll(); show(k, true); });
+      menu.appendChild(b);
+    });
+  }
+
+  /* ---------- Finestrelle (non modali) ---------- */
+  function setOpen(panel, btn, open) {
+    panel.hidden = !open;
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  function closeAll() { setOpen(menu, dotsBtn, false); setOpen(settings, aaBtn, false); }
+
+  dotsBtn.addEventListener('click', function () {
+    var open = menu.hidden;
+    closeAll();
+    setOpen(menu, dotsBtn, open);
+    if (open) { var c = menu.querySelector('.cur'); if (c) c.scrollIntoView({ block: 'nearest' }); }
+  });
+  aaBtn.addEventListener('click', function () {
+    var open = settings.hidden;
+    closeAll();
+    setOpen(settings, aaBtn, open);
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.day-menu, .dots, .settings, .aa')) closeAll();
+  });
+  prevBtn.addEventListener('click', function () { show(cur - 1, true); });
+  nextBtn.addEventListener('click', function () { show(cur + 1, true); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAll();
+    else if (e.key === 'ArrowLeft' && !e.metaKey && !e.altKey) show(cur - 1, true);
+    else if (e.key === 'ArrowRight' && !e.metaKey && !e.altKey) show(cur + 1, true);
+  });
+
+  /* ---------- Dimensione testo ---------- */
+  var ZMIN = 60, ZMAX = 220, ZSTEP = 10;
+  var zoom = parseInt(load('a1-zoom'), 10) || 100;
+  function applyZoom() {
+    zoom = Math.max(ZMIN, Math.min(ZMAX, zoom));
+    root.style.setProperty('--z', zoom / 100);
+    $('zVal').textContent = zoom + '%';
+    $('zMinus').disabled = zoom <= ZMIN;
+    $('zPlus').disabled = zoom >= ZMAX;
+    store('a1-zoom', zoom);
+  }
+  $('zMinus').addEventListener('click', function () { zoom -= ZSTEP; applyZoom(); });
+  $('zPlus').addEventListener('click', function () { zoom += ZSTEP; applyZoom(); });
+
+  /* ---------- Tema ---------- */
+  function applyTheme(t) {
+    root.setAttribute('data-theme', t);
+    Array.prototype.forEach.call(document.querySelectorAll('[data-theme-btn]'), function (b) {
+      b.setAttribute('aria-pressed', b.dataset.themeBtn === t ? 'true' : 'false');
+    });
+    store('a1-theme', t);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-theme-btn]'), function (b) {
+    b.addEventListener('click', function () { applyTheme(b.dataset.themeBtn); });
+  });
+
+  /* ---------- Avvio ---------- */
+  applyZoom();
+  applyTheme(root.getAttribute('data-theme') || 'light');
+  buildMenu();
+
+  var start = 0, m = /^#day-(\d+)$/.exec(location.hash), want = m ? parseInt(m[1], 10) : parseInt(load('a1-day'), 10);
+  days.forEach(function (d, k) { if (d.n === want) start = k; });
+  show(start, false);
+
+  /* Se KaTeX non era ancora pronto, riprova a caricamento completato */
+  if (!window.renderMathInElement) window.addEventListener('load', renderMath);
+});
+</script>
 </body>
 </html>
