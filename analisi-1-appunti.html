@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analisi 1 Matematica</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+
+<script>
+/* Applica subito tema e zoom salvati, per evitare lampi di colore al caricamento */
+try {
+  var t = localStorage.getItem('a1-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', t);
+  var z = parseInt(localStorage.getItem('a1-zoom'), 10) || 100;
+  document.documentElement.style.setProperty('--z', z / 100);
+} catch (e) {}
+</script>
+
+<style>
+:root {
+  --z: 1;
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --ink: #161a22;
+  --muted: #667085;
+  --line: #dfe3ea;
+  --accent: #3552c9;
+  --accent-soft: #e8ecfb;
+  --box: #eceff4;
+  --shadow: 0 10px 32px rgba(16, 24, 40, .14);
+  --ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --serif: 'Source Serif 4', 'Iowan Old Style', Georgia, serif;
+}
+[data-theme="dark"] {
+  --bg: #17181b;
+  --surface: #222429;
+  --ink: #e6e8ec;
+  --muted: #9299a6;
+  --line: #33363d;
+  --accent: #93a9ff;
+  --accent-soft: #272c47;
+  --box: #1f2126;
+  --shadow: 0 10px 32px rgba(0, 0, 0, .55);
+}
+
+* { box-sizing: border-box; }
+html { font-size: calc(var(--z) * 17px); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.72;
+  transition: background .2s ease, color .2s ease;
+}
+button { font: inherit; color: inherit; }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- Barra in alto ---------- */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 14px 0 20px;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  z-index: 20; font-family: var(--ui);
+}
+.brand { font-size: 14px; font-weight: 500; color: var(--muted); }
+.aa {
+  height: 38px; min-width: 46px; padding: 0 12px;
+  display: inline-flex; align-items: baseline; justify-content: center; gap: 1px;
+  border: 1px solid transparent; border-radius: 10px; background: transparent;
+  cursor: pointer; line-height: 38px; font-family: var(--serif); color: var(--ink);
+}
+.aa:hover, .aa[aria-expanded="true"] { background: var(--surface); border-color: var(--line); }
+.aa .s { font-size: 15px; }
+.aa .l { font-size: 21px; }
+
+.settings {
+  position: fixed; top: 58px; right: 12px; width: 268px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  box-shadow: var(--shadow); padding: 14px; z-index: 40; font-family: var(--ui);
+  transform-origin: top right; animation: pop .14s ease-out;
+}
+.settings[hidden], .day-menu[hidden] { display: none; }
+.settings .row + .row { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+.lbl { display: block; font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+.stepper { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.stepper button {
+  width: 44px; height: 38px; border-radius: 10px; border: 1px solid var(--line);
+  background: var(--bg); cursor: pointer; font-size: 20px; line-height: 1;
+}
+.stepper button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.stepper button:disabled { opacity: .35; cursor: default; }
+.stepper output { flex: 1; text-align: center; font-size: 16px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.themes { display: flex; gap: 8px; }
+.th {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px;
+  height: 42px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); cursor: pointer;
+}
+.th svg { width: 18px; height: 18px; }
+.th .rd { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--muted); transition: all .12s; }
+.th[aria-pressed="true"] { border-color: var(--accent); }
+.th[aria-pressed="true"] .rd { background: var(--accent); border-color: var(--accent); box-shadow: inset 0 0 0 2px var(--surface); }
+
+@keyframes pop { from { opacity: 0; transform: scale(.96) translateY(-4px); } to { opacity: 1; transform: none; } }
+@keyframes pop-up { from { opacity: 0; transform: translateX(-50%) translateY(6px) scale(.98); } to { opacity: 1; transform: translateX(-50%); } }
+
+/* ---------- Contenuto ---------- */
+main { max-width: 46rem; margin: 0 auto; padding: 84px 22px 150px; }
+main.fade { animation: fade .22s ease-out; }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+.eyebrow { margin: 0 0 .2rem; font: 500 .82rem var(--ui); color: var(--muted); }
+h1 { margin: 0 0 1.6rem; font-size: 2rem; line-height: 1.2; font-weight: 700; letter-spacing: -.015em; text-wrap: balance; }
+h2 { margin: 2.8rem 0 .8rem; padding-top: 1.4rem; border-top: 1px solid var(--line); font-size: 1.5rem; line-height: 1.25; font-weight: 700; letter-spacing: -.01em; }
+h2:first-of-type { border-top: 0; padding-top: 0; margin-top: 2rem; }
+h3 { margin: 2rem 0 .5rem; font-size: 1.15rem; line-height: 1.3; font-weight: 700; }
+p { margin: .8rem 0; }
+ul, ol { margin: .7rem 0; padding-left: 1.5rem; }
+li { margin: .3rem 0; }
+li::marker { color: var(--muted); }
+strong { font-weight: 700; }
+
+.box {
+  margin: 1.5rem 0; padding: .95rem 1.2rem 1rem 1.25rem;
+  background: var(--box); border-left: 3px solid var(--bc, var(--muted)); border-radius: 0 10px 10px 0;
+}
+.box > .bt { margin: 0 0 .4rem; font-weight: 700; }
+.box > :last-child { margin-bottom: 0; }
+.box > p:first-of-type { margin-top: 0; }
+.thm { --bc: var(--accent); }
+.def { --bc: #2f9e8f; }
+.warn { --bc: #d9822b; }
+.ex { --bc: var(--muted); }
+
+.tbl { overflow-x: auto; margin: 1.3rem 0; }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { padding: .5rem .8rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+th { font: 600 .85rem var(--ui); color: var(--muted); border-bottom: 1px solid var(--muted); }
+
+.katex { font-size: 1.08em; }
+.katex-display { margin: 1.1rem 0; padding: .2rem 0; overflow-x: auto; overflow-y: hidden; }
+
+/* ---------- Navigatore in basso ---------- */
+.nav {
+  position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 4px; padding: 5px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+  box-shadow: var(--shadow); z-index: 30; font-family: var(--ui);
+}
+.arrow {
+  width: 40px; height: 40px; border: 0; border-radius: 50%; background: transparent;
+  display: grid; place-items: center; cursor: pointer;
+}
+.arrow svg { width: 20px; height: 20px; }
+.arrow:hover:not(:disabled), .dots:hover, .dots[aria-expanded="true"] { background: var(--accent-soft); }
+.arrow:disabled { opacity: .28; cursor: default; }
+.dots {
+  height: 40px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent;
+  display: flex; align-items: center; gap: 9px; cursor: pointer;
+}
+.dot { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); opacity: .38; transition: all .15s; }
+.dot.edge { transform: scale(.66); opacity: .28; }
+.dot.on { width: 11px; height: 11px; background: var(--accent); opacity: 1; }
+
+.day-menu {
+  position: fixed; left: 50%; bottom: 76px; transform: translateX(-50%);
+  width: min(460px, calc(100vw - 24px)); max-height: min(58vh, 440px); overflow-y: auto;
+  padding: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+  box-shadow: var(--shadow); z-index: 40; font-family: var(--ui);
+  animation: pop-up .14s ease-out;
+}
+.day-item {
+  width: 100%; display: flex; align-items: baseline; gap: 12px; padding: 10px 12px;
+  border: 0; border-radius: 10px; background: transparent; text-align: left; cursor: pointer;
+  font-size: 15px; line-height: 1.4;
+}
+.day-item:hover { background: var(--accent-soft); }
+.day-item .mk { color: var(--accent); flex: none; font-size: 13px; }
+.day-item.cur { background: var(--accent-soft); font-weight: 600; }
+
+@media (max-width: 560px) {
+  main { padding-left: 16px; padding-right: 16px; }
+  h1 { font-size: 1.7rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+@media print {
+  .topbar, .nav, .settings, .day-menu { display: none !important; }
+  main { padding: 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <span class="brand">Analisi 1 Matematica</span>
+  <button class="aa" id="aaBtn" aria-label="Aspetto e dimensione testo" aria-expanded="false" aria-controls="settings">
+    <span class="s">a</span><span class="l">A</span>
+  </button>
+</header>
+
+<div class="settings" id="settings" hidden>
+  <div class="row">
+    <span class="lbl">Dimensione testo</span>
+    <div class="stepper">
+      <button id="zMinus" aria-label="Riduci dimensione testo">&minus;</button>
+      <output id="zVal">100%</output>
+      <button id="zPlus" aria-label="Aumenta dimensione testo">+</button>
+    </div>
+  </div>
+  <div class="row">
+    <span class="lbl">Theme</span>
+    <div class="themes">
+      <button class="th" data-theme-btn="light" aria-pressed="true" aria-label="Tema chiaro">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+        <span class="rd"></span>
+      </button>
+      <button class="th" data-theme-btn="dark" aria-pressed="false" aria-label="Tema scuro">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>
+        <span class="rd"></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<main id="content" aria-live="polite"></main>
+
+<div class="day-menu" id="dayMenu" role="menu" hidden></div>
+
+<nav class="nav" aria-label="Navigazione tra i Day">
+  <button class="arrow" id="prevBtn" aria-label="Day precedente">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+  </button>
+  <button class="dots" id="dotsBtn" aria-label="Scegli il Day" aria-expanded="false" aria-controls="dayMenu"></button>
+  <button class="arrow" id="nextBtn" aria-label="Day successivo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+  </button>
+</nav>
+
+
+<!-- =====================================================================
+     APPUNTI
+     Per aggiungere un nuovo giorno: copia un blocco <template> qui sotto,
+     cambia data-n (numero del Day) e data-title (argomento) e incolla il
+     contenuto. Pallini e menu si aggiornano da soli.
+     Formule: $...$ in linea, $$...$$ centrate. Al posto di < scrivi \lt
+     dentro le formule (es. $x \lt y$), altrimenti l'HTML lo scambia per un tag.
+     Riquadri: <div class="box thm|def|warn|ex"><div class="bt">Titolo</div>...</div>
+     ===================================================================== -->
+
+<!-- ============================== DAY 1 ============================== -->
+<template class="day" data-n="1" data-title="Principio di Induzione e Caratterizzazione dei Numeri Reali">
+
+<h2>1. Insieme dei naturali e induzione</h2>
+<p>Assumiamo la convenzione usata a lezione:</p>
+$$\mathbb N = \{0,1,2,3,\dots\}.$$
+<p>Il principio di induzione nasce dal seguente teorema.</p>
+
+<div class="box thm">
+<div class="bt">Teorema di induzione</div>
+<p>Sia $E \subseteq \mathbb N$. Se:</p>
+<ol>
+<li>$0 \in E$;</li>
+<li>per ogni $n\in\mathbb N$, se $n\in E$, allora $n+1\in E$;</li>
+</ol>
+<p>allora</p>
+$$E=\mathbb N.$$
+</div>
+
+<p>L’idea è quella delle tessere del domino: se cade la prima tessera e ogni tessera fa cadere la successiva, allora cadono tutte.</p>
+<p>Da qui otteniamo la forma pratica da usare negli esercizi.</p>
+
+<div class="box thm">
+<div class="bt">Principio di induzione matematica</div>
+<p>Sia $P(n)$ una proprietà che dipende da $n\in\mathbb N$. Se:</p>
+<ol>
+<li>$P(0)$ è vera;</li>
+<li>per ogni $n\in\mathbb N$, $P(n)\Rightarrow P(n+1)$;</li>
+</ol>
+<p>allora $P(n)$ è vera per ogni $n\in\mathbb N$.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Schema fisso degli esercizi per induzione</div>
+<p>Quando trovi “dimostrare che per ogni $n\in\mathbb N$ vale…”, fai sempre così:</p>
+<ul>
+<li><strong>Passo base:</strong> sostituisci $n=0$ e verifica la proprietà.</li>
+<li><strong>Ipotesi induttiva:</strong> supponi vera $P(n)$ per un $n$ generico.</li>
+<li><strong>Passo induttivo:</strong> devi dimostrare $P(n+1)$, sfruttando l’ipotesi induttiva.</li>
+<li><strong>Conclusione:</strong> per il principio di induzione, $P(n)$ vale per ogni $n\in\mathbb N$.</li>
+</ul>
+</div>
+
+<div class="box warn">
+<div class="bt">Attenzione massima</div>
+<p>Nel passo induttivo non puoi dare per vera $P(n+1)$. Devi partire dall’espressione che compare in $P(n+1)$, fare passaggi leciti e usare a un certo punto l’ipotesi $P(n)$.</p>
+</div>
+
+<h3>Esempi di induzione</h3>
+
+<h3>Esempio 1 — $2^n\gt n$</h3>
+<p>Dimostrare che:</p>
+$$2^n\gt n \qquad \forall n\in\mathbb N.$$
+<ul>
+<li><strong>Passo base.</strong> Per $n=0$: $2^0=1\gt 0$. Quindi $P(0)$ è vera.</li>
+<li><strong>Ipotesi induttiva.</strong> Supponiamo che $2^n\gt n$.</li>
+<li><strong>Passo induttivo.</strong> Vogliamo dimostrare $2^{n+1}\gt n+1$. Calcoliamo:</li>
+</ul>
+$$2^{n+1}=2^n\cdot 2=2^n+2^n.$$
+<p>Per ipotesi induttiva $2^n\gt n$; inoltre $2^n\geq 1$. Dunque:</p>
+$$2^{n+1}=2^n+2^n\gt n+1.$$
+<p>Quindi $P(n+1)$ è vera. Per induzione:</p>
+$$2^n\gt n \qquad \forall n\in\mathbb N.$$
+
+<h3>Esempio 2 — Disuguaglianza di Bernoulli</h3>
+<p>Per ogni $x\gt 0$ e ogni $n\in\mathbb N$, vale:</p>
+$$(1+x)^n\geq 1+nx.$$
+<ul>
+<li><strong>Passo base.</strong> Per $n=0$: $(1+x)^0=1$ e $1+0x=1$. Quindi $1\geq 1$.</li>
+<li><strong>Ipotesi induttiva.</strong> Supponiamo $(1+x)^n\geq 1+nx$.</li>
+<li><strong>Passo induttivo.</strong> Dobbiamo dimostrare $(1+x)^{n+1}\geq 1+(n+1)x$.</li>
+</ul>
+<p>Partiamo dal lato sinistro:</p>
+$$(1+x)^{n+1}=(1+x)^n(1+x).$$
+<p>Poiché $x\gt 0$, allora $1+x\gt 0$: possiamo moltiplicare l’ipotesi induttiva per $1+x$, mantenendo il verso della disuguaglianza:</p>
+$$(1+x)^n(1+x)\geq (1+nx)(1+x).$$
+<p>Sviluppiamo:</p>
+$$(1+nx)(1+x)=1+x+nx+nx^2.$$
+<p>Dato che $n\geq 0$ e $x^2\geq 0$, allora $nx^2\geq 0$. Quindi:</p>
+$$1+x+nx+nx^2\geq 1+x+nx.$$
+<p>Infine $1+x+nx=1+(n+1)x$. Abbiamo ottenuto:</p>
+$$(1+x)^{n+1}\geq 1+(n+1)x.$$
+<p>Quindi la disuguaglianza vale per ogni $n\in\mathbb N$.</p>
+
+<h3>Esempio 3 — $n^3-n$ multiplo di 3</h3>
+<p>Dimostrare che $n^3-n$ è multiplo di 3 per ogni $n\in\mathbb N$.</p>
+<ul>
+<li><strong>Passo base.</strong> $0^3-0=0=3\cdot 0$. Quindi $P(0)$ è vera.</li>
+<li><strong>Ipotesi induttiva.</strong> Supponiamo che esista $k\in\mathbb Z$ tale che $n^3-n=3k$. Questa è la traduzione formale di “$n^3-n$ è multiplo di 3”.</li>
+<li><strong>Passo induttivo.</strong> Consideriamo $(n+1)^3-(n+1)$.</li>
+</ul>
+<p>Sviluppiamo il cubo:</p>
+$$(n+1)^3-(n+1) = n^3+3n^2+3n+1-n-1.$$
+<p>Riordiniamo:</p>
+$$(n+1)^3-(n+1) = (n^3-n)+3n^2+3n.$$
+<p>Usiamo l’ipotesi induttiva e raccogliamo 3:</p>
+$$= 3k+3n^2+3n = 3(k+n^2+n).$$
+<p>Poiché $k+n^2+n\in\mathbb Z$, l’espressione è un multiplo di 3. Quindi $(n+1)^3-(n+1)$ è multiplo di 3, e per induzione la proprietà è vera per ogni naturale.</p>
+
+<h2>2. Sistemi numerici</h2>
+<h3>Naturali, interi e razionali</h3>
+<p>I naturali non bastano per risolvere, ad esempio, $x+2=0$, perché la soluzione è $x=-2$, che non appartiene a $\mathbb N$. Perciò si amplia l’insieme.</p>
+
+<div class="tbl"><table>
+<thead><tr><th>Insieme</th><th>Nome</th><th>Idea</th><th>Esempi</th></tr></thead>
+<tbody>
+<tr><td>$\mathbb N$</td><td>Naturali</td><td>Numeri usati per contare</td><td>$0,1,2,3,\dots$</td></tr>
+<tr><td>$\mathbb Z$</td><td>Interi</td><td>Naturali, loro opposti e zero</td><td>$\dots,-2,-1,0,1,2,\dots$</td></tr>
+<tr><td>$\mathbb Q$</td><td>Razionali</td><td>Numeri scrivibili come rapporto tra interi</td><td>$\frac12,\ -\frac73,\ 5$</td></tr>
+<tr><td>$\mathbb R$</td><td>Reali</td><td>Razionali e irrazionali</td><td>$-2,\ \frac13,\ \sqrt2,\ \pi$</td></tr>
+</tbody></table></div>
+
+<p>Formalmente:</p>
+$$\mathbb Z=\{\dots,-2,-1,0,1,2,\dots\}.$$
+<p>Un numero razionale è un numero della forma $q=\frac ab$ con $a,b\in\mathbb Z$, $b\neq 0$. Quindi:</p>
+$$\mathbb Q= \left\{ \frac ab \;:\; a,b\in\mathbb Z,\ b\neq 0 \right\}.$$
+<p>Ogni intero è razionale, perché $z=\frac z1$. Per esempio $7=\frac71$ e $-5=\frac{-5}{1}$. Quindi:</p>
+$$\mathbb N\subseteq \mathbb Z\subseteq\mathbb Q.$$
+<p>In realtà le inclusioni sono strette:</p>
+$$\mathbb N\subsetneq\mathbb Z\subsetneq\mathbb Q.$$
+<p>Infatti $-1\in\mathbb Z\setminus\mathbb N$, mentre $\frac12\in\mathbb Q\setminus\mathbb Z$.</p>
+
+<h2>3. Razionali e irrazionali</h2>
+<div class="box def">
+<div class="bt">Frazione ridotta ai minimi termini</div>
+<p>Una frazione $\frac ab$ è ridotta ai minimi termini quando numeratore e denominatore sono coprimi:</p>
+$$\gcd(a,b)=1.$$
+<p>Per esempio $\frac{24}{30}=\frac45$, e $\frac45$ è ridotta ai minimi termini perché $\gcd(4,5)=1$.</p>
+</div>
+<p>Ogni numero razionale non nullo ha una rappresentazione come frazione ridotta ai minimi termini unica a meno del segno simultaneo. Per evitare ambiguità, si impone di solito $b\gt 0$:</p>
+$$q=\frac ab, \qquad a\in\mathbb Z,\quad b\in\mathbb N\setminus\{0\},\quad \gcd(a,b)=1.$$
+<div class="box warn">
+<div class="bt">Nota importante</div>
+<p>Lo zero è un caso particolare, perché:</p>
+$$0=\frac01=\frac02=\frac0{-7}.$$
+</div>
+
+<h3>Sviluppo decimale dei razionali</h3>
+<p>Un numero razionale, scritto in forma decimale, ha:</p>
+<ul>
+<li>un numero finito di cifre decimali, come $\frac12=0{,}5$, $\frac56=0{,}83\overline{3}$;</li>
+<li>oppure infinite cifre decimali che, da un certo punto in poi, diventano periodiche, come $\frac13=0{,}\overline{3}$, $\frac37=0{,}\overline{428571}$.</li>
+</ul>
+<p>Quindi i razionali sono precisamente i numeri con sviluppo decimale finito oppure periodico da un certo punto in poi.</p>
+<p>I numeri reali non razionali sono detti <strong>irrazionali</strong>:</p>
+$$\mathbb R\setminus\mathbb Q.$$
+<p>Essi non possono essere espressi come rapporto di due interi e hanno sviluppo decimale infinito non periodico. Esempi classici: $\sqrt2$, $\pi$, $e$.</p>
+
+<h3>Dimostrazione: $\sqrt2\notin\mathbb Q$</h3>
+<div class="box thm">
+<div class="bt">Teorema</div>
+$$\sqrt2\notin\mathbb Q.$$
+</div>
+<p>La dimostrazione è per assurdo. Supponiamo il contrario: $\sqrt2\in\mathbb Q$. Allora esistono $a,b\in\mathbb Z$, con $b\neq0$ e $\gcd(a,b)=1$, tali che:</p>
+$$\sqrt2=\frac ab.$$
+<p>Elevando al quadrato e moltiplicando per $b^2$:</p>
+$$2=\frac{a^2}{b^2} \quad\Longrightarrow\quad a^2=2b^2.$$
+<p>Quindi $a^2$ è pari. Se il quadrato di un intero è pari, allora anche l’intero è pari; perciò esiste $k\in\mathbb Z$ tale che $a=2k$. Sostituiamo:</p>
+$$(2k)^2=2b^2 \implies 4k^2=2b^2 \implies 2k^2=b^2.$$
+<p>Allora anche $b^2$, e quindi $b$, è pari.</p>
+<p>Abbiamo quindi concluso che sia $a$ sia $b$ sono pari. Ma allora entrambi sono divisibili per 2, quindi $\gcd(a,b)\geq2$, in contraddizione con $\gcd(a,b)=1$. L’ipotesi iniziale era falsa. Pertanto:</p>
+$$\boxed{\sqrt2\notin\mathbb Q}.$$
+<p><em>Questa dimostrazione è da sapere bene: è il classico esempio di dimostrazione per assurdo.</em></p>
+
+<h2>4. I numeri reali</h2>
+<p>L’insieme dei reali $\mathbb R$ contiene tutti i razionali e tutti gli irrazionali:</p>
+$$\mathbb Q\subsetneq\mathbb R.$$
+<p>Puoi rappresentare un reale come $x=m,d_1d_2d_3\dots$ dove $m\in\mathbb Z$ è la parte intera e $d_i\in\{0,1,\dots,9\}$ sono le cifre decimali. Esempio:</p>
+$$\pi=3{,}14159265\dots$$
+<p>ha parte intera 3, poi le cifre decimali $1,4,1,5,9,\dots$</p>
+<p>La catena definitiva è:</p>
+$$\boxed{\mathbb N \subsetneq \mathbb Z \subsetneq \mathbb Q \subsetneq \mathbb R}$$
+<p>e gli irrazionali sono $\mathbb I=\mathbb R\setminus\mathbb Q$.</p>
+<p><em>Nota di notazione: spesso gli irrazionali si indicano semplicemente con $\mathbb R\setminus\mathbb Q$, perché $\mathbb I$ non è una notazione universale quanto le altre.</em></p>
+
+<h2>5. Cardinalità e numerabilità</h2>
+<p>La cardinalità di un insieme $A$, indicata nel corso con $\#A$, è il numero dei suoi elementi. Esempi: se $A=\{-5,0,7\}$ allora $\#A=3$; inoltre $\#\varnothing=0$.</p>
+<p>Un insieme è <strong>finito</strong> se possiede un numero finito di elementi; <strong>infinito</strong> se non è finito.</p>
+<div class="box def">
+<div class="bt">Insieme numerabile</div>
+<p>Un insieme infinito $A$ è numerabile se è possibile mettere i suoi elementi in corrispondenza biunivoca con $\mathbb N$. In pratica: puoi elencarli in una sequenza</p>
+$$a_0,a_1,a_2,a_3,\dots$$
+<p>senza perdere elementi e senza ripetizioni.</p>
+</div>
+<ul>
+<li><strong>$\mathbb Z$ è numerabile.</strong> Gli interi possono essere elencati così: $0,\ 1,\ -1,\ 2,\ -2,\ 3,\ -3,\dots$ Questa lista contiene prima o poi ogni intero. Per esempio, una corrispondenza possibile è:</li>
+</ul>
+$$f(n)= \begin{cases} \dfrac n2 & \text{se } n \text{ è pari}, \\[4pt] -\dfrac{n+1}{2} & \text{se } n\text{ è dispari}. \end{cases}$$
+<ul>
+<li><strong>$\mathbb Q$ è numerabile.</strong> L’idea del metodo diagonale è disporre le frazioni in una tabella e leggerle seguendo diagonali successive, scartando le frazioni equivalenti (es. $\frac12=\frac24=\frac36=\dots$). Così ogni numero razionale viene raggiunto dopo un numero finito di passaggi.</li>
+<li><strong>$\mathbb R$ non è numerabile.</strong> I reali sono infiniti, ma non possono essere elencati in una lista completa del tipo $r_0,r_1,r_2,\dots$. Questa è una differenza enorme: anche se $\mathbb N$, $\mathbb Z$ e $\mathbb Q$ sono tutti infiniti, i reali sono un’infinità “più grande”.</li>
+</ul>
+
+<h2>6. $\mathbb R$ è un campo ordinato</h2>
+<p>La frase fondamentale della lezione è:</p>
+$$\boxed{\mathbb R \text{ è un campo ordinato completo}.}$$
+<p>Il “completo” verrà affrontato dopo; per ora avete costruito “campo” e “ordinato”.</p>
+
+<h3>Campo</h3>
+<p>Un campo è un insieme non vuoto sul quale sono definite due operazioni, addizione e moltiplicazione, che soddisfano certe proprietà. Per i reali: $(\mathbb R,+,\cdot)$.</p>
+
+<div class="box thm">
+<div class="bt">Proprietà dell’addizione</div>
+<p>Per ogni $x,y,z\in\mathbb R$:</p>
+<ul>
+<li><strong>Elemento neutro:</strong> $x+0=0+x=x$.</li>
+<li><strong>Opposto (inverso additivo):</strong> per ogni $x\in\mathbb R$ esiste $-x\in\mathbb R$ tale che $x+(-x)=(-x)+x=0$.</li>
+<li><strong>Associatività:</strong> $(x+y)+z=x+(y+z)$.</li>
+<li><strong>Commutatività:</strong> $x+y=y+x$.</li>
+</ul>
+</div>
+
+<div class="box thm">
+<div class="bt">Proprietà della moltiplicazione</div>
+<p>Per ogni $x,y,z\in\mathbb R$:</p>
+<ul>
+<li><strong>Elemento neutro:</strong> $x\cdot1=1\cdot x=x$.</li>
+<li><strong>Reciproco (inverso moltiplicativo):</strong> per ogni $x\neq0$ esiste $x^{-1}=\frac1x$ tale che $x\cdot x^{-1}=x^{-1}\cdot x=1$. Lo zero non ha reciproco: non esiste alcun reale $y$ per cui $0\cdot y=1$.</li>
+<li><strong>Associatività:</strong> $(xy)z=x(yz)$.</li>
+<li><strong>Commutatività:</strong> $xy=yx$.</li>
+</ul>
+</div>
+
+<div class="box thm">
+<div class="bt">Proprietà distributiva</div>
+<p>Addizione e moltiplicazione dialogano tramite:</p>
+$$x(y+z)=xy+xz.$$
+</div>
+<p>Queste proprietà sono il motivo per cui puoi svolgere parentesi, raccogliere fattori, trasportare termini, semplificare espressioni e manipolare equazioni in modo coerente.</p>
+
+<h3>Ordine nei reali</h3>
+<p>Una relazione su un insieme $A$ è un sottoinsieme di $A\times A$. Una relazione d’ordine, indicata normalmente con $\leq$, ha tre proprietà. Per ogni $x,y,z\in A$:</p>
+<ul>
+<li><strong>Riflessiva:</strong> $x\leq x$.</li>
+<li><strong>Antisimmetrica:</strong> $x\leq y \text{ e } y\leq x \quad\Longrightarrow\quad x=y$.</li>
+<li><strong>Transitiva:</strong> $x\leq y \text{ e } y\leq z \quad\Longrightarrow\quad x\leq z$.</li>
+</ul>
+<p>Nei reali, la relazione $\leq$ soddisfa queste proprietà. Perciò $\mathbb R$ è un insieme ordinato e, insieme alle proprietà algebriche viste sopra:</p>
+$$\boxed{\mathbb R \text{ è un campo ordinato.}}$$
+<p>La parola <em>completo</em> sarà il prossimo pezzo grosso: è ciò che distingue davvero $\mathbb R$ da $\mathbb Q$. I razionali sono anch’essi un campo ordinato, ma non sono completi; per esempio, “manca” loro $\sqrt2$.</p>
+
+<h2>Cose da fissare bene</h2>
+<p>Per il ripasso di Day 1, queste sono le cose che davvero devi saper fare/spiegare senza esitazioni:</p>
+<ol>
+<li>Enunciare il principio di induzione e applicarlo con passo base, ipotesi e passo induttivo.</li>
+<li>Non confondere “suppongo vera $P(n)$” con “suppongo vera $P(n+1)$”.</li>
+<li>Ricordare la catena: $\mathbb N\subsetneq\mathbb Z\subsetneq\mathbb Q\subsetneq\mathbb R$.</li>
+<li>Sapere cosa caratterizza $\mathbb Q$: frazioni tra interi e decimali finiti o periodici.</li>
+<li>Saper raccontare a parole la dimostrazione per assurdo di $\sqrt2\notin\mathbb Q$.</li>
+<li>Capire cosa significa numerabile: si può costruire una lista infinita che contiene tutti e soli gli elementi.</li>
+<li>Sapere che $\mathbb Z$ e $\mathbb Q$ sono numerabili, mentre $\mathbb R$ no.</li>
+<li>Conoscere il significato di “$\mathbb R$ è un campo ordinato”: operazioni $+$ e $\cdot$ con le loro proprietà, più la relazione d’ordine $\leq$.</li>
+</ol>
+</template>
+
+
+<!-- ============================== DAY 2 ============================== -->
+<template class="day" data-n="2" data-title="Completezza di R, Estremo Superiore e Inferiore, Introduzione ai Complessi">
+
+<p>Il cuore della lezione è: completare il quadro di $\mathbb R$, usare bene $\sup$ e $\inf$, e poi iniziare $\mathbb C$.</p>
+
+<h2>Correzione fondamentale: completezza</h2>
+<div class="box warn">
+<div class="bt">Attenzione a non confondere densità e completezza</div>
+<p>“Fra due reali distinti ce n’è sempre un altro” è la proprietà di <strong>densità</strong> dell’ordine, non la completezza nel senso rigoroso usato in Analisi 1. La vera completezza è legata all’esistenza di estremo superiore per gli insiemi non vuoti e limitati superiormente. Sono concetti vicini intuitivamente, ma non equivalenti: anche $\mathbb Q$ è denso, ma non è completo.</p>
+</div>
+
+<div class="box thm">
+<div class="bt">Densità dei reali</div>
+<p>Se $x,y\in\mathbb R$ e $x\lt y$, allora esiste $z\in\mathbb R$ tale che</p>
+$$x\lt z\lt y.$$
+</div>
+<p>Un possibile numero intermedio è la media:</p>
+$$z=\frac{x+y}{2}.$$
+<p>Infatti, se $x\lt y$, allora</p>
+$$x\lt\frac{x+y}{2}\lt y.$$
+<p>Questa proprietà è vera anche nei razionali: fra $\frac13$ e $\frac12$, per esempio, trovi</p>
+$$\frac{\frac13+\frac12}{2}=\frac{5}{12}\in\mathbb Q.$$
+
+<div class="box thm">
+<div class="bt">Assioma di completezza / proprietà dell’estremo superiore</div>
+<p>Ogni insieme $E\subseteq\mathbb R$, non vuoto e limitato superiormente, possiede un estremo superiore in $\mathbb R$.</p>
+</div>
+<p>Questo è ciò che manca a $\mathbb Q$. Per esempio, l’insieme</p>
+$$A=\{q\in\mathbb Q:q^2\lt 2,\ q\gt 0\}$$
+<p>è non vuoto ed è limitato superiormente in $\mathbb Q$, ma non ha un estremo superiore razionale: il “candidato naturale” sarebbe $\sqrt2$, che non appartiene a $\mathbb Q$.</p>
+
+<h2>Densità dei razionali e Archimede</h2>
+<h3>Densità di $\mathbb Q$ in $\mathbb R$</h3>
+<p>Il primo teorema della lezione dice che i razionali possono approssimare arbitrariamente bene qualunque reale.</p>
+<div class="box thm">
+<div class="bt">Teorema — Densità dei razionali nei reali</div>
+<p>Per ogni $x\in\mathbb R$ e per ogni $\varepsilon\gt0$, esiste $q\in\mathbb Q$ tale che:</p>
+$$|x-q|\lt\varepsilon.$$
+</div>
+<p><strong>Interpretazione:</strong> fissato un errore massimo $\varepsilon$, per quanto piccolo sia, esiste sempre un razionale che dista da $x$ meno di $\varepsilon$.</p>
+<p>Esempio con $x=\sqrt2=1{,}41421356\dots$ Se scegli $\varepsilon=10^{-4}=0{,}0001$, puoi prendere $q=1{,}4142$. Allora:</p>
+$$\left|\sqrt2-1{,}4142\right| \approx 0{,}00001356 \lt 0{,}0001.$$
+<p>Quindi $q$ approssima $\sqrt2$ con l’accuratezza richiesta. Questo è anche il motivo pratico per cui un computer può memorizzare valori approssimati di numeri irrazionali, ma non tutte le loro infinite cifre decimali.</p>
+
+<h3>Proprietà di Archimede</h3>
+<div class="box thm">
+<div class="bt">Teorema — Proprietà di Archimede</div>
+<p>Per ogni $x\in\mathbb R$, esiste $n\in\mathbb N$ tale che:</p>
+$$n\gt x.$$
+</div>
+<p>In parole: nessun numero reale è “più grande di tutti i naturali”.</p>
+<p>Esempio: se $x=8{,}6$, puoi scegliere $n=9$. Se invece $x=-200$, puoi perfino scegliere $n=0$, perché $0\gt -200$.</p>
+<p>Questa proprietà sembra ovvia, ma diventa una chiave fondamentale per dimostrare risultati con $\varepsilon$, successioni e limiti. Nell’esercizio della lezione viene usata per scegliere un naturale $n$ abbastanza grande da rendere una quantità come $\frac{2}{n+1}$ piccola quanto vogliamo.</p>
+
+<h2>Retta reale estesa</h2>
+<p>Si introducono due oggetti, non numeri reali: $+\infty$ e $-\infty$. La retta reale estesa è:</p>
+$$\overline{\mathbb R}=\mathbb R\cup\{-\infty,+\infty\}.$$
+<p>Per ogni $x\in\mathbb R$:</p>
+$$-\infty\lt x\lt+\infty.$$
+<p>L’idea grafica è $-\infty \quad\cdots\quad 0 \quad\cdots\quad +\infty$.</p>
+<p><strong>Attenzione:</strong> $\pm\infty$ non sono elementi di $\mathbb R$ e non sono numeri “enormi”. Sono simboli che descrivono l’assenza di un limite reale verso sinistra o verso destra.</p>
+
+<h3>Cosa si conserva?</h3>
+<p>$\overline{\mathbb R}$ resta ordinato, ma non è un campo, perché alcune operazioni non sono definite. Le forme più importanti da ricordare sono:</p>
+<div class="tbl"><table>
+<thead><tr><th>Espressione</th><th>Significato</th></tr></thead>
+<tbody>
+<tr><td>$+\infty+(-\infty)$</td><td>Forma indeterminata</td></tr>
+<tr><td>$+\infty-(+\infty)$</td><td>Forma indeterminata</td></tr>
+<tr><td>$0\cdot(+\infty)$</td><td>Forma indeterminata</td></tr>
+<tr><td>$\dfrac{+\infty}{+\infty}$</td><td>Forma indeterminata</td></tr>
+<tr><td>$\dfrac{0}{0}$</td><td>Forma indeterminata</td></tr>
+<tr><td>$(+\infty)\cdot x$, con $x\gt0$</td><td>$+\infty$</td></tr>
+<tr><td>$(+\infty)\cdot x$, con $x\lt0$</td><td>$-\infty$</td></tr>
+<tr><td>$+\infty+x$, con $x\in\mathbb R$</td><td>$+\infty$</td></tr>
+</tbody></table></div>
+<p>Queste forme indeterminate torneranno fortissimo quando inizierete i limiti: non sono risultati, ma espressioni che richiedono di studiare il caso concreto.</p>
+
+<h2>Massimo, minimo, maggioranti</h2>
+<p>Sia $E\subseteq\mathbb R$, $E\neq\varnothing$.</p>
+
+<div class="box def">
+<div class="bt">Massimo</div>
+<p>Un elemento $M\in\mathbb R$ è il massimo di $E$ se $M\in E$ e</p>
+$$x\leq M \qquad \forall x\in E.$$
+<p>Si scrive $M=\max E$. Il massimo deve quindi rispettare due condizioni: deve appartenere all’insieme; deve essere maggiore o uguale di ogni elemento dell’insieme.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Minimo</div>
+<p>Un elemento $m\in\mathbb R$ è il minimo di $E$ se $m\in E$ e</p>
+$$m\leq x \qquad \forall x\in E.$$
+<p>Si scrive $m=\min E$.</p>
+</div>
+
+<div class="box thm">
+<div class="bt">Teorema — Unicità di massimo e minimo</div>
+<p>Se un insieme $E\subseteq\mathbb R$ ammette un massimo, allora esso è unico. Analogamente, se ammette un minimo, esso è unico.</p>
+</div>
+<p><strong>Dimostrazione per il massimo:</strong> supponi che $m_1$ e $m_2$ siano entrambi massimi di $E$. Poiché $m_2\in E$ e $m_1$ è massimo: $m_2\leq m_1$. Poiché $m_1\in E$ e $m_2$ è massimo: $m_1\leq m_2$. Per antisimmetria dell’ordine:</p>
+$$m_1=m_2.$$
+<p>Quindi non possono esistere due massimi diversi. La dimostrazione per il minimo è identica, invertendo il verso delle disuguaglianze.</p>
+
+<h3>Maggioranti e minoranti</h3>
+<p>Un numero $M\in\mathbb R$ è un <strong>maggiorante</strong> di $E$ se</p>
+$$x\leq M \qquad \forall x\in E.$$
+<p>A differenza del massimo, non richiediamo che $M\in E$. L’insieme dei maggioranti di $E$ si può indicare con:</p>
+$$\mathcal M(E) = \{M\in\mathbb R:x\leq M \ \forall x\in E\}.$$
+<p>Un numero $m\in\mathbb R$ è un <strong>minorante</strong> di $E$ se $m\leq x$ per ogni $x\in E$. L’insieme dei minoranti può essere indicato con:</p>
+$$\mathfrak m(E) = \{m\in\mathbb R:m\leq x \ \forall x\in E\}.$$
+
+<h2>Estremo superiore e inferiore</h2>
+<div class="box def">
+<div class="bt">Definizioni</div>
+<p>L’estremo superiore di $E$, indicato con $\sup E$, è il più piccolo tra tutti i maggioranti di $E$:</p>
+$$\sup E=\min \mathcal M(E),$$
+<p>quando $E$ è limitato superiormente. L’estremo inferiore di $E$, indicato con $\inf E$, è il più grande tra tutti i minoranti di $E$:</p>
+$$\inf E=\max \mathfrak m(E),$$
+<p>quando $E$ è limitato inferiormente.</p>
+</div>
+<p>Nella retta reale estesa, per convenzione $\sup E=+\infty$ se $E$ non possiede maggioranti reali, e $\inf E=-\infty$ se $E$ non possiede minoranti reali.</p>
+
+<h3>Regola d’oro</h3>
+<div class="tbl"><table>
+<thead><tr><th>Oggetto</th><th>Deve stare in $E$?</th><th>Cosa rappresenta?</th></tr></thead>
+<tbody>
+<tr><td>$\max E$</td><td>Sì</td><td>Il più grande elemento dell’insieme</td></tr>
+<tr><td>$\min E$</td><td>Sì</td><td>Il più piccolo elemento dell’insieme</td></tr>
+<tr><td>$\sup E$</td><td>Non necessariamente</td><td>Il più piccolo maggiorante</td></tr>
+<tr><td>$\inf E$</td><td>Non necessariamente</td><td>Il più grande minorante</td></tr>
+</tbody></table></div>
+<p>La regola pratica è:</p>
+$$\boxed{\max E \text{ esiste } \iff \sup E\in E}$$
+<p>e analogamente:</p>
+$$\boxed{\min E \text{ esiste } \iff \inf E\in E.}$$
+<p>Se il massimo esiste, allora $\max E=\sup E$. Se il minimo esiste, allora $\min E=\inf E$.</p>
+
+<h3>Esempi da sapere</h3>
+<div class="tbl"><table>
+<thead><tr><th>Insieme $E$</th><th>$\min E$</th><th>$\max E$</th><th>$\inf E$</th><th>$\sup E$</th></tr></thead>
+<tbody>
+<tr><td>$[3,7]$</td><td>$3$</td><td>$7$</td><td>$3$</td><td>$7$</td></tr>
+<tr><td>$(3,7)$</td><td>Non esiste</td><td>Non esiste</td><td>$3$</td><td>$7$</td></tr>
+<tr><td>$[5,+\infty)$</td><td>$5$</td><td>Non esiste</td><td>$5$</td><td>$+\infty$</td></tr>
+<tr><td>$(-\infty,7)$</td><td>Non esiste</td><td>Non esiste</td><td>$-\infty$</td><td>$7$</td></tr>
+<tr><td>$(-\infty,7]$</td><td>Non esiste</td><td>$7$</td><td>$-\infty$</td><td>$7$</td></tr>
+</tbody></table></div>
+<p>Per esempio, per $E=(3,7)$, il numero $7$ è un maggiorante, ma non è il massimo perché $7\notin E$. Allo stesso modo, $3$ è l’estremo inferiore ma non è il minimo.</p>
+
+<h3>Insiemi limitati</h3>
+<p>Un insieme $E\subseteq\mathbb R$ è:</p>
+<ul>
+<li><strong>limitato superiormente</strong> se $\sup E\lt+\infty$;</li>
+<li><strong>limitato inferiormente</strong> se $\inf E\gt-\infty$;</li>
+<li><strong>limitato</strong> se è sia limitato superiormente sia limitato inferiormente.</li>
+</ul>
+<p>Quindi:</p>
+$$E \text{ limitato} \iff -\infty\lt\inf E\leq\sup E\lt+\infty.$$
+<p>Esempi: $(3,7)$ è limitato; $[5,+\infty)$ è solo limitato inferiormente; $(-\infty,7]$ è solo limitato superiormente; $\mathbb R$ non è limitato.</p>
+
+<h2>Teoremi su $\sup$ e $\inf$</h2>
+<div class="box thm">
+<div class="bt">Esistenza nella retta estesa</div>
+<p>Per ogni insieme non vuoto $E\subseteq\mathbb R$, esistono</p>
+$$\sup E,\ \inf E\in\overline{\mathbb R}.$$
+</div>
+<p>Quindi l’uso della retta reale estesa permette di parlare sempre di estremo superiore e inferiore, anche per insiemi non limitati.</p>
+
+<div class="box thm">
+<div class="bt">Teorema di inclusione</div>
+<p>Se $A\subseteq B$ con $A,B\neq\varnothing$, allora</p>
+$$\sup A\leq\sup B \qquad\text{e}\qquad \inf A\geq\inf B.$$
+</div>
+<p><strong>Intuizione:</strong> se allarghi un insieme, puoi solo spostare il suo “tetto” verso destra o lasciarlo fermo; il suo “pavimento” può invece scendere o restare fermo.</p>
+
+<h3>Caratterizzazione con $\varepsilon$</h3>
+<p>Questa è la parte più importante da imparare bene perché tornerà nei limiti.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Caratterizzazione dell’estremo superiore</div>
+<p>Sia $E\subseteq\mathbb R$, $E\neq\varnothing$. Un numero $M\in\mathbb R$ è $\sup E$ se e solo se:</p>
+<ol>
+<li>$M$ è un maggiorante di $E$:
+$$x\leq M \qquad \forall x\in E;$$</li>
+<li>per ogni $\varepsilon\gt0$, esiste $x_\varepsilon\in E$ tale che:
+$$M-\varepsilon\lt x_\varepsilon\leq M.$$</li>
+</ol>
+</div>
+<p>La seconda condizione vuol dire: per quanto poco tu vada a sinistra di $M$, trovi sempre un elemento dell’insieme. Quindi $M$ non può essere sostituito da un maggiorante più piccolo.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Caratterizzazione dell’estremo inferiore</div>
+<p>Un numero $m\in\mathbb R$ è $\inf E$ se e solo se:</p>
+<ol>
+<li>$m$ è un minorante:
+$$m\leq x \qquad \forall x\in E;$$</li>
+<li>per ogni $\varepsilon\gt0$, esiste $x_\varepsilon\in E$ tale che:
+$$m\leq x_\varepsilon\lt m+\varepsilon.$$</li>
+</ol>
+</div>
+<p>In parole: spostandoti anche di pochissimo a destra dell’infimo, incontri sempre elementi di $E$.</p>
+
+<h2>Esercizio svolto</h2>
+<p>Consideriamo:</p>
+$$E= \left\{ \frac{n-1}{n+1}:n\in\mathbb N \right\}.$$
+<p>Calcoliamo alcuni elementi:</p>
+$$\begin{aligned}
+n=0 &\implies \frac{0-1}{0+1}=-1;\\[4pt]
+n=1 &\implies \frac{1-1}{1+1}=0;\\[4pt]
+n=2 &\implies \frac{2-1}{2+1}=\frac13;\\[4pt]
+n=3 &\implies \frac{3-1}{3+1}=\frac12;\\[4pt]
+n=4 &\implies \frac{4-1}{4+1}=\frac35.
+\end{aligned}$$
+<p>Quindi:</p>
+$$E= \left\{ -1,0,\frac13,\frac12,\frac35,\dots \right\}.$$
+<p>Inoltre:</p>
+$$\frac{n-1}{n+1} = 1-\frac{2}{n+1}.$$
+<p>Da questa forma si vede subito che i valori si avvicinano a $1$ dal basso.</p>
+
+<h3>Minimo e infimo</h3>
+<p>Per $n=0$, ottieni $-1\in E$. Mostriamo che è un minorante:</p>
+$$-1\leq \frac{n-1}{n+1}.$$
+<p>Poiché $n+1\gt0$, moltiplichiamo senza cambiare verso:</p>
+$$-(n+1)\leq n-1 \iff -n-1\leq n-1 \iff 0\leq2n,$$
+<p>vera per ogni $n\in\mathbb N$. Pertanto $\min E=-1$. Poiché il minimo esiste, $\inf E=-1$.</p>
+
+<h3>Estremo superiore</h3>
+<p>Mostriamo che $1$ è maggiorante:</p>
+$$\frac{n-1}{n+1}\leq1.$$
+<p>Dato che $n+1\gt0$, questo equivale a $n-1\leq n+1$, cioè $-1\leq1$, sempre vera. Quindi $1$ è un maggiorante.</p>
+<p>Ora prendiamo un qualunque $\varepsilon\gt0$. Dobbiamo trovare $n\in\mathbb N$ tale che:</p>
+$$1-\varepsilon \lt \frac{n-1}{n+1}.$$
+<p>Usando $\frac{n-1}{n+1}=1-\frac{2}{n+1}$, la disuguaglianza diventa:</p>
+$$1-\varepsilon \lt 1-\frac{2}{n+1} \iff \frac{2}{n+1}\lt\varepsilon \iff n\gt\frac{2}{\varepsilon}-1.$$
+<p>Per la proprietà di Archimede, esiste un naturale $n$ maggiore di quel numero reale. Quindi $\sup E=1$.</p>
+
+<h3>Esiste il massimo?</h3>
+<p>Per avere $\max E$, dovrebbe essere $1\in E$. Ma l’equazione</p>
+$$\frac{n-1}{n+1}=1$$
+<p>porta a $n-1=n+1$, ossia $-1=1$: assurdo. Quindi $1\notin E$.</p>
+<div class="box thm">
+<div class="bt">Conclusione definitiva</div>
+$$\boxed{\min E=\inf E=-1, \qquad \sup E=1, \qquad \max E \text{ non esiste}.}$$
+</div>
+<p>Questo esempio è molto importante perché unisce: definizione di insieme per parametri, disuguaglianze, Archimede, $\varepsilon$, $\sup$, $\inf$, massimo e minimo.</p>
+
+<h2>Esercizio assegnato</h2>
+<p>L’esercizio lasciato dal docente è:</p>
+$$E= \left\{ \frac{1}{2^n}:n\in\mathbb N \right\}.$$
+<p>I primi elementi sono $1,\frac12,\frac14,\frac18,\frac1{16},\dots$ Dato che $0\in\mathbb N$, il primo valore è $\frac1{2^0}=1$.</p>
+<div class="box ex">
+<div class="bt">Risposta attesa</div>
+$$\boxed{\max E=\sup E=1, \qquad \inf E=0, \qquad \min E \text{ non esiste}.}$$
+</div>
+<p>Motivo intuitivo:</p>
+<ul>
+<li>tutti gli elementi sono positivi;</li>
+<li>la successione scende verso $0$;</li>
+<li>$0$ non è mai ottenuto, poiché $\frac1{2^n}\gt0$ per ogni $n\in\mathbb N$;</li>
+<li>$1$ viene ottenuto per $n=0$.</li>
+</ul>
+
+<h2>Numeri complessi: inizio</h2>
+<p>I numeri complessi servono ad ampliare i reali per poter risolvere equazioni che in $\mathbb R$ non hanno soluzione, come:</p>
+$$x^2+1=0.$$
+<p>Infatti richiederebbe $x^2=-1$, ma il quadrato di un reale è sempre $x^2\geq0$. Si introduce quindi l’<strong>unità immaginaria</strong>:</p>
+$$i^2=-1.$$
+<p>Un numero complesso ha forma algebrica:</p>
+$$z=a+ib, \qquad a,b\in\mathbb R.$$
+<p>Dove $\operatorname{Re}(z)=a$ è la parte reale e $\operatorname{Im}(z)=b$ è la parte immaginaria.</p>
+<p>Esempi:</p>
+$$z=3+2i, \qquad w=-1-4i, \qquad 5=5+0i, \qquad -2i=0-2i.$$
+<p>Due complessi sono uguali se e solo se hanno uguali parte reale e parte immaginaria:</p>
+$$a+ib=c+id \quad\Longleftrightarrow\quad a=c \text{ e } b=d.$$
+<p>Nel <strong>piano di Gauss</strong>, il complesso $z=a+ib$ si rappresenta con il punto, o vettore, di coordinate $(a,b)$. Quindi $3+2i$ corrisponde al punto $(3,2)$. L’asse orizzontale è la parte reale; l’asse verticale è il coefficiente della parte immaginaria.</p>
+
+<h2>Da memorizzare per Day 2</h2>
+<ul>
+<li>La vera completezza riguarda $\sup$, non semplicemente il fatto che “esista un numero nel mezzo”.</li>
+<li>Per ogni $x\in\mathbb R$ e $\varepsilon\gt0$, esiste $q\in\mathbb Q$ con $|x-q|\lt\varepsilon$.</li>
+<li>Proprietà di Archimede: $\forall x\in\mathbb R\ \exists n\in\mathbb N:\ n\gt x$.</li>
+<li>$\max E$ e $\min E$ devono appartenere all’insieme.</li>
+<li>$\sup E$ e $\inf E$ possono non appartenere all’insieme.</li>
+<li>Se il massimo esiste: $\max E=\sup E$. Se il minimo esiste: $\min E=\inf E$.</li>
+<li>Per dimostrare un $\sup$ con $\varepsilon$: maggiorante + elementi arbitrariamente vicini da sinistra.</li>
+<li>Per dimostrare un $\inf$ con $\varepsilon$: minorante + elementi arbitrariamente vicini da destra.</li>
+<li>Forma algebrica dei complessi: $z=a+ib$.</li>
+</ul>
+</template>
+
+
+<!-- ============================== DAY 3 ============================== -->
+<template class="day" data-n="3" data-title="Numeri complessi: operazioni, coniugato, modulo, inverso e forma goniometrica">
+
+<h2>1. Operazioni nei numeri complessi</h2>
+<p>Siano</p>
+$$z_1=x_1+i y_1,\qquad z_2=x_2+i y_2,$$
+<p>con $x_1,y_1,x_2,y_2\in\mathbb{R}$ e $i^2=-1$. Nel piano di Gauss al numero $z=x+iy$ è associato il punto $(x,y)$, oppure il vettore con origine in $O=(0,0)$ e termine in $(x,y)$.</p>
+
+<div class="box def">
+<div class="bt">Definizione — Sottrazione</div>
+<p>La sottrazione è l’operazione $-:\mathbb{C}\times\mathbb{C}\longrightarrow\mathbb{C}$ definita da</p>
+$$z_1-z_2=(x_1-x_2)+i(y_1-y_2).$$
+<p>Equivalentemente, $z_1-z_2=z_1+(-z_2)$.</p>
+</div>
+<p><strong>Interpretazione geometrica.</strong> La differenza $z_1-z_2$ è la differenza vettoriale: si somma a $z_1$ il vettore opposto di $z_2$.</p>
+<p><strong>Esempio.</strong> Per $z_1=4+i$ e $z_2=1+3i$ si ha</p>
+$$\begin{aligned} z_1-z_2&=(4+i)-(1+3i)\\ &=4+i-1-3i\\ &=3-2i. \end{aligned}$$
+
+<div class="box def">
+<div class="bt">Definizione — Prodotto</div>
+<p>La moltiplicazione è l’operazione $\cdot:\mathbb{C}\times\mathbb{C}\longrightarrow\mathbb{C}$ definita da</p>
+$$\begin{aligned} z_1z_2 &=(x_1+i y_1)(x_2+i y_2)\\ &=x_1x_2+i x_1y_2+i x_2y_1+i^2y_1y_2\\ &=(x_1x_2-y_1y_2)+i(x_1y_2+x_2y_1). \end{aligned}$$
+</div>
+<p>Nel prodotto bisogna sempre usare $i^2=-1$.</p>
+<p><strong>Esempio.</strong></p>
+$$\begin{aligned} (4+i)(1+3i) &=4+12i+i+3i^2\\ &=4+13i-3\\ &=1+13i. \end{aligned}$$
+<p>L’interpretazione geometrica del prodotto verrà chiarita dopo l’introduzione della forma goniometrica.</p>
+
+<h2>2. Complesso coniugato</h2>
+<div class="box def">
+<div class="bt">Definizione formale</div>
+<p>Sia $z=x+iy\in\mathbb{C}$, con $x,y\in\mathbb{R}$. Il coniugato di $z$ è il numero complesso</p>
+$$\overline{z}=x-iy.$$
+<p>Pertanto $\operatorname{Re}(\overline z)=\operatorname{Re}(z)$ e $\operatorname{Im}(\overline z)=-\operatorname{Im}(z)$.</p>
+</div>
+<p><strong>Interpretazione geometrica.</strong> $\overline z$ è il simmetrico di $z$ rispetto all’asse reale. In particolare, la coordinata orizzontale rimane invariata, mentre la coordinata verticale cambia segno. Per esempio, se $z=4+3i$, allora $\overline z=4-3i$. I punti associati sono $(4,3)$ e $(4,-3)$.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Proprietà del coniugato</div>
+<p>Per ogni $z\in\mathbb{C}$ e per ogni $z_1,z_2\in\mathbb{C}$, valgono:</p>
+$$z+\overline z=2\operatorname{Re}(z),\qquad z-\overline z=2i\operatorname{Im}(z),$$
+$$\overline{\overline z}=z,\qquad z=\overline z\iff z\in\mathbb{R},$$
+$$\overline{z_1+z_2}=\overline{z_1}+\overline{z_2},\qquad \overline{z_1z_2}=\overline{z_1}\,\overline{z_2}.$$
+</div>
+
+<h3>Dimostrazione della prima e seconda proprietà</h3>
+<p>Pongo $z=x+iy$, dunque $\overline z=x-iy$. Allora</p>
+$$\begin{aligned} z+\overline z &=(x+iy)+(x-iy)\\ &=2x\\ &=2\operatorname{Re}(z). \end{aligned}$$
+<p>Geometricamente, le componenti immaginarie sono opposte e si annullano. Inoltre,</p>
+$$\begin{aligned} z-\overline z &=(x+iy)-(x-iy)\\ &=x+iy-x+iy\\ &=2iy\\ &=2i\operatorname{Im}(z). \end{aligned}$$
+<p>Geometricamente, in questo caso si annullano le componenti reali e si sommano quelle immaginarie.</p>
+
+<h3>Dimostrazione della proprietà involutoria</h3>
+$$\begin{aligned} \overline{\overline z} &=\overline{x-iy}\\ &=x+iy\\ &=z. \end{aligned}$$
+<p>Applicare due volte il coniugio riporta al numero di partenza.</p>
+
+<h3>Dimostrazione di $z=\overline z \iff z\in\mathbb{R}$</h3>
+<p><strong>($\Rightarrow$)</strong> Se $z=\overline z$, allora $x+iy=x-iy$. Quindi $2iy=0$. Poiché $2\neq 0$ e $i\neq 0$, segue $y=0$. Dunque $z=x\in\mathbb{R}$.</p>
+<p><strong>($\Leftarrow$)</strong> Se $z\in\mathbb{R}$, allora $z=x+i\cdot 0$. Pertanto $\overline z=x-i\cdot 0=x=z$.</p>
+
+<h3>Dimostrazione della compatibilità con la somma</h3>
+<p>Siano $z_1=x_1+iy_1$ e $z_2=x_2+iy_2$. Allora</p>
+$$\begin{aligned} \overline{z_1+z_2} &=\overline{(x_1+x_2)+i(y_1+y_2)}\\ &=(x_1+x_2)-i(y_1+y_2)\\ &=(x_1-iy_1)+(x_2-iy_2)\\ &=\overline{z_1}+\overline{z_2}. \end{aligned}$$
+
+<h3>Dimostrazione della compatibilità con il prodotto</h3>
+<p>Si ha $z_1z_2=(x_1x_2-y_1y_2)+i(x_1y_2+x_2y_1)$. Quindi</p>
+$$\overline{z_1z_2}=(x_1x_2-y_1y_2)-i(x_1y_2+x_2y_1).$$
+<p>D’altra parte,</p>
+$$\begin{aligned} \overline{z_1}\,\overline{z_2} &=(x_1-iy_1)(x_2-iy_2)\\ &=x_1x_2-i x_1y_2-i x_2y_1+i^2y_1y_2\\ &=(x_1x_2-y_1y_2)-i(x_1y_2+x_2y_1). \end{aligned}$$
+<p>Le due espressioni coincidono, dunque $\overline{z_1z_2}=\overline{z_1}\,\overline{z_2}$.</p>
+
+<h2>3. Opposto e modulo</h2>
+<div class="box def">
+<div class="bt">Definizione — Opposto</div>
+<p>Se $z=x+iy$, l’opposto di $z$ è</p>
+$$-z=-x-iy.$$
+<p>Quindi $\operatorname{Re}(-z)=-\operatorname{Re}(z)$ e $\operatorname{Im}(-z)=-\operatorname{Im}(z)$.</p>
+</div>
+<p><strong>Interpretazione geometrica.</strong> $-z$ ha stesso modulo e stessa direzione di $z$, ma verso opposto; è il simmetrico di $z$ rispetto all’origine. Per $z=4+3i$, si ha $-z=-4-3i$.</p>
+
+<div class="box def">
+<div class="bt">Definizione — Modulo</div>
+<p>Sia $z=x+iy$. Il modulo di $z$ è il numero reale non negativo</p>
+$$|z|=\sqrt{x^2+y^2}.$$
+<p>Nel piano di Gauss, $|z|$ è la distanza del punto associato a $z$ dall’origine, cioè la lunghezza del vettore associato a $z$. Spesso si usa anche la notazione $\rho=|z|$.</p>
+</div>
+<p><strong>Esempio.</strong> Se $z=4+3i$, allora</p>
+$$|z|=\sqrt{4^2+3^2}=\sqrt{25}=5.$$
+
+<h3>Osservazione geometrica</h3>
+<p>L’insieme dei complessi di modulo fissato $r\gt0$ è una circonferenza di centro l’origine e raggio $r$:</p>
+$$|z|=r \iff x^2+y^2=r^2.$$
+<p>Ad esempio, $|z|=3 \iff x^2+y^2=9$.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Proprietà del modulo</div>
+<p>Per ogni $z\in\mathbb{C}$, valgono:</p>
+$$|z|=0\iff z=0,\qquad |\overline z|=|z|,\qquad |-z|=|z|,\qquad z\overline z=|z|^2,$$
+$$|\operatorname{Re}(z)|\le |z|,\qquad |\operatorname{Im}(z)|\le |z|,\qquad |z|\le |\operatorname{Re}(z)|+|\operatorname{Im}(z)|.$$
+<p>Per ogni $z_1,z_2\in\mathbb{C}$, inoltre,</p>
+$$|z_1z_2|=|z_1|\,|z_2|,\qquad |z_1+z_2|\le |z_1|+|z_2|.$$
+<p>L’ultima è detta <strong>disuguaglianza triangolare</strong>.</p>
+</div>
+
+<h3>Dimostrazione di $|z|=0\iff z=0$</h3>
+<p>Sia $z=x+iy$.</p>
+<p><strong>($\Rightarrow$)</strong> Se $|z|=0$, allora $\sqrt{x^2+y^2}=0$. Elevando al quadrato: $x^2+y^2=0$. Poiché $x^2\ge 0$ e $y^2\ge 0$, devono essere entrambi nulli. Quindi $x=0$, $y=0$ e perciò $z=0$.</p>
+<p><strong>($\Leftarrow$)</strong> Se $z=0=0+i0$, allora $|z|=\sqrt{0^2+0^2}=0$.</p>
+
+<h3>Dimostrazione di $|\overline z|=|z|$ e $|-z|=|z|$</h3>
+<p>Se $z=x+iy$, allora</p>
+$$\begin{aligned} |\overline z| &=|x-iy|\\ &=\sqrt{x^2+(-y)^2}\\ &=\sqrt{x^2+y^2}\\ &=|z|. \end{aligned}$$
+<p>Analogamente,</p>
+$$\begin{aligned} |-z| &=|-x-iy|\\ &=\sqrt{(-x)^2+(-y)^2}\\ &=\sqrt{x^2+y^2}\\ &=|z|. \end{aligned}$$
+
+<h3>Dimostrazione di $z\overline z=|z|^2$</h3>
+$$\begin{aligned} z\overline z &=(x+iy)(x-iy)\\ &=x^2-i xy+i xy-i^2y^2\\ &=x^2+y^2\\ &=\left(\sqrt{x^2+y^2}\right)^2\\ &=|z|^2. \end{aligned}$$
+<p>Questa identità è fondamentale: compare continuamente nella razionalizzazione di denominatori complessi.</p>
+
+<h3>Dimostrazione delle stime sulle componenti</h3>
+<p>Poiché $y^2\ge 0$, si ha $x^2\le x^2+y^2$. Applicando la radice quadrata a entrambi i membri:</p>
+$$|x|=\sqrt{x^2}\le\sqrt{x^2+y^2}=|z|.$$
+<p>Quindi $|\operatorname{Re}(z)|\le |z|$. Allo stesso modo, dato che $x^2\ge0$, si ottiene $|\operatorname{Im}(z)|=|y|\le |z|$.</p>
+
+<h3>Dimostrazione di $|z|\le |\operatorname{Re}(z)|+|\operatorname{Im}(z)|$</h3>
+<p>Per $z=x+iy$, $|z|=\sqrt{x^2+y^2}$. Usando, per $a,b\ge0$, la disuguaglianza $\sqrt{a+b}\le \sqrt a+\sqrt b$, con $a=x^2$, $b=y^2$, otteniamo</p>
+$$\begin{aligned} |z| &=\sqrt{x^2+y^2}\\ &\le \sqrt{x^2}+\sqrt{y^2}\\ &=|x|+|y|\\ &=|\operatorname{Re}(z)|+|\operatorname{Im}(z)|. \end{aligned}$$
+
+<h3>Dimostrazione della moltiplicatività</h3>
+<p>Per $z_1=x_1+iy_1$ e $z_2=x_2+iy_2$, si può sviluppare direttamente il quadrato del modulo del prodotto. Un modo più pulito usa il coniugato:</p>
+$$\begin{aligned} |z_1z_2|^2 &=(z_1z_2)\overline{(z_1z_2)}\\ &=z_1z_2\overline{z_1}\,\overline{z_2}\\ &=(z_1\overline{z_1})(z_2\overline{z_2})\\ &=|z_1|^2|z_2|^2. \end{aligned}$$
+<p>Entrambi i membri $|z_1z_2|$ e $|z_1||z_2|$ sono non negativi; quindi</p>
+$$|z_1z_2|=|z_1|\,|z_2|.$$
+
+<h3>Dimostrazione della disuguaglianza triangolare</h3>
+<p>Vogliamo dimostrare $|z_1+z_2|\le |z_1|+|z_2|$. Entrambi i membri sono non negativi: possiamo quindi dimostrare l’equivalente disuguaglianza tra i quadrati.</p>
+$$\begin{aligned} |z_1+z_2|^2 &=(z_1+z_2)\overline{(z_1+z_2)}\\ &=(z_1+z_2)(\overline{z_1}+\overline{z_2})\\ &=z_1\overline{z_1}+z_1\overline{z_2}+z_2\overline{z_1}+z_2\overline{z_2}\\ &=|z_1|^2+z_1\overline{z_2}+\overline{z_1\overline{z_2}}+|z_2|^2\\ &=|z_1|^2+2\operatorname{Re}(z_1\overline{z_2})+|z_2|^2. \end{aligned}$$
+<p>Ora, per ogni $w\in\mathbb{C}$, vale</p>
+$$\operatorname{Re}(w)\le |\operatorname{Re}(w)|\le |w|.$$
+<p>Applicando ciò a $w=z_1\overline{z_2}$, e poi usando la moltiplicatività del modulo e $|\overline{z_2}|=|z_2|$, si ottiene</p>
+$$\begin{aligned} |z_1+z_2|^2 &\le |z_1|^2+2|z_1\overline{z_2}|+|z_2|^2\\ &=|z_1|^2+2|z_1||\overline{z_2}|+|z_2|^2\\ &=|z_1|^2+2|z_1||z_2|+|z_2|^2\\ &=(|z_1|+|z_2|)^2. \end{aligned}$$
+<p>Prendendo la radice quadrata:</p>
+$$|z_1+z_2|\le |z_1|+|z_2|.$$
+<p><strong>Interpretazione geometrica.</strong> La lunghezza del vettore somma non supera mai la somma delle lunghezze dei due vettori: è precisamente la disuguaglianza dei lati di un triangolo.</p>
+
+<h2>4. Inverso e divisione</h2>
+<div class="box def">
+<div class="bt">Definizione — Inverso moltiplicativo</div>
+<p>Sia $z\in\mathbb{C}\setminus\{0\}$. L’inverso (o reciproco) di $z$ è</p>
+$$z^{-1}=\frac{1}{z},$$
+<p>e soddisfa $z\,z^{-1}=1$. Lo zero non ha inverso moltiplicativo.</p>
+</div>
+
+<div class="box thm">
+<div class="bt">Teorema — Formula dell’inverso</div>
+<p>Per ogni $z\neq0$,</p>
+$$z^{-1}=\frac{\overline z}{|z|^2}.$$
+<p>Se $z=x+iy$, equivalentemente</p>
+$$\frac1z=\frac{x-iy}{x^2+y^2} =\frac{x}{x^2+y^2}-i\frac{y}{x^2+y^2}.$$
+</div>
+<p><strong>Dimostrazione.</strong> Moltiplichiamo numeratore e denominatore per il coniugato $\overline z$:</p>
+$$\begin{aligned} \frac1z &=\frac1z\cdot\frac{\overline z}{\overline z}\\ &=\frac{\overline z}{z\overline z}\\ &=\frac{\overline z}{|z|^2}. \end{aligned}$$
+<p>Il passaggio è lecito perché $z\neq0$ implica $\overline z\neq0$.</p>
+<p><strong>Esempio.</strong> Per $z=4+3i$, $|z|=5$ e $\overline z=4-3i$. Quindi</p>
+$$\begin{aligned} \frac1{4+3i} &=\frac{4-3i}{4^2+3^2}\\ &=\frac{4-3i}{25}\\ &=\frac4{25}-\frac3{25}i. \end{aligned}$$
+
+<h3>Interpretazione geometrica</h3>
+<p>Dalla formula $z^{-1}=\frac{1}{|z|^2}\overline z$ segue che $z^{-1}$ ha la stessa direzione e lo stesso verso di $\overline z$, ma è riscalato del fattore positivo $1/|z|^2$. Inoltre,</p>
+$$|z^{-1}|=\frac1{|z|}.$$
+<p>Infatti, applicando il modulo a $zz^{-1}=1$, $|z|\,|z^{-1}|=1$, e dividendo per $|z|\gt0$ si ottiene il risultato.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Proprietà dell’inverso</div>
+<p>Se $z\neq0$, allora</p>
+$$\overline{z^{-1}}=(\overline z)^{-1}=\frac1{\overline z},\qquad |z^{-1}|=\frac1{|z|}.$$
+<p>La prima proprietà esprime che coniugio e inversione commutano.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Definizione — Divisione</div>
+<p>Siano $z_1,z_2\in\mathbb{C}$, con $z_2\neq0$. Si definisce</p>
+$$\frac{z_1}{z_2}=z_1z_2^{-1}.$$
+<p>Usando la formula dell’inverso:</p>
+$$\frac{z_1}{z_2} =z_1\frac{\overline{z_2}}{|z_2|^2}.$$
+</div>
+<p>Quindi, per dividere per un numero complesso, si moltiplica per il suo inverso; operativamente, si razionalizza usando il coniugato del denominatore.</p>
+
+<h2>5. Coordinate polari e forma goniometrica</h2>
+<p>Finora il complesso $z=x+iy$ è stato descritto tramite le coordinate cartesiane $(x,y)$. È possibile descrivere lo stesso punto con coordinate polari:</p>
+<ul>
+<li>$\rho=|z|$, distanza dall’origine;</li>
+<li>$\theta$, angolo orientato misurato dall’asse reale positivo in senso antiorario.</li>
+</ul>
+<p>Si considera sempre $z\neq0$, poiché per $z=0$ l’argomento non è definito in modo univoco.</p>
+
+<h3>Relazioni fondamentali</h3>
+<p>Nel triangolo rettangolo associato al vettore di $z$, il cateto orizzontale è $x$, quello verticale è $y$, mentre l’ipotenusa è $\rho$. Pertanto:</p>
+$$x=\rho\cos\theta, \qquad y=\rho\sin\theta.$$
+<p>Equivalentemente,</p>
+$$\cos\theta=\frac{x}{\rho}, \qquad \sin\theta=\frac{y}{\rho}.$$
+<p>L’angolo $\theta$ si chiama <strong>argomento</strong> di $z$. Non è unico: se $\theta$ è un argomento, allora anche</p>
+$$\theta+2k\pi, \qquad k\in\mathbb{Z},$$
+<p>è un argomento di $z$.</p>
+
+<div class="box def">
+<div class="bt">Definizione — Forma goniometrica</div>
+<p>Sostituendo $x=\rho\cos\theta$ e $y=\rho\sin\theta$ in $z=x+iy$, si ottiene</p>
+$$\begin{aligned} z &=\rho\cos\theta+i\rho\sin\theta\\ &=\rho(\cos\theta+i\sin\theta). \end{aligned}$$
+<p>Questa è la forma goniometrica di $z$:</p>
+$$\boxed{z=\rho(\cos\theta+i\sin\theta)}.$$
+</div>
+<p>Non cambia il numero complesso: cambia soltanto la descrizione, da coordinate cartesiane $(x,y)$ a coordinate polari $(\rho,\theta)$.</p>
+
+<h3>Procedura: dalla forma algebrica alla forma goniometrica</h3>
+<p>Dato $z=x+iy\neq0$, si procede così:</p>
+<ol>
+<li>Calcolare il modulo: $\rho=|z|=\sqrt{x^2+y^2}$.</li>
+<li>Determinare il quadrante dal segno di $x$ e $y$.</li>
+<li>Trovare un angolo $\theta$ che soddisfi $\cos\theta=\frac{x}{\rho}$ e $\sin\theta=\frac{y}{\rho}$.</li>
+<li>Scrivere $z=\rho(\cos\theta+i\sin\theta)$.</li>
+</ol>
+
+<h3>Esempio completo</h3>
+<p>Sia $z=1-\sqrt3\,i$. Calcoliamo il modulo:</p>
+$$\rho=|z|=\sqrt{1^2+(-\sqrt3)^2}=\sqrt{1+3}=2.$$
+<p>Inoltre,</p>
+$$\cos\theta=\frac{1}{2}, \qquad \sin\theta=-\frac{\sqrt3}{2}.$$
+<p>Il punto è nel quarto quadrante; un possibile argomento è $\theta=-\frac\pi3$, oppure, nell’intervallo $[0,2\pi)$,</p>
+$$\theta=\frac{5\pi}{3}.$$
+<p>Quindi</p>
+$$\boxed{z=2\left(\cos\frac{5\pi}{3}+i\sin\frac{5\pi}{3}\right).}$$
+<p>Verifica:</p>
+$$\begin{aligned} 2\left(\cos\frac{5\pi}{3}+i\sin\frac{5\pi}{3}\right) &=2\left(\frac12-i\frac{\sqrt3}{2}\right)\\ &=1-\sqrt3\,i. \end{aligned}$$
+
+<h2>Formulario essenziale</h2>
+<p>Per $z=x+iy$:</p>
+$$\overline z=x-iy, \qquad -z=-x-iy, \qquad |z|=\sqrt{x^2+y^2}.$$
+$$z\overline z=|z|^2.$$
+$$\frac1z=\frac{\overline z}{|z|^2} \qquad (z\neq0).$$
+$$\frac{z_1}{z_2}=z_1\frac{\overline{z_2}}{|z_2|^2} \qquad (z_2\neq0).$$
+$$|z_1z_2|=|z_1|\,|z_2|.$$
+$$|z_1+z_2|\le |z_1|+|z_2|.$$
+$$z=\rho(\cos\theta+i\sin\theta), \qquad \rho=|z|, \qquad x=\rho\cos\theta, \qquad y=\rho\sin\theta.$$
+
+<h2>Errori da evitare</h2>
+<div class="box warn">
+<ul>
+<li>Non confondere $\overline z=x-iy$ con $-z=-x-iy$: il coniugato cambia solo il segno della parte immaginaria; l’opposto cambia entrambi i segni.</li>
+<li>Ricordare che $\sqrt{x^2}=|x|$, non sempre $x$.</li>
+<li>Non scrivere $|z_1+z_2|=|z_1|+|z_2|$: in generale vale soltanto la disuguaglianza triangolare.</li>
+<li>L’inverso $z^{-1}$ esiste solo per $z\neq0$.</li>
+<li>Nel calcolo dell’argomento, non basta ricavare seno e coseno: bisogna controllare il quadrante.</li>
+<li>Gli argomenti differiscono di multipli interi di $2\pi$.</li>
+</ul>
+</div>
+</template>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var root = document.documentElement;
+
+  /* ---------- Dati: un Day per ogni <template class="day"> ---------- */
+  var days = Array.prototype.slice.call(document.querySelectorAll('template.day'))
+    .map(function (t) { return { n: parseInt(t.dataset.n, 10), title: t.dataset.title, tpl: t }; })
+    .sort(function (a, b) { return a.n - b.n; });
+
+  var main = $('content'), menu = $('dayMenu'), dotsBtn = $('dotsBtn');
+  var prevBtn = $('prevBtn'), nextBtn = $('nextBtn');
+  var aaBtn = $('aaBtn'), settings = $('settings');
+  var cur = 0;
+
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+
+  /* ---------- Formule ---------- */
+  function renderMath() {
+    if (window.renderMathInElement) {
+      renderMathInElement(main, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
+      return true;
+    }
+    return false;
+  }
+
+  /* ---------- Mostra un Day ---------- */
+  function show(i, animate) {
+    if (!days.length) { main.innerHTML = '<p>Nessun appunto ancora.</p>'; return; }
+    cur = Math.max(0, Math.min(days.length - 1, i));
+    var d = days[cur];
+    main.innerHTML = '<p class="eyebrow">Day ' + d.n + '</p><h1></h1>' + d.tpl.innerHTML;
+    main.querySelector('h1').textContent = d.title;
+    renderMath();
+    if (animate) { main.classList.remove('fade'); void main.offsetWidth; main.classList.add('fade'); }
+    window.scrollTo(0, 0);
+    store('a1-day', d.n);
+    try { history.replaceState(null, '', '#day-' + d.n); } catch (e) {}
+    updateNav();
+  }
+
+  /* ---------- Navigatore ---------- */
+  function updateNav() {
+    var N = days.length, W = 9, s = 0, e = N;
+    if (N > W) { s = Math.min(Math.max(cur - Math.floor(W / 2), 0), N - W); e = s + W; }
+    dotsBtn.innerHTML = '';
+    for (var k = s; k < e; k++) {
+      var sp = document.createElement('span');
+      var edge = (k === s && s > 0) || (k === e - 1 && e < N);
+      sp.className = 'dot' + (k === cur ? ' on' : '') + (edge && k !== cur ? ' edge' : '');
+      dotsBtn.appendChild(sp);
+    }
+    dotsBtn.setAttribute('aria-label', 'Scegli il Day (ora: Day ' + days[cur].n + ')');
+    prevBtn.disabled = cur === 0;
+    nextBtn.disabled = cur === N - 1;
+    Array.prototype.forEach.call(menu.children, function (btn, k) {
+      var on = k === cur;
+      btn.classList.toggle('cur', on);
+      btn.querySelector('.mk').textContent = on ? '\u25CF' : '\u25CB';
+      if (on) btn.setAttribute('aria-current', 'true'); else btn.removeAttribute('aria-current');
+    });
+  }
+
+  function buildMenu() {
+    menu.innerHTML = '';
+    days.forEach(function (d, k) {
+      var b = document.createElement('button');
+      b.className = 'day-item'; b.setAttribute('role', 'menuitem');
+      var mk = document.createElement('span'); mk.className = 'mk'; mk.textContent = '\u25CB';
+      var tx = document.createElement('span'); tx.textContent = d.n + '. ' + d.title;
+      b.appendChild(mk); b.appendChild(tx);
+      b.addEventListener('click', function () { closeAll(); show(k, true); });
+      menu.appendChild(b);
+    });
+  }
+
+  /* ---------- Finestrelle (non modali) ---------- */
+  function setOpen(panel, btn, open) {
+    panel.hidden = !open;
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  function closeAll() { setOpen(menu, dotsBtn, false); setOpen(settings, aaBtn, false); }
+
+  dotsBtn.addEventListener('click', function () {
+    var open = menu.hidden;
+    closeAll();
+    setOpen(menu, dotsBtn, open);
+    if (open) { var c = menu.querySelector('.cur'); if (c) c.scrollIntoView({ block: 'nearest' }); }
+  });
+  aaBtn.addEventListener('click', function () {
+    var open = settings.hidden;
+    closeAll();
+    setOpen(settings, aaBtn, open);
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.day-menu, .dots, .settings, .aa')) closeAll();
+  });
+  prevBtn.addEventListener('click', function () { show(cur - 1, true); });
+  nextBtn.addEventListener('click', function () { show(cur + 1, true); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAll();
+    else if (e.key === 'ArrowLeft' && !e.metaKey && !e.altKey) show(cur - 1, true);
+    else if (e.key === 'ArrowRight' && !e.metaKey && !e.altKey) show(cur + 1, true);
+  });
+
+  /* ---------- Dimensione testo ---------- */
+  var ZMIN = 60, ZMAX = 220, ZSTEP = 10;
+  var zoom = parseInt(load('a1-zoom'), 10) || 100;
+  function applyZoom() {
+    zoom = Math.max(ZMIN, Math.min(ZMAX, zoom));
+    root.style.setProperty('--z', zoom / 100);
+    $('zVal').textContent = zoom + '%';
+    $('zMinus').disabled = zoom <= ZMIN;
+    $('zPlus').disabled = zoom >= ZMAX;
+    store('a1-zoom', zoom);
+  }
+  $('zMinus').addEventListener('click', function () { zoom -= ZSTEP; applyZoom(); });
+  $('zPlus').addEventListener('click', function () { zoom += ZSTEP; applyZoom(); });
+
+  /* ---------- Tema ---------- */
+  function applyTheme(t) {
+    root.setAttribute('data-theme', t);
+    Array.prototype.forEach.call(document.querySelectorAll('[data-theme-btn]'), function (b) {
+      b.setAttribute('aria-pressed', b.dataset.themeBtn === t ? 'true' : 'false');
+    });
+    store('a1-theme', t);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-theme-btn]'), function (b) {
+    b.addEventListener('click', function () { applyTheme(b.dataset.themeBtn); });
+  });
+
+  /* ---------- Avvio ---------- */
+  applyZoom();
+  applyTheme(root.getAttribute('data-theme') || 'light');
+  buildMenu();
+
+  var start = 0, m = /^#day-(\d+)$/.exec(location.hash), want = m ? parseInt(m[1], 10) : parseInt(load('a1-day'), 10);
+  days.forEach(function (d, k) { if (d.n === want) start = k; });
+  show(start, false);
+
+  /* Se KaTeX non era ancora pronto, riprova a caricamento completato */
+  if (!window.renderMathInElement) window.addEventListener('load', renderMath);
+});
+</script>
+</body>
+</html>
