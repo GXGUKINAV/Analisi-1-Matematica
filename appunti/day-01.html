@@ -1,0 +1,250 @@
+<h2>1. Insieme dei naturali e induzione</h2>
+<p>Assumiamo la convenzione usata a lezione:</p>
+$$\mathbb N = \{0,1,2,3,\dots\}.$$
+<p>Il principio di induzione nasce dal seguente teorema.</p>
+
+<div class="box thm">
+<div class="bt">Teorema di induzione</div>
+<p>Sia $E \subseteq \mathbb N$. Se:</p>
+<ol>
+<li>$0 \in E$;</li>
+<li>per ogni $n\in\mathbb N$, se $n\in E$, allora $n+1\in E$;</li>
+</ol>
+<p>allora</p>
+$$E=\mathbb N.$$
+</div>
+
+<p>L’idea è quella delle tessere del domino: se cade la prima tessera e ogni tessera fa cadere la successiva, allora cadono tutte.</p>
+<p>Da qui otteniamo la forma pratica da usare negli esercizi.</p>
+
+<div class="box thm">
+<div class="bt">Principio di induzione matematica</div>
+<p>Sia $P(n)$ una proprietà che dipende da $n\in\mathbb N$. Se:</p>
+<ol>
+<li>$P(0)$ è vera;</li>
+<li>per ogni $n\in\mathbb N$, $P(n)\Rightarrow P(n+1)$;</li>
+</ol>
+<p>allora $P(n)$ è vera per ogni $n\in\mathbb N$.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Schema fisso degli esercizi per induzione</div>
+<p>Quando trovi “dimostrare che per ogni $n\in\mathbb N$ vale…”, fai sempre così:</p>
+<ul>
+<li><strong>Passo base:</strong> sostituisci $n=0$ e verifica la proprietà.</li>
+<li><strong>Ipotesi induttiva:</strong> supponi vera $P(n)$ per un $n$ generico.</li>
+<li><strong>Passo induttivo:</strong> devi dimostrare $P(n+1)$, sfruttando l’ipotesi induttiva.</li>
+<li><strong>Conclusione:</strong> per il principio di induzione, $P(n)$ vale per ogni $n\in\mathbb N$.</li>
+</ul>
+</div>
+
+<div class="box warn">
+<div class="bt">Attenzione massima</div>
+<p>Nel passo induttivo non puoi dare per vera $P(n+1)$. Devi partire dall’espressione che compare in $P(n+1)$, fare passaggi leciti e usare a un certo punto l’ipotesi $P(n)$.</p>
+</div>
+
+<h3>Esempi di induzione</h3>
+
+<h3>Esempio 1 — $2^n\gt n$</h3>
+<p>Dimostrare che:</p>
+$$2^n\gt n \qquad \forall n\in\mathbb N.$$
+<ul>
+<li><strong>Passo base.</strong> Per $n=0$: $2^0=1\gt 0$. Quindi $P(0)$ è vera.</li>
+<li><strong>Ipotesi induttiva.</strong> Supponiamo che $2^n\gt n$.</li>
+<li><strong>Passo induttivo.</strong> Vogliamo dimostrare $2^{n+1}\gt n+1$. Calcoliamo:</li>
+</ul>
+$$2^{n+1}=2^n\cdot 2=2^n+2^n.$$
+<p>Per ipotesi induttiva $2^n\gt n$; inoltre $2^n\geq 1$. Dunque:</p>
+$$2^{n+1}=2^n+2^n\gt n+1.$$
+<p>Quindi $P(n+1)$ è vera. Per induzione:</p>
+$$2^n\gt n \qquad \forall n\in\mathbb N.$$
+
+<h3>Esempio 2 — Disuguaglianza di Bernoulli</h3>
+<p>Per ogni $x\gt 0$ e ogni $n\in\mathbb N$, vale:</p>
+$$(1+x)^n\geq 1+nx.$$
+<ul>
+<li><strong>Passo base.</strong> Per $n=0$: $(1+x)^0=1$ e $1+0x=1$. Quindi $1\geq 1$.</li>
+<li><strong>Ipotesi induttiva.</strong> Supponiamo $(1+x)^n\geq 1+nx$.</li>
+<li><strong>Passo induttivo.</strong> Dobbiamo dimostrare $(1+x)^{n+1}\geq 1+(n+1)x$.</li>
+</ul>
+<p>Partiamo dal lato sinistro:</p>
+$$(1+x)^{n+1}=(1+x)^n(1+x).$$
+<p>Poiché $x\gt 0$, allora $1+x\gt 0$: possiamo moltiplicare l’ipotesi induttiva per $1+x$, mantenendo il verso della disuguaglianza:</p>
+$$(1+x)^n(1+x)\geq (1+nx)(1+x).$$
+<p>Sviluppiamo:</p>
+$$(1+nx)(1+x)=1+x+nx+nx^2.$$
+<p>Dato che $n\geq 0$ e $x^2\geq 0$, allora $nx^2\geq 0$. Quindi:</p>
+$$1+x+nx+nx^2\geq 1+x+nx.$$
+<p>Infine $1+x+nx=1+(n+1)x$. Abbiamo ottenuto:</p>
+$$(1+x)^{n+1}\geq 1+(n+1)x.$$
+<p>Quindi la disuguaglianza vale per ogni $n\in\mathbb N$.</p>
+
+<h3>Esempio 3 — $n^3-n$ multiplo di 3</h3>
+<p>Dimostrare che $n^3-n$ è multiplo di 3 per ogni $n\in\mathbb N$.</p>
+<ul>
+<li><strong>Passo base.</strong> $0^3-0=0=3\cdot 0$. Quindi $P(0)$ è vera.</li>
+<li><strong>Ipotesi induttiva.</strong> Supponiamo che esista $k\in\mathbb Z$ tale che $n^3-n=3k$. Questa è la traduzione formale di “$n^3-n$ è multiplo di 3”.</li>
+<li><strong>Passo induttivo.</strong> Consideriamo $(n+1)^3-(n+1)$.</li>
+</ul>
+<p>Sviluppiamo il cubo:</p>
+$$(n+1)^3-(n+1) = n^3+3n^2+3n+1-n-1.$$
+<p>Riordiniamo:</p>
+$$(n+1)^3-(n+1) = (n^3-n)+3n^2+3n.$$
+<p>Usiamo l’ipotesi induttiva e raccogliamo 3:</p>
+$$= 3k+3n^2+3n = 3(k+n^2+n).$$
+<p>Poiché $k+n^2+n\in\mathbb Z$, l’espressione è un multiplo di 3. Quindi $(n+1)^3-(n+1)$ è multiplo di 3, e per induzione la proprietà è vera per ogni naturale.</p>
+
+<h2>2. Sistemi numerici</h2>
+<h3>Naturali, interi e razionali</h3>
+<p>I naturali non bastano per risolvere, ad esempio, $x+2=0$, perché la soluzione è $x=-2$, che non appartiene a $\mathbb N$. Perciò si amplia l’insieme.</p>
+
+<div class="tbl"><table>
+<thead><tr><th>Insieme</th><th>Nome</th><th>Idea</th><th>Esempi</th></tr></thead>
+<tbody>
+<tr><td>$\mathbb N$</td><td>Naturali</td><td>Numeri usati per contare</td><td>$0,1,2,3,\dots$</td></tr>
+<tr><td>$\mathbb Z$</td><td>Interi</td><td>Naturali, loro opposti e zero</td><td>$\dots,-2,-1,0,1,2,\dots$</td></tr>
+<tr><td>$\mathbb Q$</td><td>Razionali</td><td>Numeri scrivibili come rapporto tra interi</td><td>$\frac12,\ -\frac73,\ 5$</td></tr>
+<tr><td>$\mathbb R$</td><td>Reali</td><td>Razionali e irrazionali</td><td>$-2,\ \frac13,\ \sqrt2,\ \pi$</td></tr>
+</tbody></table></div>
+
+<p>Formalmente:</p>
+$$\mathbb Z=\{\dots,-2,-1,0,1,2,\dots\}.$$
+<p>Un numero razionale è un numero della forma $q=\frac ab$ con $a,b\in\mathbb Z$, $b\neq 0$. Quindi:</p>
+$$\mathbb Q= \left\{ \frac ab \;:\; a,b\in\mathbb Z,\ b\neq 0 \right\}.$$
+<p>Ogni intero è razionale, perché $z=\frac z1$. Per esempio $7=\frac71$ e $-5=\frac{-5}{1}$. Quindi:</p>
+$$\mathbb N\subseteq \mathbb Z\subseteq\mathbb Q.$$
+<p>In realtà le inclusioni sono strette:</p>
+$$\mathbb N\subsetneq\mathbb Z\subsetneq\mathbb Q.$$
+<p>Infatti $-1\in\mathbb Z\setminus\mathbb N$, mentre $\frac12\in\mathbb Q\setminus\mathbb Z$.</p>
+
+<h2>3. Razionali e irrazionali</h2>
+<div class="box def">
+<div class="bt">Frazione ridotta ai minimi termini</div>
+<p>Una frazione $\frac ab$ è ridotta ai minimi termini quando numeratore e denominatore sono coprimi:</p>
+$$\gcd(a,b)=1.$$
+<p>Per esempio $\frac{24}{30}=\frac45$, e $\frac45$ è ridotta ai minimi termini perché $\gcd(4,5)=1$.</p>
+</div>
+<p>Ogni numero razionale non nullo ha una rappresentazione come frazione ridotta ai minimi termini unica a meno del segno simultaneo. Per evitare ambiguità, si impone di solito $b\gt 0$:</p>
+$$q=\frac ab, \qquad a\in\mathbb Z,\quad b\in\mathbb N\setminus\{0\},\quad \gcd(a,b)=1.$$
+<div class="box warn">
+<div class="bt">Nota importante</div>
+<p>Lo zero è un caso particolare, perché:</p>
+$$0=\frac01=\frac02=\frac0{-7}.$$
+</div>
+
+<h3>Sviluppo decimale dei razionali</h3>
+<p>Un numero razionale, scritto in forma decimale, ha:</p>
+<ul>
+<li>un numero finito di cifre decimali, come $\frac12=0{,}5$, $\frac56=0{,}83\overline{3}$;</li>
+<li>oppure infinite cifre decimali che, da un certo punto in poi, diventano periodiche, come $\frac13=0{,}\overline{3}$, $\frac37=0{,}\overline{428571}$.</li>
+</ul>
+<p>Quindi i razionali sono precisamente i numeri con sviluppo decimale finito oppure periodico da un certo punto in poi.</p>
+<p>I numeri reali non razionali sono detti <strong>irrazionali</strong>:</p>
+$$\mathbb R\setminus\mathbb Q.$$
+<p>Essi non possono essere espressi come rapporto di due interi e hanno sviluppo decimale infinito non periodico. Esempi classici: $\sqrt2$, $\pi$, $e$.</p>
+
+<h3>Dimostrazione: $\sqrt2\notin\mathbb Q$</h3>
+<div class="box thm">
+<div class="bt">Teorema</div>
+$$\sqrt2\notin\mathbb Q.$$
+</div>
+<p>La dimostrazione è per assurdo. Supponiamo il contrario: $\sqrt2\in\mathbb Q$. Allora esistono $a,b\in\mathbb Z$, con $b\neq0$ e $\gcd(a,b)=1$, tali che:</p>
+$$\sqrt2=\frac ab.$$
+<p>Elevando al quadrato e moltiplicando per $b^2$:</p>
+$$2=\frac{a^2}{b^2} \quad\Longrightarrow\quad a^2=2b^2.$$
+<p>Quindi $a^2$ è pari. Se il quadrato di un intero è pari, allora anche l’intero è pari; perciò esiste $k\in\mathbb Z$ tale che $a=2k$. Sostituiamo:</p>
+$$(2k)^2=2b^2 \implies 4k^2=2b^2 \implies 2k^2=b^2.$$
+<p>Allora anche $b^2$, e quindi $b$, è pari.</p>
+<p>Abbiamo quindi concluso che sia $a$ sia $b$ sono pari. Ma allora entrambi sono divisibili per 2, quindi $\gcd(a,b)\geq2$, in contraddizione con $\gcd(a,b)=1$. L’ipotesi iniziale era falsa. Pertanto:</p>
+$$\boxed{\sqrt2\notin\mathbb Q}.$$
+<p><em>Questa dimostrazione è da sapere bene: è il classico esempio di dimostrazione per assurdo.</em></p>
+
+<h2>4. I numeri reali</h2>
+<p>L’insieme dei reali $\mathbb R$ contiene tutti i razionali e tutti gli irrazionali:</p>
+$$\mathbb Q\subsetneq\mathbb R.$$
+<p>Puoi rappresentare un reale come $x=m,d_1d_2d_3\dots$ dove $m\in\mathbb Z$ è la parte intera e $d_i\in\{0,1,\dots,9\}$ sono le cifre decimali. Esempio:</p>
+$$\pi=3{,}14159265\dots$$
+<p>ha parte intera 3, poi le cifre decimali $1,4,1,5,9,\dots$</p>
+<p>La catena definitiva è:</p>
+$$\boxed{\mathbb N \subsetneq \mathbb Z \subsetneq \mathbb Q \subsetneq \mathbb R}$$
+<p>e gli irrazionali sono $\mathbb I=\mathbb R\setminus\mathbb Q$.</p>
+<p><em>Nota di notazione: spesso gli irrazionali si indicano semplicemente con $\mathbb R\setminus\mathbb Q$, perché $\mathbb I$ non è una notazione universale quanto le altre.</em></p>
+
+<h2>5. Cardinalità e numerabilità</h2>
+<p>La cardinalità di un insieme $A$, indicata nel corso con $\#A$, è il numero dei suoi elementi. Esempi: se $A=\{-5,0,7\}$ allora $\#A=3$; inoltre $\#\varnothing=0$.</p>
+<p>Un insieme è <strong>finito</strong> se possiede un numero finito di elementi; <strong>infinito</strong> se non è finito.</p>
+<div class="box def">
+<div class="bt">Insieme numerabile</div>
+<p>Un insieme infinito $A$ è numerabile se è possibile mettere i suoi elementi in corrispondenza biunivoca con $\mathbb N$. In pratica: puoi elencarli in una sequenza</p>
+$$a_0,a_1,a_2,a_3,\dots$$
+<p>senza perdere elementi e senza ripetizioni.</p>
+</div>
+<ul>
+<li><strong>$\mathbb Z$ è numerabile.</strong> Gli interi possono essere elencati così: $0,\ 1,\ -1,\ 2,\ -2,\ 3,\ -3,\dots$ Questa lista contiene prima o poi ogni intero. Per esempio, una corrispondenza possibile è:</li>
+</ul>
+$$f(n)= \begin{cases} \dfrac n2 & \text{se } n \text{ è pari}, \\[4pt] -\dfrac{n+1}{2} & \text{se } n\text{ è dispari}. \end{cases}$$
+<ul>
+<li><strong>$\mathbb Q$ è numerabile.</strong> L’idea del metodo diagonale è disporre le frazioni in una tabella e leggerle seguendo diagonali successive, scartando le frazioni equivalenti (es. $\frac12=\frac24=\frac36=\dots$). Così ogni numero razionale viene raggiunto dopo un numero finito di passaggi.</li>
+<li><strong>$\mathbb R$ non è numerabile.</strong> I reali sono infiniti, ma non possono essere elencati in una lista completa del tipo $r_0,r_1,r_2,\dots$. Questa è una differenza enorme: anche se $\mathbb N$, $\mathbb Z$ e $\mathbb Q$ sono tutti infiniti, i reali sono un’infinità “più grande”.</li>
+</ul>
+
+<h2>6. $\mathbb R$ è un campo ordinato</h2>
+<p>La frase fondamentale della lezione è:</p>
+$$\boxed{\mathbb R \text{ è un campo ordinato completo}.}$$
+<p>Il “completo” verrà affrontato dopo; per ora avete costruito “campo” e “ordinato”.</p>
+
+<h3>Campo</h3>
+<p>Un campo è un insieme non vuoto sul quale sono definite due operazioni, addizione e moltiplicazione, che soddisfano certe proprietà. Per i reali: $(\mathbb R,+,\cdot)$.</p>
+
+<div class="box thm">
+<div class="bt">Proprietà dell’addizione</div>
+<p>Per ogni $x,y,z\in\mathbb R$:</p>
+<ul>
+<li><strong>Elemento neutro:</strong> $x+0=0+x=x$.</li>
+<li><strong>Opposto (inverso additivo):</strong> per ogni $x\in\mathbb R$ esiste $-x\in\mathbb R$ tale che $x+(-x)=(-x)+x=0$.</li>
+<li><strong>Associatività:</strong> $(x+y)+z=x+(y+z)$.</li>
+<li><strong>Commutatività:</strong> $x+y=y+x$.</li>
+</ul>
+</div>
+
+<div class="box thm">
+<div class="bt">Proprietà della moltiplicazione</div>
+<p>Per ogni $x,y,z\in\mathbb R$:</p>
+<ul>
+<li><strong>Elemento neutro:</strong> $x\cdot1=1\cdot x=x$.</li>
+<li><strong>Reciproco (inverso moltiplicativo):</strong> per ogni $x\neq0$ esiste $x^{-1}=\frac1x$ tale che $x\cdot x^{-1}=x^{-1}\cdot x=1$. Lo zero non ha reciproco: non esiste alcun reale $y$ per cui $0\cdot y=1$.</li>
+<li><strong>Associatività:</strong> $(xy)z=x(yz)$.</li>
+<li><strong>Commutatività:</strong> $xy=yx$.</li>
+</ul>
+</div>
+
+<div class="box thm">
+<div class="bt">Proprietà distributiva</div>
+<p>Addizione e moltiplicazione dialogano tramite:</p>
+$$x(y+z)=xy+xz.$$
+</div>
+<p>Queste proprietà sono il motivo per cui puoi svolgere parentesi, raccogliere fattori, trasportare termini, semplificare espressioni e manipolare equazioni in modo coerente.</p>
+
+<h3>Ordine nei reali</h3>
+<p>Una relazione su un insieme $A$ è un sottoinsieme di $A\times A$. Una relazione d’ordine, indicata normalmente con $\leq$, ha tre proprietà. Per ogni $x,y,z\in A$:</p>
+<ul>
+<li><strong>Riflessiva:</strong> $x\leq x$.</li>
+<li><strong>Antisimmetrica:</strong> $x\leq y \text{ e } y\leq x \quad\Longrightarrow\quad x=y$.</li>
+<li><strong>Transitiva:</strong> $x\leq y \text{ e } y\leq z \quad\Longrightarrow\quad x\leq z$.</li>
+</ul>
+<p>Nei reali, la relazione $\leq$ soddisfa queste proprietà. Perciò $\mathbb R$ è un insieme ordinato e, insieme alle proprietà algebriche viste sopra:</p>
+$$\boxed{\mathbb R \text{ è un campo ordinato.}}$$
+<p>La parola <em>completo</em> sarà il prossimo pezzo grosso: è ciò che distingue davvero $\mathbb R$ da $\mathbb Q$. I razionali sono anch’essi un campo ordinato, ma non sono completi; per esempio, “manca” loro $\sqrt2$.</p>
+
+<h2>Cose da fissare bene</h2>
+<p>Per il ripasso di Day 1, queste sono le cose che davvero devi saper fare/spiegare senza esitazioni:</p>
+<ol>
+<li>Enunciare il principio di induzione e applicarlo con passo base, ipotesi e passo induttivo.</li>
+<li>Non confondere “suppongo vera $P(n)$” con “suppongo vera $P(n+1)$”.</li>
+<li>Ricordare la catena: $\mathbb N\subsetneq\mathbb Z\subsetneq\mathbb Q\subsetneq\mathbb R$.</li>
+<li>Sapere cosa caratterizza $\mathbb Q$: frazioni tra interi e decimali finiti o periodici.</li>
+<li>Saper raccontare a parole la dimostrazione per assurdo di $\sqrt2\notin\mathbb Q$.</li>
+<li>Capire cosa significa numerabile: si può costruire una lista infinita che contiene tutti e soli gli elementi.</li>
+<li>Sapere che $\mathbb Z$ e $\mathbb Q$ sono numerabili, mentre $\mathbb R$ no.</li>
+<li>Conoscere il significato di “$\mathbb R$ è un campo ordinato”: operazioni $+$ e $\cdot$ con le loro proprietà, più la relazione d’ordine $\leq$.</li>
+</ol>

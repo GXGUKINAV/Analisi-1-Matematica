@@ -1,0 +1,285 @@
+<p>Il cuore della lezione è: completare il quadro di $\mathbb R$, usare bene $\sup$ e $\inf$, e poi iniziare $\mathbb C$.</p>
+
+<h2>Correzione fondamentale: completezza</h2>
+<div class="box warn">
+<div class="bt">Attenzione a non confondere densità e completezza</div>
+<p>“Fra due reali distinti ce n’è sempre un altro” è la proprietà di <strong>densità</strong> dell’ordine, non la completezza nel senso rigoroso usato in Analisi 1. La vera completezza è legata all’esistenza di estremo superiore per gli insiemi non vuoti e limitati superiormente. Sono concetti vicini intuitivamente, ma non equivalenti: anche $\mathbb Q$ è denso, ma non è completo.</p>
+</div>
+
+<div class="box thm">
+<div class="bt">Densità dei reali</div>
+<p>Se $x,y\in\mathbb R$ e $x\lt y$, allora esiste $z\in\mathbb R$ tale che</p>
+$$x\lt z\lt y.$$
+</div>
+<p>Un possibile numero intermedio è la media:</p>
+$$z=\frac{x+y}{2}.$$
+<p>Infatti, se $x\lt y$, allora</p>
+$$x\lt\frac{x+y}{2}\lt y.$$
+<p>Questa proprietà è vera anche nei razionali: fra $\frac13$ e $\frac12$, per esempio, trovi</p>
+$$\frac{\frac13+\frac12}{2}=\frac{5}{12}\in\mathbb Q.$$
+
+<div class="box thm">
+<div class="bt">Assioma di completezza / proprietà dell’estremo superiore</div>
+<p>Ogni insieme $E\subseteq\mathbb R$, non vuoto e limitato superiormente, possiede un estremo superiore in $\mathbb R$.</p>
+</div>
+<p>Questo è ciò che manca a $\mathbb Q$. Per esempio, l’insieme</p>
+$$A=\{q\in\mathbb Q:q^2\lt 2,\ q\gt 0\}$$
+<p>è non vuoto ed è limitato superiormente in $\mathbb Q$, ma non ha un estremo superiore razionale: il “candidato naturale” sarebbe $\sqrt2$, che non appartiene a $\mathbb Q$.</p>
+
+<h2>Densità dei razionali e Archimede</h2>
+<h3>Densità di $\mathbb Q$ in $\mathbb R$</h3>
+<p>Il primo teorema della lezione dice che i razionali possono approssimare arbitrariamente bene qualunque reale.</p>
+<div class="box thm">
+<div class="bt">Teorema — Densità dei razionali nei reali</div>
+<p>Per ogni $x\in\mathbb R$ e per ogni $\varepsilon\gt0$, esiste $q\in\mathbb Q$ tale che:</p>
+$$|x-q|\lt\varepsilon.$$
+</div>
+<p><strong>Interpretazione:</strong> fissato un errore massimo $\varepsilon$, per quanto piccolo sia, esiste sempre un razionale che dista da $x$ meno di $\varepsilon$.</p>
+<p>Esempio con $x=\sqrt2=1{,}41421356\dots$ Se scegli $\varepsilon=10^{-4}=0{,}0001$, puoi prendere $q=1{,}4142$. Allora:</p>
+$$\left|\sqrt2-1{,}4142\right| \approx 0{,}00001356 \lt 0{,}0001.$$
+<p>Quindi $q$ approssima $\sqrt2$ con l’accuratezza richiesta. Questo è anche il motivo pratico per cui un computer può memorizzare valori approssimati di numeri irrazionali, ma non tutte le loro infinite cifre decimali.</p>
+
+<h3>Proprietà di Archimede</h3>
+<div class="box thm">
+<div class="bt">Teorema — Proprietà di Archimede</div>
+<p>Per ogni $x\in\mathbb R$, esiste $n\in\mathbb N$ tale che:</p>
+$$n\gt x.$$
+</div>
+<p>In parole: nessun numero reale è “più grande di tutti i naturali”.</p>
+<p>Esempio: se $x=8{,}6$, puoi scegliere $n=9$. Se invece $x=-200$, puoi perfino scegliere $n=0$, perché $0\gt -200$.</p>
+<p>Questa proprietà sembra ovvia, ma diventa una chiave fondamentale per dimostrare risultati con $\varepsilon$, successioni e limiti. Nell’esercizio della lezione viene usata per scegliere un naturale $n$ abbastanza grande da rendere una quantità come $\frac{2}{n+1}$ piccola quanto vogliamo.</p>
+
+<h2>Retta reale estesa</h2>
+<p>Si introducono due oggetti, non numeri reali: $+\infty$ e $-\infty$. La retta reale estesa è:</p>
+$$\overline{\mathbb R}=\mathbb R\cup\{-\infty,+\infty\}.$$
+<p>Per ogni $x\in\mathbb R$:</p>
+$$-\infty\lt x\lt+\infty.$$
+<p>L’idea grafica è $-\infty \quad\cdots\quad 0 \quad\cdots\quad +\infty$.</p>
+<p><strong>Attenzione:</strong> $\pm\infty$ non sono elementi di $\mathbb R$ e non sono numeri “enormi”. Sono simboli che descrivono l’assenza di un limite reale verso sinistra o verso destra.</p>
+
+<h3>Cosa si conserva?</h3>
+<p>$\overline{\mathbb R}$ resta ordinato, ma non è un campo, perché alcune operazioni non sono definite. Le forme più importanti da ricordare sono:</p>
+<div class="tbl"><table>
+<thead><tr><th>Espressione</th><th>Significato</th></tr></thead>
+<tbody>
+<tr><td>$+\infty+(-\infty)$</td><td>Forma indeterminata</td></tr>
+<tr><td>$+\infty-(+\infty)$</td><td>Forma indeterminata</td></tr>
+<tr><td>$0\cdot(+\infty)$</td><td>Forma indeterminata</td></tr>
+<tr><td>$\dfrac{+\infty}{+\infty}$</td><td>Forma indeterminata</td></tr>
+<tr><td>$\dfrac{0}{0}$</td><td>Forma indeterminata</td></tr>
+<tr><td>$(+\infty)\cdot x$, con $x\gt0$</td><td>$+\infty$</td></tr>
+<tr><td>$(+\infty)\cdot x$, con $x\lt0$</td><td>$-\infty$</td></tr>
+<tr><td>$+\infty+x$, con $x\in\mathbb R$</td><td>$+\infty$</td></tr>
+</tbody></table></div>
+<p>Queste forme indeterminate torneranno fortissimo quando inizierete i limiti: non sono risultati, ma espressioni che richiedono di studiare il caso concreto.</p>
+
+<h2>Massimo, minimo, maggioranti</h2>
+<p>Sia $E\subseteq\mathbb R$, $E\neq\varnothing$.</p>
+
+<div class="box def">
+<div class="bt">Massimo</div>
+<p>Un elemento $M\in\mathbb R$ è il massimo di $E$ se $M\in E$ e</p>
+$$x\leq M \qquad \forall x\in E.$$
+<p>Si scrive $M=\max E$. Il massimo deve quindi rispettare due condizioni: deve appartenere all’insieme; deve essere maggiore o uguale di ogni elemento dell’insieme.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Minimo</div>
+<p>Un elemento $m\in\mathbb R$ è il minimo di $E$ se $m\in E$ e</p>
+$$m\leq x \qquad \forall x\in E.$$
+<p>Si scrive $m=\min E$.</p>
+</div>
+
+<div class="box thm">
+<div class="bt">Teorema — Unicità di massimo e minimo</div>
+<p>Se un insieme $E\subseteq\mathbb R$ ammette un massimo, allora esso è unico. Analogamente, se ammette un minimo, esso è unico.</p>
+</div>
+<p><strong>Dimostrazione per il massimo:</strong> supponi che $m_1$ e $m_2$ siano entrambi massimi di $E$. Poiché $m_2\in E$ e $m_1$ è massimo: $m_2\leq m_1$. Poiché $m_1\in E$ e $m_2$ è massimo: $m_1\leq m_2$. Per antisimmetria dell’ordine:</p>
+$$m_1=m_2.$$
+<p>Quindi non possono esistere due massimi diversi. La dimostrazione per il minimo è identica, invertendo il verso delle disuguaglianze.</p>
+
+<h3>Maggioranti e minoranti</h3>
+<p>Un numero $M\in\mathbb R$ è un <strong>maggiorante</strong> di $E$ se</p>
+$$x\leq M \qquad \forall x\in E.$$
+<p>A differenza del massimo, non richiediamo che $M\in E$. L’insieme dei maggioranti di $E$ si può indicare con:</p>
+$$\mathcal M(E) = \{M\in\mathbb R:x\leq M \ \forall x\in E\}.$$
+<p>Un numero $m\in\mathbb R$ è un <strong>minorante</strong> di $E$ se $m\leq x$ per ogni $x\in E$. L’insieme dei minoranti può essere indicato con:</p>
+$$\mathfrak m(E) = \{m\in\mathbb R:m\leq x \ \forall x\in E\}.$$
+
+<h2>Estremo superiore e inferiore</h2>
+<div class="box def">
+<div class="bt">Definizioni</div>
+<p>L’estremo superiore di $E$, indicato con $\sup E$, è il più piccolo tra tutti i maggioranti di $E$:</p>
+$$\sup E=\min \mathcal M(E),$$
+<p>quando $E$ è limitato superiormente. L’estremo inferiore di $E$, indicato con $\inf E$, è il più grande tra tutti i minoranti di $E$:</p>
+$$\inf E=\max \mathfrak m(E),$$
+<p>quando $E$ è limitato inferiormente.</p>
+</div>
+<p>Nella retta reale estesa, per convenzione $\sup E=+\infty$ se $E$ non possiede maggioranti reali, e $\inf E=-\infty$ se $E$ non possiede minoranti reali.</p>
+
+<h3>Regola d’oro</h3>
+<div class="tbl"><table>
+<thead><tr><th>Oggetto</th><th>Deve stare in $E$?</th><th>Cosa rappresenta?</th></tr></thead>
+<tbody>
+<tr><td>$\max E$</td><td>Sì</td><td>Il più grande elemento dell’insieme</td></tr>
+<tr><td>$\min E$</td><td>Sì</td><td>Il più piccolo elemento dell’insieme</td></tr>
+<tr><td>$\sup E$</td><td>Non necessariamente</td><td>Il più piccolo maggiorante</td></tr>
+<tr><td>$\inf E$</td><td>Non necessariamente</td><td>Il più grande minorante</td></tr>
+</tbody></table></div>
+<p>La regola pratica è:</p>
+$$\boxed{\max E \text{ esiste } \iff \sup E\in E}$$
+<p>e analogamente:</p>
+$$\boxed{\min E \text{ esiste } \iff \inf E\in E.}$$
+<p>Se il massimo esiste, allora $\max E=\sup E$. Se il minimo esiste, allora $\min E=\inf E$.</p>
+
+<h3>Esempi da sapere</h3>
+<div class="tbl"><table>
+<thead><tr><th>Insieme $E$</th><th>$\min E$</th><th>$\max E$</th><th>$\inf E$</th><th>$\sup E$</th></tr></thead>
+<tbody>
+<tr><td>$[3,7]$</td><td>$3$</td><td>$7$</td><td>$3$</td><td>$7$</td></tr>
+<tr><td>$(3,7)$</td><td>Non esiste</td><td>Non esiste</td><td>$3$</td><td>$7$</td></tr>
+<tr><td>$[5,+\infty)$</td><td>$5$</td><td>Non esiste</td><td>$5$</td><td>$+\infty$</td></tr>
+<tr><td>$(-\infty,7)$</td><td>Non esiste</td><td>Non esiste</td><td>$-\infty$</td><td>$7$</td></tr>
+<tr><td>$(-\infty,7]$</td><td>Non esiste</td><td>$7$</td><td>$-\infty$</td><td>$7$</td></tr>
+</tbody></table></div>
+<p>Per esempio, per $E=(3,7)$, il numero $7$ è un maggiorante, ma non è il massimo perché $7\notin E$. Allo stesso modo, $3$ è l’estremo inferiore ma non è il minimo.</p>
+
+<h3>Insiemi limitati</h3>
+<p>Un insieme $E\subseteq\mathbb R$ è:</p>
+<ul>
+<li><strong>limitato superiormente</strong> se $\sup E\lt+\infty$;</li>
+<li><strong>limitato inferiormente</strong> se $\inf E\gt-\infty$;</li>
+<li><strong>limitato</strong> se è sia limitato superiormente sia limitato inferiormente.</li>
+</ul>
+<p>Quindi:</p>
+$$E \text{ limitato} \iff -\infty\lt\inf E\leq\sup E\lt+\infty.$$
+<p>Esempi: $(3,7)$ è limitato; $[5,+\infty)$ è solo limitato inferiormente; $(-\infty,7]$ è solo limitato superiormente; $\mathbb R$ non è limitato.</p>
+
+<h2>Teoremi su $\sup$ e $\inf$</h2>
+<div class="box thm">
+<div class="bt">Esistenza nella retta estesa</div>
+<p>Per ogni insieme non vuoto $E\subseteq\mathbb R$, esistono</p>
+$$\sup E,\ \inf E\in\overline{\mathbb R}.$$
+</div>
+<p>Quindi l’uso della retta reale estesa permette di parlare sempre di estremo superiore e inferiore, anche per insiemi non limitati.</p>
+
+<div class="box thm">
+<div class="bt">Teorema di inclusione</div>
+<p>Se $A\subseteq B$ con $A,B\neq\varnothing$, allora</p>
+$$\sup A\leq\sup B \qquad\text{e}\qquad \inf A\geq\inf B.$$
+</div>
+<p><strong>Intuizione:</strong> se allarghi un insieme, puoi solo spostare il suo “tetto” verso destra o lasciarlo fermo; il suo “pavimento” può invece scendere o restare fermo.</p>
+
+<h3>Caratterizzazione con $\varepsilon$</h3>
+<p>Questa è la parte più importante da imparare bene perché tornerà nei limiti.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Caratterizzazione dell’estremo superiore</div>
+<p>Sia $E\subseteq\mathbb R$, $E\neq\varnothing$. Un numero $M\in\mathbb R$ è $\sup E$ se e solo se:</p>
+<ol>
+<li>$M$ è un maggiorante di $E$:
+$$x\leq M \qquad \forall x\in E;$$</li>
+<li>per ogni $\varepsilon\gt0$, esiste $x_\varepsilon\in E$ tale che:
+$$M-\varepsilon\lt x_\varepsilon\leq M.$$</li>
+</ol>
+</div>
+<p>La seconda condizione vuol dire: per quanto poco tu vada a sinistra di $M$, trovi sempre un elemento dell’insieme. Quindi $M$ non può essere sostituito da un maggiorante più piccolo.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Caratterizzazione dell’estremo inferiore</div>
+<p>Un numero $m\in\mathbb R$ è $\inf E$ se e solo se:</p>
+<ol>
+<li>$m$ è un minorante:
+$$m\leq x \qquad \forall x\in E;$$</li>
+<li>per ogni $\varepsilon\gt0$, esiste $x_\varepsilon\in E$ tale che:
+$$m\leq x_\varepsilon\lt m+\varepsilon.$$</li>
+</ol>
+</div>
+<p>In parole: spostandoti anche di pochissimo a destra dell’infimo, incontri sempre elementi di $E$.</p>
+
+<h2>Esercizio svolto</h2>
+<p>Consideriamo:</p>
+$$E= \left\{ \frac{n-1}{n+1}:n\in\mathbb N \right\}.$$
+<p>Calcoliamo alcuni elementi:</p>
+$$\begin{aligned}
+n=0 &\implies \frac{0-1}{0+1}=-1;\\[4pt]
+n=1 &\implies \frac{1-1}{1+1}=0;\\[4pt]
+n=2 &\implies \frac{2-1}{2+1}=\frac13;\\[4pt]
+n=3 &\implies \frac{3-1}{3+1}=\frac12;\\[4pt]
+n=4 &\implies \frac{4-1}{4+1}=\frac35.
+\end{aligned}$$
+<p>Quindi:</p>
+$$E= \left\{ -1,0,\frac13,\frac12,\frac35,\dots \right\}.$$
+<p>Inoltre:</p>
+$$\frac{n-1}{n+1} = 1-\frac{2}{n+1}.$$
+<p>Da questa forma si vede subito che i valori si avvicinano a $1$ dal basso.</p>
+
+<h3>Minimo e infimo</h3>
+<p>Per $n=0$, ottieni $-1\in E$. Mostriamo che è un minorante:</p>
+$$-1\leq \frac{n-1}{n+1}.$$
+<p>Poiché $n+1\gt0$, moltiplichiamo senza cambiare verso:</p>
+$$-(n+1)\leq n-1 \iff -n-1\leq n-1 \iff 0\leq2n,$$
+<p>vera per ogni $n\in\mathbb N$. Pertanto $\min E=-1$. Poiché il minimo esiste, $\inf E=-1$.</p>
+
+<h3>Estremo superiore</h3>
+<p>Mostriamo che $1$ è maggiorante:</p>
+$$\frac{n-1}{n+1}\leq1.$$
+<p>Dato che $n+1\gt0$, questo equivale a $n-1\leq n+1$, cioè $-1\leq1$, sempre vera. Quindi $1$ è un maggiorante.</p>
+<p>Ora prendiamo un qualunque $\varepsilon\gt0$. Dobbiamo trovare $n\in\mathbb N$ tale che:</p>
+$$1-\varepsilon \lt \frac{n-1}{n+1}.$$
+<p>Usando $\frac{n-1}{n+1}=1-\frac{2}{n+1}$, la disuguaglianza diventa:</p>
+$$1-\varepsilon \lt 1-\frac{2}{n+1} \iff \frac{2}{n+1}\lt\varepsilon \iff n\gt\frac{2}{\varepsilon}-1.$$
+<p>Per la proprietà di Archimede, esiste un naturale $n$ maggiore di quel numero reale. Quindi $\sup E=1$.</p>
+
+<h3>Esiste il massimo?</h3>
+<p>Per avere $\max E$, dovrebbe essere $1\in E$. Ma l’equazione</p>
+$$\frac{n-1}{n+1}=1$$
+<p>porta a $n-1=n+1$, ossia $-1=1$: assurdo. Quindi $1\notin E$.</p>
+<div class="box thm">
+<div class="bt">Conclusione definitiva</div>
+$$\boxed{\min E=\inf E=-1, \qquad \sup E=1, \qquad \max E \text{ non esiste}.}$$
+</div>
+<p>Questo esempio è molto importante perché unisce: definizione di insieme per parametri, disuguaglianze, Archimede, $\varepsilon$, $\sup$, $\inf$, massimo e minimo.</p>
+
+<h2>Esercizio assegnato</h2>
+<p>L’esercizio lasciato dal docente è:</p>
+$$E= \left\{ \frac{1}{2^n}:n\in\mathbb N \right\}.$$
+<p>I primi elementi sono $1,\frac12,\frac14,\frac18,\frac1{16},\dots$ Dato che $0\in\mathbb N$, il primo valore è $\frac1{2^0}=1$.</p>
+<div class="box ex">
+<div class="bt">Risposta attesa</div>
+$$\boxed{\max E=\sup E=1, \qquad \inf E=0, \qquad \min E \text{ non esiste}.}$$
+</div>
+<p>Motivo intuitivo:</p>
+<ul>
+<li>tutti gli elementi sono positivi;</li>
+<li>la successione scende verso $0$;</li>
+<li>$0$ non è mai ottenuto, poiché $\frac1{2^n}\gt0$ per ogni $n\in\mathbb N$;</li>
+<li>$1$ viene ottenuto per $n=0$.</li>
+</ul>
+
+<h2>Numeri complessi: inizio</h2>
+<p>I numeri complessi servono ad ampliare i reali per poter risolvere equazioni che in $\mathbb R$ non hanno soluzione, come:</p>
+$$x^2+1=0.$$
+<p>Infatti richiederebbe $x^2=-1$, ma il quadrato di un reale è sempre $x^2\geq0$. Si introduce quindi l’<strong>unità immaginaria</strong>:</p>
+$$i^2=-1.$$
+<p>Un numero complesso ha forma algebrica:</p>
+$$z=a+ib, \qquad a,b\in\mathbb R.$$
+<p>Dove $\operatorname{Re}(z)=a$ è la parte reale e $\operatorname{Im}(z)=b$ è la parte immaginaria.</p>
+<p>Esempi:</p>
+$$z=3+2i, \qquad w=-1-4i, \qquad 5=5+0i, \qquad -2i=0-2i.$$
+<p>Due complessi sono uguali se e solo se hanno uguali parte reale e parte immaginaria:</p>
+$$a+ib=c+id \quad\Longleftrightarrow\quad a=c \text{ e } b=d.$$
+<p>Nel <strong>piano di Gauss</strong>, il complesso $z=a+ib$ si rappresenta con il punto, o vettore, di coordinate $(a,b)$. Quindi $3+2i$ corrisponde al punto $(3,2)$. L’asse orizzontale è la parte reale; l’asse verticale è il coefficiente della parte immaginaria.</p>
+
+<h2>Da memorizzare per Day 2</h2>
+<ul>
+<li>La vera completezza riguarda $\sup$, non semplicemente il fatto che “esista un numero nel mezzo”.</li>
+<li>Per ogni $x\in\mathbb R$ e $\varepsilon\gt0$, esiste $q\in\mathbb Q$ con $|x-q|\lt\varepsilon$.</li>
+<li>Proprietà di Archimede: $\forall x\in\mathbb R\ \exists n\in\mathbb N:\ n\gt x$.</li>
+<li>$\max E$ e $\min E$ devono appartenere all’insieme.</li>
+<li>$\sup E$ e $\inf E$ possono non appartenere all’insieme.</li>
+<li>Se il massimo esiste: $\max E=\sup E$. Se il minimo esiste: $\min E=\inf E$.</li>
+<li>Per dimostrare un $\sup$ con $\varepsilon$: maggiorante + elementi arbitrariamente vicini da sinistra.</li>
+<li>Per dimostrare un $\inf$ con $\varepsilon$: minorante + elementi arbitrariamente vicini da destra.</li>
+<li>Forma algebrica dei complessi: $z=a+ib$.</li>
+</ul>

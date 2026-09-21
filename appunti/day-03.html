@@ -1,0 +1,252 @@
+<h2>1. Operazioni nei numeri complessi</h2>
+<p>Siano</p>
+$$z_1=x_1+i y_1,\qquad z_2=x_2+i y_2,$$
+<p>con $x_1,y_1,x_2,y_2\in\mathbb{R}$ e $i^2=-1$. Nel piano di Gauss al numero $z=x+iy$ è associato il punto $(x,y)$, oppure il vettore con origine in $O=(0,0)$ e termine in $(x,y)$.</p>
+
+<div class="box def">
+<div class="bt">Definizione — Sottrazione</div>
+<p>La sottrazione è l’operazione $-:\mathbb{C}\times\mathbb{C}\longrightarrow\mathbb{C}$ definita da</p>
+$$z_1-z_2=(x_1-x_2)+i(y_1-y_2).$$
+<p>Equivalentemente, $z_1-z_2=z_1+(-z_2)$.</p>
+</div>
+<p><strong>Interpretazione geometrica.</strong> La differenza $z_1-z_2$ è la differenza vettoriale: si somma a $z_1$ il vettore opposto di $z_2$.</p>
+<p><strong>Esempio.</strong> Per $z_1=4+i$ e $z_2=1+3i$ si ha</p>
+$$\begin{aligned} z_1-z_2&=(4+i)-(1+3i)\\ &=4+i-1-3i\\ &=3-2i. \end{aligned}$$
+
+<div class="box def">
+<div class="bt">Definizione — Prodotto</div>
+<p>La moltiplicazione è l’operazione $\cdot:\mathbb{C}\times\mathbb{C}\longrightarrow\mathbb{C}$ definita da</p>
+$$\begin{aligned} z_1z_2 &=(x_1+i y_1)(x_2+i y_2)\\ &=x_1x_2+i x_1y_2+i x_2y_1+i^2y_1y_2\\ &=(x_1x_2-y_1y_2)+i(x_1y_2+x_2y_1). \end{aligned}$$
+</div>
+<p>Nel prodotto bisogna sempre usare $i^2=-1$.</p>
+<p><strong>Esempio.</strong></p>
+$$\begin{aligned} (4+i)(1+3i) &=4+12i+i+3i^2\\ &=4+13i-3\\ &=1+13i. \end{aligned}$$
+<p>L’interpretazione geometrica del prodotto verrà chiarita dopo l’introduzione della forma goniometrica.</p>
+
+<h2>2. Complesso coniugato</h2>
+<div class="box def">
+<div class="bt">Definizione formale</div>
+<p>Sia $z=x+iy\in\mathbb{C}$, con $x,y\in\mathbb{R}$. Il coniugato di $z$ è il numero complesso</p>
+$$\overline{z}=x-iy.$$
+<p>Pertanto $\operatorname{Re}(\overline z)=\operatorname{Re}(z)$ e $\operatorname{Im}(\overline z)=-\operatorname{Im}(z)$.</p>
+</div>
+<p><strong>Interpretazione geometrica.</strong> $\overline z$ è il simmetrico di $z$ rispetto all’asse reale. In particolare, la coordinata orizzontale rimane invariata, mentre la coordinata verticale cambia segno. Per esempio, se $z=4+3i$, allora $\overline z=4-3i$. I punti associati sono $(4,3)$ e $(4,-3)$.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Proprietà del coniugato</div>
+<p>Per ogni $z\in\mathbb{C}$ e per ogni $z_1,z_2\in\mathbb{C}$, valgono:</p>
+$$z+\overline z=2\operatorname{Re}(z),\qquad z-\overline z=2i\operatorname{Im}(z),$$
+$$\overline{\overline z}=z,\qquad z=\overline z\iff z\in\mathbb{R},$$
+$$\overline{z_1+z_2}=\overline{z_1}+\overline{z_2},\qquad \overline{z_1z_2}=\overline{z_1}\,\overline{z_2}.$$
+</div>
+
+<h3>Dimostrazione della prima e seconda proprietà</h3>
+<p>Pongo $z=x+iy$, dunque $\overline z=x-iy$. Allora</p>
+$$\begin{aligned} z+\overline z &=(x+iy)+(x-iy)\\ &=2x\\ &=2\operatorname{Re}(z). \end{aligned}$$
+<p>Geometricamente, le componenti immaginarie sono opposte e si annullano. Inoltre,</p>
+$$\begin{aligned} z-\overline z &=(x+iy)-(x-iy)\\ &=x+iy-x+iy\\ &=2iy\\ &=2i\operatorname{Im}(z). \end{aligned}$$
+<p>Geometricamente, in questo caso si annullano le componenti reali e si sommano quelle immaginarie.</p>
+
+<h3>Dimostrazione della proprietà involutoria</h3>
+$$\begin{aligned} \overline{\overline z} &=\overline{x-iy}\\ &=x+iy\\ &=z. \end{aligned}$$
+<p>Applicare due volte il coniugio riporta al numero di partenza.</p>
+
+<h3>Dimostrazione di $z=\overline z \iff z\in\mathbb{R}$</h3>
+<p><strong>($\Rightarrow$)</strong> Se $z=\overline z$, allora $x+iy=x-iy$. Quindi $2iy=0$. Poiché $2\neq 0$ e $i\neq 0$, segue $y=0$. Dunque $z=x\in\mathbb{R}$.</p>
+<p><strong>($\Leftarrow$)</strong> Se $z\in\mathbb{R}$, allora $z=x+i\cdot 0$. Pertanto $\overline z=x-i\cdot 0=x=z$.</p>
+
+<h3>Dimostrazione della compatibilità con la somma</h3>
+<p>Siano $z_1=x_1+iy_1$ e $z_2=x_2+iy_2$. Allora</p>
+$$\begin{aligned} \overline{z_1+z_2} &=\overline{(x_1+x_2)+i(y_1+y_2)}\\ &=(x_1+x_2)-i(y_1+y_2)\\ &=(x_1-iy_1)+(x_2-iy_2)\\ &=\overline{z_1}+\overline{z_2}. \end{aligned}$$
+
+<h3>Dimostrazione della compatibilità con il prodotto</h3>
+<p>Si ha $z_1z_2=(x_1x_2-y_1y_2)+i(x_1y_2+x_2y_1)$. Quindi</p>
+$$\overline{z_1z_2}=(x_1x_2-y_1y_2)-i(x_1y_2+x_2y_1).$$
+<p>D’altra parte,</p>
+$$\begin{aligned} \overline{z_1}\,\overline{z_2} &=(x_1-iy_1)(x_2-iy_2)\\ &=x_1x_2-i x_1y_2-i x_2y_1+i^2y_1y_2\\ &=(x_1x_2-y_1y_2)-i(x_1y_2+x_2y_1). \end{aligned}$$
+<p>Le due espressioni coincidono, dunque $\overline{z_1z_2}=\overline{z_1}\,\overline{z_2}$.</p>
+
+<h2>3. Opposto e modulo</h2>
+<div class="box def">
+<div class="bt">Definizione — Opposto</div>
+<p>Se $z=x+iy$, l’opposto di $z$ è</p>
+$$-z=-x-iy.$$
+<p>Quindi $\operatorname{Re}(-z)=-\operatorname{Re}(z)$ e $\operatorname{Im}(-z)=-\operatorname{Im}(z)$.</p>
+</div>
+<p><strong>Interpretazione geometrica.</strong> $-z$ ha stesso modulo e stessa direzione di $z$, ma verso opposto; è il simmetrico di $z$ rispetto all’origine. Per $z=4+3i$, si ha $-z=-4-3i$.</p>
+
+<div class="box def">
+<div class="bt">Definizione — Modulo</div>
+<p>Sia $z=x+iy$. Il modulo di $z$ è il numero reale non negativo</p>
+$$|z|=\sqrt{x^2+y^2}.$$
+<p>Nel piano di Gauss, $|z|$ è la distanza del punto associato a $z$ dall’origine, cioè la lunghezza del vettore associato a $z$. Spesso si usa anche la notazione $\rho=|z|$.</p>
+</div>
+<p><strong>Esempio.</strong> Se $z=4+3i$, allora</p>
+$$|z|=\sqrt{4^2+3^2}=\sqrt{25}=5.$$
+
+<h3>Osservazione geometrica</h3>
+<p>L’insieme dei complessi di modulo fissato $r\gt0$ è una circonferenza di centro l’origine e raggio $r$:</p>
+$$|z|=r \iff x^2+y^2=r^2.$$
+<p>Ad esempio, $|z|=3 \iff x^2+y^2=9$.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Proprietà del modulo</div>
+<p>Per ogni $z\in\mathbb{C}$, valgono:</p>
+$$|z|=0\iff z=0,\qquad |\overline z|=|z|,\qquad |-z|=|z|,\qquad z\overline z=|z|^2,$$
+$$|\operatorname{Re}(z)|\le |z|,\qquad |\operatorname{Im}(z)|\le |z|,\qquad |z|\le |\operatorname{Re}(z)|+|\operatorname{Im}(z)|.$$
+<p>Per ogni $z_1,z_2\in\mathbb{C}$, inoltre,</p>
+$$|z_1z_2|=|z_1|\,|z_2|,\qquad |z_1+z_2|\le |z_1|+|z_2|.$$
+<p>L’ultima è detta <strong>disuguaglianza triangolare</strong>.</p>
+</div>
+
+<h3>Dimostrazione di $|z|=0\iff z=0$</h3>
+<p>Sia $z=x+iy$.</p>
+<p><strong>($\Rightarrow$)</strong> Se $|z|=0$, allora $\sqrt{x^2+y^2}=0$. Elevando al quadrato: $x^2+y^2=0$. Poiché $x^2\ge 0$ e $y^2\ge 0$, devono essere entrambi nulli. Quindi $x=0$, $y=0$ e perciò $z=0$.</p>
+<p><strong>($\Leftarrow$)</strong> Se $z=0=0+i0$, allora $|z|=\sqrt{0^2+0^2}=0$.</p>
+
+<h3>Dimostrazione di $|\overline z|=|z|$ e $|-z|=|z|$</h3>
+<p>Se $z=x+iy$, allora</p>
+$$\begin{aligned} |\overline z| &=|x-iy|\\ &=\sqrt{x^2+(-y)^2}\\ &=\sqrt{x^2+y^2}\\ &=|z|. \end{aligned}$$
+<p>Analogamente,</p>
+$$\begin{aligned} |-z| &=|-x-iy|\\ &=\sqrt{(-x)^2+(-y)^2}\\ &=\sqrt{x^2+y^2}\\ &=|z|. \end{aligned}$$
+
+<h3>Dimostrazione di $z\overline z=|z|^2$</h3>
+$$\begin{aligned} z\overline z &=(x+iy)(x-iy)\\ &=x^2-i xy+i xy-i^2y^2\\ &=x^2+y^2\\ &=\left(\sqrt{x^2+y^2}\right)^2\\ &=|z|^2. \end{aligned}$$
+<p>Questa identità è fondamentale: compare continuamente nella razionalizzazione di denominatori complessi.</p>
+
+<h3>Dimostrazione delle stime sulle componenti</h3>
+<p>Poiché $y^2\ge 0$, si ha $x^2\le x^2+y^2$. Applicando la radice quadrata a entrambi i membri:</p>
+$$|x|=\sqrt{x^2}\le\sqrt{x^2+y^2}=|z|.$$
+<p>Quindi $|\operatorname{Re}(z)|\le |z|$. Allo stesso modo, dato che $x^2\ge0$, si ottiene $|\operatorname{Im}(z)|=|y|\le |z|$.</p>
+
+<h3>Dimostrazione di $|z|\le |\operatorname{Re}(z)|+|\operatorname{Im}(z)|$</h3>
+<p>Per $z=x+iy$, $|z|=\sqrt{x^2+y^2}$. Usando, per $a,b\ge0$, la disuguaglianza $\sqrt{a+b}\le \sqrt a+\sqrt b$, con $a=x^2$, $b=y^2$, otteniamo</p>
+$$\begin{aligned} |z| &=\sqrt{x^2+y^2}\\ &\le \sqrt{x^2}+\sqrt{y^2}\\ &=|x|+|y|\\ &=|\operatorname{Re}(z)|+|\operatorname{Im}(z)|. \end{aligned}$$
+
+<h3>Dimostrazione della moltiplicatività</h3>
+<p>Per $z_1=x_1+iy_1$ e $z_2=x_2+iy_2$, si può sviluppare direttamente il quadrato del modulo del prodotto. Un modo più pulito usa il coniugato:</p>
+$$\begin{aligned} |z_1z_2|^2 &=(z_1z_2)\overline{(z_1z_2)}\\ &=z_1z_2\overline{z_1}\,\overline{z_2}\\ &=(z_1\overline{z_1})(z_2\overline{z_2})\\ &=|z_1|^2|z_2|^2. \end{aligned}$$
+<p>Entrambi i membri $|z_1z_2|$ e $|z_1||z_2|$ sono non negativi; quindi</p>
+$$|z_1z_2|=|z_1|\,|z_2|.$$
+
+<h3>Dimostrazione della disuguaglianza triangolare</h3>
+<p>Vogliamo dimostrare $|z_1+z_2|\le |z_1|+|z_2|$. Entrambi i membri sono non negativi: possiamo quindi dimostrare l’equivalente disuguaglianza tra i quadrati.</p>
+$$\begin{aligned} |z_1+z_2|^2 &=(z_1+z_2)\overline{(z_1+z_2)}\\ &=(z_1+z_2)(\overline{z_1}+\overline{z_2})\\ &=z_1\overline{z_1}+z_1\overline{z_2}+z_2\overline{z_1}+z_2\overline{z_2}\\ &=|z_1|^2+z_1\overline{z_2}+\overline{z_1\overline{z_2}}+|z_2|^2\\ &=|z_1|^2+2\operatorname{Re}(z_1\overline{z_2})+|z_2|^2. \end{aligned}$$
+<p>Ora, per ogni $w\in\mathbb{C}$, vale</p>
+$$\operatorname{Re}(w)\le |\operatorname{Re}(w)|\le |w|.$$
+<p>Applicando ciò a $w=z_1\overline{z_2}$, e poi usando la moltiplicatività del modulo e $|\overline{z_2}|=|z_2|$, si ottiene</p>
+$$\begin{aligned} |z_1+z_2|^2 &\le |z_1|^2+2|z_1\overline{z_2}|+|z_2|^2\\ &=|z_1|^2+2|z_1||\overline{z_2}|+|z_2|^2\\ &=|z_1|^2+2|z_1||z_2|+|z_2|^2\\ &=(|z_1|+|z_2|)^2. \end{aligned}$$
+<p>Prendendo la radice quadrata:</p>
+$$|z_1+z_2|\le |z_1|+|z_2|.$$
+<p><strong>Interpretazione geometrica.</strong> La lunghezza del vettore somma non supera mai la somma delle lunghezze dei due vettori: è precisamente la disuguaglianza dei lati di un triangolo.</p>
+
+<h2>4. Inverso e divisione</h2>
+<div class="box def">
+<div class="bt">Definizione — Inverso moltiplicativo</div>
+<p>Sia $z\in\mathbb{C}\setminus\{0\}$. L’inverso (o reciproco) di $z$ è</p>
+$$z^{-1}=\frac{1}{z},$$
+<p>e soddisfa $z\,z^{-1}=1$. Lo zero non ha inverso moltiplicativo.</p>
+</div>
+
+<div class="box thm">
+<div class="bt">Teorema — Formula dell’inverso</div>
+<p>Per ogni $z\neq0$,</p>
+$$z^{-1}=\frac{\overline z}{|z|^2}.$$
+<p>Se $z=x+iy$, equivalentemente</p>
+$$\frac1z=\frac{x-iy}{x^2+y^2} =\frac{x}{x^2+y^2}-i\frac{y}{x^2+y^2}.$$
+</div>
+<p><strong>Dimostrazione.</strong> Moltiplichiamo numeratore e denominatore per il coniugato $\overline z$:</p>
+$$\begin{aligned} \frac1z &=\frac1z\cdot\frac{\overline z}{\overline z}\\ &=\frac{\overline z}{z\overline z}\\ &=\frac{\overline z}{|z|^2}. \end{aligned}$$
+<p>Il passaggio è lecito perché $z\neq0$ implica $\overline z\neq0$.</p>
+<p><strong>Esempio.</strong> Per $z=4+3i$, $|z|=5$ e $\overline z=4-3i$. Quindi</p>
+$$\begin{aligned} \frac1{4+3i} &=\frac{4-3i}{4^2+3^2}\\ &=\frac{4-3i}{25}\\ &=\frac4{25}-\frac3{25}i. \end{aligned}$$
+
+<h3>Interpretazione geometrica</h3>
+<p>Dalla formula $z^{-1}=\frac{1}{|z|^2}\overline z$ segue che $z^{-1}$ ha la stessa direzione e lo stesso verso di $\overline z$, ma è riscalato del fattore positivo $1/|z|^2$. Inoltre,</p>
+$$|z^{-1}|=\frac1{|z|}.$$
+<p>Infatti, applicando il modulo a $zz^{-1}=1$, $|z|\,|z^{-1}|=1$, e dividendo per $|z|\gt0$ si ottiene il risultato.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Proprietà dell’inverso</div>
+<p>Se $z\neq0$, allora</p>
+$$\overline{z^{-1}}=(\overline z)^{-1}=\frac1{\overline z},\qquad |z^{-1}|=\frac1{|z|}.$$
+<p>La prima proprietà esprime che coniugio e inversione commutano.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Definizione — Divisione</div>
+<p>Siano $z_1,z_2\in\mathbb{C}$, con $z_2\neq0$. Si definisce</p>
+$$\frac{z_1}{z_2}=z_1z_2^{-1}.$$
+<p>Usando la formula dell’inverso:</p>
+$$\frac{z_1}{z_2} =z_1\frac{\overline{z_2}}{|z_2|^2}.$$
+</div>
+<p>Quindi, per dividere per un numero complesso, si moltiplica per il suo inverso; operativamente, si razionalizza usando il coniugato del denominatore.</p>
+
+<h2>5. Coordinate polari e forma goniometrica</h2>
+<p>Finora il complesso $z=x+iy$ è stato descritto tramite le coordinate cartesiane $(x,y)$. È possibile descrivere lo stesso punto con coordinate polari:</p>
+<ul>
+<li>$\rho=|z|$, distanza dall’origine;</li>
+<li>$\theta$, angolo orientato misurato dall’asse reale positivo in senso antiorario.</li>
+</ul>
+<p>Si considera sempre $z\neq0$, poiché per $z=0$ l’argomento non è definito in modo univoco.</p>
+
+<h3>Relazioni fondamentali</h3>
+<p>Nel triangolo rettangolo associato al vettore di $z$, il cateto orizzontale è $x$, quello verticale è $y$, mentre l’ipotenusa è $\rho$. Pertanto:</p>
+$$x=\rho\cos\theta, \qquad y=\rho\sin\theta.$$
+<p>Equivalentemente,</p>
+$$\cos\theta=\frac{x}{\rho}, \qquad \sin\theta=\frac{y}{\rho}.$$
+<p>L’angolo $\theta$ si chiama <strong>argomento</strong> di $z$. Non è unico: se $\theta$ è un argomento, allora anche</p>
+$$\theta+2k\pi, \qquad k\in\mathbb{Z},$$
+<p>è un argomento di $z$.</p>
+
+<div class="box def">
+<div class="bt">Definizione — Forma goniometrica</div>
+<p>Sostituendo $x=\rho\cos\theta$ e $y=\rho\sin\theta$ in $z=x+iy$, si ottiene</p>
+$$\begin{aligned} z &=\rho\cos\theta+i\rho\sin\theta\\ &=\rho(\cos\theta+i\sin\theta). \end{aligned}$$
+<p>Questa è la forma goniometrica di $z$:</p>
+$$\boxed{z=\rho(\cos\theta+i\sin\theta)}.$$
+</div>
+<p>Non cambia il numero complesso: cambia soltanto la descrizione, da coordinate cartesiane $(x,y)$ a coordinate polari $(\rho,\theta)$.</p>
+
+<h3>Procedura: dalla forma algebrica alla forma goniometrica</h3>
+<p>Dato $z=x+iy\neq0$, si procede così:</p>
+<ol>
+<li>Calcolare il modulo: $\rho=|z|=\sqrt{x^2+y^2}$.</li>
+<li>Determinare il quadrante dal segno di $x$ e $y$.</li>
+<li>Trovare un angolo $\theta$ che soddisfi $\cos\theta=\frac{x}{\rho}$ e $\sin\theta=\frac{y}{\rho}$.</li>
+<li>Scrivere $z=\rho(\cos\theta+i\sin\theta)$.</li>
+</ol>
+
+<h3>Esempio completo</h3>
+<p>Sia $z=1-\sqrt3\,i$. Calcoliamo il modulo:</p>
+$$\rho=|z|=\sqrt{1^2+(-\sqrt3)^2}=\sqrt{1+3}=2.$$
+<p>Inoltre,</p>
+$$\cos\theta=\frac{1}{2}, \qquad \sin\theta=-\frac{\sqrt3}{2}.$$
+<p>Il punto è nel quarto quadrante; un possibile argomento è $\theta=-\frac\pi3$, oppure, nell’intervallo $[0,2\pi)$,</p>
+$$\theta=\frac{5\pi}{3}.$$
+<p>Quindi</p>
+$$\boxed{z=2\left(\cos\frac{5\pi}{3}+i\sin\frac{5\pi}{3}\right).}$$
+<p>Verifica:</p>
+$$\begin{aligned} 2\left(\cos\frac{5\pi}{3}+i\sin\frac{5\pi}{3}\right) &=2\left(\frac12-i\frac{\sqrt3}{2}\right)\\ &=1-\sqrt3\,i. \end{aligned}$$
+
+<h2>Formulario essenziale</h2>
+<p>Per $z=x+iy$:</p>
+$$\overline z=x-iy, \qquad -z=-x-iy, \qquad |z|=\sqrt{x^2+y^2}.$$
+$$z\overline z=|z|^2.$$
+$$\frac1z=\frac{\overline z}{|z|^2} \qquad (z\neq0).$$
+$$\frac{z_1}{z_2}=z_1\frac{\overline{z_2}}{|z_2|^2} \qquad (z_2\neq0).$$
+$$|z_1z_2|=|z_1|\,|z_2|.$$
+$$|z_1+z_2|\le |z_1|+|z_2|.$$
+$$z=\rho(\cos\theta+i\sin\theta), \qquad \rho=|z|, \qquad x=\rho\cos\theta, \qquad y=\rho\sin\theta.$$
+
+<h2>Errori da evitare</h2>
+<div class="box warn">
+<ul>
+<li>Non confondere $\overline z=x-iy$ con $-z=-x-iy$: il coniugato cambia solo il segno della parte immaginaria; l’opposto cambia entrambi i segni.</li>
+<li>Ricordare che $\sqrt{x^2}=|x|$, non sempre $x$.</li>
+<li>Non scrivere $|z_1+z_2|=|z_1|+|z_2|$: in generale vale soltanto la disuguaglianza triangolare.</li>
+<li>L’inverso $z^{-1}$ esiste solo per $z\neq0$.</li>
+<li>Nel calcolo dell’argomento, non basta ricavare seno e coseno: bisogna controllare il quadrante.</li>
+<li>Gli argomenti differiscono di multipli interi di $2\pi$.</li>
+</ul>
+</div>
