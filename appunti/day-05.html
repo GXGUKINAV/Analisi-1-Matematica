@@ -1,0 +1,235 @@
+<h2>1. Polinomi e numeri complessi</h2>
+
+<h3>Definizioni formali</h3>
+<div class="box def">
+<div class="bt">Definizione — Polinomio e radice</div>
+<p>Un polinomio di grado $n\geq 1$ a coefficienti complessi è</p>
+$$P(z)=a_nz^n+a_{n-1}z^{n-1}+\cdots+a_1z+a_0,\qquad a_k\in\mathbb C,\quad a_n\neq 0.$$
+<p>Un numero $w\in\mathbb C$ è una <strong>radice</strong> di $P$ se $P(w)=0$. La sua <strong>molteplicità</strong> è il massimo intero $m\geq1$ per cui $(z-w)^m$ divide $P(z)$.</p>
+</div>
+<p>Dire «tre radici uguali a $w$» significa dunque che $w$ è una radice di molteplicità $3$, non che ci siano tre numeri distinti.</p>
+
+<h3>Teorema fondamentale dell'algebra</h3>
+<div class="box thm">
+<div class="bt">Teorema fondamentale dell'algebra</div>
+<p><strong>Ipotesi.</strong> $P$ è un polinomio a coefficienti complessi di grado $n\geq1$.</p>
+<p><strong>Tesi.</strong> Esistono $z_1,\ldots,z_n\in\mathbb C$, non necessariamente distinti, tali che</p>
+$$P(z)=a_n(z-z_1)(z-z_2)\cdots(z-z_n).$$
+</div>
+<p>Quindi $P$ ha $n$ radici <strong>contate con molteplicità</strong>: se le radici distinte sono $w_1,\ldots,w_r$, con molteplicità $m_1,\ldots,m_r$, allora</p>
+$$m_1+\cdots+m_r=n.$$
+<p>Il teorema è stato <em>enunciato</em>, non dimostrato durante la lezione. Una sua conseguenza immediata è che risolvere l'equazione $P(z)=0$ in $\mathbb C$ significa trovare tali radici.</p>
+
+<div class="box ex">
+<div class="bt">Esempio — Polinomio di grado 5</div>
+<p>Per il polinomio usato a lezione,</p>
+$$P(z)=z^5+25z^3=z^3(z^2+25)=z^3(z-5i)(z+5i).$$
+<p>Le radici distinte sono $0$, $5i$ e $-5i$, con molteplicità rispettivamente $3$, $1$ e $1$, la cui somma è $5$.</p>
+<p>Analogamente, cercare le radici cubiche complesse di $-8$ equivale a risolvere $z^3+8=0$.</p>
+</div>
+
+<h3>Radici coniugate</h3>
+<div class="box thm">
+<div class="bt">Teorema — Radici coniugate</div>
+<p><strong>Ipotesi.</strong> Il polinomio ha coefficienti reali:</p>
+$$P(z)=a_0+a_1z+a_2z^2+\cdots+a_nz^n,\qquad a_0,a_1,\ldots,a_n\in\mathbb R,$$
+<p>mentre $z$ può appartenere a $\mathbb C$.</p>
+<p><strong>Tesi.</strong> Per ogni $w\in\mathbb C$,</p>
+$$P(w)=0\quad\Longleftrightarrow\quad P(\overline w)=0.$$
+</div>
+<p>Le radici <strong>non reali</strong> si presentano quindi in coppie coniugate, con la stessa molteplicità. Le radici reali non richiedono un'altra radice distinta: ciascuna coincide con il proprio coniugato.</p>
+
+<h3>Dimostrazione, passo per passo</h3>
+<ol>
+<li>Il coniugato conserva somme e prodotti; poiché ogni coefficiente è reale, $\overline{a_k}=a_k$.</li>
+<li>Calcoliamo il polinomio in $w$ e coniughiamo tutti i termini:</li>
+</ol>
+$$\begin{aligned}
+\overline{P(w)}
+&=\overline{a_0+a_1w+a_2w^2+\cdots+a_nw^n}\\
+&=a_0+a_1\overline w+a_2(\overline w)^2+\cdots+a_n(\overline w)^n\\
+&=P(\overline w).
+\end{aligned}$$
+<ol start="3">
+<li>Se $P(w)=0$, allora $P(\overline w)=\overline{P(w)}=\overline0=0$.</li>
+<li>Per l'implicazione inversa si ripete lo stesso ragionamento a partire da $\overline w$, il cui coniugato è $w$.</li>
+</ol>
+<p>La molteplicità si conserva perché, coniugando una fattorizzazione che contiene $(z-w)^m$, si ottiene il corrispondente fattore $(z-\overline w)^m$.</p>
+
+<div class="box thm">
+<div class="bt">Corollario</div>
+<p>Un polinomio a coefficienti reali di grado dispari ha almeno una radice reale.</p>
+</div>
+<p>Infatti le radici non reali, contate con le rispettive molteplicità, contribuiscono a coppie e dunque con un numero pari; se il grado totale è dispari, almeno una radice deve essere reale. Per esempio, $z^3+8=0$ ha la radice reale $-2$.</p>
+
+<h3>Equazioni quadratiche in $\mathbb C$</h3>
+<p>Per $az^2+bz+c=0$, con $a,b,c\in\mathbb C$ e $a\neq0$, posto $\Delta=b^2-4ac$, si sceglie <strong>una</strong> radice quadrata complessa $w$ di $\Delta$, cioè $w^2=\Delta$. Allora le soluzioni sono</p>
+$$z_1=\frac{-b+w}{2a},\qquad z_2=\frac{-b-w}{2a}.$$
+<p>Se $\Delta\neq0$, le due radici quadrate complesse sono $w$ e $-w$; se $\Delta=0$, coincidono e la soluzione ha molteplicità $2$. Questo evita di usare $\sqrt{\Delta}$ come se indicasse sempre un unico valore reale. In particolare, $\sqrt4=2$, mentre l'equazione $w^2=4$ ha soluzioni $w=\pm2$.</p>
+
+<div class="box ex">
+<div class="bt">Esempio svolto a lezione</div>
+<p>Si risolva</p>
+$$z^2-2iz-\sqrt3\,i=0.$$
+<p>Qui $a=1$, $b=-2i$, $c=-\sqrt3\,i$, quindi</p>
+$$\Delta=(-2i)^2-4(-\sqrt3\,i)=-4+4\sqrt3\,i.$$
+<p>Il modulo di $\Delta$ è $8$; un suo argomento è $2\pi/3$. Le sue radici quadrate hanno modulo $\sqrt8=2\sqrt2$ e argomenti $\pi/3$ e $4\pi/3$:</p>
+$$w_0=2\sqrt2\left(\cos\frac{\pi}{3}+i\sin\frac{\pi}{3}\right)=\sqrt2+i\sqrt6,\qquad w_1=-w_0.$$
+<p>Sostituendo nella formula:</p>
+$$\boxed{z_1=\frac{\sqrt2}{2}+i\left(1+\frac{\sqrt6}{2}\right)},\qquad \boxed{z_2=-\frac{\sqrt2}{2}+i\left(1-\frac{\sqrt6}{2}\right)}.$$
+</div>
+
+<h2>2. Funzioni: definizioni e proprietà</h2>
+
+<div class="box def">
+<div class="bt">Definizione — Funzione</div>
+<p>Siano $X,Y$ insiemi non vuoti. Una funzione $f\colon X\to Y$ assegna a <strong>ogni</strong> $x\in X$ <strong>uno e un solo</strong> $y\in Y$, indicato con $f(x)$.</p>
+<p>$X$ è il <em>dominio</em> e $Y$ è l'insieme di arrivo, chiamato in questa lezione <em>codominio</em>. Se $y=f(x)$, $y$ è l'immagine di $x$ e $x$ è una preimmagine di $y$.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Definizione — Insieme immagine e grafico</div>
+$$\operatorname{Im}(f)=\{f(x):x\in X\}=\{y\in Y:\exists x\in X,\ y=f(x)\},\qquad G_f=\{(x,f(x)):x\in X\}.$$
+<p>In generale $\operatorname{Im}(f)\subseteq Y$, ma i due insiemi non devono coincidere. Questo è uno dei distinguo più importanti della lezione.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Definizione — Suriettiva, iniettiva, biettiva</div>
+<p>Per $f\colon X\to Y$:</p>
+<ul>
+<li><strong>Suriettiva</strong>: $\operatorname{Im}(f)=Y$, cioè ogni elemento di $Y$ ha almeno una preimmagine.</li>
+<li><strong>Iniettiva</strong>: ogni elemento dell'immagine ha una sola preimmagine. Equivalentemente,
+$$\forall x_1,x_2\in X,\quad f(x_1)=f(x_2)\Longrightarrow x_1=x_2,$$
+oppure $x_1\neq x_2\Longrightarrow f(x_1)\neq f(x_2)$.</li>
+<li><strong>Biettiva</strong>: sia iniettiva sia suriettiva, cioè ogni elemento di $Y$ ha esattamente una preimmagine.</li>
+</ul>
+</div>
+
+<p><strong>Osservazione.</strong> Mantenendo la stessa regola $x\mapsto f(x)$, scegliere $\operatorname{Im}(f)$ come nuovo insieme di arrivo rende la funzione suriettiva; non modifica invece la sua iniettività. Graficamente, una funzione è iniettiva se ogni retta orizzontale incontra il grafico <em>al massimo</em> una volta; è suriettiva verso $Y$ se lo incontra <em>almeno</em> una volta per ogni quota $y\in Y$.</p>
+
+<h3>Esempi</h3>
+<div class="box ex">
+<div class="bt">Esempio — $f(x)=4-x^2$</div>
+<p>Per $f\colon\mathbb R\to\mathbb R$, $f(x)=4-x^2$, si ha</p>
+$$\operatorname{Im}(f)=(-\infty,4].$$
+<ul>
+<li>Non è suriettiva verso $\mathbb R$, ma lo diventa se l'insieme di arrivo è $(-\infty,4]$.</li>
+<li>Non è iniettiva su $\mathbb R$, perché $f(1)=f(-1)=3$ pur essendo $1\neq-1$.</li>
+</ul>
+<p>Il controesempio basta a negare l'iniettività: da $f(x_1)=f(x_2)$ si ottiene $x_1^2=x_2^2$, che consente anche $x_1=-x_2$.</p>
+</div>
+
+<div class="box ex">
+<div class="bt">Esempio — $g(x)=e^x$</div>
+<p>Per $g\colon\mathbb R\to\mathbb R$, $g(x)=e^x$, l'immagine è $(0,+\infty)$: $g$ non è suriettiva verso $\mathbb R$, ma è iniettiva.</p>
+<p>Infatti $e^{x_1}=e^{x_2}$ implica, applicando il logaritmo naturale a entrambi i membri positivi, $x_1=x_2$.</p>
+</div>
+
+<h2>3. Funzioni reali ed estremi</h2>
+<p>Da qui in avanti la lezione considera soprattutto $f\colon D\to\mathbb R$, con $\varnothing\neq D\subseteq\mathbb R$. L'insieme dei valori assunti è $f(D)=\operatorname{Im}(f)$. Gli estremi di una funzione sono gli estremi di <strong>questo insieme</strong>, non dell'insieme di arrivo $\mathbb R$.</p>
+
+<div class="box def">
+<div class="bt">Definizione — Estremo superiore e inferiore di una funzione</div>
+<p>Nei reali estesi,</p>
+$$\sup f:=\sup f(D),\qquad \inf f:=\inf f(D).$$
+<p>Se $f(D)$ ammette maggioranti reali, $\sup f$ è il minimo di tali maggioranti; altrimenti $\sup f=+\infty$. Se ammette minoranti reali, $\inf f$ è il massimo di tali minoranti; altrimenti $\inf f=-\infty$.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Definizione — Funzioni limitate</div>
+<ul>
+<li>$f$ è <strong>superiormente limitata</strong> se esiste $M\in\mathbb R$ tale che $f(x)\leq M$ per ogni $x\in D$, equivalentemente $\sup f\lt+\infty$.</li>
+<li>$f$ è <strong>inferiormente limitata</strong> se esiste $m\in\mathbb R$ tale che $m\leq f(x)$ per ogni $x\in D$, equivalentemente $\inf f\gt-\infty$.</li>
+<li>$f$ è <strong>limitata</strong> se lo è in entrambi i sensi, cioè se esistono $m,M\in\mathbb R$ con $m\leq f(x)\leq M$ per ogni $x\in D$.</li>
+</ul>
+</div>
+
+<div class="tbl"><table>
+<thead><tr><th>Funzione su $\mathbb R$</th><th>Insieme immagine</th><th>$\inf f$</th><th>$\sup f$</th><th>Limitatezza</th></tr></thead>
+<tbody>
+<tr><td>$4-x^2$</td><td>$(-\infty,4]$</td><td>$-\infty$</td><td>$4$</td><td>Solo superiormente</td></tr>
+<tr><td>$e^x$</td><td>$(0,+\infty)$</td><td>$0$</td><td>$+\infty$</td><td>Solo inferiormente</td></tr>
+<tr><td>$\sin x$</td><td>$[-1,1]$</td><td>$-1$</td><td>$1$</td><td>Superiormente e inferiormente</td></tr>
+</tbody></table></div>
+
+<p><strong>Osservazione.</strong> $\inf e^x=0$, ma $e^x$ <strong>non raggiunge</strong> $0$; invece $4-x^2$ raggiunge il valore $4$ in $x=0$. Quando l'estremo appartiene all'immagine, è rispettivamente un <em>massimo</em> o un <em>minimo</em>.</p>
+
+<h2>4. Simmetrie e periodicità</h2>
+<p>Per definire parità o disparità, occorre prima che il dominio sia simmetrico rispetto a $0$: $x\in D\Longrightarrow -x\in D$. Allora:</p>
+
+<div class="box def">
+<div class="bt">Definizione — Funzione pari e dispari</div>
+<ul>
+<li>$f$ è <strong>pari</strong> se $f(-x)=f(x)$ per ogni $x\in D$; il grafico è simmetrico rispetto all'asse $y$.</li>
+<li>$f$ è <strong>dispari</strong> se $f(-x)=-f(x)$ per ogni $x\in D$; il grafico è simmetrico rispetto all'origine.</li>
+</ul>
+</div>
+<p>Per esempio, $4-x^2$ è pari, mentre $\sin x$ è dispari. La condizione sul dominio rende entrambe le uguaglianze effettivamente definibili per ogni $x$.</p>
+
+<div class="box def">
+<div class="bt">Definizione — Funzione periodica</div>
+<p>$f\colon D\to\mathbb R$ è <strong>periodica</strong> se esiste $T\gt0$ tale che $D+T=D$ e</p>
+$$f(x+T)=f(x)\qquad\text{per ogni }x\in D.$$
+<p>Un tale $T$ è un <em>periodo</em>.</p>
+</div>
+<p>Per esempio, $\sin(x+2\pi)=\sin x$ per ogni $x\in\mathbb R$, quindi $2\pi$ è un periodo del seno; lo sono anche i suoi multipli interi positivi. Un periodo, in generale, non è unico. La condizione $D+T=D$ esplicita che anche gli argomenti traslati devono appartenere al dominio: senza di essa, la sola scrittura $f(x+T)$ può non avere senso.</p>
+
+<h2>5. Monotonia e iniettività</h2>
+
+<h3>Definizioni formali</h3>
+<p>Sia $f\colon D\to\mathbb R$, con $\varnothing\neq D\subseteq\mathbb R$. Le condizioni seguenti devono valere per <strong>ogni</strong> coppia $x_1,x_2\in D$ con $x_1\lt x_2$.</p>
+
+<div class="tbl"><table>
+<thead><tr><th>Proprietà</th><th>Condizione</th></tr></thead>
+<tbody>
+<tr><td>Crescente</td><td>$f(x_1)\leq f(x_2)$</td></tr>
+<tr><td>Strettamente crescente</td><td>$f(x_1)\lt f(x_2)$</td></tr>
+<tr><td>Decrescente</td><td>$f(x_1)\geq f(x_2)$</td></tr>
+<tr><td>Strettamente decrescente</td><td>$f(x_1)\gt f(x_2)$</td></tr>
+</tbody></table></div>
+
+<p>Una funzione è <em>monotona</em> se è crescente oppure decrescente su tutto $D$; è <em>strettamente monotona</em> se è strettamente crescente oppure strettamente decrescente su tutto $D$. I segni non stretti consentono tratti costanti. Sono definizioni che non richiedono di aver introdotto le derivate.</p>
+
+<h3>Teorema e dimostrazione</h3>
+<div class="box thm">
+<div class="bt">Teorema — Stretta monotonia implica iniettività</div>
+<p><strong>Ipotesi.</strong> $f\colon D\to\mathbb R$ è strettamente monotona su $D$.</p>
+<p><strong>Tesi.</strong> $f$ è iniettiva.</p>
+</div>
+
+<p><strong>Dimostrazione.</strong> Prendiamo $x_1,x_2\in D$ distinti. Poiché sono numeri reali, possiamo scambiarne i nomi e supporre $x_1\lt x_2$. Se $f$ è strettamente crescente, allora $f(x_1)\lt f(x_2)$; se è strettamente decrescente, allora $f(x_1)\gt f(x_2)$. In entrambi i casi $f(x_1)\neq f(x_2)$: elementi distinti del dominio hanno immagini distinte, che è precisamente l'iniettività.</p>
+<p><strong>Non</strong> segue invece la suriettività verso un insieme di arrivo arbitrario: $e^x\colon\mathbb R\to\mathbb R$ è strettamente crescente ma non assume valori non positivi.</p>
+
+<div class="box ex">
+<div class="bt">Controesempio — Il viceversa è falso in generale</div>
+$$f\colon[-3,3)\to\mathbb R,\qquad f(x)=\begin{cases}-x, & -3\leq x\leq0,\\ x-3, & 0\lt x\lt3.\end{cases}$$
+<p>Il primo ramo assume valori in $[0,3]$, il secondo in $(-3,0)$: le due immagini non si sovrappongono, e ciascun ramo è iniettivo. L'intera funzione è quindi iniettiva, ma <strong>non</strong> è strettamente monotona su tutto il dominio: su $[-3,0]$ decresce, mentre su $(0,3)$ cresce.</p>
+<p>Questo controesempio non è continuo in $0$; mostra esattamente perché non si può invertire il teorema senza ulteriori ipotesi.</p>
+</div>
+
+<h2>6. Errori da evitare</h2>
+<div class="box warn">
+<div class="bt">Attenzione</div>
+<ul>
+<li>«Tre radici uguali» significa una radice di molteplicità $3$, non tre radici distinte.</li>
+<li>Non usare $\sqrt\Delta$ come se fosse un valore unico: scegli <em>una</em> radice quadrata complessa $w$ e ricorda che l'altra è $-w$. Ricorda $\sqrt4=2$, ma $w^2=4\iff w=\pm2$.</li>
+<li>La coppia di radici coniugate vale solo per polinomi a <strong>coefficienti reali</strong>.</li>
+<li>Non confondere insieme di arrivo e insieme immagine: $\operatorname{Im}(f)\subseteq Y$, in generale senza uguaglianza.</li>
+<li>Per negare l'iniettività basta un controesempio (es. $f(1)=f(-1)$ per $4-x^2$).</li>
+<li>Gli estremi di $f$ sono quelli di $f(D)$, non di $\mathbb R$. Ricorda: $\inf e^x=0$ ma $0$ non è raggiunto, quindi non è un minimo.</li>
+<li>Per parità e disparità il dominio deve essere simmetrico rispetto a $0$; per la periodicità serve $D+T=D$.</li>
+<li>Strettamente monotona $\Rightarrow$ iniettiva, ma il viceversa è falso.</li>
+</ul>
+</div>
+
+<h2>7. Riepilogo finale</h2>
+<p>Cosa devi saper fare dopo questo Day:</p>
+<ul>
+<li>enunciare il teorema fondamentale dell'algebra e fattorizzare un polinomio con radici e molteplicità;</li>
+<li>enunciare e dimostrare il teorema sulle radici coniugate, e il corollario sul grado dispari;</li>
+<li>risolvere equazioni quadratiche in $\mathbb C$ scegliendo una radice quadrata di $\Delta$;</li>
+<li>definire funzione, immagine, grafico, iniettività, suriettività, biettività;</li>
+<li>calcolare $\sup f$, $\inf f$ e stabilire la limitatezza di una funzione;</li>
+<li>definire funzioni pari, dispari e periodiche;</li>
+<li>definire la monotonia e dimostrare che stretta monotonia implica iniettività, sapendo portare il controesempio del viceversa.</li>
+</ul>
