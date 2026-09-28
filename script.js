@@ -36,6 +36,11 @@ var days = [
     n: 4,
     title: 'Forma esponenziale, radici ennesime, logaritmo complesso e polinomi',
     file: 'appunti/day-04.html'
+  },
+  {
+  n: 5,
+  title: 'Polinomi complessi, funzioni, estremi, simmetrie e monotonia',
+  file: 'appunti/day-05.html'
   }
 
 ];
