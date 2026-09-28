@@ -31,7 +31,7 @@ var days = [
     n: 3,
     title: 'Numeri complessi: operazioni, coniugato, modulo, inverso e forma goniometrica',
     file: 'appunti/day-03.html'
-  }
+  },
   {
     n: 4,
     title: 'Forma esponenziale, radici ennesime, logaritmo complesso e polinomi',
