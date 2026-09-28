@@ -47,33 +47,12 @@ var days = [
 days.sort(function (a, b) { return a.n - b.n; });
 
 
-/* =====================================================================
-   CATALOGO DELLE ESERCITAZIONI
-   Stessa cosa dei Day: per ogni nuova esercitazione aggiungi una voce,
-   ad esempio:
-     { n: 1, title: 'Titolo dell\'esercitazione 1', file: 'appunti/esercitazione-1.html' }
-   ===================================================================== */
-var esercitazioni = [
-  /* { n: 1, title: 'Titolo esercitazione 1', file: 'appunti/esercitazione-1.html' } */
-];
-esercitazioni.sort(function (a, b) { return a.n - b.n; });
-
-/* Le due "modalità" del sito */
-var cats = {
-  lezioni:       { name: 'Lezioni',       label: 'Day',           prefix: 'day', list: days,          key: 'a1-day' },
-  esercitazioni: { name: 'Esercitazioni', label: 'Esercitazione', prefix: 'es',  list: esercitazioni, key: 'a1-es'  }
-};
-
-
 document.addEventListener('DOMContentLoaded', function () {
   var $ = function (id) { return document.getElementById(id); };
   var root = document.documentElement;
   var main = $('content'), menu = $('dayMenu'), dotsBtn = $('dotsBtn');
   var prevBtn = $('prevBtn'), nextBtn = $('nextBtn');
   var aaBtn = $('aaBtn'), settings = $('settings');
-  var modeBtn = $('modeBtn'), modeMenu = $('modeMenu');
-  var mode = 'lezioni';
-  function items() { return cats[mode].list; }
   var nav = $('navBar');
   var cur = 0;
   var requestId = 0;   /* per ignorare risposte fetch "vecchie" se cambio Day velocemente */
@@ -92,16 +71,15 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ---------- Hash URL: #day-1, #day-2, ... ---------- */
-  function parseHash() {
-    var m = /^#(day|es)-(\d+)$/.exec(location.hash);
-    if (!m) return null;
-    var md = m[1] === 'es' ? 'esercitazioni' : 'lezioni';
-    var n = parseInt(m[2], 10), idx = -1;
-    cats[md].list.forEach(function (d, k) { if (d.n === n) idx = k; });
-    return idx === -1 ? null : { mode: md, idx: idx };
+  function dayFromHash() {
+    var m = /^#day-(\d+)$/.exec(location.hash);
+    if (!m) return -1;
+    var n = parseInt(m[1], 10), idx = -1;
+    days.forEach(function (d, k) { if (d.n === n) idx = k; });
+    return idx;
   }
   function syncHash(d, push) {
-    var h = '#' + cats[mode].prefix + '-' + d.n;
+    var h = '#day-' + d.n;
     if (location.hash === h) return;
     try {
       if (push) history.pushState(null, '', h); else history.replaceState(null, '', h);
@@ -148,34 +126,20 @@ document.addEventListener('DOMContentLoaded', function () {
     main.appendChild(box);
   }
 
-  function showEmpty() {
-    requestId++;
-    cur = 0;
-    main.removeAttribute('aria-busy');
-    main.innerHTML = '<p class="eyebrow"></p><h1></h1><p></p>';
-    main.querySelector('.eyebrow').textContent = cats[mode].name;
-    main.querySelector('h1').textContent = 'Nessun appunto per ora';
-    main.querySelector('h1 + p').textContent = 'Qui compariranno gli appunti di questa sezione non appena li aggiungerai al catalogo in script.js.';
-    window.scrollTo(0, 0);
-    updateNav();
-  }
-
   function show(i, animate, pushHash) {
-    var days = items();
-    if (!days.length) { showEmpty(); return; }
     cur = Math.max(0, Math.min(days.length - 1, i));
     var d = days[cur];
     var myRequest = ++requestId;
 
     /* titolo subito visibile, poi stato di caricamento */
-    main.innerHTML = '<p class="eyebrow">' + cats[mode].label + ' ' + d.n + '</p><h1></h1>';
+    main.innerHTML = '<p class="eyebrow">Day ' + d.n + '</p><h1></h1>';
     main.querySelector('h1').textContent = d.title;
     main.setAttribute('aria-busy', 'true');
     showLoading();
 
     if (animate) { main.classList.remove('fade'); void main.offsetWidth; main.classList.add('fade'); }
     window.scrollTo(0, 0);
-    store(cats[mode].key, d.n);
+    store('a1-day', d.n);
     syncHash(d, pushHash);
     updateNav();
 
@@ -197,17 +161,15 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function updateNav() {
-    var days = items();
     dotsBtn.innerHTML = '';
-    dotsBtn.disabled = !days.length;
     days.forEach(function (d, k) {
       var sp = document.createElement('span');
       sp.className = 'dot' + (k === cur ? ' on' : '');
       dotsBtn.appendChild(sp);
     });
-    dotsBtn.setAttribute('aria-label', days.length ? 'Scegli il Day, ora ' + cats[mode].label + ' ' + days[cur].n : 'Nessun appunto in questa sezione');
-    prevBtn.disabled = !days.length || cur === 0;
-    nextBtn.disabled = !days.length || cur === days.length - 1;
+    dotsBtn.setAttribute('aria-label', 'Scegli il Day, ora Day ' + days[cur].n);
+    prevBtn.disabled = cur === 0;
+    nextBtn.disabled = cur === days.length - 1;
     Array.prototype.forEach.call(menu.children, function (btn, k) {
       btn.classList.toggle('cur', k === cur);
       btn.querySelector('.mk').textContent = k === cur ? '●' : '○';
@@ -217,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function buildMenu() {
     menu.innerHTML = '';
-    items().forEach(function (d, k) {
+    days.forEach(function (d, k) {
       var b = document.createElement('button');
       b.className = 'day-item';
       b.setAttribute('role', 'menuitem');
@@ -228,40 +190,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function setOpen(panel, btn, open) { panel.hidden = !open; btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
-  function closeAll() { setOpen(menu, dotsBtn, false); setOpen(settings, aaBtn, false); setOpen(modeMenu, modeBtn, false); }
-
-  /* ---------- Menu Lezioni / Esercitazioni ---------- */
-  function buildModeMenu() {
-    modeMenu.innerHTML = '';
-    Object.keys(cats).forEach(function (k) {
-      var b = document.createElement('button');
-      b.className = 'day-item' + (k === mode ? ' cur' : '');
-      b.setAttribute('role', 'menuitem');
-      if (k === mode) b.setAttribute('aria-current', 'true');
-      b.innerHTML = '<span class="mk">' + (k === mode ? '●' : '○') + '</span><span></span>';
-      b.lastChild.textContent = cats[k].name;
-      b.addEventListener('click', function () { closeAll(); switchMode(k, true); });
-      modeMenu.appendChild(b);
-    });
-  }
-  function startIndex(md) {
-    var list = cats[md].list, want = parseInt(load(cats[md].key), 10), idx = 0;
-    list.forEach(function (d, k) { if (d.n === want) idx = k; });
-    return idx;
-  }
-  function switchMode(md, push, idx) {
-    if (md === mode && idx === undefined) return;
-    mode = md;
-    store('a1-mode', md);
-    buildModeMenu();
-    buildMenu();
-    show(idx === undefined ? startIndex(md) : idx, true, push);
-  }
+  function closeAll() { setOpen(menu, dotsBtn, false); setOpen(settings, aaBtn, false); }
 
   dotsBtn.addEventListener('click', function () { var open = menu.hidden; closeAll(); setOpen(menu, dotsBtn, open); });
-  modeBtn.addEventListener('click', function () { var open = modeMenu.hidden; closeAll(); setOpen(modeMenu, modeBtn, open); });
   aaBtn.addEventListener('click', function () { var open = settings.hidden; closeAll(); setOpen(settings, aaBtn, open); });
-  document.addEventListener('click', function (e) { if (!e.target.closest('.day-menu, .dots, .settings, .aa, .mode-menu, .brand-btn')) closeAll(); });
+  document.addEventListener('click', function (e) { if (!e.target.closest('.day-menu, .dots, .settings, .aa')) closeAll(); });
   prevBtn.addEventListener('click', function () { show(cur - 1, true, true); });
   nextBtn.addEventListener('click', function () { show(cur + 1, true, true); });
   document.addEventListener('keydown', function (e) {
@@ -272,10 +205,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* Back/forward del browser o modifica manuale dell'hash */
   window.addEventListener('hashchange', function () {
-    var h = parseHash();
-    if (!h) return;
-    if (h.mode !== mode) switchMode(h.mode, false, h.idx);
-    else if (h.idx !== cur) show(h.idx, true, false);
+    var idx = dayFromHash();
+    if (idx !== -1 && idx !== cur) show(idx, true, false);
   });
 
   /* ---------- Navigatore che si rimpicciolisce scorrendo ---------- */
@@ -321,11 +252,13 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ---------- Avvio: hash URL > ultimo Day salvato > primo Day ---------- */
   applyZoom();
   applyTheme(root.getAttribute('data-theme') || 'light');
-  var h0 = parseHash();
-  var saved = load('a1-mode');
-  mode = h0 ? h0.mode : (saved && cats[saved] ? saved : 'lezioni');
-  buildModeMenu();
   buildMenu();
-  show(h0 ? h0.idx : startIndex(mode), false, false);
+  var start = dayFromHash();
+  if (start === -1) {
+    var want = parseInt(load('a1-day'), 10) || days[0].n;
+    start = 0;
+    days.forEach(function (d, k) { if (d.n === want) start = k; });
+  }
+  show(start, false, false);
   if (!window.renderMathInElement) window.addEventListener('load', renderMath);
 });
