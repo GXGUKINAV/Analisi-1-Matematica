@@ -4,5 +4,6 @@ Indice:
 1. Principio di Induzione e Caratterizzazione dei Numeri Reali
 2. Completezza di R, Estremo Superiore e Inferiore, Introduzione ai Complessi
 3. Numeri complessi: operazioni, coniugato, modulo, inverso e forma goniometrica
+4. Forma esponenziale, radici ennesime, logaritmo complesso e polinomi
 
 https://gxgukinav.github.io/Analisi-1-Matematica/
