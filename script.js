@@ -32,6 +32,12 @@ var days = [
     title: 'Numeri complessi: operazioni, coniugato, modulo, inverso e forma goniometrica',
     file: 'appunti/day-03.html'
   }
+  {
+    n: 4,
+    title: 'Forma esponenziale, radici ennesime, logaritmo complesso e polinomi',
+    file: 'appunti/day-04.html'
+  }
+
 ];
 days.sort(function (a, b) { return a.n - b.n; });
 
