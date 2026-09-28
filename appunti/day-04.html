@@ -1,0 +1,232 @@
+<h2>1. Definizioni</h2>
+
+<h3>Coordinate polari e tre forme di un complesso</h3>
+<div class="box def">
+<div class="bt">Definizione — Modulo e argomento</div>
+<p>Sia $z=x+iy\in\mathbb C$, con $x,y\in\mathbb R$ e $i^2=-1$. Il modulo di $z$ è</p>
+$$\rho=|z|=\sqrt{x^2+y^2}\geq 0.$$
+<p>Se $z\neq 0$, un <strong>argomento</strong> di $z$ è un angolo $\theta\in\mathbb R$ tale che</p>
+$$x=\rho\cos\theta,\qquad y=\rho\sin\theta.$$
+</div>
+
+<p>Le tre scritture della lezione sono:</p>
+<div class="tbl"><table>
+<thead><tr><th>Forma</th><th>Scrittura</th><th>Informazione in evidenza</th></tr></thead>
+<tbody>
+<tr><td>Algebrica</td><td>$z=x+iy$</td><td>Parte reale e parte immaginaria</td></tr>
+<tr><td>Goniometrica</td><td>$z=\rho(\cos\theta+i\sin\theta)$</td><td>Modulo e angolo</td></tr>
+<tr><td>Esponenziale</td><td>$z=\rho e^{i\theta}$</td><td>Modulo e angolo in forma compatta</td></tr>
+</tbody></table></div>
+
+<p>Per $z\neq0$, gli argomenti sono tutti e soli gli angoli $\theta+2k\pi$, con $k\in\mathbb Z$. Se occorre scegliere un rappresentante unico, adottiamo $\operatorname{Arg}z\in[0,2\pi)$: <strong>non</strong> si possono includere entrambi gli estremi $0$ e $2\pi$. Per $z=0$ il modulo è $0$, ma l’argomento non è definito; la formula goniometrica produce comunque zero con qualunque angolo, senza individuarne uno privilegiato.</p>
+
+<div class="box def">
+<div class="bt">Definizione — Formula di Eulero</div>
+<p>Introdotta a lezione come notazione per il fattore di rotazione:</p>
+$$e^{i\theta}=\cos\theta+i\sin\theta\qquad(\theta\in\mathbb R).$$
+</div>
+
+<h3>Radice ennesima complessa</h3>
+<div class="box def">
+<div class="bt">Definizione — Radice ennesima</div>
+<p>Siano $n\in\mathbb N$, $n\geq2$, e $z\in\mathbb C$. Si dice che $w\in\mathbb C$ è <strong>una radice ennesima</strong> di $z$ se e solo se</p>
+$$w^n=z.$$
+</div>
+<p>L’articolo <em>una</em> è importante: per $z\neq0$ le radici distinte sono $n$; per $z=0$ l’unica radice è $w=0$. Il simbolo $\sqrt[n]{\rho}$, quando $\rho\gt0$ è reale, indica invece l’unica radice reale positiva di $\rho$.</p>
+
+<h3>Esponenziale e logaritmi complessi</h3>
+<div class="box def">
+<div class="bt">Definizione — Esponenziale complesso</div>
+<p>Per $z=x+iy\in\mathbb C$,</p>
+$$e^z=e^{x+iy}=e^x(\cos y+i\sin y).$$
+</div>
+
+<div class="box def">
+<div class="bt">Definizione — Logaritmo complesso (multivalore)</div>
+<p>Per $z\neq0$, il logaritmo complesso è l’insieme di tutte le soluzioni $u\in\mathbb C$ di $e^u=z$. Se $z=\rho e^{i\theta}$, con $\rho\gt0$, tali soluzioni sono</p>
+$$\log z=\{\ln\rho+i(\theta+2k\pi):k\in\mathbb Z\}.$$
+<p>Qui $\ln\rho$ è il normale logaritmo reale di un numero positivo. Se si fissa la convenzione $\operatorname{Arg}z\in[0,2\pi)$, si può scegliere il valore $\operatorname{Log}z=\ln|z|+i\operatorname{Arg}z$; è <strong>un ramo scelto</strong>, non l’unico logaritmo complesso. Per $z=0$ non esiste alcun logaritmo complesso.</p>
+</div>
+
+<h3>Polinomi complessi</h3>
+<div class="box def">
+<div class="bt">Definizione — Polinomio, grado, radice</div>
+<p>Un polinomio a coefficienti complessi nella variabile $z$ è una somma finita</p>
+$$P(z)=a_nz^n+a_{n-1}z^{n-1}+\cdots+a_1z+a_0,\qquad a_k\in\mathbb C.$$
+<p>Se $P$ non è il polinomio nullo, il suo <strong>grado</strong> è $\deg P=\max\{k:a_k\neq0\}$. Un numero $w\in\mathbb C$ è una <strong>radice del polinomio</strong> se $P(w)=0$.</p>
+</div>
+<p>Questa nozione va distinta dalla radice ennesima di un numero: nel caso particolare $P(w)=w^n-z$, le due idee coincidono.</p>
+
+
+<h2>2. Teoremi</h2>
+
+<div class="box thm">
+<div class="bt">Teorema — Prodotto, quoziente e formula di De Moivre</div>
+<p><strong>Ipotesi.</strong> Siano $z_1=\rho_1(\cos\theta_1+i\sin\theta_1)$ e $z_2=\rho_2(\cos\theta_2+i\sin\theta_2)$, con $\rho_1,\rho_2\geq0$. Per il quoziente si richiede $\rho_2\gt0$.</p>
+<p><strong>Tesi.</strong> Il prodotto moltiplica i moduli e somma gli angoli; il quoziente divide i moduli e sottrae gli angoli:</p>
+$$z_1z_2=\rho_1\rho_2[\cos(\theta_1+\theta_2)+i\sin(\theta_1+\theta_2)],$$
+$$\frac{z_1}{z_2}=\frac{\rho_1}{\rho_2}[\cos(\theta_1-\theta_2)+i\sin(\theta_1-\theta_2)].$$
+<p>Per $n\in\mathbb N$, la <strong>formula di De Moivre</strong> dà</p>
+$$z^n=\rho^n[\cos(n\theta)+i\sin(n\theta)].$$
+<p>Quando il risultato è non nullo, gli angoli riportati nelle formule rappresentano argomenti <strong>modulo $2\pi$</strong>. In forma esponenziale:</p>
+$$z_1z_2=\rho_1\rho_2e^{i(\theta_1+\theta_2)},\qquad \frac{z_1}{z_2}=\frac{\rho_1}{\rho_2}e^{i(\theta_1-\theta_2)},\qquad z^n=\rho^ne^{in\theta}.$$
+</div>
+
+<div class="box thm">
+<div class="bt">Teorema — Formula e disposizione delle radici ennesime</div>
+<p><strong>Ipotesi.</strong> Siano $z=\rho e^{i\theta}\neq0$, con $\rho\gt0$, e $n\geq2$ intero.</p>
+<p><strong>Tesi.</strong> Le $n$ radici ennesime distinte di $z$ sono</p>
+$$w_k=\sqrt[n]{\rho}\,e^{i(\theta+2k\pi)/n}=\sqrt[n]{\rho}\left[\cos\!\left(\frac{\theta+2k\pi}{n}\right)+i\sin\!\left(\frac{\theta+2k\pi}{n}\right)\right],\quad k=0,1,\ldots,n-1.$$
+<p>Hanno tutte modulo $\sqrt[n]{\rho}$ e argomenti consecutivi distanziati di $2\pi/n$. Nel piano complesso sono i vertici di un poligono regolare inscritto nella circonferenza di centro $0$ e raggio $\sqrt[n]{\rho}$. Se $z=0$, invece, la sola radice è zero.</p>
+</div>
+
+<div class="box thm">
+<div class="bt">Teorema fondamentale dell’algebra</div>
+<p><strong>Ipotesi.</strong> $P\in\mathbb C[z]$ è un polinomio non costante di grado $n\geq1$.</p>
+<p><strong>Tesi.</strong> $P$ ammette almeno una radice in $\mathbb C$; equivalentemente si scompone come</p>
+$$P(z)=a_n\prod_{j=1}^{n}(z-\alpha_j),\qquad a_n\neq0,$$
+<p>per opportuni $\alpha_j\in\mathbb C$. Si contano dunque <strong>esattamente $n$ radici con molteplicità</strong>, non necessariamente $n$ radici distinte: per esempio $(z-1)^2$ ha grado $2$, ma una sola radice distinta.</p>
+</div>
+<p>Nella lezione questo risultato è soltanto annunciato, non dimostrato.</p>
+
+
+<h2>3. Dimostrazioni</h2>
+
+<h3>Perché nel prodotto si sommano gli angoli</h3>
+<p>Scriviamo $c_j=\cos\theta_j$ e $s_j=\sin\theta_j$. Distribuendo e usando $i^2=-1$,</p>
+$$\begin{aligned}
+z_1z_2
+&=\rho_1\rho_2(c_1+is_1)(c_2+is_2)\\
+&=\rho_1\rho_2[(c_1c_2-s_1s_2)+i(s_1c_2+c_1s_2)].
+\end{aligned}$$
+<p>Le formule di addizione della trigonometria identificano la parte reale tra parentesi con $\cos(\theta_1+\theta_2)$ e il coefficiente di $i$ con $\sin(\theta_1+\theta_2)$. Il fattore esterno è $\rho_1\rho_2$: ecco perché il modulo si moltiplica e la rotazione si somma.</p>
+
+<h3>Perché nel quoziente si sottraggono gli angoli</h3>
+<p>Poiché $z_2\neq0$, si ha $\rho_2\gt0$. Moltiplichiamo numeratore e denominatore della parte angolare per $\cos\theta_2-i\sin\theta_2$. Il denominatore si semplifica perché</p>
+$$(\cos\theta_2+i\sin\theta_2)(\cos\theta_2-i\sin\theta_2)=\cos^2\theta_2+\sin^2\theta_2=1.$$
+<p>Nel numeratore otteniamo</p>
+$$\begin{aligned}
+&(\cos\theta_1+i\sin\theta_1)(\cos\theta_2-i\sin\theta_2)\\
+&=\cos\theta_1\cos\theta_2+\sin\theta_1\sin\theta_2\\
+&\quad+i(\sin\theta_1\cos\theta_2-\cos\theta_1\sin\theta_2)\\
+&=\cos(\theta_1-\theta_2)+i\sin(\theta_1-\theta_2).
+\end{aligned}$$
+<p>Resta il fattore $\rho_1/\rho_2$, da cui la formula del quoziente.</p>
+
+<h3>De Moivre per induzione</h3>
+<p>Per $n=1$ la formula coincide con la forma goniometrica di $z$. Supponiamo valida per $n$, cioè $z^n=\rho^n[\cos(n\theta)+i\sin(n\theta)]$. Moltiplicando per $z$ e applicando la formula del prodotto appena dimostrata,</p>
+$$z^{n+1}=z^nz=\rho^{n+1}[\cos((n+1)\theta)+i\sin((n+1)\theta)].$$
+<p>Per induzione la formula vale per ogni $n\geq1$.</p>
+
+<h3>Derivazione delle radici e conteggio</h3>
+<p>Scriviamo l’incognita $w=r(\cos\beta+i\sin\beta)$, con $r\geq0$. Dall’equazione $w^n=z=\rho(\cos\theta+i\sin\theta)$ e da De Moivre segue</p>
+$$r^n=\rho,\qquad n\beta=\theta+2k\pi\quad(k\in\mathbb Z).$$
+<p>La prima equazione impone $r=\sqrt[n]{\rho}$; la seconda dà $\beta=(\theta+2k\pi)/n$, quindi produce le radici indicate sopra.</p>
+<ul>
+<li>Sostituire $k$ con $k+n$ aumenta $\beta$ di $2\pi$, perciò ripete la stessa radice: $w_{k+n}=w_k$.</li>
+<li>Se $0\leq j\lt k\leq n-1$, la differenza fra i due angoli è $2\pi(k-j)/n$, strettamente fra $0$ e $2\pi$: le due radici sono distinte.</li>
+<li>Infine $w_k^n=\rho e^{i(\theta+2k\pi)}=z$, quindi sono tutte soluzioni.</li>
+</ul>
+
+<h3>Derivazione del logaritmo complesso</h3>
+<p>Poniamo $u=a+ib$. Se $e^u=z=\rho e^{i\theta}$, allora</p>
+$$e^u=e^a(\cos b+i\sin b),$$
+<p>perciò, confrontando modulo e argomento, $e^a=\rho$ e $b=\theta+2k\pi$. Da $e^a=\rho\gt0$ segue $a=\ln\rho$: si ottiene $u=\ln\rho+i(\theta+2k\pi)$.</p>
+<p>Non si può porre $z=0$, perché $|e^u|=e^{\operatorname{Re}u}\gt0$ per ogni $u\in\mathbb C$. Questa derivazione chiarisce anche perché scrivere soltanto $\ln\rho+i\theta$ omette gli altri valori.</p>
+
+
+<h2>4. Esempi e osservazioni</h2>
+
+<h3>Prodotto, potenza e quoziente</h3>
+<div class="box ex">
+<div class="bt">Esempio — $z_1=1+i$ e $z_2=3i$</div>
+<p>Prendiamo $z_1=1+i=\sqrt2\,e^{i\pi/4}$ e $z_2=3i=3e^{i\pi/2}$.</p>
+<ul>
+<li>Prodotto: $z_1z_2=3\sqrt2\,e^{i3\pi/4}=-3+3i$. Verifica algebrica: $(1+i)3i=3i+3i^2=-3+3i$.</li>
+<li>Potenza: $(1+i)^6=(\sqrt2)^6e^{i6\pi/4}=8e^{i3\pi/2}=-8i$. Qui la forma polare evita di espandere una potenza sesta.</li>
+<li>Quoziente: $z_1/z_2=(\sqrt2/3)e^{-i\pi/4}=(1-i)/3$. Verifica algebrica: $(1+i)/(3i)=(1-i)/3$.</li>
+</ul>
+</div>
+<p>Nel quoziente l’angolo $-\pi/4$ è equivalente a $7\pi/4$; il secondo è quello nell’intervallo scelto $[0,2\pi)$. Nei calcoli con poche moltiplicazioni la forma algebrica può essere più veloce, mentre per le potenze alte la forma esponenziale è spesso più comoda.</p>
+
+<h3>Coniugato, opposto e inverso</h3>
+<p>Se $z=x+iy=\rho e^{i\theta}\neq0$, allora:</p>
+<div class="tbl"><table>
+<thead><tr><th>Operazione</th><th>Forma algebrica</th><th>Forma esponenziale</th><th>Effetto geometrico</th></tr></thead>
+<tbody>
+<tr><td>Coniugato</td><td>$\overline z=x-iy$</td><td>$\overline z=\rho e^{-i\theta}$</td><td>Riflette rispetto all’asse reale</td></tr>
+<tr><td>Opposto</td><td>$-z=-x-iy$</td><td>$-z=\rho e^{i(\theta+\pi)}$</td><td>Ruota di $\pi$</td></tr>
+<tr><td>Inverso</td><td>$z^{-1}=\dfrac{x-iy}{x^2+y^2}$</td><td>$z^{-1}=\rho^{-1}e^{-i\theta}$</td><td>Inverte il modulo e cambia segno all’angolo</td></tr>
+</tbody></table></div>
+<p>Per l’inverso si usa $z\overline z=|z|^2=x^2+y^2$, quindi $1/z=\overline z/|z|^2$. Tutti gli angoli indicati restano intesi modulo $2\pi$. L’opposto $-z$ è l’inverso <strong>additivo</strong>; $z^{-1}$ è l’inverso <strong>moltiplicativo</strong>.</p>
+
+<h3>Le radici cubiche di $-8$</h3>
+<div class="box ex">
+<div class="bt">Esempio — Radici cubiche di $-8$</div>
+<p>Qui $-8=8e^{i\pi}$, quindi $n=3$, il modulo delle radici è $\sqrt[3]{8}=2$ e gli angoli sono</p>
+$$\beta_k=\frac{\pi+2k\pi}{3},\qquad k=0,1,2.$$
+<div class="tbl"><table>
+<thead><tr><th>$k$</th><th>Angolo</th><th>Radice</th></tr></thead>
+<tbody>
+<tr><td>$0$</td><td>$\pi/3$</td><td>$w_0=1+i\sqrt3$</td></tr>
+<tr><td>$1$</td><td>$\pi$</td><td>$w_1=-2$</td></tr>
+<tr><td>$2$</td><td>$5\pi/3$</td><td>$w_2=1-i\sqrt3$</td></tr>
+</tbody></table></div>
+</div>
+<p>La successiva $w_3$ coincide con $w_0$. Le tre radici stanno sulla circonferenza $|w|=2$, a distanza angolare $2\pi/3$, e formano un triangolo equilatero. In questo esempio $w_2=\overline{w_0}$, ma non bisogna presumere che ogni insieme di radici di un complesso generico contenga coppie coniugate.</p>
+
+<h3>Esponenziale e logaritmo: attenzione alla periodicità</h3>
+<p>Per $z=5+3i$,</p>
+$$e^{5+3i}=e^5(\cos3+i\sin3).$$
+<p>Il modulo è $e^5$, mentre $3$ è un argomento. Per $-1=e^{i\pi}$, invece,</p>
+$$\log(-1)=\{(2k+1)\pi i:k\in\mathbb Z\}.$$
+<p>In particolare $i\pi$ è <strong>un</strong> logaritmo di $-1$, non l’unico. La scorciatoia $\log(\rho e^{i\theta})=\ln\rho+i\theta$ individua un valore possibile, purché si tenga presente la periodicità $2\pi$.</p>
+
+<h3>Esempi di polinomi</h3>
+<p>Il polinomio reale citato nella lezione si fattorizza senza formule complesse:</p>
+$$P(x)=2x^3-10x^2+12x=2x(x^2-5x+6)=2x(x-2)(x-3).$$
+<p>Ha grado $3$ e radici $0,2,3$.</p>
+<div class="box ex">
+<div class="bt">Esempio — $Q(z)=(3i-2)z^5+2z+3$</div>
+<p>I coefficienti sono $a_5=3i-2$, $a_4=a_3=a_2=0$, $a_1=2$, $a_0=3$, quindi $\deg Q=5$. Per controllare se $i$ è una radice, sfruttiamo $i^4=1$, dunque $i^5=i$:</p>
+$$Q(i)=(3i-2)i+2i+3=3i^2-2i+2i+3=0.$$
+<p>Quindi $i$ è una radice di $Q$.</p>
+</div>
+<p>Le potenze di $i$ si ripetono ogni quattro passi: $1,i,-1,-i,1,\ldots$</p>
+
+<div class="box ex">
+<div class="bt">Esercizi proposti a lezione</div>
+<ul>
+<li>calcolare le radici seste di $-i$;</li>
+<li>calcolare le radici quarte di $-16$;</li>
+<li>calcolare le radici cubiche di $7-7i$.</li>
+</ul>
+<p>Procedimento: determinare modulo e argomento del numero dato, applicare la formula $w_k$, scegliere $k=0,\ldots,n-1$ e, quando utile, rappresentare i punti nel piano di Gauss.</p>
+</div>
+
+
+<h2>5. Errori da evitare</h2>
+<div class="box warn">
+<div class="bt">Attenzione</div>
+<ul>
+<li>L’argomento non è unico: gli angoli valgono modulo $2\pi$, e con $\operatorname{Arg}z\in[0,2\pi)$ non si includono entrambi gli estremi.</li>
+<li>Per $z=0$ l’argomento non è definito, e non esiste alcun logaritmo complesso.</li>
+<li>Le radici ennesime di $z\neq0$ sono $n$, non una: $w_{k+n}=w_k$, quindi $k$ si ferma a $n-1$. Non confondere $\sqrt[n]{\rho}$ (radice reale positiva) con le radici complesse.</li>
+<li>Il logaritmo complesso è multivalore: $\ln\rho+i\theta$ è solo un valore possibile; $i\pi$ è <em>un</em> logaritmo di $-1$, non l’unico.</li>
+<li>In $e^{5+3i}=e^5(\cos3+i\sin3)$ il modulo è $e^5$, mentre $3$ è un argomento.</li>
+<li>Non confondere l’opposto $-z$ (inverso additivo) con $z^{-1}$ (inverso moltiplicativo).</li>
+<li>Non presumere che le radici di un complesso generico formino coppie coniugate.</li>
+<li>Grado $n$ non significa $n$ radici distinte: si contano $n$ radici <em>con molteplicità</em>.</li>
+</ul>
+</div>
+
+
+<h2>6. Riepilogo finale</h2>
+<p>Cosa devi saper fare dopo questo Day:</p>
+<ul>
+<li>passare tra forma algebrica, goniometrica ed esponenziale, e conoscere la formula di Eulero;</li>
+<li>usare prodotto, quoziente e De Moivre in forma polare, e saperli dimostrare;</li>
+<li>calcolare le $n$ radici ennesime con $w_k$ e disegnarle come vertici di un poligono regolare;</li>
+<li>calcolare $e^z$ e scrivere l’insieme dei logaritmi di un complesso non nullo;</li>
+<li>enunciare il teorema fondamentale dell’algebra e verificare se un numero è radice di un polinomio.</li>
+</ul>
