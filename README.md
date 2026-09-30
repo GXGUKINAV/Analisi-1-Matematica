@@ -6,5 +6,6 @@ Indice:
 3. Numeri complessi: operazioni, coniugato, modulo, inverso e forma goniometrica
 4. Forma esponenziale, radici ennesime, logaritmo complesso e polinomi
 5. Polinomi complessi, funzioni, estremi, simmetrie e monotonia
+6. Composizione, inversa, successioni e limite
 
 https://gxgukinav.github.io/Analisi-1-Matematica/

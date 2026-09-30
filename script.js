@@ -41,8 +41,13 @@ var days = [
     n: 5,
     title: 'Polinomi complessi, funzioni, estremi, simmetrie e monotonia',
     file: 'appunti/day-05.html'
+  },
+  {
+    n: 6,
+    title: 'Composizione, inversa, successioni e limite',
+    file: 'appunti/day-06.html'
   }
-
+  
 ];
 days.sort(function (a, b) { return a.n - b.n; });
 

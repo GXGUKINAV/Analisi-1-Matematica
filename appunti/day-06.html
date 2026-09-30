@@ -1,0 +1,276 @@
+<h2>1. Definizioni</h2>
+<p>Cominciamo dalla composizione e dall’inversa delle funzioni; poi introduciamo successioni, limitatezza e limite.</p>
+
+<h3>Composizione</h3>
+<div class="box def">
+<div class="bt">Definizione — Funzione composta</div>
+<p>Siano $f\colon D_f\subseteq\mathbb R\to\mathbb R$ e $g\colon D_g\subseteq\mathbb R\to\mathbb R$. Se $g(D_g)\subseteq D_f$, si definisce la funzione composta</p>
+$$f\circ g\colon D_g\to\mathbb R,\qquad (f\circ g)(x)=f(g(x)).$$
+</div>
+<p>L’ordine delle operazioni è $x\xrightarrow{g}g(x)\xrightarrow{f}f(g(x))$: si applica prima la funzione scritta a destra. La condizione sull’immagine serve a garantire che il risultato di $g$ sia un ingresso ammesso per $f$.</p>
+<p>Se la condizione non vale su tutto $D_g$, si può cercare la composizione sul dominio ristretto</p>
+$$D_{f\circ g}=\{x\in D_g: g(x)\in D_f\}.$$
+
+<h3>Funzione inversa</h3>
+<div class="box def">
+<div class="bt">Definizione — Funzione inversa</div>
+<p>Sia $f\colon D\to\mathbb R$ iniettiva. Considerandola con codominio uguale alla sua immagine, $f\colon D\to f(D)$ è biiettiva. La funzione inversa è $f^{-1}\colon f(D)\to D$, definita da</p>
+$$f^{-1}(y)=x\quad\Longleftrightarrow\quad f(x)=y.$$
+<p>L’inversa associa a ogni valore raggiunto da $f$ l’unico elemento del dominio che lo produce.</p>
+</div>
+<p>Le identità fondamentali sono</p>
+$$f^{-1}(f(x))=x\quad\forall x\in D,\qquad f(f^{-1}(y))=y\quad\forall y\in f(D).$$
+<p>Attenzione ai domini: la prima relazione parte da $D$, la seconda da $f(D)$.</p>
+<p><strong>Precisazione.</strong> Una funzione $f\colon D\to C$ possiede un’inversa definita su tutto $C$ se e solo se è biiettiva. Dire «basta l’iniettività» significa che si sceglie come codominio $f(D)$, come fa il professore nella lezione.</p>
+
+<h3>Restrizione</h3>
+<div class="box def">
+<div class="bt">Definizione — Restrizione</div>
+<p>Siano $f\colon D\to\mathbb R$ e $A\subseteq D$. La restrizione di $f$ ad $A$ è</p>
+$$f|_A\colon A\to\mathbb R,\qquad f|_A(x)=f(x).$$
+</div>
+<p>La formula resta la stessa; cambia il dominio sul quale la funzione viene considerata.</p>
+
+<h3>Successione numerica</h3>
+<div class="box def">
+<div class="bt">Definizione — Successione reale</div>
+<p>Adottiamo la convenzione $\mathbb N=\{0,1,2,3,\ldots\}$. Nella convenzione di questa lezione, una successione numerica reale è una funzione</p>
+$$a\colon E\to\mathbb R,\qquad E=\mathbb N\setminus F,\quad F\subseteq\mathbb N\text{ finito}.$$
+<p>Sono quindi ammessi tutti gli indici naturali, eventualmente esclusi alcuni indici in numero finito.</p>
+</div>
+<p>Si scrive $a_n$ al posto di $a(n)$: $n$ è l’indice, $a_n$ è il termine della successione. Per esempio, se $a_n=\dfrac1{n-2}$, allora $a_7=\dfrac1{7-2}=\dfrac15$.</p>
+
+<h3>Limitatezza</h3>
+<div class="box def">
+<div class="bt">Definizione — Successioni limitate</div>
+<p>Una successione $(a_n)$, definita su $E$, è:</p>
+<ul>
+<li><strong>superiormente limitata</strong> se $\exists M\in\mathbb R\ \ \forall n\in E:\ a_n\le M$;</li>
+<li><strong>inferiormente limitata</strong> se $\exists m\in\mathbb R\ \ \forall n\in E:\ a_n\ge m$;</li>
+<li><strong>limitata</strong> se $\exists m,M\in\mathbb R\ \ \forall n\in E:\ m\le a_n\le M$.</li>
+</ul>
+<p>Equivalentemente, è limitata se</p>
+$$\exists K\ge0\quad\forall n\in E:\quad |a_n|\le K.$$
+</div>
+<p>Le disuguaglianze devono valere per tutti gli indici del dominio.</p>
+
+<h3>Proprietà soddisfatta definitivamente</h3>
+<div class="box def">
+<div class="bt">Definizione — Definitivamente</div>
+<p>Una proprietà $P(n)$ è soddisfatta <strong>definitivamente</strong> se è vera sempre da un certo indice in poi:</p>
+$$\exists N\in\mathbb N\quad\forall n\in E:\quad n\ge N\Longrightarrow P(n).$$
+</div>
+<p>Non importa che cosa accada prima di $N$: dopo quella soglia la proprietà non deve più smettere di valere.</p>
+
+<h3>Limite finito</h3>
+<div class="box def">
+<div class="bt">Definizione — Convergenza</div>
+<p>Una successione $(a_n)$ converge a $L\in\mathbb R$ se</p>
+$$\forall\varepsilon\gt0\quad\exists N=N(\varepsilon)\in\mathbb N\quad\forall n\in E:\quad n\ge N\Longrightarrow |a_n-L|\lt\varepsilon.$$
+<p>Si scrive $\displaystyle\lim_{n\to+\infty}a_n=L$ oppure $a_n\to L$. La successione è <strong>convergente</strong> se esiste un tale limite finito.</p>
+</div>
+<p>La disuguaglianza del limite si può riscrivere come</p>
+$$|a_n-L|\lt\varepsilon\quad\Longleftrightarrow\quad L-\varepsilon\lt a_n\lt L+\varepsilon.$$
+<p>Geometricamente: qualunque corridoio orizzontale attorno a $L$, anche strettissimo, contiene tutti i punti della successione da un certo indice in poi.</p>
+<p>L’ordine dei quantificatori conta: $\forall\varepsilon\gt0\ \exists N(\varepsilon)$. Prima si sceglie la precisione $\varepsilon$, poi si trova una soglia adeguata. Non viene richiesto un unico $N$ valido contemporaneamente per tutte le precisioni.</p>
+
+
+<h2>2. Teoremi</h2>
+
+<div class="box thm">
+<div class="bt">Teorema — Criterio di invertibilità sull’immagine</div>
+<p><strong>Ipotesi.</strong> $f\colon D\to\mathbb R$.</p>
+<p><strong>Tesi.</strong></p>
+$$f\colon D\to f(D)\text{ è invertibile}\quad\Longleftrightarrow\quad f\text{ è iniettiva}.$$
+</div>
+<p>È il criterio usato nella costruzione dell’inversa durante la lezione.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Monotonia e invertibilità</div>
+<p><strong>Ipotesi.</strong> $f\colon D\subseteq\mathbb R\to\mathbb R$ è strettamente monotona.</p>
+<p><strong>Tesi.</strong> $f$ è iniettiva e quindi invertibile sulla propria immagine:</p>
+$$f\text{ strettamente monotona}\Longrightarrow f\text{ iniettiva}\Longrightarrow f\colon D\to f(D)\text{ invertibile}.$$
+</div>
+<p>La stretta monotonia è una condizione sufficiente, non necessaria, per l’iniettività.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Simmetria dei grafici</div>
+<p><strong>Ipotesi.</strong> $f\colon D\to f(D)$ è invertibile.</p>
+<p><strong>Tesi.</strong> I grafici di $f$ e $f^{-1}$ sono simmetrici rispetto alla retta $y=x$.</p>
+</div>
+<p>Invertire la funzione scambia il ruolo di ingresso e uscita.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Invertibilità di una restrizione</div>
+<p><strong>Ipotesi.</strong> $A\subseteq D$ e $f|_A$ è iniettiva.</p>
+<p><strong>Tesi.</strong> $f|_A\colon A\to f(A)$ possiede una funzione inversa.</p>
+</div>
+<p>Questo è il risultato effettivamente utilizzato nell’esempio della parabola.</p>
+
+<div class="box warn">
+<div class="bt">Precisazione sull’invertibilità locale</div>
+<p>Nella trascrizione questo risultato viene chiamato «teorema di Dini», ma invertire una restrizione iniettiva è una conseguenza del criterio precedente. L’invertibilità locale in un punto richiede invece una restrizione a un intorno di quel punto, non a un sottoinsieme qualunque.</p>
+<p>Per distinguere i due concetti, una formulazione standard del <strong>teorema della funzione inversa</strong> in una variabile è la seguente (precisazione, non sviluppata a lezione).</p>
+<p><strong>Ipotesi.</strong> $I\subseteq\mathbb R$ è un intervallo aperto, $f\in C^1(I)$, $x_0\in I$ e $f'(x_0)\ne0$.</p>
+<p><strong>Tesi.</strong> Esistono intorni aperti $U$ di $x_0$ e $V$ di $f(x_0)$ tali che $f|_U\colon U\to V$ è biiettiva e possiede un’inversa di classe $C^1$.</p>
+</div>
+
+
+<h2>3. Dimostrazioni</h2>
+
+<h3>Invertibilità e iniettività</h3>
+<p>Prima dimostriamo che l’iniettività permette di costruire l’inversa. Prendiamo $y\in f(D)$. Per definizione di immagine esiste almeno un $x\in D$ tale che $f(x)=y$. Poiché $f$ è iniettiva, questo $x$ è unico. Possiamo quindi definire $f^{-1}(y)$ come quell’unico $x$.</p>
+<p>Viceversa, supponiamo che esista l’inversa e che $f(x_1)=f(x_2)$. Applicando $f^{-1}$ ai due membri:</p>
+$$f^{-1}(f(x_1))=f^{-1}(f(x_2)).$$
+<p>Per l’identità dell’inversa, $x_1=x_2$. Quindi $f$ è iniettiva.</p>
+
+<h3>Stretta monotonia e iniettività</h3>
+<p>Supponiamo $f$ strettamente crescente. Se $x_1\ne x_2$, possiamo assumere $x_1\lt x_2$. Per la stretta crescenza $f(x_1)\lt f(x_2)$. Dunque due ingressi distinti hanno immagini distinte: $f$ è iniettiva. Per una funzione strettamente decrescente il ragionamento è identico, con $f(x_1)\gt f(x_2)$.</p>
+
+<h3>Simmetria dei grafici</h3>
+<p>Un punto $(x,y)$ appartiene al grafico di $f$ se $y=f(x)$. Per definizione di inversa, $x=f^{-1}(y)$. Quindi $(y,x)$ appartiene al grafico di $f^{-1}$. Il passaggio</p>
+$$(x,y)\longmapsto(y,x)$$
+<p>è precisamente la riflessione rispetto alla retta $y=x$.</p>
+
+<h3>Limitatezza e modulo</h3>
+<p>Se $m\le a_n\le M$ per ogni $n\in E$, scegliamo $K=\max\{|m|,|M|\}$. Allora</p>
+$$-K\le m\le a_n\le M\le K,$$
+<p>da cui $|a_n|\le K$. Viceversa, $|a_n|\le K$ implica $-K\le a_n\le K$, quindi la successione è limitata sia inferiormente sia superiormente.</p>
+
+<h3>Positività definitiva</h3>
+<p>Consideriamo $a_n=\dfrac1{n-2}$ con $E=\mathbb N\setminus\{2\}$. Vogliamo mostrare che $a_n\gt0$ definitivamente. Poiché il numeratore è positivo:</p>
+$$\frac1{n-2}\gt0\quad\Longleftrightarrow\quad n-2\gt0\quad\Longleftrightarrow\quad n\gt2.$$
+<p>Essendo $n$ naturale, $n\gt2\iff n\ge3$. Pertanto basta scegliere $N=3$. La successione non è positiva su tutto il dominio, perché $a_0=-\frac12$ e $a_1=-1$, ma è positiva definitivamente.</p>
+
+<h3>Disuguaglianza definitiva</h3>
+<p>Per la stessa successione, dimostriamo che $a_n\lt\frac1{10}$ definitivamente. Lavoriamo per $n\ge3$, così $n-2\gt0$. Allora</p>
+$$\frac1{n-2}\lt\frac1{10}\quad\Longleftrightarrow\quad 10\lt n-2\quad\Longleftrightarrow\quad n\gt12.$$
+<p>Per indici naturali $n\gt12\iff n\ge13$. Quindi una soglia valida è</p>
+$$\boxed{N=13}.$$
+<p>Non cerchiamo che la proprietà valga sempre, ma per tutti gli indici successivi a una soglia.</p>
+
+<h3>Verifica di un limite con la definizione</h3>
+<p>Sia $a_n=\dfrac{2n^2-4}{n^2+1}$. Vogliamo dimostrare che $\displaystyle\lim_{n\to+\infty}a_n=2$.</p>
+<p>Fissiamo $\varepsilon\gt0$ arbitrario e calcoliamo la distanza dal limite:</p>
+$$\begin{aligned}
+|a_n-2|
+&=\left|\frac{2n^2-4}{n^2+1}-2\right|\\
+&=\left|\frac{2n^2-4-2(n^2+1)}{n^2+1}\right|\\
+&=\left|\frac{-6}{n^2+1}\right|\\
+&=\frac6{n^2+1}.
+\end{aligned}$$
+<p>L’obiettivo diventa $\dfrac6{n^2+1}\lt\varepsilon$. Una scelta semplice è prendere un numero naturale $N$ tale che</p>
+$$N\gt\sqrt{\frac6\varepsilon}.$$
+<p>Per ogni $n\ge N$ si ha $n^2\ge N^2\gt\frac6\varepsilon$, quindi</p>
+$$|a_n-2|=\frac6{n^2+1}\lt\frac6{n^2}\lt\varepsilon.$$
+<p>Abbiamo trovato una soglia per ogni $\varepsilon\gt0$; pertanto</p>
+$$\boxed{\lim_{n\to+\infty}\frac{2n^2-4}{n^2+1}=2}.$$
+<p>La soglia scelta non deve essere la più piccola possibile: è sufficiente che funzioni.</p>
+
+
+<h2>4. Esempi e osservazioni</h2>
+
+<h3>Composizione non commutativa</h3>
+<div class="box ex">
+<div class="bt">Esempio — $f(x)=e^x$ e $g(x)=x^2+5$</div>
+<p>I domini sono entrambi $\mathbb R$, mentre $f(\mathbb R)=(0,+\infty)$ e $g(\mathbb R)=[5,+\infty)$. Entrambe le composizioni sono definite su tutto $\mathbb R$.</p>
+<p>Applicando prima $g$:</p>
+$$(f\circ g)(x)=f(x^2+5)=e^{x^2+5}.$$
+<p>Applicando prima $f$:</p>
+$$(g\circ f)(x)=g(e^x)=(e^x)^2+5=e^{2x}+5.$$
+<p>Quindi, in generale, $f\circ g\ne g\circ f$.</p>
+</div>
+<p>La composizione non gode della proprietà commutativa. Nel secondo caso il $+5$ resta fuori dall’esponenziale perché $g$ prende il proprio ingresso, lo eleva al quadrato e poi somma $5$.</p>
+
+<h3>Inversa dell’esponenziale</h3>
+<div class="box ex">
+<div class="bt">Esempio — Inversa di $e^x$</div>
+<p>La funzione $f\colon\mathbb R\to(0,+\infty)$, $f(x)=e^x$, è strettamente crescente e biiettiva. Per ricavare l’inversa:</p>
+$$y=e^x\quad\Longleftrightarrow\quad x=\ln y.$$
+<p>Rinominando la variabile: $f^{-1}\colon(0,+\infty)\to\mathbb R$, $f^{-1}(x)=\ln x$. Le verifiche sono</p>
+$$\ln(e^x)=x\quad\forall x\in\mathbb R,\qquad e^{\ln x}=x\quad\forall x\gt0.$$
+</div>
+<p>I due domini sono diversi perché la prima operazione applicata all’ingresso è diversa.</p>
+
+<h3>Parabola e restrizioni</h3>
+<div class="box ex">
+<div class="bt">Esempio — $f(x)=x^2$</div>
+<p>La funzione $f\colon\mathbb R\to\mathbb R$, $f(x)=x^2$, non è iniettiva, perché per esempio $f(1)=f(-1)=1$. Non possiede dunque un’inversa sull’intero dominio.</p>
+<p>Restringiamola al ramo positivo:</p>
+$$\widetilde f\colon(0,+\infty)\to(0,+\infty),\qquad \widetilde f(x)=x^2.$$
+<p>Su questo dominio è strettamente crescente e quindi invertibile. Da $y=x^2$ otteniamo $\sqrt y=\sqrt{x^2}=|x|$, e poiché $x\gt0$ si ha $|x|=x$. Pertanto</p>
+$$\widetilde f^{-1}(y)=\sqrt y.$$
+</div>
+<p>Il passaggio essenziale è $\sqrt{x^2}=|x|$, non $x$ senza condizioni: è la scelta del dominio a permettere di eliminare il modulo.</p>
+
+<h3>Domini delle successioni</h3>
+<p>I cinque esempi usati a lezione permettono di distinguere domini ammissibili e non ammissibili.</p>
+<div class="tbl"><table>
+<thead><tr><th>Formula</th><th>Condizione sull’indice</th><th>Dominio</th><th>Ammessa nel corso?</th></tr></thead>
+<tbody>
+<tr><td>$a_n=\dfrac1{n-2}$</td><td>$n\ne2$</td><td>$\mathbb N\setminus\{2\}$</td><td>Sì</td></tr>
+<tr><td>$a_n=\sqrt{n-3}$</td><td>$n\ge3$</td><td>$\mathbb N\setminus\{0,1,2\}$</td><td>Sì</td></tr>
+<tr><td>$a_n=-n^2$</td><td>Nessuna esclusione</td><td>$\mathbb N$</td><td>Sì</td></tr>
+<tr><td>$a_n=(-1)^n$</td><td>Nessuna esclusione</td><td>$\mathbb N$</td><td>Sì</td></tr>
+<tr><td>$a_n=\sqrt{4-n^2}$</td><td>$n\le2$</td><td>$\{0,1,2\}$</td><td>No, come successione infinita</td></tr>
+</tbody></table></div>
+<p>Per l’ultimo esempio, $4-n^2\ge0\iff 0\le n\le2$, tenendo conto che $n\in\mathbb N$. Restano solo tre indici: non abbiamo tutti i naturali meno un insieme finito, ma un dominio finito.</p>
+<p>Analogamente, un dominio formato soltanto dagli indici pari non rispetta la convenzione della lezione, perché esclude infiniti indici dispari.</p>
+
+<h3>Grafico e comportamento</h3>
+<p>Il grafico di una successione è l’insieme dei punti $\{(n,a_n):n\in E\}$. Sono punti separati, non una curva continua: tra due indici naturali consecutivi non ci sono altri indici del dominio.</p>
+<p>I quattro esempi principali hanno questi comportamenti:</p>
+<div class="tbl"><table>
+<thead><tr><th>Successione</th><th>Limitatezza</th><th>Comportamento</th></tr></thead>
+<tbody>
+<tr><td>$\dfrac1{n-2}$</td><td>$-1\le a_n\le1$</td><td>Converge a $0$</td></tr>
+<tr><td>$\sqrt{n-3}$</td><td>Inferiormente limitata da $0$, non superiormente</td><td>Diverge a $+\infty$</td></tr>
+<tr><td>$-n^2$</td><td>Superiormente limitata da $0$, non inferiormente</td><td>Diverge a $-\infty$</td></tr>
+<tr><td>$(-1)^n$</td><td>$-1\le a_n\le1$</td><td>Oscilla tra $1$ e $-1$, senza limite</td></tr>
+</tbody></table></div>
+<p>Questa è la classificazione illustrata a lezione; la definizione sviluppata rigorosamente è quella di convergenza a un limite finito.</p>
+<p><strong>Osservazione.</strong> L’esempio $(-1)^n$ mostra una distinzione fondamentale: una successione può essere limitata senza convergere. Essere confinati in un intervallo non significa avvicinarsi a un unico valore.</p>
+
+<h3>Come leggere il limite</h3>
+<p>Nella definizione $\forall\varepsilon\gt0\ \exists N(\varepsilon)\ \forall n\ge N(\varepsilon):\ |a_n-L|\lt\varepsilon$, i ruoli sono:</p>
+<ul>
+<li>$L$: il valore al quale si vuole dimostrare che la successione converge;</li>
+<li>$\varepsilon$: la tolleranza positiva scelta arbitrariamente;</li>
+<li>$N(\varepsilon)$: la soglia che si trova dopo aver fissato la tolleranza;</li>
+<li>$n$: un qualsiasi indice oltre quella soglia.</li>
+</ul>
+<p>«Piccolo a piacere» non significa verificare un solo valore molto piccolo di $\varepsilon$: significa poter soddisfare la richiesta per ogni $\varepsilon\gt0$.</p>
+<p>Infine, convergere non significa necessariamente raggiungere il limite o diventare costanti. Nell’esempio</p>
+$$\frac{2n^2-4}{n^2+1}=2-\frac6{n^2+1},$$
+<p>ogni termine è strettamente minore di $2$, ma la distanza da $2$ diventa arbitrariamente piccola e resta tale definitivamente.</p>
+
+
+<h2>5. Errori da evitare</h2>
+<div class="box warn">
+<div class="bt">Attenzione</div>
+<ul>
+<li>In $f\circ g$ si applica <strong>prima</strong> $g$ (quella a destra); in generale $f\circ g\ne g\circ f$.</li>
+<li>Controllare sempre che $g(D_g)\subseteq D_f$, oppure restringere il dominio a $\{x\in D_g:g(x)\in D_f\}$.</li>
+<li>Nelle identità dell’inversa i domini sono diversi: $f^{-1}(f(x))=x$ per $x\in D$, $f(f^{-1}(y))=y$ per $y\in f(D)$.</li>
+<li>$\sqrt{x^2}=|x|$, non $x$: si elimina il modulo solo se il dominio lo consente (es. $x\gt0$).</li>
+<li>La stretta monotonia è sufficiente ma non necessaria per l’iniettività.</li>
+<li>Non chiamare «teorema di Dini» l’invertibilità di una restrizione iniettiva: l’invertibilità locale richiede un intorno del punto.</li>
+<li>«Definitivamente» significa per tutti gli $n\ge N$, non «per ogni $n$».</li>
+<li>Il dominio di una successione deve essere $\mathbb N$ meno un insieme finito: $\sqrt{4-n^2}$ non lo è.</li>
+<li>Nel limite l’ordine dei quantificatori è $\forall\varepsilon\ \exists N(\varepsilon)$: $N$ dipende da $\varepsilon$.</li>
+<li>Limitata non implica convergente: $(-1)^n$ è limitata ma non converge. Convergere non significa raggiungere il limite.</li>
+</ul>
+</div>
+
+
+<h2>6. Riepilogo finale</h2>
+<p>Cosa devi saper fare dopo questo Day:</p>
+<ul>
+<li>definire la composizione, verificarne la condizione sul dominio e calcolare $f\circ g$ e $g\circ f$;</li>
+<li>definire l’inversa, enunciare il criterio di invertibilità e dimostrarlo;</li>
+<li>trovare l’inversa di $e^x$ e di $x^2$ su una restrizione adeguata;</li>
+<li>dimostrare che stretta monotonia implica iniettività e che i grafici di $f$ e $f^{-1}$ sono simmetrici rispetto a $y=x$;</li>
+<li>riconoscere i domini ammessi per una successione e scrivere le definizioni di limitatezza;</li>
+<li>usare «definitivamente» e trovare la soglia $N$;</li>
+<li>enunciare la definizione di limite finito e verificarla con $\varepsilon$ e $N(\varepsilon)$, come per $\dfrac{2n^2-4}{n^2+1}\to2$.</li>
+</ul>
