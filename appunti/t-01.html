@@ -1,0 +1,129 @@
+<h2>1. Gradi e radianti</h2>
+<div class="box def">
+<div class="bt">Definizione — Radiante</div>
+<p>Il radiante è la misura dell’angolo al centro che sottende un arco di lunghezza uguale al raggio della circonferenza. Se l’arco ha lunghezza $l$ e il raggio è $r$, allora</p>
+$$\alpha=\frac{l}{r}.$$
+<p>Un giro completo vale $360^\circ=2\pi\text{ rad}$.</p>
+</div>
+<p>Per convertire un angolo:</p>
+$$\alpha_{\text{rad}}=\alpha^\circ\cdot\frac{\pi}{180^\circ},\qquad \alpha^\circ=\alpha_{\text{rad}}\cdot\frac{180^\circ}{\pi}.$$
+
+<h3>Angoli da sapere subito</h3>
+<div class="tbl"><table>
+<thead><tr><th>Gradi</th><th>$0^\circ$</th><th>$30^\circ$</th><th>$45^\circ$</th><th>$60^\circ$</th><th>$90^\circ$</th><th>$180^\circ$</th><th>$270^\circ$</th><th>$360^\circ$</th></tr></thead>
+<tbody>
+<tr><td>Radianti</td><td>$0$</td><td>$\frac{\pi}{6}$</td><td>$\frac{\pi}{4}$</td><td>$\frac{\pi}{3}$</td><td>$\frac{\pi}{2}$</td><td>$\pi$</td><td>$\frac{3\pi}{2}$</td><td>$2\pi$</td></tr>
+</tbody></table></div>
+<p><strong>Osservazione.</strong> In Analisi e nei numeri complessi si lavora quasi sempre in radianti: questi angoli vanno riconosciuti al volo.</p>
+
+
+<h2>2. Circonferenza goniometrica</h2>
+<div class="box def">
+<div class="bt">Definizione — Circonferenza goniometrica</div>
+<p>È la circonferenza di centro nell’origine e raggio $1$:</p>
+$$x^2+y^2=1.$$
+<p>A un angolo $\alpha$ corrisponde il punto $P=(\cos\alpha,\sin\alpha)$.</p>
+</div>
+<ul>
+<li>il coseno è la coordinata orizzontale;</li>
+<li>il seno è la coordinata verticale;</li>
+<li>la tangente è $\tan\alpha=\dfrac{\sin\alpha}{\cos\alpha}$.</li>
+</ul>
+<p>La tangente non esiste quando il coseno è nullo, cioè per $\alpha=\frac{\pi}{2}+k\pi$.</p>
+<p>Gli angoli positivi si misurano in senso antiorario, quelli negativi in senso orario. Angoli che differiscono di un giro completo rappresentano lo stesso punto:</p>
+$$\alpha+2k\pi,\qquad k\in\mathbb Z.$$
+
+
+<h2>3. Forme di un numero complesso</h2>
+<p>Un numero complesso può essere scritto in tre modi equivalenti:</p>
+$$z=x+iy,\qquad z=\rho(\cos\vartheta+i\sin\vartheta),\qquad z=\rho e^{i\vartheta}.$$
+<p>Dove $x$ è la parte reale, $y$ la parte immaginaria, $\rho$ il modulo e $\vartheta$ un argomento.</p>
+
+<h3>Modulo</h3>
+<p>Se $z=x+iy$, allora</p>
+$$|z|=\rho=\sqrt{x^2+y^2}.$$
+<p>Geometricamente, $|z|$ è la distanza del punto $z$ dall’origine del piano di Gauss.</p>
+
+<h3>Argomento</h3>
+<p>L’argomento è l’angolo formato dal vettore che va dall’origine a $z$ con il semiasse reale positivo. Per trovarlo, prima si calcolano</p>
+$$\cos\vartheta=\frac{x}{\rho},\qquad \sin\vartheta=\frac{y}{\rho}.$$
+<p>La formula $\tan\vartheta=\frac{y}{x}$ può aiutare, ma da sola è rischiosa: bisogna sempre controllare il quadrante in cui si trova $z$.</p>
+
+
+<h2>4. Luoghi geometrici nel piano complesso</h2>
+<p>La quantità $|z-z_0|$ rappresenta la distanza fra il punto $z$ e il punto $z_0$ nel piano di Gauss.</p>
+
+<div class="box ex">
+<div class="bt">Esempio — Corona circolare</div>
+$$A=\{z\in\mathbb C:2\lt|z-i|\lt4\}$$
+<p>Contiene tutti i punti con distanza da $i$ maggiore di $2$ e minore di $4$: è una corona circolare aperta con centro in $i$, raggio interno $2$ e raggio esterno $4$.</p>
+</div>
+
+<div class="box ex">
+<div class="bt">Esempio — Settore di corona</div>
+$$B=\left\{z\in\mathbb C:\tfrac12\lt|z|\lt3\ \wedge\ 0\lt\arg(z)\lt\tfrac{\pi}{2}\right\}$$
+<p>È la parte del primo quadrante compresa tra due circonferenze concentriche di raggi $\frac12$ e $3$. Le disuguaglianze strette escludono i bordi, quindi anche le due semirette $\arg z=0$ e $\arg z=\frac{\pi}{2}$.</p>
+</div>
+
+
+<h2>5. Potenze e radici complesse</h2>
+<p>Per estrarre una radice conviene prima scrivere il numero in forma esponenziale:</p>
+$$w=\rho e^{i(\theta+2k\pi)}.$$
+<p>Le radici $n$-esime di $w$ sono</p>
+$$z_k=\sqrt[n]{\rho}\,e^{i\left(\frac{\theta}{n}+\frac{2k\pi}{n}\right)},\qquad k=0,1,\ldots,n-1.$$
+<p>Un numero complesso non nullo ha quindi esattamente $n$ radici $n$-esime distinte, disposte sui vertici di un poligono regolare centrato nell’origine.</p>
+
+<div class="box ex">
+<div class="bt">Esempio del tutorato</div>
+<p>Risolvere</p>
+$$(z^2+i)(z^2-i)+\sqrt3\,i=0.$$
+<ul>
+<li>Prodotto notevole: $(z^2+i)(z^2-i)=z^4-i^2$.</li>
+<li>Poiché $i^2=-1$: $z^4+1+\sqrt3\,i=0$.</li>
+<li>Isolo la potenza: $z^4=-1-\sqrt3\,i$.</li>
+</ul>
+<p>Modulo del secondo membro:</p>
+$$\rho=\sqrt{(-1)^2+(-\sqrt3)^2}=\sqrt4=2.$$
+<p>Il punto è nel terzo quadrante: $\cos\theta=-\frac12$, $\sin\theta=-\frac{\sqrt3}{2}$, quindi $\theta=\frac{4\pi}{3}$ e</p>
+$$z^4=2e^{i\left(\frac{4\pi}{3}+2k\pi\right)}.$$
+<p>Le quattro soluzioni sono</p>
+$$\boxed{z_k=\sqrt[4]{2}\,e^{i\left(\frac{\pi}{3}+k\frac{\pi}{2}\right)},\qquad k=0,1,2,3.}$$
+<p>Cioè gli argomenti sono $\frac{\pi}{3},\ \frac{5\pi}{6},\ \frac{4\pi}{3},\ \frac{11\pi}{6}$, tutte su una circonferenza di raggio $\sqrt[4]{2}$: formano un quadrato.</p>
+</div>
+
+<p><strong>Procedura da automatizzare:</strong> semplificare l’equazione, isolare una potenza di $z$, passare alla forma esponenziale, dividere modulo e argomento per l’indice della radice.</p>
+
+<div class="box warn">
+<div class="bt">Attenzione</div>
+<p>Il modulo delle radici è la radice <strong>$n$-esima</strong> di $\rho$. Qui $n=4$ e $\rho=2$, quindi il raggio è $\sqrt[4]{2}$, <strong>non</strong> $\sqrt2$.</p>
+</div>
+
+<div class="box ex">
+<div class="bt">Esercizio di controllo</div>
+<p>Come si interpreta geometricamente $\{z\in\mathbb C:1\le|z-2i|\lt3\}$?</p>
+<p><strong>Risposta.</strong> È la corona circolare di centro $2i$, raggio interno $1$ e raggio esterno $3$. La circonferenza interna è <em>inclusa</em> ($\le$), quella esterna è <em>esclusa</em> ($\lt$).</p>
+</div>
+
+
+<h2>6. Errori da evitare</h2>
+<div class="box warn">
+<div class="bt">Attenzione</div>
+<ul>
+<li>Non usare solo $\tan\vartheta=\frac yx$ per l’argomento: controlla sempre il quadrante con seno e coseno.</li>
+<li>Gli angoli valgono modulo $2\pi$: $\alpha$ e $\alpha+2k\pi$ sono lo stesso punto.</li>
+<li>Con disuguaglianze strette i bordi sono esclusi, con $\le$ e $\ge$ sono inclusi.</li>
+<li>Nelle radici $n$-esime si divide per $n$ sia l’argomento sia l’esponente del modulo: raggio $\sqrt[n]{\rho}$.</li>
+<li>$k$ va da $0$ a $n-1$: oltre si ripetono le stesse radici.</li>
+</ul>
+</div>
+
+
+<h2>7. Riepilogo finale</h2>
+<p>Cosa devi saper fare dopo questo Tutorato:</p>
+<ul>
+<li>convertire tra gradi e radianti e riconoscere gli angoli notevoli;</li>
+<li>usare la circonferenza goniometrica per seno, coseno e tangente;</li>
+<li>passare tra forma algebrica, goniometrica ed esponenziale, controllando il quadrante;</li>
+<li>interpretare $|z-z_0|$ come distanza e descrivere corone e settori nel piano di Gauss;</li>
+<li>risolvere equazioni del tipo $z^n=w$ con la formula delle radici.</li>
+</ul>

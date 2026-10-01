@@ -59,38 +59,14 @@ days.sort(function (a, b) { return a.n - b.n; });
      { n: 1, title: 'Titolo dell\'esercitazione 1', file: 'appunti/esercitazione-1.html' }
    ===================================================================== */
 var esercitazioni = [
-  {
-    n: 1,
-    title: 'Estremi degli insiemi',
-    file: 'appunti/esercitazione-1.html'
-  },
-  {
-    n: 2,
-    title: 'Numeri complessi: forme, radici, equazioni e luoghi geometrici',
-    file: 'appunti/esercitazione-2.html'
-  }
+  /* { n: 1, title: 'Titolo esercitazione 1', file: 'appunti/esercitazione-1.html' } */
 ];
 esercitazioni.sort(function (a, b) { return a.n - b.n; });
 
-/* =====================================================================
-   CATALOGO DEL TUTORATO
-   Per ogni nuova lezione di tutorato aggiungi una voce, ad esempio:
-     { n: 2, title: 'Titolo del tutorato 2', file: 'appunti/t-02.html' }
-   ===================================================================== */
-var tutorato = [
-  { 
-    n: 1, 
-    title: 'Goniometria e numeri complessi', 
-    file: 'appunti/t-01.html' 
-  }
-];
-tutorato.sort(function (a, b) { return a.n - b.n; });
-
-/* Le tre "modalità" del sito */
+/* Le due "modalità" del sito */
 var cats = {
   lezioni:       { name: 'Lezioni',       label: 'Day',           prefix: 'day', list: days,          key: 'a1-day' },
-  esercitazioni: { name: 'Esercitazioni', label: 'Esercitazione', prefix: 'es',  list: esercitazioni, key: 'a1-es'  },
-  tutorato:      { name: 'Tutorato',      label: 'Tutorato',      prefix: 't',   list: tutorato,      key: 'a1-t'   }
+  esercitazioni: { name: 'Esercitazioni', label: 'Esercitazione', prefix: 'es',  list: esercitazioni, key: 'a1-es'  }
 };
 
 
@@ -122,9 +98,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ---------- Hash URL: #day-1, #day-2, ... ---------- */
   function parseHash() {
-    var m = /^#(day|es|t)-(\d+)$/.exec(location.hash);
+    var m = /^#(day|es)-(\d+)$/.exec(location.hash);
     if (!m) return null;
-    var md = m[1] === 'es' ? 'esercitazioni' : (m[1] === 't' ? 'tutorato' : 'lezioni');
+    var md = m[1] === 'es' ? 'esercitazioni' : 'lezioni';
     var n = parseInt(m[2], 10), idx = -1;
     cats[md].list.forEach(function (d, k) { if (d.n === n) idx = k; });
     return idx === -1 ? null : { mode: md, idx: idx };

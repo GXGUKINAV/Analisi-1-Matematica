@@ -1,0 +1,323 @@
+<h2>1. Definizioni</h2>
+
+<h3>Forma algebrica</h3>
+<div class="box def">
+<div class="bt">Definizione — Forma algebrica, parte reale e immaginaria</div>
+<p>Un numero complesso si scrive nella forma</p>
+$$z=x+iy,\qquad x,y\in\mathbb R,\qquad i^2=-1.$$
+<p>Si definiscono $\operatorname{Re}z=x$ e $\operatorname{Im}z=y$. Nel piano di Gauss:</p>
+$$z=x+iy\longleftrightarrow P=(x,y).$$
+</div>
+<p><strong>Attenzione:</strong> $\operatorname{Im}z$ è un numero <em>reale</em>, il coefficiente di $i$; non è $iy$. Possiamo interpretare $z$ come numero, punto del piano o vettore dall'origine a $P$: questa possibilità di cambiare interpretazione viene usata continuamente nell'esercitazione.</p>
+
+<h3>Modulo</h3>
+<div class="box def">
+<div class="bt">Definizione — Modulo</div>
+<p>Il modulo di $z=x+iy$ è</p>
+$$\boxed{|z|=\sqrt{x^2+y^2}}.$$
+<p>Geometricamente è la distanza dall'origine. Più in generale:</p>
+$$\boxed{|z-z_0|=\text{distanza tra i punti }z\text{ e }z_0}.$$
+</div>
+
+<h3>Coniugato e reciproco</h3>
+<div class="box def">
+<div class="bt">Definizione — Coniugato</div>
+<p>Il coniugato di $z=x+iy$ è</p>
+$$\boxed{\overline z=x-iy}.$$
+<p>Geometricamente corrisponde alla riflessione rispetto all'asse reale.</p>
+</div>
+<p>Poiché</p>
+$$z\overline z=(x+iy)(x-iy)=x^2+y^2=|z|^2,$$
+<p>per $z\neq0$ otteniamo</p>
+$$\boxed{\frac1z=\frac{\overline z}{|z|^2}=\frac{x-iy}{x^2+y^2}}.$$
+<p>Moltiplicare numeratore e denominatore per il coniugato permette di rendere reale il denominatore.</p>
+
+<h3>Argomento</h3>
+<div class="box def">
+<div class="bt">Definizione — Argomento</div>
+<p>Per $z\neq0$, un argomento di $z$ è un angolo $\theta$ tale che</p>
+$$x=|z|\cos\theta,\qquad y=|z|\sin\theta.$$
+<p>L'argomento non è unico: se $\theta$ è un argomento, lo sono anche $\theta+2k\pi$, con $k\in\mathbb Z$. Questi sono numeri diversi, ma individuano la stessa direzione nel piano. Per $z=0$ l'argomento non è definito.</p>
+</div>
+
+<h3>Forme goniometrica ed esponenziale</h3>
+<div class="box def">
+<div class="bt">Definizione — Forme goniometrica ed esponenziale</div>
+<p>Posto $\rho=|z|$, per $z\neq0$:</p>
+$$\boxed{z=\rho(\cos\theta+i\sin\theta)}.$$
+<p>Usando la formula di Eulero $e^{i\theta}=\cos\theta+i\sin\theta$ si ottiene</p>
+$$\boxed{z=\rho e^{i\theta}}.$$
+</div>
+<p>Le tre rappresentazioni descrivono lo stesso numero:</p>
+$$x+iy=\rho(\cos\theta+i\sin\theta)=\rho e^{i\theta}.$$
+
+<p><strong>Quale forma usare.</strong> Il principio metodologico della lezione è scegliere la forma in base alla struttura del problema, non usare sempre la stessa.</p>
+<div class="tbl"><table>
+<thead><tr><th>Operazione o problema</th><th>Forma generalmente conveniente</th></tr></thead>
+<tbody>
+<tr><td>Somma e differenza</td><td>Algebrica</td></tr>
+<tr><td>Prodotto, quoziente, potenza</td><td>Goniometrica o esponenziale</td></tr>
+<tr><td>Radici ed equazioni binomie</td><td>Goniometrica o esponenziale</td></tr>
+<tr><td>Equazioni con parte reale e immaginaria</td><td>Algebrica</td></tr>
+<tr><td>Luoghi geometrici non immediati</td><td>Algebrica</td></tr>
+<tr><td>Equazioni con soli prodotti, potenze e moduli</td><td>Spesso esponenziale</td></tr>
+</tbody></table></div>
+
+
+<h2>2. Teoremi</h2>
+
+<div class="box thm">
+<div class="bt">Teorema — Uguaglianza tra numeri complessi</div>
+<p>Due numeri complessi sono uguali se e solo se hanno la stessa parte reale e la stessa parte immaginaria:</p>
+$$x+iy=u+iv\iff\begin{cases}x=u,\\y=v.\end{cases}$$
+<p>Per due numeri non nulli in forma esponenziale:</p>
+$$\rho e^{i\theta}=re^{i\varphi}\iff\begin{cases}\rho=r,\\\theta=\varphi+2k\pi,\quad k\in\mathbb Z.\end{cases}$$
+<p>Il caso zero va trattato separatamente, perché non ha argomento.</p>
+</div>
+
+<div class="box thm">
+<div class="bt">Teorema — Prodotti, quozienti e potenze</div>
+<p>Se $z=\rho e^{i\theta}$ e $w=re^{i\varphi}$, allora</p>
+$$zw=\rho r\,e^{i(\theta+\varphi)},\qquad\frac zw=\frac\rho r\,e^{i(\theta-\varphi)}\quad(w\neq0).$$
+<p>I moduli si moltiplicano o dividono, mentre gli argomenti si sommano o sottraggono. Per $n\in\mathbb N^*$, la <strong>formula di De Moivre</strong> dà</p>
+$$\boxed{z^n=\rho^n(\cos n\theta+i\sin n\theta)=\rho^ne^{in\theta}}.$$
+</div>
+
+<div class="box thm">
+<div class="bt">Teorema — Radici ennesime</div>
+<p><strong>Ipotesi.</strong> $w\neq0$, $w=Re^{i\varphi}$ con $R\gt0$, e $n\in\mathbb N^*$.</p>
+<p><strong>Tesi.</strong> L'equazione $z^n=w$ ha esattamente $n$ soluzioni distinte:</p>
+$$\boxed{z_k=R^{1/n}e^{i\frac{\varphi+2k\pi}{n}},\qquad k=0,\ldots,n-1.}$$
+<p>Tutte hanno modulo $R^{1/n}$; gli argomenti consecutivi differiscono di $\frac{2\pi}{n}$. Per $n\ge3$ rappresentano i vertici di un poligono regolare centrato nell'origine; per $n=2$ sono due punti diametralmente opposti. Se invece $w=0$, l'unica soluzione distinta è $z=0$.</p>
+</div>
+
+<div class="box thm">
+<div class="bt">Teorema — Equazioni quadratiche</div>
+<p>Per $az^2+bz+c=0$ con $a,b,c\in\mathbb C$ e $a\neq0$, poniamo $\Delta=b^2-4ac$. Scelta una radice quadrata $d$ di $\Delta$, cioè $d^2=\Delta$, le soluzioni sono</p>
+$$\boxed{z=\frac{-b\pm d}{2a}}.$$
+<p>Se $\Delta\neq0$ le soluzioni sono due e distinte. Se $\Delta=0$ c'è una sola soluzione distinta, di molteplicità due.</p>
+</div>
+<p><strong>Precisazione.</strong> Quando in aula si dice «un'equazione di secondo grado ha sempre due soluzioni», bisogna intendere <em>contando le molteplicità</em>.</p>
+
+
+<h2>3. Dimostrazioni ed equazioni</h2>
+
+<h3>Dimostrazione della formula delle radici</h3>
+<p>Cerchiamo $z=re^{i\theta}$ tale che $z^n=Re^{i\varphi}$, con $R\gt0$. Elevando alla $n$:</p>
+$$r^ne^{in\theta}=Re^{i\varphi}.$$
+<p>Uguagliamo moduli e argomenti:</p>
+$$\begin{cases}r^n=R,\\n\theta=\varphi+2k\pi.\end{cases}$$
+<p>Poiché $r\ge0$, si ha $r=R^{1/n}$ e $\theta=\frac{\varphi+2k\pi}{n}$. Pertanto</p>
+$$z_k=R^{1/n}e^{i\frac{\varphi+2k\pi}{n}}.$$
+<p><strong>Perché bastano $k=0,\ldots,n-1$?</strong> Aumentando $k$ di $n$, l'argomento aumenta di $2\pi$, quindi si ottiene di nuovo lo stesso numero.</p>
+
+<h3>Potenza di $1+i$</h3>
+<p>Calcoliamo $(1+i)^{10}$. Modulo e argomento sono $|1+i|=\sqrt2$ e $\theta=\frac\pi4$, quindi $1+i=\sqrt2\,e^{i\pi/4}$. Per De Moivre:</p>
+$$(1+i)^{10}=(\sqrt2)^{10}e^{i10\pi/4}=32e^{i5\pi/2}.$$
+<p>Poiché $\frac{5\pi}{2}=2\pi+\frac\pi2$, si ha</p>
+$$\boxed{(1+i)^{10}=32i}.$$
+<p><strong>Verifica alternativa.</strong> $(1+i)^2=1+2i+i^2=2i$, quindi $(1+i)^{10}=(2i)^5=32i^5=32i$. Ricorda il ciclo delle potenze di $i$:</p>
+$$i^0=1,\quad i^1=i,\quad i^2=-1,\quad i^3=-i,\quad i^4=1.$$
+
+<h3>Radici cubiche di $1+i$</h3>
+<p>Poiché $1+i=\sqrt2\,e^{i\pi/4}$, le radici cubiche sono</p>
+$$z_k=2^{1/6}e^{i\left(\frac\pi{12}+\frac{2k\pi}{3}\right)},\qquad k=0,1,2.$$
+<p>Gli argomenti sono $\theta_0=\frac\pi{12}$, $\theta_1=\frac{3\pi}{4}$, $\theta_2=\frac{17\pi}{12}$. Dunque</p>
+$$\boxed{z_0=2^{1/6}e^{i\pi/12},\quad z_1=2^{1/6}e^{i3\pi/4},\quad z_2=2^{1/6}e^{i17\pi/12}.}$$
+<p>Non è necessario trasformare tutti i risultati in forma algebrica: la forma esponenziale è già una risposta esatta.</p>
+
+<h3>Radici cubiche di 8</h3>
+<p>Scriviamo $8=8e^{i0}$. Quindi $z_k=2e^{i2k\pi/3}$ con $k=0,1,2$. In forma algebrica:</p>
+$$\boxed{z_0=2,\qquad z_1=-1+i\sqrt3,\qquad z_2=-1-i\sqrt3}.$$
+<p><strong>Precisazione sulla notazione.</strong> $\sqrt[3]{8}=2$ indica normalmente la radice cubica <em>reale</em>. È invece l'equazione $z^3=8$, risolta in $\mathbb C$, ad avere le tre soluzioni appena calcolate. Analogamente $\sqrt4=2$, mentre $z^2=4$ ha soluzioni $2$ e $-2$.</p>
+
+<h3>Equazioni di secondo grado</h3>
+<p><strong>Primo esempio:</strong> $z^2+iz+2=0$. Calcoliamo</p>
+$$\Delta=i^2-8=-1-8=-9.$$
+<p>Possiamo scegliere $d=3i$, perché $(3i)^2=-9$. Quindi $z=\frac{-i\pm3i}{2}$, da cui</p>
+$$\boxed{z_1=i,\qquad z_2=-2i}.$$
+<p><strong>Secondo esempio</strong> (ricostruito dalla formula risolutiva): $z^2-z+2=0$. Qui $\Delta=1-8=-7$, quindi</p>
+$$\boxed{z_{1,2}=\frac{1\pm i\sqrt7}{2}}.$$
+<p>Le due soluzioni sono coniugate, come ci aspettiamo per una quadratica a coefficienti reali con discriminante negativo.</p>
+
+<h3>Equazioni binomie</h3>
+<p><strong>$z^3=1$.</strong> Si ha $z_k=e^{i2k\pi/3}$ con $k=0,1,2$, quindi</p>
+$$\boxed{z_0=1,\quad z_1=-\frac12+i\frac{\sqrt3}{2},\quad z_2=-\frac12-i\frac{\sqrt3}{2}.}$$
+<p><strong>$z^3=-5$.</strong> Scriviamo $-5=5e^{i\pi}$. Le soluzioni sono</p>
+$$z_k=\sqrt[3]{5}\,e^{i\left(\frac\pi3+\frac{2k\pi}{3}\right)}.$$
+<p>Esplicitamente:</p>
+$$\boxed{z_0=\sqrt[3]{5}\left(\frac12+i\frac{\sqrt3}{2}\right),\qquad z_1=-\sqrt[3]{5},\qquad z_2=\sqrt[3]{5}\left(\frac12-i\frac{\sqrt3}{2}\right).}$$
+
+<h3>Binomia con traslazione</h3>
+<p>Consideriamo $(z-3)^6=-i$. Poniamo $t=z-3$: l'equazione diventa $t^6=-i$. Poiché $-i=e^{i3\pi/2}$, otteniamo</p>
+$$t_k=e^{i\left(\frac\pi4+\frac{k\pi}{3}\right)},\qquad k=0,\ldots,5.$$
+<p>Tornando a $z$:</p>
+$$\boxed{z_k=3+e^{i\left(\frac\pi4+\frac{k\pi}{3}\right)},\qquad k=0,\ldots,5.}$$
+<p>Le soluzioni sono i vertici di un esagono regolare sulla circonferenza di centro $3$ e raggio $1$.</p>
+<p><strong>Correzione importante.</strong> Dividendo $2k\pi$ per $6$ si ottiene $\frac{k\pi}{3}$, non $\frac{k\pi}{6}$.</p>
+
+<h3>Binomia con un quoziente</h3>
+<p>Consideriamo $(z+i)^3=\dfrac{1-i}{1+i}$. Prima semplifichiamo il secondo membro:</p>
+$$\frac{1-i}{1+i}=\frac{(1-i)^2}{(1+i)(1-i)}=\frac{1-2i+i^2}{1-i^2}=\frac{-2i}{2}=-i.$$
+<p>Quindi $(z+i)^3=-i$. Ponendo $t=z+i$:</p>
+$$t_k=e^{i\left(\frac\pi2+\frac{2k\pi}{3}\right)},\qquad k=0,1,2.$$
+<p>Di conseguenza</p>
+$$\boxed{z_k=-i+e^{i\left(\frac\pi2+\frac{2k\pi}{3}\right)}.}$$
+<p>In forma algebrica:</p>
+$$\boxed{z_0=0,\qquad z_1=-\frac{\sqrt3}{2}-\frac32i,\qquad z_2=\frac{\sqrt3}{2}-\frac32i.}$$
+
+<h3>Equazione mista</h3>
+<p>Dai passaggi algebrici della trascrizione, l'equazione si ricostruisce come</p>
+$$\bigl(\operatorname{Re}z+\operatorname{Im}\overline z\bigr)\overline z=4.$$
+<p>Compaiono parte reale, parte immaginaria e coniugato: scegliamo $z=x+iy$. Allora $\operatorname{Re}z=x$, $\operatorname{Im}\overline z=-y$, $\overline z=x-iy$. Sostituendo:</p>
+$$(x-y)(x-iy)=4.$$
+<p>Sviluppiamo:</p>
+$$x^2-xy+i(y^2-xy)=4+i0.$$
+<p>Uguagliando le componenti:</p>
+$$\begin{cases}x^2-xy=4,\\y^2-xy=0.\end{cases}$$
+<p>Dalla seconda, $y(y-x)=0$: analizziamo due casi.</p>
+<ul>
+<li><strong>Caso $y=0$:</strong> $x^2=4\implies x=\pm2$.</li>
+<li><strong>Caso $y=x$:</strong> $x^2-x^2=4\implies0=4$, impossibile.</li>
+</ul>
+<p>Pertanto</p>
+$$\boxed{z=\pm2}.$$
+<p>Non bisogna dedurre automaticamente il numero di soluzioni dal prodotto dei gradi delle equazioni del sistema: per queste equazioni miste serve analizzare le condizioni effettive.</p>
+
+<h3>Equazione con modulo</h3>
+<p>Consideriamo $2|z|^2=z^3$. Prima controlliamo $z=0$, che è una soluzione. Per $z\neq0$ poniamo $z=\rho e^{i\theta}$ con $\rho\gt0$. L'equazione diventa</p>
+$$2\rho^2=\rho^3e^{i3\theta}.$$
+<p>Il primo membro è reale positivo, quindi</p>
+$$\begin{cases}2\rho^2=\rho^3,\\3\theta=2k\pi.\end{cases}$$
+<p>Poiché $\rho\gt0$, possiamo dividere per $\rho^2$: $\rho=2$ e $\theta=\frac{2k\pi}{3}$. Le soluzioni non nulle sono $2$, $-1+i\sqrt3$, $-1-i\sqrt3$. In totale:</p>
+$$\boxed{z\in\{0,\ 2,\ -1+i\sqrt3,\ -1-i\sqrt3\}}.$$
+<p>La cautela fondamentale è non dividere subito per una quantità che potrebbe essere zero: altrimenti perderemmo la soluzione $z=0$.</p>
+
+<h3>Equazione con coniugato</h3>
+<p>L'ultimo esempio della lezione è $iz^2=\overline z$. Anche qui $z=0$ è soluzione. Per $z\neq0$:</p>
+$$z=\rho e^{i\theta},\qquad\overline z=\rho e^{-i\theta},\qquad i=e^{i\pi/2}.$$
+<p>Quindi</p>
+$$\rho^2e^{i(2\theta+\pi/2)}=\rho e^{-i\theta}.$$
+<p>Uguagliamo moduli e argomenti:</p>
+$$\begin{cases}\rho^2=\rho,\\2\theta+\frac\pi2=-\theta+2k\pi.\end{cases}$$
+<p>Essendo $\rho\gt0$: $\rho=1$ e $3\theta=-\frac\pi2+2k\pi$. Dunque</p>
+$$\theta=-\frac\pi6+\frac{2k\pi}{3},\qquad k=0,1,2.$$
+<p>Le soluzioni sono</p>
+$$\boxed{z\in\left\{0,\ \frac{\sqrt3}{2}-\frac i2,\ i,\ -\frac{\sqrt3}{2}-\frac i2\right\}.}$$
+
+
+<h2>4. Luoghi geometrici e trasformazioni</h2>
+
+<h3>Modulo come distanza</h3>
+<p>Le condizioni con il modulo si leggono prima di tutto come condizioni sulle distanze.</p>
+<div class="tbl"><table>
+<thead><tr><th>Condizione</th><th>Luogo geometrico</th></tr></thead>
+<tbody>
+<tr><td>$|z-z_0|=r$</td><td>Circonferenza di centro $z_0$ e raggio $r$</td></tr>
+<tr><td>$|z-z_0|\lt r$</td><td>Interno del disco, bordo escluso</td></tr>
+<tr><td>$|z-z_0|\gt r$</td><td>Esterno del disco, bordo escluso</td></tr>
+<tr><td>$|z-z_0|=|z-z_1|$</td><td>Asse del segmento di estremi $z_0$ e $z_1$</td></tr>
+<tr><td>$\operatorname{Re}z\lt a$</td><td>Semipiano a sinistra di $x=a$, bordo escluso</td></tr>
+<tr><td>$\operatorname{Im}z\gt b$</td><td>Semipiano sopra $y=b$, bordo escluso</td></tr>
+</tbody></table></div>
+<p>Non confondere circonferenza e disco: la prima contiene solo i punti a distanza esattamente $r$, il secondo anche quelli interni.</p>
+
+<h3>Parte immaginaria del reciproco</h3>
+<p>Consideriamo</p>
+$$A=\left\{z\in\mathbb C\setminus\{0\}:\operatorname{Im}\left(\frac1z\right)=-1\right\}.$$
+<p>Poniamo $z=x+iy$ con $(x,y)\neq(0,0)$. Dal reciproco:</p>
+$$\frac1z=\frac{x}{x^2+y^2}-i\frac{y}{x^2+y^2}.$$
+<p>Quindi $-\dfrac{y}{x^2+y^2}=-1$. Poiché il denominatore è positivo, $x^2+y^2=y$, ossia $x^2+y^2-y=0$. Completiamo il quadrato: $y^2-y=\left(y-\frac12\right)^2-\frac14$. Otteniamo</p>
+$$\boxed{x^2+\left(y-\frac12\right)^2=\frac14}.$$
+<p>È la circonferenza di centro $C=\left(0,\frac12\right)$ e raggio $r=\frac12$. Ma l'origine deve rimanere esclusa, perché il reciproco di zero non esiste. Pertanto</p>
+$$\boxed{A=\left\{z:\left|z-\frac i2\right|=\frac12\right\}\setminus\{0\}.}$$
+<p>È un esempio importante di soluzione algebrica che contiene un punto non ammesso dal dominio iniziale.</p>
+
+<h3>Trasformazioni del piano</h3>
+<p>Se $z=\rho e^{i\theta}$, le operazioni seguenti hanno un significato geometrico immediato.</p>
+<div class="tbl"><table>
+<thead><tr><th>Trasformazione</th><th>Coordinate del risultato</th><th>Effetto geometrico</th></tr></thead>
+<tbody>
+<tr><td>$z\mapsto z+a$</td><td>$(x+\operatorname{Re}a,\ y+\operatorname{Im}a)$</td><td>Traslazione</td></tr>
+<tr><td>$z\mapsto2z$</td><td>$(2x,2y)$</td><td>Dilatazione di fattore $2$</td></tr>
+<tr><td>$z\mapsto iz$</td><td>$(-y,x)$</td><td>Rotazione antioraria di $\frac\pi2$</td></tr>
+<tr><td>$z\mapsto-z$</td><td>$(-x,-y)$</td><td>Rotazione di $\pi$</td></tr>
+<tr><td>$z\mapsto\overline z$</td><td>$(x,-y)$</td><td>Riflessione rispetto all'asse reale</td></tr>
+<tr><td>$z\mapsto2iz$</td><td>$(-2y,2x)$</td><td>Dilatazione di fattore $2$ e rotazione antioraria di $\frac\pi2$</td></tr>
+</tbody></table></div>
+<p>In generale, moltiplicare per $a=se^{i\alpha}$ con $s\gt0$ moltiplica le distanze per $s$ e ruota di $\alpha$:</p>
+$$az=s\rho\,e^{i(\theta+\alpha)}.$$
+
+<h3>Immagine della circonferenza</h3>
+<p>Nell'esercizio precedente consideriamo $B=\{w\in\mathbb C:w=2iz,\ z\in A\}$. Il centro di $A$, scritto come numero complesso, è $c=\frac i2$. Trasformandolo:</p>
+$$c'=2i\cdot\frac i2=i^2=-1.$$
+<p>Il raggio viene moltiplicato per $|2i|=2$, quindi $r'=2\cdot\frac12=1$. Il punto escluso $0$ viene trasformato ancora in $0$. Quindi</p>
+$$\boxed{B=\{w:|w+1|=1\}\setminus\{0\}.}$$
+<p>Successivamente si considera $C=\{v:v=\overline w,\ w\in B\}$. La circonferenza di centro $-1$ e raggio $1$ è simmetrica rispetto all'asse reale; anche il punto escluso rimane invariato. Pertanto</p>
+$$\boxed{C=B}.$$
+
+<h3>Punti equidistanti</h3>
+<p>Consideriamo $|z|=|z+i|$. Il primo modulo è la distanza dall'origine; il secondo è la distanza dal punto $-i$, perché $z+i=z-(-i)$. Il luogo è quindi l'asse del segmento che unisce $0$ e $-i$.</p>
+<p><strong>Verifica algebrica.</strong> Con $z=x+iy$:</p>
+$$\sqrt{x^2+y^2}=\sqrt{x^2+(y+1)^2}.$$
+<p>Entrambi i membri sono non negativi, quindi eleviamo al quadrato: $x^2+y^2=x^2+y^2+2y+1$, da cui $2y+1=0$. Pertanto</p>
+$$\boxed{y=-\frac12}.$$
+
+<h3>Intersezione di semipiani</h3>
+<p>La condizione discussa in aula,</p>
+$$\operatorname{Re}z\lt1,\qquad\operatorname{Im}z\gt-1,$$
+<p>diventa $x\lt1$, $y\gt-1$. Il luogo è la regione contemporaneamente a sinistra della retta $x=1$ e sopra la retta $y=-1$, con entrambi i bordi esclusi.</p>
+
+
+<h2>5. Metodo e precisazioni</h2>
+
+<h3>Riconoscere prima di calcolare</h3>
+<p>Il docente insiste sul fatto che il primo passaggio è classificare l'esercizio: una buona scelta iniziale evita sviluppi inutilmente lunghi.</p>
+<div class="tbl"><table>
+<thead><tr><th>Struttura riconosciuta</th><th>Strategia</th></tr></thead>
+<tbody>
+<tr><td>$az^2+bz+c=0$</td><td>Formula quadratica</td></tr>
+<tr><td>$z^n=w$</td><td>Modulo e argomento di $w$, poi tutte le radici</td></tr>
+<tr><td>$(z-a)^n=w$</td><td>Sostituzione $t=z-a$, poi ritorno a $z$</td></tr>
+<tr><td>Presenza di $\operatorname{Re}z$, $\operatorname{Im}z$</td><td>$z=x+iy$, uguaglianza delle componenti</td></tr>
+<tr><td>Prodotti e potenze con moduli o coniugati</td><td>Valutare $z=\rho e^{i\theta}$</td></tr>
+<tr><td>Condizione geometrica con moduli</td><td>Leggere le distanze; se necessario usare $x,y$</td></tr>
+</tbody></table></div>
+
+<h3>Due precisazioni sulla lezione</h3>
+<p><strong>Numero di soluzioni.</strong> Le equazioni polinomiali e quelle miste non vanno trattate allo stesso modo: nelle prime occorre distinguere soluzioni distinte e molteplicità; nelle seconde, la presenza di modulo, coniugato o componenti reali richiede un'analisi specifica. Gli esempi $2|z|^2=z^3$ e $iz^2=\overline z$ hanno entrambi quattro soluzioni, trovate separando prima il caso zero.</p>
+<p><strong>Probabilità di soluzioni reali.</strong> Nella trascrizione viene proposto il quesito «è più facile che una quadratica a coefficienti reali abbia soluzioni reali?». Senza specificare come vengono scelti i coefficienti, il quesito non definisce una probabilità. Il criterio certo da ricordare è</p>
+$$\Delta=b^2-4ac\quad\begin{cases}\gt0 & \text{due soluzioni reali distinte},\\=0 & \text{una soluzione reale doppia},\\\lt0 & \text{due soluzioni non reali coniugate}.\end{cases}$$
+<p>L'affermazione probabilistica pronunciata in aula non va quindi memorizzata come un teorema generale.</p>
+
+<h3>Come usare gli esercizi svolti</h3>
+<p>L'indicazione didattica finale è provare prima a riconoscere e impostare il problema autonomamente, poi confrontarsi con una soluzione. Il percorso proposto passa dai prerequisiti di goniometria agli esercizi delle schede, fino alle prove d'esame: una soluzione letta deve servire a capire il metodo, non soltanto a recuperare il risultato.</p>
+
+
+<h2>6. Errori da evitare</h2>
+<div class="box warn">
+<div class="bt">Attenzione</div>
+<ul>
+<li>Dimenticare alcune radici: se $w\neq0$, $z^n=w$ ha $n$ soluzioni distinte.</li>
+<li>Dividere per $z$, $|z|$ o $\rho$ senza aver controllato il caso zero.</li>
+<li>Scrivere gli argomenti come uguali senza considerare i multipli di $2\pi$.</li>
+<li>Usare $\arctan(y/x)$ senza verificare il quadrante.</li>
+<li>Confondere $\operatorname{Im}z=y$ con $iy$.</li>
+<li>Dimenticare di annullare una sostituzione (es. $t=z-3$): le soluzioni cercate sono quelle in $z$.</li>
+<li>Reinserire punti esclusi dal dominio dopo aver trasformato l'equazione (es. $0$ nell'insieme $A$).</li>
+<li>Pensare che la formula quadratica richieda coefficienti reali: vale con $a,b,c\in\mathbb C$.</li>
+</ul>
+</div>
+
+
+<h2>7. Riepilogo finale</h2>
+<p>Cosa devi saper fare dopo questa esercitazione:</p>
+<ul>
+<li>passare tra forma algebrica, goniometrica ed esponenziale, scegliendo quella più comoda per il problema;</li>
+<li>calcolare potenze con De Moivre e verificarle con la forma algebrica;</li>
+<li>trovare tutte le $n$ radici di $z^n=w$, comprese le equazioni con traslazione $(z-a)^n=w$;</li>
+<li>risolvere equazioni quadratiche in $\mathbb C$ scegliendo una radice quadrata di $\Delta$;</li>
+<li>risolvere equazioni miste con $z=x+iy$ oppure con $z=\rho e^{i\theta}$, separando sempre il caso $z=0$;</li>
+<li>leggere i moduli come distanze e riconoscere circonferenze, dischi, assi e semipiani;</li>
+<li>descrivere traslazioni, rotazioni, dilatazioni e riflessioni come operazioni su $z$.</li>
+</ul>
