@@ -10,6 +10,7 @@ Boh fra, che cazzo ne so. Appunti di Analisi 1 Matematica (fuh ts 🥀).
 4. Forma esponenziale, radici ennesime, logaritmo complesso e polinomi
 5. Polinomi complessi, funzioni, estremi, simmetrie e monotonia
 6. Composizione, inversa, successioni e limite
+7. Successioni: limiti, confronto, monotonia e successioni geometriche
 
 ### Esercitazioni:
 1. Estremi degli insiemi
