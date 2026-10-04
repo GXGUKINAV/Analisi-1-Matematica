@@ -46,8 +46,13 @@ var days = [
     n: 6,
     title: 'Composizione, inversa, successioni e limite',
     file: 'appunti/day-06.html'
+  },
+  {
+    n: 7,
+    title: 'Successioni: limiti, confronto, monotonia e successioni geometriche',
+    file: 'appunti/day-07.html'
   }
-  
+
 ];
 days.sort(function (a, b) { return a.n - b.n; });
 

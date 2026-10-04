@@ -1,0 +1,334 @@
+<h2>1. Definizioni</h2>
+<p>Manteniamo le convenzioni del corso: $\mathbb N=\{0,1,2,\ldots\}$ e $\overline{\mathbb R}=\mathbb R\cup\{-\infty,+\infty\}$. Una successione reale è una funzione $a\colon E\to\mathbb R$, dove $E\subseteq\mathbb N$ contiene tutti i naturali tranne, eventualmente, un numero finito di indici. Si scrive $a_n=a(n)$, e tutti i quantificatori sugli indici sottintendono $n\in E$.</p>
+
+<h3>Proprietà definitive</h3>
+<div class="box def">
+<div class="bt">Definizione — Definitivamente</div>
+<p>Una proprietà $P(n)$ vale <strong>definitivamente</strong> se</p>
+$$\exists N\in\mathbb N\quad\forall n\in E:\quad n\ge N\Longrightarrow P(n).$$
+</div>
+<p>In parole: vale sempre da un certo indice in poi. È il concetto centrale della lezione, perché per studiare un limite interessa solo il comportamento per indici sufficientemente grandi.</p>
+
+<h3>Convergenza e divergenza</h3>
+<div class="box def">
+<div class="bt">Definizione — Successione convergente</div>
+<p>La successione $(a_n)$ converge a $L\in\mathbb R$ se</p>
+$$\forall\varepsilon\gt0\quad\exists N\in\mathbb N\quad\forall n\in E:\quad n\ge N\Longrightarrow|a_n-L|\lt\varepsilon.$$
+<p>Si scrive $\displaystyle\lim_{n\to+\infty}a_n=L$ oppure $a_n\to L$. Se $L=0$ la successione si dice <strong>infinitesima</strong>.</p>
+</div>
+<p>Qualunque precisione $\varepsilon$ venga richiesta, da un certo indice in poi tutti i termini distano da $L$ meno di $\varepsilon$.</p>
+
+<div class="box def">
+<div class="bt">Definizione — Divergenza a $+\infty$</div>
+<p>$(a_n)$ diverge a $+\infty$ se</p>
+$$\forall M\gt0\quad\exists N\in\mathbb N\quad\forall n\in E:\quad n\ge N\Longrightarrow a_n\gt M.$$
+<p>Si scrive $\displaystyle\lim_{n\to+\infty}a_n=+\infty$.</p>
+</div>
+<p>Qualunque barriera $M$ si fissi, da un certo indice in poi tutti i termini la superano. Non basta superarla qualche volta: bisogna restare sopra <em>definitivamente</em>.</p>
+
+<div class="box def">
+<div class="bt">Definizione — Divergenza a $-\infty$</div>
+<p>$(a_n)$ diverge a $-\infty$ se</p>
+$$\forall M\gt0\quad\exists N\in\mathbb N\quad\forall n\in E:\quad n\ge N\Longrightarrow a_n\lt-M.$$
+<p>Si scrive $\displaystyle\lim_{n\to+\infty}a_n=-\infty$.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Definizione — Successione oscillante</div>
+<p>Nel linguaggio del corso, $(a_n)$ è <strong>oscillante</strong> se non è né convergente, né divergente a $+\infty$, né divergente a $-\infty$. In tal caso il limite non esiste, nemmeno in $\overline{\mathbb R}$.</p>
+</div>
+
+<p>Determinare il <strong>carattere</strong> di una successione significa stabilire in quale caso rientra:</p>
+<div class="tbl"><table>
+<thead><tr><th>Carattere</th><th>Comportamento</th></tr></thead>
+<tbody>
+<tr><td>Convergente</td><td>$a_n\to L\in\mathbb R$</td></tr>
+<tr><td>Divergente a $+\infty$</td><td>$a_n\to+\infty$</td></tr>
+<tr><td>Divergente a $-\infty$</td><td>$a_n\to-\infty$</td></tr>
+<tr><td>Oscillante</td><td>il limite non esiste</td></tr>
+</tbody></table></div>
+
+<h3>Limitatezza e monotonia</h3>
+<div class="box def">
+<div class="bt">Definizione — Limitata</div>
+$$\exists K\ge0\quad\forall n\in E:\quad|a_n|\le K.$$
+</div>
+
+<p>Per una successione definita su indici consecutivi, la monotonia si esprime confrontando termini successivi:</p>
+<div class="tbl"><table>
+<thead><tr><th>Proprietà</th><th>Condizione per ogni indice</th></tr></thead>
+<tbody>
+<tr><td>Crescente</td><td>$a_n\le a_{n+1}$</td></tr>
+<tr><td>Strettamente crescente</td><td>$a_n\lt a_{n+1}$</td></tr>
+<tr><td>Decrescente</td><td>$a_n\ge a_{n+1}$</td></tr>
+<tr><td>Strettamente decrescente</td><td>$a_n\gt a_{n+1}$</td></tr>
+</tbody></table></div>
+<p>Una successione è <em>monotona</em> se è crescente oppure decrescente; <em>strettamente monotona</em> se è strettamente crescente oppure strettamente decrescente; <em>definitivamente monotona</em> se una di queste condizioni vale da un certo indice in poi.</p>
+<p>Per un dominio $E$ con indici mancanti, la formulazione generale della crescita è</p>
+$$n,m\in E,\quad n\lt m\Longrightarrow a_n\le a_m,$$
+<p>e le altre definizioni si formulano in modo analogo.</p>
+
+<h3>Successioni geometriche</h3>
+<div class="box def">
+<div class="bt">Definizione — Successione geometrica</div>
+<p>Fissato $q\in\mathbb R$, la successione geometrica di ragione $q$ è</p>
+$$a_n=q^n.$$
+</div>
+<p>Per $q=0$ si può partire da $n=1$ evitando $0^0$; a lezione si adotta la convenzione $a_0=1$. In entrambi i casi i termini successivi sono tutti nulli e il limite è zero.</p>
+
+
+<h2>2. Teoremi</h2>
+
+<div class="box thm">
+<div class="bt">Teorema — Convergente implica limitata</div>
+<p><strong>Ipotesi.</strong> $a_n\to L\in\mathbb R$.</p>
+<p><strong>Tesi.</strong> $(a_n)$ è limitata: $\exists K\ge0\ \forall n\in E:\ |a_n|\le K$.</p>
+</div>
+<p>Il viceversa non vale: $(-1)^n$ è limitata ma non converge. Dimostrato a lezione.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Unicità del limite</div>
+<p><strong>Ipotesi.</strong> La successione ammette limite in $\overline{\mathbb R}$.</p>
+<p><strong>Tesi.</strong> Tale limite è unico. In particolare</p>
+$$a_n\to L_1,\quad a_n\to L_2\quad\Longrightarrow\quad L_1=L_2.$$
+</div>
+<p>A lezione è stata svolta la dimostrazione per due presunti limiti finiti distinti.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Permanenza del segno</div>
+<p><strong>Ipotesi.</strong> $a_n\to L\in\overline{\mathbb R}$.</p>
+<p><strong>Tesi.</strong></p>
+$$L\gt0\Longrightarrow a_n\gt0\ \text{definitivamente},\qquad a_n\gt0\ \text{definitivamente}\Longrightarrow L\ge0.$$
+<p>Per simmetria:</p>
+$$L\lt0\Longrightarrow a_n\lt0\ \text{definitivamente},\qquad a_n\lt0\ \text{definitivamente}\Longrightarrow L\le0.$$
+</div>
+<p>Attenzione alla differenza: la positività <em>stretta</em> dei termini non garantisce un limite strettamente positivo. Enunciato senza dimostrazione.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Algebra dei limiti finiti</div>
+<p><strong>Ipotesi.</strong> $a_n\to L_1\in\mathbb R$ e $b_n\to L_2\in\mathbb R$.</p>
+<p><strong>Tesi.</strong></p>
+$$\lim_{n\to+\infty}(a_n\pm b_n)=L_1\pm L_2,\qquad\lim_{n\to+\infty}(a_nb_n)=L_1L_2.$$
+<p>Se inoltre $L_2\ne0$:</p>
+$$\lim_{n\to+\infty}\frac{a_n}{b_n}=\frac{L_1}{L_2}.$$
+</div>
+<p>La condizione $L_2\ne0$ garantisce anche che il denominatore sia non nullo definitivamente, grazie alla permanenza del segno.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Algebra dei limiti infiniti</div>
+<p><strong>Ipotesi.</strong> $a_n\to L_1\in\overline{\mathbb R}$ e $b_n\to L_2\in\overline{\mathbb R}$.</p>
+<p><strong>Tesi (somma).</strong></p>
+$$L_1=+\infty,\ L_2\ne-\infty\Longrightarrow a_n+b_n\to+\infty,$$
+$$L_1=-\infty,\ L_2\ne+\infty\Longrightarrow a_n+b_n\to-\infty.$$
+<p><strong>Tesi (prodotto).</strong> Se $L_1\ne0$ e $L_2\ne0$, il risultato si ottiene con la consueta regola dei segni, includendo i limiti infiniti.</p>
+</div>
+<p>Non si possono applicare automaticamente queste regole alle <strong>forme indeterminate</strong></p>
+$$+\infty-\infty,\qquad0\cdot(\pm\infty).$$
+<p>Conoscere soltanto i limiti dei singoli addendi o fattori non basta: gli infiniti non vanno trattati come normali numeri reali.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Inversione</div>
+<p><strong>Ipotesi.</strong> $a_n\to+\infty$ oppure $a_n\to-\infty$.</p>
+<p><strong>Tesi.</strong> $a_n\ne0$ definitivamente e</p>
+$$\frac1{a_n}\to0.$$
+</div>
+<p>La reciproca di una successione divergente è infinitesima; il viceversa non vale in generale. Dimostrato a lezione nel caso $a_n\to+\infty$.</p>
+
+<div class="box thm">
+<div class="bt">Teorema dei carabinieri</div>
+<p><strong>Ipotesi.</strong> $a_n\le b_n\le c_n$ definitivamente, e $a_n\to L$, $c_n\to L$, con $L\in\overline{\mathbb R}$.</p>
+<p><strong>Tesi.</strong> $b_n\to L$.</p>
+</div>
+<p>Il confronto deve valere solo definitivamente, non necessariamente per tutti gli indici. Enunciato e applicato agli esercizi.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Limite delle successioni monotone</div>
+<p><strong>Ipotesi.</strong> $(a_n)$ è monotona, anche solo definitivamente.</p>
+<p><strong>Tesi.</strong> $(a_n)$ ammette limite in $\overline{\mathbb R}$; in particolare non è oscillante.</p>
+</div>
+<p>Non significa che converga a un numero finito: può anche divergere a un infinito. Presentato come osservazione, senza dimostrazione.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Carattere delle geometriche</div>
+<p>Per $a_n=q^n$:</p>
+$$\boxed{\begin{cases}
+q^n\to+\infty, & q\gt1,\\
+q^n\to1, & q=1,\\
+q^n\to0, & -1\lt q\lt1,\\
+q^n\text{ è oscillante}, & q\le-1.
+\end{cases}}$$
+</div>
+<p>A lezione sono stati illustrati tutti i casi, ma la dimostrazione è stata svolta solo per $q=1$, $q=0$ e $q\gt1$. Le altre sono rinviate alla lezione successiva.</p>
+
+
+<h2>3. Dimostrazioni</h2>
+
+<h3>Convergente implica limitata</h3>
+<p>Sia $a_n\to L\in\mathbb R$.</p>
+<ol>
+<li>Con $\varepsilon=1$ esiste $N$ tale che $n\ge N\Rightarrow|a_n-L|\lt1$.</li>
+<li>Per la disuguaglianza triangolare, per $n\ge N$:
+$$|a_n|=|(a_n-L)+L|\le|a_n-L|+|L|\lt1+|L|=:K_1.$$</li>
+<li>I termini con $n\lt N$ sono in numero finito: poniamo
+$$K_2=\max\bigl(\{|a_n|:n\in E,\ n\lt N\}\cup\{0\}\bigr).$$</li>
+<li>Con $K=\max\{K_1,K_2\}$ si ha $|a_n|\le K$ per ogni $n\in E$.</li>
+</ol>
+<p>L'idea: dividere la successione in una coda controllata dalla convergenza e una parte iniziale finita.</p>
+
+<h3>Unicità del limite finito</h3>
+<p>Supponiamo per assurdo $a_n\to L_1$, $a_n\to L_2$ con $L_1\ne L_2$.</p>
+<ol>
+<li>Scegliamo $\varepsilon=\dfrac{|L_1-L_2|}{3}\gt0$.</li>
+<li>Esistono $N_1,N_2$ tali che $n\ge N_1\Rightarrow|a_n-L_1|\lt\varepsilon$ e $n\ge N_2\Rightarrow|a_n-L_2|\lt\varepsilon$.</li>
+<li>Con $N=\max\{N_1,N_2\}$, per $n\ge N$ valgono entrambe.</li>
+<li>Aggiungendo e sottraendo $a_n$:</li>
+</ol>
+$$\begin{aligned}
+|L_1-L_2|&=|(L_1-a_n)+(a_n-L_2)|\\
+&\le|L_1-a_n|+|a_n-L_2|\\
+&\lt2\varepsilon.
+\end{aligned}$$
+<p>Ma per la scelta di $\varepsilon$ si ha $|L_1-L_2|=3\varepsilon$, quindi $3\varepsilon\lt2\varepsilon$, cioè $\varepsilon\lt0$: assurdo. Dunque $L_1=L_2$.</p>
+<p>Il passaggio chiave è prendere il massimo dei due indici, per usare insieme le due stime.</p>
+
+<h3>Inversione: caso $+\infty$</h3>
+<p>Sia $a_n\to+\infty$. Vogliamo mostrare che $\forall\varepsilon\gt0\ \exists N:\ n\ge N\Rightarrow\left|\frac1{a_n}-0\right|\lt\varepsilon$.</p>
+<ol>
+<li>Fissato $\varepsilon\gt0$, scegliamo la barriera $M=\dfrac1\varepsilon\gt0$.</li>
+<li>Per la divergenza esiste $N$ tale che $n\ge N\Rightarrow a_n\gt\dfrac1\varepsilon\gt0$.</li>
+<li>Tutte le quantità sono positive, quindi passando ai reciproci si inverte il verso:
+$$0\lt\frac1{a_n}\lt\varepsilon.$$</li>
+</ol>
+<p>Quindi $\left|\frac1{a_n}-0\right|\lt\varepsilon$, ossia $\frac1{a_n}\to0$. Non serve invocare la permanenza del segno: la disuguaglianza $a_n\gt1/\varepsilon\gt0$ contiene già la positività necessaria.</p>
+
+<h3>Geometrica con $q\gt1$</h3>
+<p>Vogliamo $q^n\to+\infty$. Fissato $M\gt0$ risolviamo $q^n\gt M$.</p>
+<ol>
+<li>Il logaritmo è strettamente crescente: $n\ln q\gt\ln M$.</li>
+<li>Essendo $q\gt1$, $\ln q\gt0$, quindi $n\gt\dfrac{\ln M}{\ln q}$.</li>
+<li>Un indice sufficiente è
+$$N=\max\left\{0,\ \left\lfloor\frac{\ln M}{\ln q}\right\rfloor+1\right\}.$$</li>
+</ol>
+<p>Per ogni $n\ge N$ si ha $q^n\gt M$, dunque $q^n\to+\infty$. Il massimo con $0$ garantisce $N\in\mathbb N$ anche quando $0\lt M\lt1$. A lezione lo stesso risultato è ottenuto scrivendo $q=1+x$ con $x\gt0$.</p>
+
+
+<h2>4. Esempi e osservazioni</h2>
+
+<h3>Divergenza positiva</h3>
+<div class="box ex">
+<div class="bt">Esempio — $a_n=\sqrt{n-3}$, $n\ge3$</div>
+<p>Fissato $M\gt0$:</p>
+$$\sqrt{n-3}\gt M\iff n-3\gt M^2\iff n\gt M^2+3.$$
+<p>Basta scegliere $N=\lfloor M^2+3\rfloor+1$. Allora $n\ge N\Rightarrow\sqrt{n-3}\gt M$, quindi $\sqrt{n-3}\to+\infty$.</p>
+</div>
+<p>La parte intera serve perché $N$ deve essere naturale e superare <em>strettamente</em> la soglia reale trovata.</p>
+
+<h3>Divergenza negativa</h3>
+<div class="box ex">
+<div class="bt">Esempio — $a_n=-n^2+2n$</div>
+<p>Completando il quadrato, $-n^2+2n=1-(n-1)^2$. Fissato $M\gt0$:</p>
+$$a_n\lt-M\iff1-(n-1)^2\lt-M\iff(n-1)^2\gt M+1.$$
+<p>Per $n\ge1$ equivale a $n\gt1+\sqrt{M+1}$. Scegliamo $N=\lfloor1+\sqrt{M+1}\rfloor+1$: da $N$ in poi $a_n\lt-M$, dunque $-n^2+2n\to-\infty$.</p>
+</div>
+<p>Estraendo la radice di un quadrato si ha $\sqrt{(n-1)^2}=|n-1|$; il modulo si elimina perché consideriamo $n\ge1$.</p>
+
+<h3>Limitata non significa convergente</h3>
+<p>Per $a_n=(-1)^n$ si ha $|a_n|=1$ per ogni $n$, ma $a_{2k}=1$ e $a_{2k+1}=-1$. Non si avvicina a un unico valore e non diverge: è oscillante. Quindi convergente $\Rightarrow$ limitata, ma non il contrario.</p>
+
+<h3>Positività e limite nullo</h3>
+<p>Per $a_n=\dfrac1n$, $n\ge1$, tutti i termini sono strettamente positivi ma $a_n\to0$. Per questo la permanenza del segno dà solo $a_n\gt0$ definitivamente $\Rightarrow L\ge0$, non $L\gt0$.</p>
+
+<h3>L'inversione non ha viceversa</h3>
+<div class="box ex">
+<div class="bt">Esempio — $a_n=\dfrac{(-1)^n}{n}$, $n\ge1$</div>
+<p>Da $-\dfrac1n\le a_n\le\dfrac1n$ e dai carabinieri, $a_n\to0$. Però</p>
+$$\frac1{a_n}=(-1)^nn,\qquad\frac1{a_{2k}}=2k,\qquad\frac1{a_{2k+1}}=-(2k+1).$$
+<p>Per indici pari assume valori positivi sempre più grandi, per indici dispari valori negativi sempre più piccoli: la reciproca è oscillante, non divergente a un unico infinito.</p>
+</div>
+<p>Una successione può quindi essere oscillante anche senza essere limitata.</p>
+
+<h3>Carabinieri e stima in modulo</h3>
+<div class="box ex">
+<div class="bt">Esempio — Limite nullo con numeratore limitato</div>
+$$u_n=\frac{\sin n\,(-1)^n+\cos n+\arctan(n^2+1)}{2n^2+3}.$$
+<p>Il numeratore è limitato e il denominatore tende a $+\infty$: il candidato limite è $0$. Per renderlo rigoroso, maggioriamo i moduli dei singoli termini:</p>
+$$\begin{aligned}
+\left|\sin n\,(-1)^n+\cos n+\arctan(n^2+1)\right|
+&\le|\sin n|\,|(-1)^n|+|\cos n|+|\arctan(n^2+1)|\\
+&\le1+1+\frac\pi2.
+\end{aligned}$$
+<p>Essendo il denominatore positivo,</p>
+$$0\le|u_n|\le\frac{2+\pi/2}{2n^2+3}\to0,$$
+<p>dunque $|u_n|\to0$ e quindi $u_n\to0$.</p>
+</div>
+<p>Il trucco è passare al modulo: il carabiniere inferiore diventa automaticamente $0$. Ma per stimare il modulo di una somma bisogna maggiorare i moduli dei singoli termini, non soltanto i termini stessi.</p>
+
+<h3>Carabinieri con limite non nullo</h3>
+<div class="box ex">
+<div class="bt">Esempio — $\sqrt[n]{2^n+3^n}$</div>
+<p>Per $n\ge1$: $3^n\le2^n+3^n\le2\cdot3^n$. Prendendo le radici $n$-esime,</p>
+$$3\le\sqrt[n]{2^n+3^n}\le3\sqrt[n]2.$$
+<p>Poiché $\sqrt[n]2=2^{1/n}\to1$, entrambi gli estremi tendono a $3$, quindi</p>
+$$\lim_{n\to+\infty}\sqrt[n]{2^n+3^n}=3.$$
+</div>
+<p>L'intuizione è che $3^n$ domina $2^n$; la doppia stima la trasforma in una verifica rigorosa.</p>
+
+<h3>Verifica della monotonia</h3>
+<div class="box ex">
+<div class="bt">Esempio — $a_n=\dfrac{n-1}{n+1}$, $n\in\mathbb N$</div>
+<p>I primi valori $a_0=-1$, $a_1=0$, $a_2=\frac13$, $a_3=\frac12$ suggeriscono che sia strettamente crescente, ma non lo dimostrano. Poiché $a_{n+1}=\dfrac n{n+2}$:</p>
+$$\begin{aligned}
+a_{n+1}-a_n&=\frac n{n+2}-\frac{n-1}{n+1}\\
+&=\frac{n(n+1)-(n-1)(n+2)}{(n+1)(n+2)}\\
+&=\frac2{(n+1)(n+2)}\gt0.
+\end{aligned}$$
+<p>Quindi $a_n$ è strettamente crescente.</p>
+</div>
+<p>Metodo operativo: studiare il segno di $a_{n+1}-a_n$. Controllare qualche termine permette di formulare una congettura, non di provare la monotonia.</p>
+
+<h3>Esempi di geometriche</h3>
+<div class="tbl"><table>
+<thead><tr><th>Ragione</th><th>Successione</th><th>Carattere</th></tr></thead>
+<tbody>
+<tr><td>$q=2$</td><td>$2^n$</td><td>Diverge a $+\infty$</td></tr>
+<tr><td>$q=\frac13$</td><td>$(\frac13)^n$</td><td>Converge a zero</td></tr>
+<tr><td>$q=-\frac13$</td><td>$(-\frac13)^n$</td><td>Converge a zero, alternando segno</td></tr>
+<tr><td>$q=1$</td><td>$1^n$</td><td>Costante, converge a $1$</td></tr>
+<tr><td>$q=0$</td><td>$0^n$, per $n\ge1$</td><td>Nulla, converge a zero</td></tr>
+<tr><td>$q=-1$</td><td>$(-1)^n$</td><td>Oscillante e limitata</td></tr>
+<tr><td>$q=-7$</td><td>$(-7)^n$</td><td>Oscillante e non limitata</td></tr>
+</tbody></table></div>
+<p><strong>Osservazione.</strong> Alternare il segno non significa necessariamente essere oscillante nel senso del corso: $(-\frac13)^n$ cambia segno ma l'ampiezza tende a zero, quindi converge. Invece $(-7)^n$ cambia segno con ampiezza crescente e non ammette limite.</p>
+
+
+<h2>5. Errori da evitare</h2>
+<div class="box warn">
+<div class="bt">Attenzione</div>
+<ul>
+<li>«Definitivamente» significa per tutti gli $n\ge N$, non «ogni tanto»: superare una barriera qualche volta non basta per divergere.</li>
+<li>Convergente $\Rightarrow$ limitata, ma <strong>non</strong> il viceversa: $(-1)^n$ è limitata e oscillante.</li>
+<li>Permanenza del segno: $a_n\gt0$ definitivamente dà solo $L\ge0$, come mostra $\frac1n\to0$.</li>
+<li>$+\infty-\infty$ e $0\cdot(\pm\infty)$ sono forme indeterminate: gli infiniti non sono numeri reali.</li>
+<li>Se $a_n\to0$, la reciproca $\frac1{a_n}$ non diverge necessariamente a un infinito: con $\frac{(-1)^n}{n}$ oscilla.</li>
+<li>Nei carabinieri, per stimare il modulo di una somma maggiora i moduli dei singoli termini.</li>
+<li>Per mostrare la monotonia non bastano i primi valori: studia il segno di $a_{n+1}-a_n$.</li>
+<li>L'indice $N$ deve essere naturale: usa la parte intera e controlla di superare <em>strettamente</em> la soglia.</li>
+<li>$\sqrt{x^2}=|x|$: il modulo si elimina solo se il dominio lo permette.</li>
+<li>Una successione monotona ha limite in $\overline{\mathbb R}$, ma non per forza finito.</li>
+<li>Alternare il segno non implica oscillare: dipende dall'ampiezza ($(-\frac13)^n$ converge, $(-7)^n$ no).</li>
+</ul>
+</div>
+
+
+<h2>6. Riepilogo finale</h2>
+<p>Cosa devi saper fare dopo questo Day:</p>
+<ul>
+<li>scrivere le definizioni di convergenza, divergenza a $\pm\infty$ e successione oscillante, e determinare il carattere di una successione;</li>
+<li>usare «definitivamente» e trovare la soglia $N$ in funzione di $\varepsilon$ o $M$;</li>
+<li>dimostrare che convergente implica limitata e l'unicità del limite;</li>
+<li>enunciare permanenza del segno, algebra dei limiti (finiti e infiniti) e riconoscere le forme indeterminate;</li>
+<li>enunciare e dimostrare il teorema di inversione nel caso $+\infty$;</li>
+<li>applicare il teorema dei carabinieri, anche passando al modulo;</li>
+<li>studiare la monotonia con il segno di $a_{n+1}-a_n$ e ricordare che le monotone hanno limite;</li>
+<li>conoscere il carattere di $q^n$ e dimostrare il caso $q\gt1$.</li>
+</ul>
