@@ -1,0 +1,386 @@
+<h2>1. Definizioni</h2>
+<p>L’obiettivo dell’esercitazione è conoscere i grafici delle funzioni elementari e ricavare da essi dominio, immagine, segno, monotonia, simmetrie e periodicità; poi usare queste informazioni per rappresentare funzioni ottenute mediante trasformazioni.</p>
+
+<h3>Funzione, dominio, immagine, grafico</h3>
+<div class="box def">
+<div class="bt">Definizione — Funzione</div>
+<p>Siano $A,B$ insiemi non vuoti. Una funzione $f\colon A\longrightarrow B$ associa a ogni $x\in A$ <strong>uno e un solo</strong> elemento $f(x)\in B$. Si chiamano:</p>
+<ul>
+<li><strong>dominio</strong>: l’insieme $A$;</li>
+<li><strong>codominio</strong>: l’insieme di arrivo $B$;</li>
+<li><strong>immagine</strong>: $f(A)=\{f(x):x\in A\}\subseteq B$;</li>
+<li><strong>grafico</strong> (per una funzione reale di variabile reale): $G_f=\{(x,f(x)):x\in A\}\subseteq\mathbb R^2$.</li>
+</ul>
+</div>
+<p>Una funzione non deve necessariamente essere descritta da una formula: conta l’unicità dell’uscita per ogni ingresso. Nell’esempio del docente, associare a ogni studente il proprio numero di scarpe è una funzione, purché questo numero sia assegnato univocamente.</p>
+
+<h3>Dominio naturale</h3>
+<p>Il dominio naturale di un’espressione è l’insieme dei valori reali per i quali tutte le operazioni presenti sono definite. Le condizioni principali sono:</p>
+<div class="tbl"><table>
+<thead><tr><th>Operazione</th><th>Condizione</th></tr></thead>
+<tbody>
+<tr><td>$\dfrac{p(x)}{q(x)}$</td><td>$q(x)\neq0$</td></tr>
+<tr><td>$\sqrt[2n]{g(x)}$</td><td>$g(x)\geq0$</td></tr>
+<tr><td>$\sqrt[2n+1]{g(x)}$</td><td>nessuna condizione sul segno di $g(x)$</td></tr>
+<tr><td>$\log_a g(x)$</td><td>$g(x)\gt0$, con $a\gt0$, $a\neq1$</td></tr>
+<tr><td>$\tan g(x)$</td><td>$g(x)\neq\dfrac\pi2+k\pi,\ k\in\mathbb Z$</td></tr>
+</tbody></table></div>
+<p>Le condizioni devono essere soddisfatte <strong>contemporaneamente</strong>, includendo anche quelle necessarie per definire le espressioni interne.</p>
+
+<h3>Segno</h3>
+<p>Studiare il segno di $f$ significa determinare</p>
+$$\{x\in D_f:f(x)\gt0\},\qquad \{x\in D_f:f(x)=0\},\qquad \{x\in D_f:f(x)\lt0\}.$$
+<p>“Positiva” significa $f(x)\gt0$; “non negativa” significa $f(x)\geq0$. Per esempio, $x^2$ è non negativa su $\mathbb R$, ma si annulla in $0$.</p>
+
+<h3>Monotonia</h3>
+<div class="box def">
+<div class="bt">Definizione — Monotonia</div>
+<p>$f\colon D\to\mathbb R$ è <strong>strettamente crescente</strong> se</p>
+$$\forall x_1,x_2\in D,\qquad x_1\lt x_2\Longrightarrow f(x_1)\lt f(x_2).$$
+<p>È <strong>strettamente decrescente</strong> se $x_1\lt x_2\Longrightarrow f(x_1)\gt f(x_2)$. Con disuguaglianze non strette ($\leq$, $\geq$) si ottengono <strong>crescente</strong> e <strong>decrescente</strong>.</p>
+</div>
+<p>Bisogna sempre specificare l’insieme sul quale vale la monotonia.</p>
+
+<h3>Simmetrie</h3>
+<p>Prima di parlare di parità o disparità, il dominio deve essere simmetrico rispetto a $0$: $x\in D\Longrightarrow -x\in D$.</p>
+<div class="box def">
+<div class="bt">Definizione — Funzione pari e dispari</div>
+$$\begin{aligned}
+f\text{ pari}&\Longleftrightarrow f(-x)=f(x)&&\forall x\in D,\\
+f\text{ dispari}&\Longleftrightarrow f(-x)=-f(x)&&\forall x\in D.
+\end{aligned}$$
+<p>Il grafico di una funzione pari è simmetrico rispetto all’asse $y$; quello di una funzione dispari è simmetrico rispetto all’origine.</p>
+</div>
+
+<h3>Invertibilità e restrizione</h3>
+<div class="box def">
+<div class="bt">Definizione — Funzione inversa</div>
+<p>Una funzione $f\colon A\to B$ è invertibile se è biiettiva. La sua inversa è</p>
+$$f^{-1}\colon B\to A,\qquad f^{-1}(y)=x\Longleftrightarrow f(x)=y.$$
+<p>Se si sceglie come codominio l’immagine $f(A)$, per l’invertibilità è necessario e sufficiente che $f$ sia iniettiva.</p>
+</div>
+<p>Non confondere $f^{-1}(x)$ (l’<em>inversa</em>) con $\dfrac1{f(x)}$ (il <em>reciproco</em>).</p>
+<div class="box def">
+<div class="bt">Definizione — Restrizione</div>
+<p>Se $E\subseteq D_f$, la restrizione di $f$ a $E$ è</p>
+$$f|_E\colon E\to\mathbb R,\qquad f|_E(x)=f(x).$$
+</div>
+<p>La formula rimane uguale, ma cambia il dominio. Una restrizione può essere invertibile anche quando la funzione iniziale non lo è.</p>
+
+<h3>Composizione</h3>
+<div class="box def">
+<div class="bt">Definizione — Funzione composta</div>
+$$(f\circ g)(x)=f(g(x)),\qquad D_{f\circ g}=\{x\in D_g:g(x)\in D_f\}.$$
+</div>
+<p>Si applica prima $g$, poi $f$. In generale l’ordine conta.</p>
+
+<h3>Periodicità</h3>
+<div class="box def">
+<div class="bt">Definizione — Funzione periodica</div>
+<p>$f\colon D\to\mathbb R$ è periodica se esiste $T\gt0$ tale che</p>
+$$D+T=D,\qquad f(x+T)=f(x)\quad\forall x\in D.$$
+<p>Un tale $T$ è un <strong>periodo</strong>. Se esiste il più piccolo periodo positivo, si chiama <strong>periodo fondamentale</strong>.</p>
+</div>
+<p>La condizione sul dominio è essenziale: anche il dominio deve ripetersi mediante la traslazione.</p>
+
+<h3>Modulo</h3>
+<div class="box def">
+<div class="bt">Definizione — Valore assoluto</div>
+<p>Per ogni $t\in\mathbb R$,</p>
+$$|t|=\begin{cases}t,&t\geq0,\\-t,&t\lt0.\end{cases}$$
+<p>Pertanto</p>
+$$|f(x)|=\begin{cases}f(x),&f(x)\geq0,\\-f(x),&f(x)\lt0.\end{cases}$$
+</div>
+<p>La distinzione dei casi dipende dal segno di $f(x)$, non necessariamente da quello di $x$.</p>
+
+
+<h2>2. Teoremi</h2>
+
+<h3>Invertibilità e riflessione</h3>
+<div class="box thm">
+<div class="bt">Teorema — Stretta monotonia e invertibilità</div>
+<p><strong>Ipotesi.</strong> $f\colon D\to\mathbb R$ è strettamente monotona.</p>
+<p><strong>Tesi.</strong> $f$ è iniettiva e quindi $f\colon D\to f(D)$ è invertibile.</p>
+</div>
+<p>La stretta monotonia è sufficiente, ma in generale non necessaria.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Riflessione dei grafici</div>
+<p><strong>Ipotesi.</strong> $f\colon D\to f(D)$ è invertibile.</p>
+<p><strong>Tesi.</strong> I grafici di $f$ e $f^{-1}$ sono simmetrici rispetto alla retta $y=x$. Dominio e immagine si scambiano:</p>
+$$D_{f^{-1}}=f(D),\qquad \operatorname{Im}(f^{-1})=D.$$
+</div>
+<p>Per questo una tangente orizzontale di $f$ corrisponde a una tangente verticale dell’inversa.</p>
+
+<h3>Potenze</h3>
+<p>Per le radici si considera un indice almeno $2$.</p>
+<div class="tbl"><table>
+<thead><tr><th>Funzione</th><th>Dominio</th><th>Immagine</th><th>Simmetria</th><th>Monotonia</th></tr></thead>
+<tbody>
+<tr><td>$x^{2n}$, $n\geq1$</td><td>$\mathbb R$</td><td>$[0,+\infty)$</td><td>Pari</td><td>Decrescente su $(-\infty,0]$, crescente su $[0,+\infty)$</td></tr>
+<tr><td>$x^{2n+1}$, $n\geq0$</td><td>$\mathbb R$</td><td>$\mathbb R$</td><td>Dispari</td><td>Strettamente crescente</td></tr>
+<tr><td>$x^{-2n}$, $n\geq1$</td><td>$\mathbb R\setminus\{0\}$</td><td>$(0,+\infty)$</td><td>Pari</td><td>Crescente sul ramo negativo, decrescente sul positivo</td></tr>
+<tr><td>$x^{-(2n+1)}$, $n\geq0$</td><td>$\mathbb R\setminus\{0\}$</td><td>$\mathbb R\setminus\{0\}$</td><td>Dispari</td><td>Decrescente su ciascuno dei due rami</td></tr>
+<tr><td>$\sqrt[2n]{x}$, $n\geq1$</td><td>$[0,+\infty)$</td><td>$[0,+\infty)$</td><td>Né pari né dispari</td><td>Strettamente crescente</td></tr>
+<tr><td>$\sqrt[2n+1]{x}$, $n\geq1$</td><td>$\mathbb R$</td><td>$\mathbb R$</td><td>Dispari</td><td>Strettamente crescente</td></tr>
+</tbody></table></div>
+<p><strong>Precisazione sulla monotonia.</strong> $1/x$ è decrescente su ciascun intervallo $(-\infty,0)$ e $(0,+\infty)$, ma <strong>non</strong> sull’intero dominio. Infatti</p>
+$$-1\lt1,\qquad \frac1{-1}=-1\lt1=\frac11.$$
+<p>Questo corregge la formulazione informale “sempre decrescente” usata a voce.</p>
+
+<h3>Crescita</h3>
+<p>“Crescere più velocemente” si riferisce al comportamento per $x\to+\infty$, non a una disuguaglianza valida per ogni $x$. Per le potenze positive,</p>
+$$\frac{x^\alpha}{x}=x^{\alpha-1},\qquad\text{quindi}\qquad
+\begin{cases}
+\alpha\gt1:&\text{crescita sopralineare},\\
+\alpha=1:&\text{crescita lineare},\\
+0\lt\alpha\lt1:&\text{crescita sublineare}.
+\end{cases}$$
+<p>Ulteriori confronti anticipati dal docente:</p>
+$$\lim_{x\to+\infty}\frac{x^p}{a^x}=0\quad(a\gt1,\ p\gt0),\qquad \lim_{x\to+\infty}\frac{\log_a x}{x^\alpha}=0\quad(a\gt1,\ \alpha\gt0).$$
+<p>L’esponenziale crescente supera ogni potenza fissata; il logaritmo crescente cresce più lentamente di ogni potenza positiva. Sono <strong>anticipazioni</strong>: a lezione non vengono dimostrate con gli strumenti dei limiti.</p>
+
+<h3>Esponenziali e logaritmi</h3>
+<div class="tbl"><table>
+<thead><tr><th>Funzione</th><th>Dominio</th><th>Immagine</th><th>Monotonia</th><th>Asintoto</th></tr></thead>
+<tbody>
+<tr><td>$a^x$, $a\gt1$</td><td>$\mathbb R$</td><td>$(0,+\infty)$</td><td>Strettamente crescente</td><td>$y=0$ per $x\to-\infty$</td></tr>
+<tr><td>$a^x$, $0\lt a\lt1$</td><td>$\mathbb R$</td><td>$(0,+\infty)$</td><td>Strettamente decrescente</td><td>$y=0$ per $x\to+\infty$</td></tr>
+<tr><td>$\log_a x$, $a\gt1$</td><td>$(0,+\infty)$</td><td>$\mathbb R$</td><td>Strettamente crescente</td><td>$x=0$</td></tr>
+<tr><td>$\log_a x$, $0\lt a\lt1$</td><td>$(0,+\infty)$</td><td>$\mathbb R$</td><td>Strettamente decrescente</td><td>$x=0$</td></tr>
+</tbody></table></div>
+<p>Tutte le esponenziali passano per $(0,1)$; tutti i logaritmi per $(1,0)$. Per $a\gt0$, $a\neq1$, esponenziale e logaritmo della stessa base sono inversi. Per $a=1$, $a^x=1$ è costante e non invertibile.</p>
+
+<h3>Goniometria</h3>
+<div class="tbl"><table>
+<thead><tr><th>Funzione</th><th>Dominio</th><th>Immagine</th><th>Simmetria</th><th>Periodo fondamentale</th></tr></thead>
+<tbody>
+<tr><td>$\sin x$</td><td>$\mathbb R$</td><td>$[-1,1]$</td><td>Dispari</td><td>$2\pi$</td></tr>
+<tr><td>$\cos x$</td><td>$\mathbb R$</td><td>$[-1,1]$</td><td>Pari</td><td>$2\pi$</td></tr>
+<tr><td>$\tan x$</td><td>$\mathbb R\setminus\left\{\frac\pi2+k\pi:k\in\mathbb Z\right\}$</td><td>$\mathbb R$</td><td>Dispari</td><td>$\pi$</td></tr>
+</tbody></table></div>
+<p>Gli intervalli di positività di seno e coseno, per $k\in\mathbb Z$, sono</p>
+$$\sin x\gt0\Longleftrightarrow x\in(2k\pi,\pi+2k\pi),\qquad \cos x\gt0\Longleftrightarrow x\in\left(-\frac\pi2+2k\pi,\frac\pi2+2k\pi\right).$$
+<p>Agli estremi degli intervalli le funzioni valgono zero.</p>
+
+<h3>Funzioni inverse goniometriche</h3>
+<p>Seno, coseno e tangente non sono invertibili sul loro intero dominio: si scelgono queste restrizioni.</p>
+<div class="tbl"><table>
+<thead><tr><th>Da invertire</th><th>Restrizione</th><th>Inversa</th><th>Dominio dell’inversa</th><th>Immagine dell’inversa</th></tr></thead>
+<tbody>
+<tr><td>$\sin x$</td><td>$[-\pi/2,\pi/2]$</td><td>$\arcsin x$</td><td>$[-1,1]$</td><td>$[-\pi/2,\pi/2]$</td></tr>
+<tr><td>$\cos x$</td><td>$[0,\pi]$</td><td>$\arccos x$</td><td>$[-1,1]$</td><td>$[0,\pi]$</td></tr>
+<tr><td>$\tan x$</td><td>$(-\pi/2,\pi/2)$</td><td>$\arctan x$</td><td>$\mathbb R$</td><td>$(-\pi/2,\pi/2)$</td></tr>
+</tbody></table></div>
+<p>In particolare $\arcsin\frac12=\frac\pi6$: non si aggiunge $2k\pi$, perché l’arcoseno restituisce un unico valore nell’intervallo principale. L’equazione $\sin x=\frac12$, invece, ha infinite soluzioni.</p>
+
+<h3>Trasformazioni dei grafici</h3>
+<p>Se $(u,v)$ appartiene al grafico di $f$, le trasformazioni principali agiscono così:</p>
+<div class="tbl"><table>
+<thead><tr><th>Nuova funzione</th><th>Trasformazione</th><th>Nuovo punto</th></tr></thead>
+<tbody>
+<tr><td>$f(x)+k$</td><td>Traslazione verticale di $k$</td><td>$(u,v+k)$</td></tr>
+<tr><td>$f(x+k)$</td><td>Traslazione orizzontale di $-k$</td><td>$(u-k,v)$</td></tr>
+<tr><td>$-f(x)$</td><td>Riflessione rispetto all’asse $x$</td><td>$(u,-v)$</td></tr>
+<tr><td>$f(-x)$</td><td>Riflessione rispetto all’asse $y$</td><td>$(-u,v)$</td></tr>
+<tr><td>$c\,f(x)$, $c\gt0$</td><td>Scala verticale di fattore $c$</td><td>$(u,cv)$</td></tr>
+<tr><td>$f(cx)$, $c\gt0$</td><td>Scala orizzontale di fattore $1/c$</td><td>$(u/c,v)$</td></tr>
+</tbody></table></div>
+<p>Per esempio $f(2x)$ dimezza le ascisse: il grafico si comprime orizzontalmente, non verticalmente.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Periodo di $f(mx)$</div>
+<p><strong>Ipotesi.</strong> $f$ ha periodo fondamentale $T$ e $m\neq0$.</p>
+<p><strong>Tesi.</strong> $f(mx)$ ha periodo fondamentale $\dfrac{T}{|m|}$. Quindi</p>
+$$T_{\sin(mx)}=T_{\cos(mx)}=\frac{2\pi}{|m|},\qquad T_{\tan(mx)}=\frac{\pi}{|m|}.$$
+<p>Il valore assoluto rende la formula valida anche per $m\lt0$.</p>
+</div>
+
+
+<h2>3. Dimostrazioni</h2>
+
+<h3>Parità</h3>
+<p>Consideriamo $f(x)=x^4-2x^2-3$. Il dominio è $\mathbb R$, dunque simmetrico. Sostituiamo $-x$ a ogni occorrenza di $x$:</p>
+$$f(-x)=(-x)^4-2(-x)^2-3=x^4-2x^2-3=f(x).$$
+<p>La funzione è pari. Il termine costante non crea problemi: corrisponde a una potenza di esponente $0$, che è pari.</p>
+<p>Per $g(x)=x^3-2x-1$ si ha invece</p>
+$$g(-x)=-x^3+2x-1,\qquad\text{mentre}\qquad -g(x)=-x^3+2x+1.$$
+<p>Sono diversi a causa del termine costante. Inoltre $g(-x)\neq g(x)$ in generale: la funzione non è né pari né dispari.</p>
+
+<h3>Inversa della parabola</h3>
+<p>La funzione $f(x)=x^2$ su $\mathbb R$ non è iniettiva: $f(1)=f(-1)=1$ con $1\neq-1$. Restringendola a $[0,+\infty)$ otteniamo</p>
+$$f_+\colon[0,+\infty)\to[0,+\infty),\qquad f_+(x)=x^2.$$
+<p>Da $y=x^2$ con $x\geq0$ segue univocamente $x=\sqrt y$, quindi $f_+^{-1}(x)=\sqrt x$. Se scegliamo invece il dominio $(-\infty,0]$, dalla condizione $x\leq0$ ricaviamo $f_-^{-1}(x)=-\sqrt x$. La scelta della restrizione determina quale inversa otteniamo.</p>
+
+<h3>Simmetria dei grafici rispetto a $y=x$</h3>
+<p>Se $(x,y)$ appartiene al grafico di una funzione invertibile, allora $y=f(x)\Longleftrightarrow x=f^{-1}(y)$. Quindi $(y,x)$ appartiene al grafico dell’inversa. Lo scambio</p>
+$$(x,y)\longmapsto(y,x)$$
+<p>è esattamente la riflessione rispetto a $y=x$.</p>
+
+<h3>Traslazione orizzontale</h3>
+<p>Sia $g(x)=f(x+k)$. Se $(u,f(u))$ appartiene al grafico originale, per ottenere lo stesso valore in $g$ dobbiamo imporre $x+k=u$, cioè $x=u-k$, e allora $g(u-k)=f(u)$. Pertanto</p>
+$$(u,f(u))\longmapsto(u-k,f(u)).$$
+<p>Ecco perché $f(x+k)$, con $k\gt0$, si sposta verso <strong>sinistra</strong>: il segno dello spostamento è opposto a quello scritto nell’argomento.</p>
+
+<h3>Periodo fondamentale di $\sin(2x)$</h3>
+<p>Per $g(x)=\sin(2x)$:</p>
+$$g(x+\pi)=\sin(2x+2\pi)=\sin(2x)=g(x).$$
+<p>Abbiamo dimostrato che $\pi$ è un periodo. Per verificare che sia quello <strong>fondamentale</strong>, osserviamo che un periodo positivo $S$ di $g$ deve rendere $2S$ un periodo del seno, perché al variare di $x$ la quantità $2x$ percorre tutta $\mathbb R$. Poiché il più piccolo periodo positivo del seno è $2\pi$,</p>
+$$2S\geq2\pi\Longrightarrow S\geq\pi.$$
+<p>Dunque il periodo fondamentale è $\pi$. La sola verifica dell’uguaglianza prova che un numero è <em>un</em> periodo; per dire che è fondamentale serve anche la minimalità.</p>
+
+<h3>$\sin\frac1x$ non è periodica</h3>
+<p>Sia $h(x)=\sin\frac1x$, con $D_h=\mathbb R\setminus\{0\}$. Se avesse un periodo $T\gt0$, dovrebbe valere $D_h+T=D_h$. Ma $-T\in D_h$, mentre</p>
+$$-T+T=0\notin D_h.$$
+<p>La condizione sul dominio non è soddisfatta: la funzione non è periodica. Le oscillazioni, da sole, non garantiscono la periodicità.</p>
+
+
+<h2>4. Esempi e osservazioni</h2>
+
+<h3>Potenze con esponente razionale</h3>
+<p>Gli esempi trattati dal docente si leggono come radicali:</p>
+<div class="tbl"><table>
+<thead><tr><th>Funzione</th><th>Riscrittura</th><th>Dominio</th><th>Segno</th><th>Crescita per $x\to+\infty$</th></tr></thead>
+<tbody>
+<tr><td>$x^{4/3}$</td><td>$\sqrt[3]{x^4}$</td><td>$\mathbb R$</td><td>Non negativa</td><td>Sopralineare</td></tr>
+<tr><td>$x^{2/3}$</td><td>$\sqrt[3]{x^2}$</td><td>$\mathbb R$</td><td>Non negativa</td><td>Sublineare</td></tr>
+<tr><td>$x^{3/2}$</td><td>$\sqrt{x^3}$</td><td>$[0,+\infty)$</td><td>Non negativa</td><td>Sopralineare</td></tr>
+</tbody></table></div>
+<p>Le prime due sono pari. La terza non è né pari né dispari, perché il dominio non è simmetrico rispetto a $0$.</p>
+<p>Per confrontare i grafici delle potenze:</p>
+$$0\lt x\lt1,\ \alpha\lt\beta\Longrightarrow x^\alpha\gt x^\beta,\qquad x\gt1,\ \alpha\lt\beta\Longrightarrow x^\alpha\lt x^\beta.$$
+<p>Un esponente maggiore schiaccia il grafico verso l’asse $x$ tra $0$ e $1$, ma produce una crescita più rapida oltre $1$.</p>
+
+<h3>Radicali</h3>
+<p>L’identità corretta è</p>
+$$\boxed{\sqrt{x^2}=|x|},$$
+<p>non $\sqrt{x^2}=x$ per ogni reale. Per esempio $\sqrt{(-3)^2}=\sqrt9=3\neq-3$. La radice quadrata indica sempre il valore non negativo. Non bisogna trasformare indiscriminatamente un radicale in una potenza e semplificarne gli esponenti senza controllare dominio e segno.</p>
+
+<h3>Tangenti utili per disegnare</h3>
+<ul>
+<li>$x^2$ ha tangente orizzontale nell’origine.</li>
+<li>$\sqrt x$ ha tangente verticale nell’origine, intesa dal lato del suo dominio.</li>
+<li>$\sqrt[3]x$ ha tangente verticale nell’origine.</li>
+<li>$\sin x$, $\tan x$ e $\arcsin x$ hanno tangente $y=x$ nell’origine.</li>
+<li>$\arcsin x$ ha tangenti verticali agli estremi del dominio, ma <strong>non</strong> asintoti verticali.</li>
+<li>$\arctan x$ ha asintoti orizzontali $y=\pm\pi/2$.</li>
+</ul>
+<p>Una tangente verticale non è un asintoto verticale: nel caso dell’arcoseno i valori della funzione restano finiti.</p>
+
+<h3>Esponenziali: $-2^x$ contro $(-2)^x$</h3>
+<p>Bisogna distinguere $-2^x=-(2^x)$ da $(-2)^x$. La prima è definita su tutto $\mathbb R$, sempre negativa e strettamente decrescente. La seconda non è un’esponenziale reale definita su tutto $\mathbb R$: per esempio $(-2)^{1/2}$ non è reale.</p>
+<p>Calcolare i valori interi di $(-2)^x$ e collegarli con una curva continua non produce un grafico valido sull’intero asse reale. È il motivo della condizione $a\gt0$ nella definizione delle esponenziali reali.</p>
+
+<h3>Modulo: $|f(x)|$ contro $f(|x|)$</h3>
+<div class="tbl"><table>
+<thead><tr><th>Funzione</th><th>Operazione grafica</th></tr></thead>
+<tbody>
+<tr><td>$|f(x)|$</td><td>Le parti del grafico sotto l’asse $x$ vengono riflesse rispetto all’asse $x$; il resto resta invariato.</td></tr>
+<tr><td>$f(|x|)$</td><td>Si tiene la parte con $x\geq0$ e la si riflette rispetto all’asse $y$; la parte originale con $x\lt0$ viene scartata. Il risultato è una funzione pari.</td></tr>
+</tbody></table></div>
+<p>Per la seconda,</p>
+$$f(|x|)=\begin{cases}f(x),&x\geq0,\\f(-x),&x\lt0,\end{cases}$$
+<p>nei punti in cui le espressioni sono definite. Esempi:</p>
+$$|x^2|=x^2,\qquad |x^3|=|x|^3,\qquad 2^{|x|}=\begin{cases}2^x,&x\geq0,\\2^{-x},&x\lt0.\end{cases}$$
+<p>L’ultima è pari, ha minimo $1$ in $x=0$ e presenta un punto angoloso in $(0,1)$, non una tangente orizzontale.</p>
+
+<h3>Costruire una trasformazione: $g(x)=-\sqrt{x-1}$</h3>
+<div class="box ex">
+<div class="bt">Esempio — Tre passaggi</div>
+<ul>
+<li>disegnare $y=\sqrt x$;</li>
+<li>traslare il grafico di $1$ verso destra, ottenendo $y=\sqrt{x-1}$;</li>
+<li>rifletterlo rispetto all’asse $x$, ottenendo $y=-\sqrt{x-1}$.</li>
+</ul>
+<p>Verifiche:</p>
+$$D_g=[1,+\infty),\qquad \operatorname{Im}(g)=(-\infty,0],\qquad g(1)=0,\qquad g(x)\lt0\ \text{ per }x\gt1.$$
+<p>Il grafico parte da $(1,0)$ e scende verso destra.</p>
+</div>
+<p><strong>Attenzione all’ordine.</strong> In questo esempio la traslazione orizzontale e la riflessione verticale si possono scambiare, ma in generale traslazioni e simmetrie <strong>non</strong> commutano. Per esempio</p>
+$$-\bigl(f(x)+1\bigr)=-f(x)-1\neq-f(x)+1.$$
+<p>Riflettere dopo una traslazione verso l’alto non equivale a traslare verso l’alto dopo aver riflesso.</p>
+
+<h3>Composizioni con l’arcoseno</h3>
+<p>Il docente lascia da rappresentare $\sin(\arcsin x)$ e $\arcsin(\sin x)$.</p>
+<div class="box ex">
+<div class="bt">Esempio — $\sin(\arcsin x)$</div>
+$$\boxed{\sin(\arcsin x)=x\quad\text{per }x\in[-1,1]}.$$
+<p>Il grafico è il segmento della retta $y=x$ con estremi $(-1,-1)$ e $(1,1)$.</p>
+</div>
+<div class="box ex">
+<div class="bt">Esempio — $\arcsin(\sin x)$</div>
+<p>Vale $\arcsin(\sin x)=x$ solo nell’intervallo principale $[-\pi/2,\pi/2]$. Fuori da esso l’arcoseno riporta il valore nell’intervallo delle sue uscite. Per esempio</p>
+$$\arcsin\left(\sin\frac{5\pi}{6}\right)=\arcsin\frac12=\frac\pi6.$$
+<p>Una descrizione completa è</p>
+$$\arcsin(\sin x)=(-1)^k(x-k\pi)\qquad\text{per }x\in\left[k\pi-\frac\pi2,\,k\pi+\frac\pi2\right],\ k\in\mathbb Z.$$
+<p>Si ottiene un grafico triangolare, formato da segmenti con pendenza alternata $1$ e $-1$.</p>
+</div>
+
+<h3>Periodicità: $\frac1{\sin x}$ contro $\sin\frac1x$</h3>
+<p>La prima ha dominio $\mathbb R\setminus\{k\pi:k\in\mathbb Z\}$ ed è periodica:</p>
+$$\frac1{\sin(x+2\pi)}=\frac1{\sin x}.$$
+<p>La seconda non è periodica, come dimostrato mediante il suo dominio. I suoi zeri sono</p>
+$$\sin\frac1x=0\Longleftrightarrow\frac1x=k\pi\Longleftrightarrow x=\frac1{k\pi},\qquad k\in\mathbb Z\setminus\{0\}.$$
+<p>Si accumulano vicino a $0$, anziché ripetersi a distanza costante.</p>
+
+<h3>Basi ed esponenti variabili</h3>
+<p>Per potenze con base ed esponente variabili, la convenzione standard su base positiva è</p>
+$$u(x)^{v(x)}=\exp\bigl(v(x)\ln u(x)\bigr),\qquad u(x)\gt0.$$
+<p>Si controllano poi separatamente i punti in cui la base vale zero: $0^b$ è definito per $b\gt0$, mentre $0^0$ e $0^b$ con $b\lt0$ non sono ammessi in questo contesto.</p>
+<div class="box ex">
+<div class="bt">Esempio — $f(x)=(\sin x)^{\cos x}$ su $[0,2\pi]$</div>
+<ul>
+<li>$0\lt x\lt\pi$: base positiva, espressione definita;</li>
+<li>$x=0$: si ottiene $0^1=0$, punto incluso;</li>
+<li>$x=\pi$: si ottiene $0^{-1}$, punto escluso;</li>
+<li>$\pi\lt x\lt2\pi$: base negativa, non ammessa nella convenzione adottata;</li>
+<li>$x=2\pi$: di nuovo $0^1=0$, punto incluso.</li>
+</ul>
+<p>Pertanto, su $[0,2\pi]$:</p>
+$$\boxed{D_f=[0,\pi)\cup\{2\pi\}}.$$
+<p>Se si lavora invece su $[0,2\pi)$, il dominio è $[0,\pi)$.</p>
+</div>
+
+<h3>Metodo per le funzioni ottenute da trasformazioni</h3>
+<ol>
+<li>Riconoscere la funzione elementare di partenza.</li>
+<li>Determinare il dominio <strong>prima</strong> di disegnare.</li>
+<li>Individuare traslazioni, riflessioni, dilatazioni e moduli.</li>
+<li>Applicare le trasformazioni controllando l’ordine.</li>
+<li>Trasformare anche punti notevoli e asintoti.</li>
+<li>Verificare segno, immagine e monotonia.</li>
+<li>Controllare che il grafico rispetti tutte le informazioni trovate.</li>
+</ol>
+<p>Il consiglio finale del docente per la prova in itinere è lo stesso: scomporre un problema apparentemente complesso in problemi elementari già conosciuti.</p>
+
+
+<h2>5. Errori da evitare</h2>
+<div class="box warn">
+<div class="bt">Attenzione</div>
+<ul>
+<li>Non confondere l’inversa $f^{-1}(x)$ con il reciproco $\dfrac1{f(x)}$.</li>
+<li>$\sqrt{x^2}=|x|$, non $x$.</li>
+<li>$1/x$ è decrescente su ciascun ramo, <strong>non</strong> sull’intero dominio.</li>
+<li>L’arcoseno restituisce un solo valore: $\arcsin\frac12=\frac\pi6$, senza $2k\pi$. Invece $\arcsin(\sin x)=x$ vale solo per $x\in[-\pi/2,\pi/2]$.</li>
+<li>Una tangente verticale non è un asintoto verticale (es. $\arcsin x$).</li>
+<li>$-2^x$ e $(-2)^x$ sono cose diverse: la seconda non è una funzione reale su tutto $\mathbb R$.</li>
+<li>$|f(x)|$ e $f(|x|)$ sono trasformazioni diverse.</li>
+<li>In $f(x+k)$ lo spostamento è di $-k$: segno opposto a quello nell’argomento.</li>
+<li>Traslazioni e riflessioni in generale non commutano.</li>
+<li>Per il periodo fondamentale non basta verificare $f(x+T)=f(x)$: serve la minimalità, e va controllato anche $D+T=D$.</li>
+<li>Oscillare non significa essere periodica ($\sin\frac1x$).</li>
+<li>Parità e disparità richiedono un dominio simmetrico rispetto a $0$.</li>
+</ul>
+</div>
+
+
+<h2>6. Riepilogo finale</h2>
+<p>Cosa devi saper fare dopo questa esercitazione:</p>
+<ul>
+<li>ricavare dominio naturale, segno, monotonia, simmetrie e periodicità dai grafici delle funzioni elementari;</li>
+<li>conoscere dominio, immagine, simmetria e monotonia di potenze, radici, esponenziali, logaritmi e funzioni goniometriche;</li>
+<li>definire le inverse goniometriche e le restrizioni con cui si ottengono;</li>
+<li>costruire il grafico di funzioni ottenute con traslazioni, riflessioni, dilatazioni e moduli, controllando l’ordine;</li>
+<li>calcolare il periodo fondamentale di $\sin(mx)$, $\cos(mx)$, $\tan(mx)$ e dimostrare la non periodicità di $\sin\frac1x$;</li>
+<li>determinare il dominio di potenze con base ed esponente variabili.</li>
+</ul>
