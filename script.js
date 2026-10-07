@@ -43,11 +43,31 @@ var days = [
     n: 5,
     title: 'Polinomi complessi, funzioni, estremi, simmetrie e monotonia',
     file: 'appunti/day-05.html'
+  },
+  {
+    n: 6,
+    title: 'Composizione, inversa, successioni e limite',
+    file: 'appunti/day-06.html'
+  },
+  {
+    n: 7,
+    title: 'Successioni: limiti, confronto, monotonia e successioni geometriche',
+    file: 'appunti/day-07.html'
   }
 ];
 days.sort(function (a, b) { return a.n - b.n; });
 
 var esercitazioni = [
+  {
+    n: 1,
+    title: 'Estremi degli insiemi',
+    file: 'appunti/esercitazione-1.html'
+  },
+  {
+    n: 2,
+    title: 'Numeri complessi: forme, radici, equazioni e luoghi geometrici',
+    file: 'appunti/esercitazione-2.html'
+  },
   {
     n: 3,
     title: 'Funzioni e trasformazioni',
@@ -56,6 +76,20 @@ var esercitazioni = [
   }
 ];
 esercitazioni.sort(function (a, b) { return a.n - b.n; });
+
+/* =====================================================================
+   CATALOGO DEL TUTORATO
+   Per ogni nuova lezione di tutorato aggiungi una voce, ad esempio:
+     { n: 2, title: 'Titolo del tutorato 2', file: 'appunti/t-02.html' }
+   ===================================================================== */
+var tutorato = [
+  { 
+    n: 1, 
+    title: 'Goniometria e numeri complessi', 
+    file: 'appunti/t-01.html' 
+  }
+];
+tutorato.sort(function (a, b) { return a.n - b.n; });
 
 /* Le due sezioni:
    name   = nome mostrato nel menu
@@ -77,9 +111,16 @@ var cats = {
     prefix: 'es',
     list: esercitazioni,
     key: 'a1-es'
+  },
+  tutorato: {
+    name: 'Tutorato',
+    label: 'Tutorato',
+    prefix: 't',
+    list: tutorato,
+    key: 'a1-t'
   }
 };
-var modeOrder = ['lezioni', 'esercitazioni'];
+var modeOrder = ['lezioni', 'esercitazioni', 'tutorato'];
 
 
 document.addEventListener('DOMContentLoaded', function () {
