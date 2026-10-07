@@ -53,7 +53,13 @@ var days = [
     n: 7,
     title: 'Successioni: limiti, confronto, monotonia e successioni geometriche',
     file: 'appunti/day-07.html'
+  },
+  {
+    n: 8,
+    title: 'Successioni notevoli, teorema del rapporto e confronti asintotici',
+    file: 'appunti/day-08.html'
   }
+  
 ];
 days.sort(function (a, b) { return a.n - b.n; });
 

@@ -11,6 +11,7 @@ Boh fra, che cazzo ne so. Appunti di Analisi 1 Matematica (fuh ts 🥀).
 5. Polinomi complessi, funzioni, estremi, simmetrie e monotonia
 6. Composizione, inversa, successioni e limite
 7. Successioni: limiti, confronto, monotonia e successioni geometriche
+8. Successioni notevoli, teorema del rapporto e confronti asintotici
 
 ### Esercitazioni:
 1. Estremi degli insiemi
