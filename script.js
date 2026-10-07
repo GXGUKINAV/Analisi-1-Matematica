@@ -8,13 +8,15 @@ try {
 
 
 /* =====================================================================
-   CATALOGO DEI DAY
-   Per aggiungere un nuovo giorno:
-   1. duplica appunti/_template-day.html e rinominalo (es. day-04.html);
+   CATALOGHI DEGLI APPUNTI
+   Due sezioni: "Lezioni" (days) ed "Esercitazioni" (esercitazioni).
+   Per aggiungere un nuovo appunto:
+   1. duplica appunti/_template-day.html e rinominalo
+      (es. day-04.html oppure esercitazione-1.html);
    2. aggiungi qui sotto una nuova voce con n, title e file.
    Pallini, menu e navigatore si aggiornano da soli.
-   Il titolo (e l'etichetta "Day N") è generato da JavaScript: nei file
-   degli appunti NON va ripetuto.
+   Il titolo (e l'etichetta "Day N" / "Esercitazione N") è generato da
+   JavaScript: nei file degli appunti NON va ripetuto.
    ===================================================================== */
 var days = [
   {
@@ -41,77 +43,59 @@ var days = [
     n: 5,
     title: 'Polinomi complessi, funzioni, estremi, simmetrie e monotonia',
     file: 'appunti/day-05.html'
-  },
-  {
-    n: 6,
-    title: 'Composizione, inversa, successioni e limite',
-    file: 'appunti/day-06.html'
-  },
-  {
-    n: 7,
-    title: 'Successioni: limiti, confronto, monotonia e successioni geometriche',
-    file: 'appunti/day-07.html'
   }
-
 ];
 days.sort(function (a, b) { return a.n - b.n; });
 
-
-/* =====================================================================
-   CATALOGO DELLE ESERCITAZIONI
-   Stessa cosa dei Day: per ogni nuova esercitazione aggiungi una voce,
-   ad esempio:
-     { n: 1, title: 'Titolo dell\'esercitazione 1', file: 'appunti/esercitazione-1.html' }
-   ===================================================================== */
 var esercitazioni = [
   {
-    n: 1,
-    title: 'Estremi degli insiemi',
-    file: 'appunti/esercitazione-1.html'
-  },
-  {
-    n: 2,
-    title: 'Numeri complessi: forme, radici, equazioni e luoghi geometrici',
-    file: 'appunti/esercitazione-2.html'
+    n: 3,
+    title: 'Funzioni e trasformazioni',
+    file: 'appunti/esercitazione-3.html',
+    date: '2026-10-05'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
   }
 ];
 esercitazioni.sort(function (a, b) { return a.n - b.n; });
 
-/* =====================================================================
-   CATALOGO DEL TUTORATO
-   Per ogni nuova lezione di tutorato aggiungi una voce, ad esempio:
-     { n: 2, title: 'Titolo del tutorato 2', file: 'appunti/t-02.html' }
-   ===================================================================== */
-var tutorato = [
-  { 
-    n: 1, 
-    title: 'Goniometria e numeri complessi', 
-    file: 'appunti/t-01.html' 
-  }
-];
-tutorato.sort(function (a, b) { return a.n - b.n; });
-
-/* Le tre "modalità" del sito */
+/* Le due sezioni:
+   name   = nome mostrato nel menu
+   label  = parola sopra il titolo
+   prefix = prefisso dell'hash URL (#day-N, #es-N)
+   list   = catalogo corrispondente
+   key    = chiave localStorage dell'ultimo appunto letto */
 var cats = {
-  lezioni:       { name: 'Lezioni',       label: 'Day',           prefix: 'day', list: days,          key: 'a1-day' },
-  esercitazioni: { name: 'Esercitazioni', label: 'Esercitazione', prefix: 'es',  list: esercitazioni, key: 'a1-es'  },
-  tutorato:      { name: 'Tutorato',      label: 'Tutorato',      prefix: 't',   list: tutorato,      key: 'a1-t'   }
+  lezioni: {
+    name: 'Lezioni',
+    label: 'Day',
+    prefix: 'day',
+    list: days,
+    key: 'a1-day'
+  },
+  esercitazioni: {
+    name: 'Esercitazioni',
+    label: 'Esercitazione',
+    prefix: 'es',
+    list: esercitazioni,
+    key: 'a1-es'
+  }
 };
+var modeOrder = ['lezioni', 'esercitazioni'];
 
 
 document.addEventListener('DOMContentLoaded', function () {
   var $ = function (id) { return document.getElementById(id); };
   var root = document.documentElement;
   var main = $('content'), menu = $('dayMenu'), dotsBtn = $('dotsBtn');
+  var modeBtn = $('modeBtn'), modeMenu = $('modeMenu');
   var prevBtn = $('prevBtn'), nextBtn = $('nextBtn');
   var aaBtn = $('aaBtn'), settings = $('settings');
-  var modeBtn = $('modeBtn'), modeMenu = $('modeMenu');
+  var dock = $('dock'), tocBtn = $('tocBtn'), tocPanel = $('tocPanel');
   var mode = 'lezioni';
-  function items() { return cats[mode].list; }
-  var nav = $('navBar');
   var cur = 0;
-  var requestId = 0;   /* per ignorare risposte fetch "vecchie" se cambio Day velocemente */
+  var requestId = 0;   /* per ignorare risposte fetch "vecchie" se cambio appunto velocemente */
   var cache = {};      /* file già scaricati: evita di riscaricarli */
+
+  function items() { return cats[mode].list; }
 
   function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -125,14 +109,120 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  /* ---------- Hash URL: #day-1, #day-2, ... ---------- */
+  /* ---------- Data: "Mon 05/10/2026" ---------- */
+  var WD = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  function fmtDate(str, short) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(str || '');
+    if (!m) return '';
+    var dt = new Date(+m[1], +m[2] - 1, +m[3]);
+    return WD[dt.getDay()] + ', ' + m[3] + '/' + m[2] + (short ? '' : '/' + m[1]);
+  }
+
+  /* ---------- Indice della pagina ---------- */
+  var tocHeads = [], tocItems = [];
+  function buildToc() {
+    tocPanel.innerHTML = '';
+    tocHeads = []; tocItems = [];
+    var hs = main.querySelectorAll('h2, h3'), i = 0;
+    var t = document.createElement('div');
+    t.className = 'toc-t'; t.textContent = 'Indice';
+    tocPanel.appendChild(t);
+    Array.prototype.forEach.call(hs, function (h) {
+      if (!h.id) h.id = 'sec-' + (++i);
+      var b = document.createElement('button');
+      b.className = 'toc-i' + (h.tagName === 'H3' ? ' sub' : '');
+      b.textContent = h.textContent;
+      b.title = h.textContent;
+      tocHeads.push(h); tocItems.push(b);
+      b.addEventListener('click', function () {
+        h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        closeAll();
+      });
+      tocPanel.appendChild(b);
+    });
+    tocBtn.hidden = !hs.length;
+    layoutToc();
+    updateSpy();
+  }
+  /* evidenzia nell'indice la sezione che stai leggendo */
+  var spyOn = -1;
+  function updateSpy() {
+    var k = -1;
+    for (var i = 0; i < tocHeads.length; i++) {
+      if (tocHeads[i].getBoundingClientRect().top <= 100) k = i; else break;
+    }
+    if (k === spyOn) return;
+    spyOn = k;
+    tocItems.forEach(function (b, i) { b.classList.toggle('on', i === k); });
+    if (k >= 0 && !tocPanel.hidden) {
+      var it = tocItems[k];
+      tocPanel.scrollTop = it.offsetTop - tocPanel.clientHeight / 2 + it.offsetHeight / 2;
+    }
+  }
+  var spyTick = false;
+  window.addEventListener('scroll', function () {
+    if (!tocPanel.hidden) closeToc();   /* scorri = non ti serve più l'indice */
+    if (!spyTick) { spyTick = true; requestAnimationFrame(function () { spyTick = false; updateSpy(); }); }
+  }, { passive: true });
+  /* Se ai lati del testo c'è abbastanza spazio (PC/tablet) il pulsante sta a sinistra,
+     con margini proporzionali allo spazio libero; altrimenti si affianca alla barra in basso. */
+  function layoutToc() {
+    var gap = main.getBoundingClientRect().left;
+    var side = gap >= 220;
+    document.body.classList.toggle('side', side);
+    if (side) {
+      if (tocBtn.parentNode !== document.body) document.body.appendChild(tocBtn);
+      var x = Math.round(gap * 0.08);
+      tocBtn.style.left = x + 'px';
+      tocPanel.style.left = x + 'px';
+      tocPanel.style.width = Math.min(300, Math.round(gap * 0.84)) + 'px';
+    } else {
+      if (tocBtn.parentNode !== dock) dock.appendChild(tocBtn);
+      tocBtn.style.left = ''; tocPanel.style.left = ''; tocPanel.style.width = '';
+    }
+  }
+  var tocCloseT;
+  function hideTocNow() {
+    clearTimeout(tocCloseT);
+    tocPanel.classList.remove('closing');
+    tocPanel.hidden = true;
+    tocBtn.setAttribute('aria-expanded', 'false');
+  }
+  function closeToc() {   /* chiusura con fade + il triangolo torna indietro */
+    if (tocPanel.hidden || tocPanel.classList.contains('closing')) return;
+    tocBtn.setAttribute('aria-expanded', 'false');
+    tocPanel.classList.add('closing');
+    tocCloseT = setTimeout(hideTocNow, 220);
+  }
+  function openToc() {
+    clearTimeout(tocCloseT);
+    tocPanel.classList.remove('closing');
+    tocPanel.hidden = false;
+    tocBtn.setAttribute('aria-expanded', 'true');
+    spyOn = -2; updateSpy();
+    tocPanel.style.animation = 'none';   /* l'animazione parte dal centro del cerchio */
+    var f = tocBtn.getBoundingClientRect(), p = tocPanel.getBoundingClientRect();
+    tocPanel.style.transformOrigin = (f.left + f.width / 2 - p.left) + 'px ' + (f.top + f.height / 2 - p.top) + 'px';
+    tocPanel.style.animation = '';
+  }
+  tocBtn.addEventListener('click', function () {
+    var wasOpen = !tocPanel.hidden && !tocPanel.classList.contains('closing');
+    closeAll();
+    if (!wasOpen) openToc();
+  });
+  window.addEventListener('resize', layoutToc);
+
+  /* ---------- Hash URL: #day-N (lezioni), #es-N (esercitazioni) ---------- */
   function parseHash() {
-    var m = /^#(day|es|t)-(\d+)$/.exec(location.hash);
+    var m = /^#(day|es)-(\d+)$/.exec(location.hash);
     if (!m) return null;
-    var md = m[1] === 'es' ? 'esercitazioni' : (m[1] === 't' ? 'tutorato' : 'lezioni');
+    var md = null;
+    modeOrder.forEach(function (k) { if (cats[k].prefix === m[1]) md = k; });
+    if (!md) return null;
     var n = parseInt(m[2], 10), idx = -1;
     cats[md].list.forEach(function (d, k) { if (d.n === n) idx = k; });
-    return idx === -1 ? null : { mode: md, idx: idx };
+    if (idx === -1) return null;
+    return { mode: md, idx: idx };
   }
   function syncHash(d, push) {
     var h = '#' + cats[mode].prefix + '-' + d.n;
@@ -142,6 +232,18 @@ document.addEventListener('DOMContentLoaded', function () {
     } catch (e) {
       location.hash = h;
     }
+  }
+  function clearHash() {
+    if (!location.hash) return;
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+  }
+
+  /* Indice dell'ultimo appunto letto in una sezione (o 0) */
+  function startIndex(md) {
+    var saved = load(cats[md].key);
+    var want = parseInt(saved, 10), idx = 0;
+    cats[md].list.forEach(function (d, k) { if (d.n === want) idx = k; });
+    return idx;
   }
 
   /* ---------- Caricamento del file di una giornata ---------- */
@@ -175,34 +277,56 @@ document.addEventListener('DOMContentLoaded', function () {
     var f = document.createElement('strong');
     f.textContent = d.file;
     p1.appendChild(f);
-    p1.appendChild(document.createTextNode('. Controlla che esista e che il percorso nel catalogo dei Day sia corretto, poi riprova.'));
+    p1.appendChild(document.createTextNode('. Controlla che esista e che il percorso nel catalogo sia corretto, poi riprova.'));
     var p2 = document.createElement('p');
     p2.textContent = 'Se hai aperto index.html con doppio click (file://), il browser blocca il caricamento: usa GitHub Pages oppure un server locale come Live Server.';
     box.appendChild(bt); box.appendChild(p1); box.appendChild(p2);
     main.appendChild(box);
   }
 
-  function showEmpty() {
-    requestId++;
+  /* Sezione senza appunti */
+  function showEmpty(animate) {
     cur = 0;
+    ++requestId;   /* annulla eventuali fetch ancora in corso */
+    main.innerHTML = '';
+    var ey = document.createElement('p');
+    ey.className = 'eyebrow';
+    ey.textContent = cats[mode].name;
+    var h = document.createElement('h1');
+    h.textContent = 'Nessun appunto per ora';
+    var p = document.createElement('p');
+    p.textContent = 'Questa sezione non contiene ancora nessun appunto. Quando ne aggiungerai uno al catalogo, comparirà qui.';
+    main.appendChild(ey); main.appendChild(h); main.appendChild(p);
+    buildToc();
     main.removeAttribute('aria-busy');
-    main.innerHTML = '<p class="eyebrow"></p><h1></h1><p></p>';
-    main.querySelector('.eyebrow').textContent = cats[mode].name;
-    main.querySelector('h1').textContent = 'Nessun appunto per ora';
-    main.querySelector('h1 + p').textContent = 'Qui compariranno gli appunti di questa sezione non appena li aggiungerai al catalogo in script.js.';
+
+    if (animate) { main.classList.remove('fade'); void main.offsetWidth; main.classList.add('fade'); }
     window.scrollTo(0, 0);
+    clearHash();
     updateNav();
   }
 
   function show(i, animate, pushHash) {
-    var days = items();
-    if (!days.length) { showEmpty(); return; }
-    cur = Math.max(0, Math.min(days.length - 1, i));
-    var d = days[cur];
+    var list = items();
+    if (!list.length) { showEmpty(animate); return; }
+
+    cur = Math.max(0, Math.min(list.length - 1, i));
+    var d = list[cur];
     var myRequest = ++requestId;
 
     /* titolo subito visibile, poi stato di caricamento */
-    main.innerHTML = '<p class="eyebrow">' + cats[mode].label + ' ' + d.n + '</p><h1></h1>';
+    main.innerHTML = '<p class="eyebrow"></p><h1></h1>';
+    var ey = main.querySelector('.eyebrow');
+    var lab = document.createElement('span');
+    lab.textContent = cats[mode].label + ' ' + d.n;
+    ey.appendChild(lab);
+    var ds = fmtDate(d.date);
+    if (ds) {
+      var dd = document.createElement('span');
+      dd.className = 'edate'; dd.textContent = ds;
+      ey.appendChild(dd);
+    }
+    hideTocNow();
     main.querySelector('h1').textContent = d.title;
     main.setAttribute('aria-busy', 'true');
     showLoading();
@@ -214,12 +338,13 @@ document.addEventListener('DOMContentLoaded', function () {
     updateNav();
 
     fetchDay(d).then(function (html) {
-      if (myRequest !== requestId) return;   /* nel frattempo ho cambiato Day */
+      if (myRequest !== requestId) return;   /* nel frattempo ho cambiato appunto */
       var status = main.querySelector('[role="status"]');
       if (status) status.remove();
       main.insertAdjacentHTML('beforeend', html);
       main.removeAttribute('aria-busy');
       renderMath();
+      buildToc();
     }).catch(function (err) {
       if (myRequest !== requestId) return;
       var status = main.querySelector('[role="status"]');
@@ -230,18 +355,29 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  function go(delta) {
+    if (!items().length) return;
+    show(cur + delta, true, true);
+  }
+
   function updateNav() {
-    var days = items();
+    var list = items();
+    var empty = list.length === 0;
     dotsBtn.innerHTML = '';
-    dotsBtn.disabled = !days.length;
-    days.forEach(function (d, k) {
+    list.forEach(function (d, k) {
       var sp = document.createElement('span');
       sp.className = 'dot' + (k === cur ? ' on' : '');
       dotsBtn.appendChild(sp);
     });
-    dotsBtn.setAttribute('aria-label', days.length ? 'Scegli il Day, ora ' + cats[mode].label + ' ' + days[cur].n : 'Nessun appunto in questa sezione');
-    prevBtn.disabled = !days.length || cur === 0;
-    nextBtn.disabled = !days.length || cur === days.length - 1;
+    dotsBtn.disabled = empty;
+    if (empty) {
+      dotsBtn.setAttribute('aria-label', 'Nessun appunto disponibile');
+      setOpen(menu, dotsBtn, false);
+    } else {
+      dotsBtn.setAttribute('aria-label', 'Scegli l\'appunto, ora ' + cats[mode].label + ' ' + list[cur].n);
+    }
+    prevBtn.disabled = empty || cur === 0;
+    nextBtn.disabled = empty || cur === list.length - 1;
     Array.prototype.forEach.call(menu.children, function (btn, k) {
       btn.classList.toggle('cur', k === cur);
       btn.querySelector('.mk').textContent = k === cur ? '●' : '○';
@@ -255,36 +391,35 @@ document.addEventListener('DOMContentLoaded', function () {
       var b = document.createElement('button');
       b.className = 'day-item';
       b.setAttribute('role', 'menuitem');
-      b.innerHTML = '<span class="mk">○</span><span>' + d.n + '. ' + d.title + '</span>';
+      b.innerHTML = '<span class="mk">○</span><span class="tt"></span><span class="dd"></span>';
+      b.querySelector('.tt').textContent = d.n + '. ' + d.title;
+      b.querySelector('.dd').textContent = fmtDate(d.date, true);
       b.addEventListener('click', function () { closeAll(); show(k, true, true); });
       menu.appendChild(b);
     });
   }
 
-  function setOpen(panel, btn, open) { panel.hidden = !open; btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
-  function closeAll() { setOpen(menu, dotsBtn, false); setOpen(settings, aaBtn, false); setOpen(modeMenu, modeBtn, false); }
-
-  /* ---------- Menu Lezioni / Esercitazioni ---------- */
   function buildModeMenu() {
     modeMenu.innerHTML = '';
-    Object.keys(cats).forEach(function (k) {
+    modeOrder.forEach(function (key) {
+      var on = key === mode;
       var b = document.createElement('button');
-      b.className = 'day-item' + (k === mode ? ' cur' : '');
+      b.className = 'day-item' + (on ? ' cur' : '');
       b.setAttribute('role', 'menuitem');
-      if (k === mode) b.setAttribute('aria-current', 'true');
-      b.innerHTML = '<span class="mk">' + (k === mode ? '●' : '○') + '</span><span></span>';
-      b.lastChild.textContent = cats[k].name;
-      b.addEventListener('click', function () { closeAll(); switchMode(k, true); });
+      if (on) b.setAttribute('aria-current', 'true');
+      b.innerHTML = '<span class="mk"></span><span></span>';
+      b.firstChild.textContent = on ? '●' : '○';
+      b.lastChild.textContent = cats[key].name;
+      b.addEventListener('click', function () {
+        closeAll();
+        if (key !== mode) switchMode(key, true);
+      });
       modeMenu.appendChild(b);
     });
   }
-  function startIndex(md) {
-    var list = cats[md].list, want = parseInt(load(cats[md].key), 10), idx = 0;
-    list.forEach(function (d, k) { if (d.n === want) idx = k; });
-    return idx;
-  }
+
+  /* Cambia sezione: se idx non è indicato, riparte dall'ultimo appunto letto */
   function switchMode(md, push, idx) {
-    if (md === mode && idx === undefined) return;
     mode = md;
     store('a1-mode', md);
     buildModeMenu();
@@ -292,16 +427,19 @@ document.addEventListener('DOMContentLoaded', function () {
     show(idx === undefined ? startIndex(md) : idx, true, push);
   }
 
-  dotsBtn.addEventListener('click', function () { var open = menu.hidden; closeAll(); setOpen(menu, dotsBtn, open); });
+  function setOpen(panel, btn, open) { panel.hidden = !open; btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+  function closeAll() { setOpen(menu, dotsBtn, false); setOpen(settings, aaBtn, false); setOpen(modeMenu, modeBtn, false); closeToc(); }
+
   modeBtn.addEventListener('click', function () { var open = modeMenu.hidden; closeAll(); setOpen(modeMenu, modeBtn, open); });
+  dotsBtn.addEventListener('click', function () { var open = menu.hidden; closeAll(); setOpen(menu, dotsBtn, open); });
   aaBtn.addEventListener('click', function () { var open = settings.hidden; closeAll(); setOpen(settings, aaBtn, open); });
-  document.addEventListener('click', function (e) { if (!e.target.closest('.day-menu, .dots, .settings, .aa, .mode-menu, .brand-btn')) closeAll(); });
-  prevBtn.addEventListener('click', function () { show(cur - 1, true, true); });
-  nextBtn.addEventListener('click', function () { show(cur + 1, true, true); });
+  document.addEventListener('click', function (e) { if (!e.target.closest('.day-menu, .dots, .settings, .aa, .mode-menu, .brand-btn, .toc, .toc-fab')) closeAll(); });
+  prevBtn.addEventListener('click', function () { go(-1); });
+  nextBtn.addEventListener('click', function () { go(1); });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeAll();
-    else if (e.key === 'ArrowLeft' && !e.metaKey && !e.altKey) show(cur - 1, true, true);
-    else if (e.key === 'ArrowRight' && !e.metaKey && !e.altKey) show(cur + 1, true, true);
+    else if (e.key === 'ArrowLeft' && !e.metaKey && !e.altKey) go(-1);
+    else if (e.key === 'ArrowRight' && !e.metaKey && !e.altKey) go(1);
   });
 
   /* Back/forward del browser o modifica manuale dell'hash */
@@ -318,7 +456,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var y = window.scrollY;
     var goingDown = y > lastScrollY;
     var pastThreshold = y > 40;
-    if (goingDown && pastThreshold) nav.classList.add('shrink'); else nav.classList.remove('shrink');
+    var sh = goingDown && pastThreshold;
+    dock.classList.toggle('shrink', sh);
+    tocBtn.classList.toggle('shrink', sh);
     lastScrollY = y;
     navShrinkTicking = false;
   }
@@ -335,9 +475,12 @@ document.addEventListener('DOMContentLoaded', function () {
     $('zVal').textContent = zoom + '%';
     $('zMinus').disabled = zoom <= ZMIN;
     $('zPlus').disabled = zoom >= ZMAX;
+    $('zReset').disabled = zoom === 100;
+    layoutToc();
     store('a1-zoom', zoom);
   }
   $('zMinus').addEventListener('click', function () { zoom -= ZSTEP; applyZoom(); });
+  $('zReset').addEventListener('click', function () { zoom = 100; applyZoom(); });
   $('zPlus').addEventListener('click', function () { zoom += ZSTEP; applyZoom(); });
 
   /* ---------- Tema ---------- */
@@ -352,14 +495,22 @@ document.addEventListener('DOMContentLoaded', function () {
     b.addEventListener('click', function () { applyTheme(b.dataset.themeBtn); });
   });
 
-  /* ---------- Avvio: hash URL > ultimo Day salvato > primo Day ---------- */
+  /* ---------- Avvio: hash URL > ultimo appunto salvato > primo ---------- */
   applyZoom();
   applyTheme(root.getAttribute('data-theme') || 'light');
+
   var h0 = parseHash();
-  var saved = load('a1-mode');
-  mode = h0 ? h0.mode : (saved && cats[saved] ? saved : 'lezioni');
+  var startIdx;
+  if (h0) {
+    mode = h0.mode;
+    startIdx = h0.idx;
+  } else {
+    var savedMode = load('a1-mode');
+    mode = cats[savedMode] ? savedMode : 'lezioni';
+    startIdx = startIndex(mode);
+  }
   buildModeMenu();
   buildMenu();
-  show(h0 ? h0.idx : startIndex(mode), false, false);
+  show(startIdx, false, false);
   if (!window.renderMathInElement) window.addEventListener('load', renderMath);
 });
