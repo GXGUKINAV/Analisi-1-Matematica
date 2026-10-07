@@ -15,6 +15,7 @@ Boh fra, che cazzo ne so. Appunti di Analisi 1 Matematica (fuh ts 🥀).
 ### Esercitazioni:
 1. Estremi degli insiemi
 2. Numeri complessi: forme, radici, equazioni e luoghi geometrici
+3. Funzioni e trasformazioni
 
 ### Tutorato:
 1. Goniometria e numeri complessi
