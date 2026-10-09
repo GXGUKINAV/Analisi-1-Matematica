@@ -1,0 +1,346 @@
+<p>Manteniamo le convenzioni dei Day precedenti: $\mathbb N=\{0,1,2,\ldots\}$ e $\overline{\mathbb R}=\mathbb R\cup\{-\infty,+\infty\}$. Tutti i limiti di successioni, salvo diversa indicazione, sono per $n\to+\infty$.</p>
+
+<h2>1. Definizioni</h2>
+
+<h3>Successione geometrica</h3>
+<div class="box def">
+<div class="bt">Definizione — Successione geometrica</div>
+<p>La successione geometrica di ragione $q\in\mathbb R$ è</p>
+$$a_n=q^n.$$
+<p>Per evitare $0^0$, quando $q=0$ si considerano gli indici $n\ge1$. L’esclusione di un numero finito di indici non modifica il comportamento limite.</p>
+</div>
+<div class="tbl"><table>
+<thead><tr><th>Ragione</th><th>Comportamento di $q^n$</th></tr></thead>
+<tbody>
+<tr><td>$-1\lt q\lt1$</td><td>$q^n\to0$</td></tr>
+<tr><td>$q=1$</td><td>$q^n\to1$</td></tr>
+<tr><td>$q\gt1$</td><td>$q^n\to+\infty$</td></tr>
+<tr><td>$q=-1$</td><td>oscillante tra $-1$ e $1$</td></tr>
+<tr><td>$q\lt-1$</td><td>oscillante, con modulo che tende a $+\infty$</td></tr>
+</tbody></table></div>
+<p>In questa lezione si completano soprattutto i casi $|q|\lt1$ e $q\le-1$.</p>
+
+<h3>Successione di Nepero</h3>
+<div class="box def">
+<div class="bt">Definizione — Numero di Nepero</div>
+<p>La successione di Nepero è</p>
+$$a_n=\left(1+\frac1n\right)^n,\qquad n\ge1.$$
+<p>Il suo limite definisce il numero di Nepero:</p>
+$$e:=\lim_{n\to+\infty}\left(1+\frac1n\right)^n\approx2{,}71828.$$
+</div>
+<p>La convergenza viene presentata a lezione senza una dimostrazione completa.</p>
+
+<h3>Successioni definite per ricorrenza</h3>
+<p>Una successione è definita per ricorrenza quando i suoi termini si determinano a partire da termini precedenti:</p>
+$$\begin{cases}a_0=c,\\ a_{n+1}=F(n,a_n).\end{cases}$$
+<p>Servono un valore iniziale e una regola per calcolare i termini successivi. Il valore iniziale è il punto di partenza: senza di esso la definizione rimarrebbe un richiamo continuo al termine precedente.</p>
+
+<h3>Fattoriale</h3>
+<div class="box def">
+<div class="bt">Definizione — Fattoriale</div>
+$$\boxed{\begin{cases}0!:=1,\\ (n+1)!:=(n+1)\,n!,\qquad n\in\mathbb N.\end{cases}}$$
+<p>Per $n\ge1$, equivalentemente, $n!=1\cdot2\cdot3\cdots n$.</p>
+</div>
+<p>Esempio: $4!=4\cdot3!=4\cdot3\cdot2\cdot1=24$. La relazione da usare negli esercizi è $(n+1)!=(n+1)\,n!$.</p>
+
+<h3>Coefficiente binomiale</h3>
+<div class="box def">
+<div class="bt">Definizione — Coefficiente binomiale</div>
+<p>Siano $n,k\in\mathbb N$ con $0\le k\le n$. Si definisce</p>
+$$\boxed{\binom nk:=\frac{n!}{k!\,(n-k)!}.}$$
+</div>
+<p>Conta i modi di scegliere $k$ elementi da un insieme di $n$ elementi distinti, senza ripetizioni e senza considerare l’ordine. Per esempio</p>
+$$\binom53=\frac{5!}{3!\,2!}=\frac{5\cdot4}{2}=10.$$
+<p>Nell’esempio della squadra di calcio, $\binom{23}{11}$ conta i gruppi di undici giocatori scelti tra ventitré: non distingue ruoli o posizioni in campo.</p>
+
+<h3>Successioni infinitesime</h3>
+<div class="box def">
+<div class="bt">Definizione — Infinitesima</div>
+<p>$(a_n)$ è infinitesima se</p>
+$$\boxed{\lim_{n\to+\infty}a_n=0.}$$
+</div>
+<p>Essere infinitesima significa convergere precisamente a zero, non semplicemente convergere.</p>
+
+<h3>Confronto tra infiniti</h3>
+<p>Siano $a_n\to+\infty$ e $b_n\to+\infty$. Per confrontarli si studia $\displaystyle\lim_{n\to+\infty}\frac{a_n}{b_n}$.</p>
+<div class="tbl"><table>
+<thead><tr><th>Limite del rapporto</th><th>Relazione</th></tr></thead>
+<tbody>
+<tr><td>$0$</td><td>$a_n$ è un infinito di ordine inferiore rispetto a $b_n$</td></tr>
+<tr><td>$+\infty$</td><td>$a_n$ è un infinito di ordine superiore rispetto a $b_n$</td></tr>
+<tr><td>$\ell\in(0,+\infty)$</td><td>$a_n$ e $b_n$ sono infiniti dello stesso ordine</td></tr>
+<tr><td>non esiste</td><td>non confrontabili con questo criterio</td></tr>
+</tbody></table></div>
+<p>Dire $\frac{a_n}{b_n}\to0$ significa che $a_n$ è <strong>trascurabile</strong> rispetto a $b_n$; si indica con $a_n=o(b_n)$ (notazione “o piccolo”, anticipata a lezione).</p>
+
+<h3>Confronto tra infinitesimi</h3>
+<p>Siano $a_n\to0$ e $b_n\to0$, con $b_n\neq0$ definitivamente, entrambi definitivamente positivi.</p>
+<div class="tbl"><table>
+<thead><tr><th>Limite di $\dfrac{a_n}{b_n}$</th><th>Relazione</th></tr></thead>
+<tbody>
+<tr><td>$0$</td><td>$a_n$ è un infinitesimo di ordine superiore rispetto a $b_n$</td></tr>
+<tr><td>$+\infty$</td><td>$a_n$ è un infinitesimo di ordine inferiore rispetto a $b_n$</td></tr>
+<tr><td>$\ell\in(0,+\infty)$</td><td>infinitesimi dello stesso ordine</td></tr>
+<tr><td>non esiste</td><td>non confrontabili con questo criterio</td></tr>
+</tbody></table></div>
+<p>La terminologia si <strong>inverte</strong> rispetto agli infiniti: un infinito di ordine superiore cresce più rapidamente; un infinitesimo di ordine superiore tende a zero più rapidamente. Esempio: $\dfrac{1/n^2}{1/n}=\dfrac1n\to0$, quindi $1/n^2$ è un infinitesimo di ordine superiore rispetto a $1/n$.</p>
+<p>Per successioni di segno variabile la rapidità si confronta in modulo, studiando $|a_n|/|b_n|$: il rapporto con segno può oscillare.</p>
+
+<h3>Equivalenza asintotica</h3>
+<div class="box def">
+<div class="bt">Definizione — Asintoticamente equivalenti</div>
+<p>Due successioni $(a_n)$, $(b_n)$ definitivamente non nulle sono asintoticamente equivalenti se</p>
+$$\boxed{a_n\sim b_n\quad\Longleftrightarrow\quad\lim_{n\to+\infty}\frac{a_n}{b_n}=1.}$$
+</div>
+<p>Significa che l’errore relativo tende a zero:</p>
+$$\frac{a_n-b_n}{b_n}=\frac{a_n}{b_n}-1\longrightarrow0.$$
+<p>Non significa che la differenza tenda a zero: $n^5+3\sim n^5$, ma $(n^5+3)-n^5=3$.</p>
+<p>Inoltre “stesso ordine” non vuol dire “asintoticamente equivalenti”: $\dfrac{2n^2+1}{n^2}\to2$, quindi $2n^2+1$ e $n^2$ hanno lo stesso ordine, mentre $2n^2+1\sim2n^2$.</p>
+
+
+<h2>2. Teoremi</h2>
+
+<div class="box thm">
+<div class="bt">Teorema — Proprietà dei coefficienti binomiali</div>
+<p>Per gli indici per cui le espressioni sono definite:</p>
+<ol>
+<li>valori agli estremi: $\displaystyle\binom n0=\binom nn=1$;</li>
+<li>simmetria: $\displaystyle\binom nk=\binom n{n-k}$;</li>
+<li>identità di Pascal, per $1\le k\le n$: $$\boxed{\binom{n+1}k=\binom nk+\binom n{k-1}};$$</li>
+<li>coefficienti consecutivi, per $0\le k\lt n$: $$\boxed{\binom n{k+1}=\binom nk\,\frac{n-k}{k+1}}.$$</li>
+</ol>
+</div>
+<p>L’identità di Pascal descrive il triangolo di Tartaglia: ogni elemento interno è la somma dei due immediatamente sopra. La riga $n=5$ è $1,\ 5,\ 10,\ 10,\ 5,\ 1$.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Teorema del rapporto per successioni</div>
+<p><strong>Ipotesi.</strong> $a_n\gt0$ definitivamente ed esiste</p>
+$$\ell=\lim_{n\to+\infty}\frac{a_{n+1}}{a_n}\in[0,+\infty].$$
+<p><strong>Tesi.</strong></p>
+$$\boxed{\begin{aligned}0\le\ell\lt1&\Longrightarrow a_n\to0,\\ 1\lt\ell\le+\infty&\Longrightarrow a_n\to+\infty.\end{aligned}}$$
+<p>Se $\ell=1$ il teorema non permette di concludere.</p>
+</div>
+<p>Infatti $a_n=\frac1n$, $b_n=1$, $c_n=n$ hanno tutte rapporto tra termini consecutivi tendente a $1$, ma tendono rispettivamente a $0$, $1$, $+\infty$. È un teorema sul limite di una successione (non si sta studiando una serie). Il professore lo enuncia senza dimostrazione.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Gerarchia degli infiniti</div>
+<p>Per $b\gt1$, $c\gt1$, $\alpha\gt0$ fissati:</p>
+$$\boxed{\log_c n\ll n^\alpha\ll b^n\ll n!\ll n^n.}$$
+<p>Qui $u_n\ll v_n$ significa $\dfrac{u_n}{v_n}\to0$. In particolare</p>
+$$\lim_{n\to+\infty}\frac{\log_c n}{n^\alpha}=0,\quad\lim_{n\to+\infty}\frac{n^\alpha}{b^n}=0,\quad\lim_{n\to+\infty}\frac{b^n}{n!}=0,\quad\lim_{n\to+\infty}\frac{n!}{n^n}=0.$$
+</div>
+<p>Ogni successione limitata è inoltre trascurabile rispetto a una successione che tende a $+\infty$. Attenzione: basi ed esponenti devono essere <strong>fissati</strong>; il confronto $n^\alpha\ll b^n$ non si applica sostituendo automaticamente $\alpha$ con $n$.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Formula di Stirling</div>
+$$\boxed{n!\sim\sqrt{2\pi n}\left(\frac ne\right)^n.}$$
+<p>Equivalentemente $\displaystyle\lim_{n\to+\infty}\frac{n!}{\sqrt{2\pi n}\,(n/e)^n}=1$.</p>
+</div>
+<p>È un’equivalenza asintotica, non un’uguaglianza. Enunciata senza dimostrazione; è utile quando le proprietà del fattoriale e la gerarchia degli infiniti non bastano.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Stabilità dell’equivalenza asintotica</div>
+<p><strong>Ipotesi.</strong> $a_n\sim\alpha_n$, $b_n\sim\beta_n$, $c_n\sim\gamma_n$, con tutti i rapporti definiti definitivamente.</p>
+<p><strong>Tesi.</strong></p>
+$$\boxed{\frac{a_nb_n}{c_n}\sim\frac{\alpha_n\beta_n}{\gamma_n}.}$$
+</div>
+<p>L’equivalenza si conserva in prodotti e quozienti, <strong>non</strong> in generale in somme e differenze: una cancellazione può rendere decisivi proprio i termini trascurati.</p>
+
+
+<h2>3. Dimostrazioni</h2>
+
+<h3>Geometrica, caso $|q|\lt1$</h3>
+<p>Vogliamo $q^n\to0$. Se $q=0$ è immediato. Sia $0\lt|q|\lt1$ e poniamo</p>
+$$x:=\frac1{|q|}-1\gt0,\qquad\text{così che}\qquad|q|=\frac1{1+x},\quad|q^n|=\frac1{(1+x)^n}.$$
+<p>Per la disuguaglianza di Bernoulli $(1+x)^n\ge1+nx$; essendo entrambi i membri positivi, passando ai reciproci si inverte il verso:</p>
+$$0\le|q^n|\le\frac1{1+nx}.$$
+<p>Poiché $x\gt0$ è fissato, $\frac1{1+nx}\to0$. Per il teorema del confronto $|q^n|\to0$, dunque $\boxed{q^n\to0}$.</p>
+
+<h3>Geometrica, caso $q\le-1$</h3>
+<p>Se $q=-1$: $q^{2k}=1$ e $q^{2k+1}=-1$. Le sottosuccessioni pari e dispari hanno limiti diversi, quindi il limite non esiste.</p>
+<p>Se $q\lt-1$: scriviamo $q=-r$ con $r\gt1$. Allora $q^{2k}=r^{2k}\to+\infty$ e $q^{2k+1}=-r^{2k+1}\to-\infty$: anche qui il limite non esiste.</p>
+<p><strong>Nota di rigore.</strong> Per $q=-1$ il modulo vale sempre $1$, non tende a infinito.</p>
+
+<h3>L’esponenziale domina la potenza</h3>
+<p>Per $b\gt1$, $\alpha\gt0$ fissati, poniamo $a_n:=\dfrac{n^\alpha}{b^n}\gt0$. Il rapporto tra termini consecutivi è</p>
+$$\begin{aligned}
+\frac{a_{n+1}}{a_n}&=\frac{(n+1)^\alpha}{b^{n+1}}\cdot\frac{b^n}{n^\alpha}\\
+&=\frac1b\left(\frac{n+1}{n}\right)^\alpha\\
+&=\frac1b\left(1+\frac1n\right)^\alpha.
+\end{aligned}$$
+<p>Poiché $\alpha$ è fissato, $\left(1+\frac1n\right)^\alpha\to1$, quindi $\frac{a_{n+1}}{a_n}\to\frac1b\lt1$. Per il teorema del rapporto $\boxed{\dfrac{n^\alpha}{b^n}\to0}$.</p>
+
+<h3>Il fattoriale domina l’esponenziale</h3>
+<p>Poniamo $a_n:=\dfrac{b^n}{n!}\gt0$. Allora</p>
+$$\begin{aligned}
+\frac{a_{n+1}}{a_n}&=\frac{b^{n+1}}{(n+1)!}\cdot\frac{n!}{b^n}\\
+&=\frac{b\cdot b^n}{(n+1)\,n!}\cdot\frac{n!}{b^n}\\
+&=\frac{b}{n+1}\to0.
+\end{aligned}$$
+<p>Il limite del rapporto è minore di $1$, quindi $\boxed{\dfrac{b^n}{n!}\to0}$.</p>
+
+<h3>$n^n$ domina il fattoriale</h3>
+<p>Poniamo $a_n:=\dfrac{n!}{n^n}\gt0$. Allora</p>
+$$\begin{aligned}
+\frac{a_{n+1}}{a_n}&=\frac{(n+1)!}{(n+1)^{n+1}}\cdot\frac{n^n}{n!}\\
+&=\frac{(n+1)\,n!}{(n+1)(n+1)^n}\cdot\frac{n^n}{n!}\\
+&=\left(\frac n{n+1}\right)^n\\
+&=\frac1{(1+1/n)^n}.
+\end{aligned}$$
+<p>Per il limite di Nepero, $\frac{a_{n+1}}{a_n}\to\frac1e\lt1$. Quindi $\boxed{\dfrac{n!}{n^n}\to0}$.</p>
+<p>Queste tre dimostrazioni sono sviluppate a lezione; il confronto tra logaritmo e potenza è enunciato ma non dimostrato allo stesso modo.</p>
+
+<h3>Stabilità dell’equivalenza asintotica</h3>
+<p>Dalle ipotesi $\frac{a_n}{\alpha_n}\to1$, $\frac{b_n}{\beta_n}\to1$, $\frac{c_n}{\gamma_n}\to1$. Il rapporto tra le due espressioni è</p>
+$$\frac{a_nb_n/c_n}{\alpha_n\beta_n/\gamma_n}=\frac{a_n}{\alpha_n}\cdot\frac{b_n}{\beta_n}\cdot\frac{\gamma_n}{c_n}.$$
+<p>Ogni fattore tende a $1$, quindi il prodotto tende a $1$: $\dfrac{a_nb_n}{c_n}\sim\dfrac{\alpha_n\beta_n}{\gamma_n}$.</p>
+
+
+<h2>4. Esempi e osservazioni</h2>
+
+<h3>Perché serve la gerarchia degli infiniti</h3>
+<p>L’algebra dei limiti non risolve forme indeterminate come $+\infty-\infty$, $\frac\infty\infty$, $0\cdot\infty$. Per esempio $\sqrt n-\ln n$ ha la forma $+\infty-\infty$. Poiché $\frac{\ln n}{\sqrt n}\to0$, raccogliamo il termine dominante:</p>
+$$\sqrt n-\ln n=\sqrt n\left(1-\frac{\ln n}{\sqrt n}\right)\longrightarrow+\infty,$$
+<p>perché il primo fattore tende a $+\infty$ e il secondo a $1$. Analogamente $\dfrac{n^2}{e^n}\to0$.</p>
+<p>“Trascurabile” non significa che diventi una costante: significa che il rapporto con il termine dominante tende a zero.</p>
+
+<h3>Un limite lungo con un solo termine dominante</h3>
+<p>L’esempio della lezione ha la struttura</p>
+$$\lim_{n\to+\infty}\frac{e^n+\text{termini di crescita inferiore}}{2e^n+\text{termini di crescita inferiore}}.$$
+<p>Dividendo numeratore e denominatore per $e^n$, i termini di crescita inferiore tendono a zero:</p>
+$$\frac{1+o(1)}{2+o(1)}\to\frac12,\qquad\boxed{L=\frac12.}$$
+<p>Attenzione al termine $\sin(n!)$: anche se $n!\to+\infty$, vale sempre $|\sin(n!)|\le1$. È una successione <strong>limitata</strong>, non un termine con la “forza del fattoriale”.</p>
+
+<h3>Confronto tra infiniti: esempi</h3>
+<p>Fissiamo $a_n=n^2$.</p>
+<div class="tbl"><table>
+<thead><tr><th>$b_n$</th><th>Limite di $\dfrac{a_n}{b_n}$</th><th>Conclusione</th></tr></thead>
+<tbody>
+<tr><td>$n^3+5$</td><td>$0$</td><td>$a_n$ di ordine inferiore</td></tr>
+<tr><td>$3n+2$</td><td>$+\infty$</td><td>$a_n$ di ordine superiore</td></tr>
+<tr><td>$2n^2+1$</td><td>$\frac12$</td><td>stesso ordine</td></tr>
+<tr><td>$(-1)^nn^2$</td><td>non esiste</td><td>rapporto oscillante</td></tr>
+</tbody></table></div>
+<p>Per esempio</p>
+$$\frac{n^2}{n^3+5}=\frac{1/n}{1+5/n^3}\to0,\qquad\frac{n^2}{3n+2}=\frac n{3+2/n}\to+\infty.$$
+<p><strong>Precisazione.</strong> $(-1)^nn^2$ non tende a $+\infty$, quindi non rientra nell’ipotesi iniziale (due infiniti positivi). Il rapporto con segno non converge; in modulo, invece, le due successioni valgono entrambe $n^2$.</p>
+
+<h3>Confronto tra infinitesimi: esempi</h3>
+<p>Prendiamo $a_n=\dfrac1{n+3}\sim\dfrac1n$.</p>
+<div class="box ex">
+<div class="bt">Esempio — $b_n=\dfrac1{n^4+2}$</div>
+$$\frac{a_n}{b_n}=\frac{n^4+2}{n+3}\sim n^3\to+\infty.$$
+<p>Quindi $a_n$ è un infinitesimo di ordine inferiore rispetto a $b_n$: $b_n$ tende a zero più rapidamente.</p>
+</div>
+<div class="box ex">
+<div class="bt">Esempio — $b_n=\dfrac{(-1)^n}{n}$</div>
+$$\frac{a_n}{b_n}=(-1)^n\frac n{n+3}.$$
+<p>Le sottosuccessioni pari e dispari tendono a $1$ e $-1$: il rapporto non ha limite. In modulo, però, $\dfrac{|a_n|}{|b_n|}=\dfrac n{n+3}\to1$.</p>
+</div>
+
+<h3>Cancellazioni: differenza di radici</h3>
+<p>Consideriamo</p>
+$$L=\lim_{n\to+\infty}\left(\sqrt{n^2+5n+1}-\sqrt{n^2-n+3}\right).$$
+<p>Entrambe le radici sono equivalenti a $n$, ma non si può sostituirle con $n$ nella differenza e concludere $L=0$. Razionalizziamo:</p>
+$$\begin{aligned}
+&\sqrt{n^2+5n+1}-\sqrt{n^2-n+3}\\
+&\quad=\frac{(n^2+5n+1)-(n^2-n+3)}{\sqrt{n^2+5n+1}+\sqrt{n^2-n+3}}\\
+&\quad=\frac{6n-2}{\sqrt{n^2+5n+1}+\sqrt{n^2-n+3}}.
+\end{aligned}$$
+<p>Dividendo per $n\gt0$:</p>
+$$L=\lim_{n\to+\infty}\frac{6-2/n}{\sqrt{1+5/n+1/n^2}+\sqrt{1-1/n+3/n^2}}=\frac6{1+1}=\boxed{3}.$$
+<p>Il problema non è solo che i termini hanno lo stesso ordine: è che i termini principali si <strong>cancellano</strong>, rendendo importanti quelli successivi.</p>
+
+<h3>Differenza di logaritmi</h3>
+<p>Usando $\ln A-\ln B=\ln\frac AB$:</p>
+$$\begin{aligned}
+L&=\lim_{n\to+\infty}\left[\ln(n^3+1)-\ln(n^3)\right]\\
+&=\lim_{n\to+\infty}\ln\left(1+\frac1{n^3}\right)\\
+&=\ln1=0.
+\end{aligned}$$
+<p>Il risultato è $\boxed{L=0}$, ma va giustificato con la trasformazione algebrica, non cancellando informalmente due espressioni equivalenti.</p>
+
+<h3>Perché le equivalenze non si sommano</h3>
+<div class="box ex">
+<div class="bt">Controesempio</div>
+<p>Siano $a_n=n^2+n$, $\alpha_n=n^2$, $b_n=-n^2$, $\beta_n=-n^2+1$. Allora $a_n\sim\alpha_n$ e $b_n\sim\beta_n$. Ma</p>
+$$a_n+b_n=n,\qquad\alpha_n+\beta_n=1,\qquad\frac n1\to+\infty,$$
+<p>quindi le due somme non sono equivalenti.</p>
+</div>
+<p>La cancellazione dei termini $n^2$ fa emergere termini che nelle singole equivalenze sembravano trascurabili.</p>
+
+<h3>Applicazione della formula di Stirling</h3>
+<p>Si studia</p>
+$$L=\lim_{n\to+\infty}\frac{n!\,(e^n+1)}{n^{n+1/2}-2n-3\ln n+7}.$$
+<p>Semplifichiamo i blocchi: $e^n+1\sim e^n$ e $n^{n+1/2}-2n-3\ln n+7\sim n^{n+1/2}$. L’espressione è quindi equivalente a $\dfrac{n!\,e^n}{n^{n+1/2}}$. Qui la sola gerarchia non basta (c’è un prodotto di fattoriale ed esponenziale): usiamo Stirling.</p>
+$$\begin{aligned}
+\frac{n!\,e^n}{n^{n+1/2}}&\sim\frac{\sqrt{2\pi n}\,(n/e)^n\,e^n}{n^n\sqrt n}\\
+&=\frac{\sqrt{2\pi}\sqrt n\,n^n}{n^n\sqrt n}\\
+&=\sqrt{2\pi}.
+\end{aligned}$$
+<p>Quindi $\boxed{L=\sqrt{2\pi}}$.</p>
+<p><strong>Indicazione pratica.</strong> Prima provare le identità del fattoriale, le semplificazioni e i confronti di crescita; usare Stirling solo quando serve davvero.</p>
+
+<h3>Significato geometrico del numero $e$</h3>
+<p>Anticipazione geometrica: tutte le funzioni $y=b^x$, con $b\gt1$, passano per $(0,1)$. La base $e$ è quella per cui la tangente in quel punto ha coefficiente angolare $1$, cioè è parallela a $y=x$. La tangente è $y=x+1$. Per $1\lt b\lt e$ è meno ripida, per $b\gt e$ più ripida. Il collegamento sarà formalizzato con le derivate.</p>
+
+<h3>Sezione aurea: introduzione geometrica</h3>
+<p>La parte finale introduce il rettangolo aureo, come preparazione alla successione di Fibonacci (non ancora sviluppata in questa lezione).</p>
+<p><strong>Costruzione.</strong> Partiamo da un quadrato di lato $L\gt0$. Sia $M$ il punto medio della base; congiungiamolo con il vertice superiore destro e sia $d$ la lunghezza del segmento. Per Pitagora</p>
+$$d=\sqrt{L^2+\left(\frac L2\right)^2}=\sqrt{\frac54L^2}=\frac{\sqrt5}{2}L.$$
+<p>Ruotando il segmento fino a disporlo lungo il prolungamento della base si ottiene un rettangolo di altezza $H=L$ e base</p>
+$$B=\frac L2+d=\frac{1+\sqrt5}{2}L.$$
+<div class="box def">
+<div class="bt">Definizione — Rapporto aureo</div>
+$$\boxed{\varphi:=\frac BH=\frac{1+\sqrt5}{2}\approx1{,}618.}$$
+</div>
+<p><strong>Relazione di proporzionalità.</strong> Da questa formula segue $\varphi^2=\varphi+1$, cioè $\varphi=1+\frac1\varphi$. Per il rettangolo costruito</p>
+$$\frac BH=\frac H{B-H}=\varphi.$$
+<p>Il rapporto tra lato maggiore e lato minore coincide con quello tra lato minore e la loro differenza: è la proporzione caratteristica della sezione aurea.</p>
+
+
+<h2>5. Schema operativo per gli esercizi</h2>
+<div class="box ex">
+<div class="bt">Procedura per i limiti</div>
+<ol>
+<li>Individuare la forma del limite: determinata o indeterminata.</li>
+<li>Confrontare i termini con la gerarchia $\log n\ll n^\alpha\ll b^n\ll n!\ll n^n$ (con $\alpha\gt0$, $b\gt1$).</li>
+<li>Nelle somme, raccogliere il termine dominante e verificare che resti un coefficiente non nullo.</li>
+<li>Se i termini principali si cancellano, non eliminarli informalmente: usare identità algebriche, razionalizzazione o proprietà dei logaritmi.</li>
+<li>Nei prodotti e nei quozienti, sostituire i blocchi con equivalenti più semplici.</li>
+<li>Con i fattoriali provare prima $(n+1)!=(n+1)\,n!$; ricorrere a Stirling quando le semplificazioni non bastano.</li>
+<li>Distinguere i due rapporti: $\dfrac{a_{n+1}}{a_n}$ per studiare una successione con il teorema del rapporto; $\dfrac{a_n}{b_n}$ per confrontare due successioni.</li>
+</ol>
+</div>
+<p>Il punto centrale della lezione è capire quali termini sono trascurabili in senso relativo, senza perdere quelli che diventano decisivi dopo una cancellazione.</p>
+
+
+<h2>6. Errori da evitare</h2>
+<div class="box warn">
+<div class="bt">Attenzione</div>
+<ul>
+<li>Teorema del rapporto: se $\ell=1$ non si conclude nulla ($\frac1n$, $1$, $n$ hanno tutte $\ell=1$).</li>
+<li>Per $q=-1$ il modulo di $q^n$ vale sempre $1$: non tende a infinito.</li>
+<li>Nella gerarchia basi ed esponenti vanno <strong>fissati</strong>: non sostituire $\alpha$ con $n$.</li>
+<li>Terminologia invertita: infinito di ordine superiore cresce di più, infinitesimo di ordine superiore tende a zero più in fretta.</li>
+<li>“Stesso ordine” non è “asintoticamente equivalenti”: $2n^2+1\sim2n^2$, non $\sim n^2$.</li>
+<li>$a_n\sim b_n$ non implica $a_n-b_n\to0$ ($n^5+3\sim n^5$ ma la differenza vale $3$).</li>
+<li>Le equivalenze si conservano in prodotti e quozienti, <strong>non</strong> in somme e differenze.</li>
+<li>Non sostituire due radici equivalenti a $n$ nella loro differenza: i termini principali si cancellano, serve razionalizzare.</li>
+<li>$\sin(n!)$ è limitata: non ha la crescita del fattoriale.</li>
+<li>La formula di Stirling è un’equivalenza asintotica, non un’uguaglianza.</li>
+</ul>
+</div>
+
+
+<h2>7. Riepilogo finale</h2>
+<p>Cosa devi saper fare dopo questo Day:</p>
+<ul>
+<li>completare il carattere di $q^n$ e dimostrare i casi $|q|\lt1$ e $q\le-1$;</li>
+<li>conoscere il numero di Nepero, il fattoriale per ricorrenza e i coefficienti binomiali con le loro proprietà (simmetria, Pascal);</li>
+<li>enunciare il teorema del rapporto e sapere che con $\ell=1$ non conclude;</li>
+<li>conoscere la gerarchia $\log n\ll n^\alpha\ll b^n\ll n!\ll n^n$ e saper dimostrare i tre confronti col teorema del rapporto;</li>
+<li>confrontare infiniti e infinitesimi e usare l’equivalenza asintotica solo in prodotti e quozienti;</li>
+<li>gestire le cancellazioni (razionalizzazione, logaritmi) ed usare Stirling quando serve;</li>
+<li>costruire il rettangolo aureo e ricavare $\varphi=\frac{1+\sqrt5}{2}$.</li>
+</ul>

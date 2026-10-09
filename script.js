@@ -22,42 +22,56 @@ var days = [
   {
     n: 1,
     title: 'Principio di Induzione e Caratterizzazione dei Numeri Reali',
-    file: 'appunti/day-01.html'
+    file: 'appunti/day-01.html',
+    date: '2026-09-14'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
   },
   {
     n: 2,
     title: 'Completezza di R, Estremo Superiore e Inferiore, Introduzione ai Complessi',
-    file: 'appunti/day-02.html'
+    file: 'appunti/day-02.html',
+    date: '2026-09-16'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
   },
   {
     n: 3,
     title: 'Numeri complessi: operazioni, coniugato, modulo, inverso e forma goniometrica',
-    file: 'appunti/day-03.html'
+    file: 'appunti/day-03.html',
+    date: '2026-09-17'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
   },
   {
     n: 4,
     title: 'Forma esponenziale, radici ennesime, logaritmo complesso e polinomi',
-    file: 'appunti/day-04.html'
+    file: 'appunti/day-04.html',
+    date: '2026-09-23'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
   },
   {
     n: 5,
     title: 'Polinomi complessi, funzioni, estremi, simmetrie e monotonia',
-    file: 'appunti/day-05.html'
+    file: 'appunti/day-05.html',
+    date: '2026-09-25'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
   },
   {
     n: 6,
     title: 'Composizione, inversa, successioni e limite',
-    file: 'appunti/day-06.html'
+    file: 'appunti/day-06.html',
+    date: '2026-09-30'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
   },
   {
     n: 7,
     title: 'Successioni: limiti, confronto, monotonia e successioni geometriche',
-    file: 'appunti/day-07.html'
+    file: 'appunti/day-07.html',
+    date: '2026-10-02'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
   },
   {
     n: 8,
     title: 'Successioni notevoli, teorema del rapporto e confronti asintotici',
-    file: 'appunti/day-08.html'
+    file: 'appunti/day-08.html',
+    date: '2026-10-07'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
+  },
+  {
+    n: 9,
+    title: 'Fibonacci, sottosuccessioni, topologia di R e limiti di funzioni',
+    file: 'appunti/day-09.html',
+    date: '2026-10-09'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
   }
   
 ];
@@ -67,12 +81,14 @@ var esercitazioni = [
   {
     n: 1,
     title: 'Estremi degli insiemi',
-    file: 'appunti/esercitazione-1.html'
+    file: 'appunti/esercitazione-1.html',
+    date: '2026-09-21'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
   },
   {
     n: 2,
     title: 'Numeri complessi: forme, radici, equazioni e luoghi geometrici',
-    file: 'appunti/esercitazione-2.html'
+    file: 'appunti/esercitazione-2.html',
+    date: '2026-09-28'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
   },
   {
     n: 3,
@@ -92,7 +108,8 @@ var tutorato = [
   { 
     n: 1, 
     title: 'Goniometria e numeri complessi', 
-    file: 'appunti/t-01.html' 
+    file: 'appunti/t-01.html',
+    date: '2026-10-01'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
   }
 ];
 tutorato.sort(function (a, b) { return a.n - b.n; });
@@ -178,8 +195,12 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!h.id) h.id = 'sec-' + (++i);
       var b = document.createElement('button');
       b.className = 'toc-i' + (h.tagName === 'H3' ? ' sub' : '');
-      b.textContent = h.textContent;
-      b.title = h.textContent;
+      
+      b.innerHTML = h.innerHTML;   /* copia il titolo già renderizzato da KaTeX, formule incluse */
+      var plain = h.cloneNode(true);
+      Array.prototype.forEach.call(plain.querySelectorAll('.katex-mathml'), function (n) { n.remove(); });
+      b.title = plain.textContent;   /* tooltip senza il MathML nascosto */
+
       tocHeads.push(h); tocItems.push(b);
       b.addEventListener('click', function () {
         h.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -559,5 +580,5 @@ document.addEventListener('DOMContentLoaded', function () {
   buildModeMenu();
   buildMenu();
   show(startIdx, false, false);
-  if (!window.renderMathInElement) window.addEventListener('load', renderMath);
+  if (!window.renderMathInElement) window.addEventListener('load', function () { renderMath(); buildToc(); });
 });
