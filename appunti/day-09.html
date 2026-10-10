@@ -1,0 +1,289 @@
+<p>Manteniamo le convenzioni dei Day precedenti: $\mathbb N=\{0,1,2,\ldots\}$ e $\overline{\mathbb R}=\mathbb R\cup\{-\infty,+\infty\}$. Si distinguono le successioni convergenti (limite reale) da quelle divergenti a $\pm\infty$.</p>
+
+<h2>1. Definizioni</h2>
+
+<h3>Successione di Fibonacci e sezione aurea</h3>
+<div class="box def">
+<div class="bt">Definizione — Successione di Fibonacci</div>
+<p>La successione è definita per ricorrenza:</p>
+$$F_0=1,\qquad F_1=1,\qquad F_{n+1}=F_n+F_{n-1}\quad\forall n\ge1.$$
+<p>I primi termini sono $1,\ 1,\ 2,\ 3,\ 5,\ 8,\ 13,\ 21,\ldots$: dal terzo in poi, ogni termine è la somma dei due precedenti.</p>
+</div>
+<p>Il numero $\varphi=\dfrac{1+\sqrt5}{2}$ è la <strong>sezione aurea</strong>, rapporto tra lato maggiore e minore del rettangolo aureo. Il legame con Fibonacci riguarda il rapporto tra termini consecutivi, non il limite della successione stessa.</p>
+
+<h3>Sottosuccessioni</h3>
+<div class="box def">
+<div class="bt">Definizione — Sottosuccessione</div>
+<p>Sia $(a_n)$ una successione reale definita su $I\subseteq\mathbb N$. Una <strong>sottosuccessione</strong> è una successione</p>
+$$b_k=a_{n_k},\qquad n_k\in I,\quad n_{k+1}\gt n_k.$$
+<p>Equivalentemente, $b_k=a_{h(k)}$ con $h\colon\mathbb N\to I$ strettamente crescente.</p>
+</div>
+<p>Si scelgono infiniti termini conservandone l'ordine. Devono essere crescenti gli <strong>indici</strong>, non necessariamente i valori.</p>
+
+<h3>Intorni</h3>
+<div class="box def">
+<div class="bt">Definizione — Intorno di un punto reale</div>
+<p>Siano $\widehat x\in\mathbb R$ e $\delta\gt0$. L'intorno di centro $\widehat x$ e raggio $\delta$ è</p>
+$$B_\delta(\widehat x)=(\widehat x-\delta,\widehat x+\delta)=\{x\in\mathbb R:|x-\widehat x|\lt\delta\}.$$
+<p>Il centro appartiene all'intorno; gli estremi sono esclusi.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Definizione — Intorni unilateri</div>
+<p>Con la convenzione della lezione, gli intorni destro e sinistro comprendono il centro:</p>
+$$B_\delta^+(\widehat x)=[\widehat x,\widehat x+\delta),\qquad B_\delta^-(\widehat x)=(\widehat x-\delta,\widehat x].$$
+<p>Studiando un limite si elimina il centro: si ottengono $(\widehat x,\widehat x+\delta)$ e $(\widehat x-\delta,\widehat x)$.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Definizione — Intorni di infinito</div>
+<p>I valori reali vicini a $+\infty$ si descrivono con le semirette $(M,+\infty)$, quelli vicini a $-\infty$ con $(-\infty,M)$, con $M\in\mathbb R$. Avvicinarsi a $+\infty$ significa superare soglie arbitrariamente grandi.</p>
+</div>
+
+<h3>Classificazione dei punti rispetto a un insieme</h3>
+<p>Sia $D\subseteq\mathbb R$.</p>
+
+<div class="box def">
+<div class="bt">Definizione — Punto esterno</div>
+<p>$\widehat x\in\mathbb R$ è <strong>esterno</strong> a $D$ se</p>
+$$\exists\delta\gt0:\quad B_\delta(\widehat x)\cap D=\varnothing.$$
+<p>Non basta che $\widehat x\notin D$: serve un intero intorno disgiunto da $D$.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Definizione — Punto interno, parte interna, insieme aperto</div>
+<p>$\widehat x$ è <strong>interno</strong> a $D$ se $\exists\delta\gt0:\ B_\delta(\widehat x)\subseteq D$. La <strong>parte interna</strong> è</p>
+$$D^\circ=\{x\in\mathbb R:x\text{ è interno a }D\}\subseteq D.$$
+<p>$D$ è <strong>aperto</strong> se $D=D^\circ$, cioè se ogni suo punto è interno.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Definizione — Punto aderente, chiusura, insieme chiuso</div>
+<p>$\widehat x$ è <strong>aderente</strong> a $D$ se</p>
+$$\forall\delta\gt0:\quad B_\delta(\widehat x)\cap D\ne\varnothing.$$
+<p>La <strong>chiusura</strong> $\overline D$ è l'insieme dei punti aderenti, e $D\subseteq\overline D$. $D$ è <strong>chiuso</strong> se $D=\overline D$.</p>
+</div>
+<p>«Aderente» non significa «sul bordo»: tutti i punti di $D$, interni e isolati compresi, sono aderenti.</p>
+
+<div class="box def">
+<div class="bt">Definizione — Punto isolato</div>
+<p>$\widehat x$ è <strong>isolato</strong> per $D$ se</p>
+$$\exists\delta\gt0:\quad B_\delta(\widehat x)\cap D=\{\widehat x\}.$$
+<p>Questo implica già $\widehat x\in D$.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Definizione — Punto di accumulazione</div>
+<p>$\widehat x\in\mathbb R$ è di <strong>accumulazione</strong> per $D$ se</p>
+$$\forall\delta\gt0:\quad\bigl(B_\delta(\widehat x)\cap D\bigr)\setminus\{\widehat x\}\ne\varnothing,$$
+<p>cioè $\forall\delta\gt0\ \exists x\in D:\ 0\lt|x-\widehat x|\lt\delta$. È un punto aderente non isolato e <strong>non deve appartenere a $D$</strong>.</p>
+<p>Per l'accumulazione da destra si richiede $D\cap(\widehat x,\widehat x+\delta)\ne\varnothing$ per ogni $\delta\gt0$; da sinistra, $D\cap(\widehat x-\delta,\widehat x)\ne\varnothing$.</p>
+</div>
+
+<h3>Limite di una funzione</h3>
+<div class="box def">
+<div class="bt">Definizione — Limite finito per $x\to\widehat x$</div>
+<p>Siano $f\colon D\to\mathbb R$, $\widehat x\in\mathbb R$ di accumulazione per $D$ e $L\in\mathbb R$. Si scrive $\displaystyle\lim_{x\to\widehat x}f(x)=L$ se</p>
+$$\boxed{\forall\varepsilon\gt0\ \ \exists\delta\gt0\ \ \forall x\in D:\quad0\lt|x-\widehat x|\lt\delta\Longrightarrow|f(x)-L|\lt\varepsilon.}$$
+</div>
+<ul>
+<li>$\varepsilon$ è la precisione richiesta sui valori;</li>
+<li>$\delta$ dice quanto vicino a $\widehat x$ bisogna stare;</li>
+<li>$x\in D$ garantisce che $f(x)$ sia definita;</li>
+<li>$0\lt|x-\widehat x|$ esclude il punto $\widehat x$.</li>
+</ul>
+<p>Forma equivalente con gli intorni: $\forall\varepsilon\gt0\ \exists\delta\gt0:\ f\bigl((B_\delta(\widehat x)\cap D)\setminus\{\widehat x\}\bigr)\subseteq B_\varepsilon(L)$.</p>
+
+<div class="box def">
+<div class="bt">Definizione — Limiti unilateri</div>
+<p>Se $\widehat x$ è di accumulazione da destra, $\displaystyle\lim_{x\to\widehat x^+}f(x)=L$ significa</p>
+$$\forall\varepsilon\gt0\ \exists\delta\gt0\ \forall x\in D:\quad0\lt x-\widehat x\lt\delta\Longrightarrow|f(x)-L|\lt\varepsilon.$$
+<p>Per $\widehat x^-$ si usa $0\lt\widehat x-x\lt\delta$. Cambia soltanto il lato da cui ci si avvicina.</p>
+</div>
+
+
+<h2>2. Teoremi</h2>
+
+<div class="box thm">
+<div class="bt">Teorema — Comportamento di Fibonacci</div>
+<p>Per $F_0=F_1=1$, $F_{n+1}=F_n+F_{n-1}$ valgono:</p>
+$$F_n\gt0\ \ \forall n,\qquad F_{n+1}\gt F_n\ \ \forall n\ge1,\qquad F_n\to+\infty,$$
+$$\boxed{\lim_{n\to+\infty}\frac{F_{n+1}}{F_n}=\frac{1+\sqrt5}{2}=\varphi.}$$
+</div>
+<p>La successione è crescente su tutto $\mathbb N$, ma strettamente crescente solo da $n=1$, perché $F_0=F_1$.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Limite delle sottosuccessioni</div>
+<p><strong>Ipotesi.</strong> $a_n\to L\in\overline{\mathbb R}$.</p>
+<p><strong>Tesi.</strong> Per ogni sottosuccessione, $\displaystyle\lim_{k\to+\infty}a_{n_k}=L$.</p>
+</div>
+<p>Conseguenza utile: se due sottosuccessioni hanno limiti diversi, la successione non ammette limite in $\overline{\mathbb R}$.</p>
+
+<div class="box thm">
+<div class="bt">Teorema di Bolzano–Weierstrass</div>
+<p><strong>Ipotesi.</strong> $(a_n)$ è limitata: $\exists M\gt0\ \forall n:\ |a_n|\le M$.</p>
+<p><strong>Tesi.</strong> Esistono una sottosuccessione $(a_{n_k})$ e $L\in\mathbb R$ tali che $a_{n_k}\to L$.</p>
+</div>
+<p>La limitatezza non garantisce che converga tutta la successione, ma solo l'esistenza di <em>almeno una</em> sottosuccessione convergente. Enunciato e illustrato a lezione, senza dimostrazione.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Limite completo e limiti unilateri</div>
+<p><strong>Ipotesi.</strong> $\widehat x$ è di accumulazione per $D$ sia da destra sia da sinistra; $L\in\mathbb R$.</p>
+<p><strong>Tesi.</strong></p>
+$$\boxed{\lim_{x\to\widehat x}f(x)=L\iff\lim_{x\to\widehat x^-}f(x)=\lim_{x\to\widehat x^+}f(x)=L.}$$
+</div>
+<p>Se il dominio si avvicina al punto da un solo lato, si considera solo quel lato.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Algebra dei limiti finiti</div>
+<p><strong>Ipotesi.</strong> $\widehat x$ è di accumulazione per $D_f\cap D_g$, $f\to L_1\in\mathbb R$, $g\to L_2\in\mathbb R$ per $x\to\widehat x$.</p>
+<p><strong>Tesi.</strong></p>
+<div class="tbl"><table>
+<thead><tr><th>Operazione</th><th>Limite</th></tr></thead>
+<tbody>
+<tr><td>Somma e differenza</td><td>$L_1\pm L_2$</td></tr>
+<tr><td>Prodotto</td><td>$L_1L_2$</td></tr>
+<tr><td>Costante per funzione, $c\in\mathbb R$</td><td>$cL_1$</td></tr>
+<tr><td>Quoziente, se $L_2\ne0$</td><td>$\dfrac{L_1}{L_2}$</td></tr>
+</tbody></table></div>
+</div>
+<p>La condizione $L_2\ne0$ è essenziale: se il denominatore tende a zero il teorema non permette di concludere.</p>
+
+
+<h2>3. Dimostrazioni</h2>
+
+<h3>Fibonacci: positività, crescita e divergenza</h3>
+<p><strong>Positività.</strong> I primi due termini sono positivi; se due termini consecutivi lo sono, anche $F_{n+1}=F_n+F_{n-1}\gt0$. Per induzione $F_n\gt0$ per ogni $n$.</p>
+<p><strong>Crescita.</strong> Per $n\ge1$: $F_{n+1}-F_n=F_{n-1}\gt0$.</p>
+<p><strong>Divergenza.</strong> Poiché $F_{n-1}\ge1$, vale $F_{n+1}\ge F_n+1$ per $n\ge1$. Da $F_1=1$, per induzione $F_n\ge n$ per $n\ge1$, quindi $F_n\to+\infty$. È una dimostrazione diretta, indipendente dallo studio del rapporto.</p>
+
+<h3>Fibonacci: rapporto tra termini consecutivi</h3>
+<p>Poniamo $r_n=\dfrac{F_{n+1}}{F_n}$. Dalla ricorrenza, per $n\ge1$,</p>
+$$r_n=\frac{F_n+F_{n-1}}{F_n}=1+\frac{F_{n-1}}{F_n}=1+\frac1{r_{n-1}}.$$
+<p>Se $r_n\to\ell\gt0$, allora anche $r_{n-1}\to\ell$ (spostare l'indice di uno non cambia il limite), e quindi</p>
+$$\ell=1+\frac1\ell\iff\ell^2-\ell-1=0\iff\ell=\frac{1\pm\sqrt5}{2}.$$
+<p>La radice negativa non è accettabile perché i rapporti sono positivi, quindi il candidato è $\ell=\varphi$.</p>
+<p>Questo ragionamento <strong>presuppone</strong> che il limite esista: la sola crescita di $(F_n)$ non implica la convergenza di $(r_n)$. Completiamo la dimostrazione.</p>
+
+<div class="box ex">
+<div class="bt">Completamento rigoroso (integrazione)</div>
+<p>Si ha $r_1=2$, $r_2=\frac32$, e da $r_n=1+\frac1{r_{n-1}}$ si verifica per induzione che $\frac32\le r_n\le2$ per ogni $n\ge1$. Poiché $\varphi=1+\frac1\varphi$, per $n\ge2$:</p>
+$$|r_n-\varphi|=\left|\frac1{r_{n-1}}-\frac1\varphi\right|=\frac{|r_{n-1}-\varphi|}{r_{n-1}\varphi}\le\frac{2}{3\varphi}\,|r_{n-1}-\varphi|.$$
+<p>Posto $q=\dfrac2{3\varphi}\lt1$ e iterando, $|r_n-\varphi|\le q^{\,n-1}|r_1-\varphi|\to0$. Quindi $r_n\to\varphi$.</p>
+<p>Poiché $\varphi\gt1$, il teorema del rapporto conferma anche $F_n\to+\infty$.</p>
+</div>
+
+<h3>Limite delle sottosuccessioni</h3>
+<p>Sia $a_n\to L\in\mathbb R$. Fissato $\varepsilon\gt0$, esiste $N$ tale che $n\ge N\Rightarrow|a_n-L|\lt\varepsilon$. Gli indici $n_k$ sono naturali strettamente crescenti, quindi $n_k\to+\infty$: esiste $K$ tale che $k\ge K\Rightarrow n_k\ge N$. Allora $k\ge K\Rightarrow|a_{n_k}-L|\lt\varepsilon$, che è la definizione di $a_{n_k}\to L$. Per $L=\pm\infty$ il ragionamento è identico, con il superamento della soglia al posto di $\varepsilon$.</p>
+
+<h3>Verifica di $\displaystyle\lim_{x\to2}(3x-1)=5$</h3>
+<p>Calcoliamo la distanza dal limite:</p>
+$$|(3x-1)-5|=|3x-6|=3|x-2|.$$
+<p>Per avere $3|x-2|\lt\varepsilon$ basta $|x-2|\lt\varepsilon/3$. Scegliamo $\boxed{\delta=\varepsilon/3}$. Se $0\lt|x-2|\lt\delta$ allora $|(3x-1)-5|=3|x-2|\lt3\delta=\varepsilon$. Quindi $\displaystyle\lim_{x\to2}(3x-1)=5$.</p>
+
+<h3>Verifica di $\displaystyle\lim_{x\to1}\dfrac{2x^2-2x}{x-1}=2$</h3>
+<p><strong>Dominio.</strong> Serve $x\ne1$, quindi $D=\mathbb R\setminus\{1\}$. Il punto $1$ non è in $D$, ma è di accumulazione per $D$: il limite è definibile.</p>
+<p><strong>Semplificazione.</strong> Per $x\ne1$, $\dfrac{2x^2-2x}{x-1}=\dfrac{2x(x-1)}{x-1}=2x$. È lecita perché nel limite si considerano solo i punti $x\ne1$.</p>
+<p><strong>Scelta di $\delta$.</strong> Per $x\in D$:</p>
+$$\left|\frac{2x^2-2x}{x-1}-2\right|=|2x-2|=2|x-1|.$$
+<p>Fissato $\varepsilon\gt0$ scegliamo $\boxed{\delta=\varepsilon/2}$: se $0\lt|x-1|\lt\delta$, la distanza vale $2|x-1|\lt2\delta=\varepsilon$. Dunque il limite è $2$, anche se la funzione in $1$ non esiste.</p>
+
+<h3>Equivalenza tra limite completo e limiti unilateri (integrazione)</h3>
+<p>Se esiste il limite completo, la condizione vale per tutti i punti del dominio vicini a $\widehat x$, quindi anche restringendosi a destra o a sinistra.</p>
+<p>Viceversa, siano i due limiti unilateri uguali a $L$. Fissato $\varepsilon\gt0$ esistono $\delta_+,\delta_-\gt0$ che garantiscono $|f(x)-L|\lt\varepsilon$ rispettivamente a destra e a sinistra. Posto $\delta=\min\{\delta_+,\delta_-\}$, ogni $x\in D$ con $0\lt|x-\widehat x|\lt\delta$ sta da uno dei due lati e soddisfa la condizione. Esiste quindi il limite completo.</p>
+
+
+<h2>4. Esempi e osservazioni</h2>
+
+<h3>Esempi di sottosuccessioni</h3>
+<ul>
+<li>Da $a_n=\dfrac1n$ ($n\ge1$), con $n_k=2k+1$: $a_{n_k}=\dfrac1{2k+1}$, cioè $1,\frac13,\frac15,\frac17,\ldots$</li>
+<li>Da $a_n=n^2$, con $n_k=2k$: $a_{n_k}=4k^2$, cioè $0,4,16,36,64,\ldots$</li>
+</ul>
+
+<h3>Limitata ma non convergente</h3>
+<p>La successione $a_n=(-1)^n$ è limitata ($|a_n|=1$), ma $a_{2k}=1\to1$ e $a_{2k+1}=-1\to-1$. Le due sottosuccessioni hanno limiti diversi, quindi $(a_n)$ non ha limite. Si ha</p>
+$$\text{convergente}\Longrightarrow\text{limitata},\qquad\text{limitata}\not\Longrightarrow\text{convergente}.$$
+<p>Bolzano–Weierstrass garantisce comunque una sottosuccessione convergente.</p>
+
+<h3>Esempio di intorni</h3>
+<p>Per $\widehat x=3$ e $\delta=1$: $B_1(3)=(2,4)$, $B_1^+(3)=[3,4)$, $B_1^-(3)=(2,3]$.</p>
+
+<h3>Dominio di $f(x)=\sqrt{x^2(x-3)}$</h3>
+<p>Serve $x^2(x-3)\ge0$. Se $x=0$ il radicando è zero; se $x\ne0$ è $x^2\gt0$ e il segno dipende da $x-3$. Quindi</p>
+$$\boxed{D=\{0\}\cup[3,+\infty).}$$
+<div class="tbl"><table>
+<thead><tr><th>Punto</th><th>In $D$?</th><th>Interno?</th><th>Aderente?</th><th>Isolato?</th><th>Accumulazione?</th></tr></thead>
+<tbody>
+<tr><td>$-2$</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
+<tr><td>$0$</td><td>Sì</td><td>No</td><td>Sì</td><td>Sì</td><td>No</td></tr>
+<tr><td>$3$</td><td>Sì</td><td>No</td><td>Sì</td><td>No</td><td>Sì, da destra</td></tr>
+<tr><td>$5$</td><td>Sì</td><td>Sì</td><td>Sì</td><td>No</td><td>Sì, da entrambi i lati</td></tr>
+</tbody></table></div>
+<p>In particolare $D^\circ=(3,+\infty)$ e $\overline D=D$. Il punto $0$ è isolato: non ha senso studiare il limite per $x\to0$. In $3$ ci si avvicina solo da destra.</p>
+
+<h3>Parte interna e chiusura</h3>
+<div class="box ex">
+<div class="bt">Esempio — $D=(-\infty,1)\cup[3,4]\cup\{7\}$</div>
+<ul>
+<li>Parte interna: $\boxed{D^\circ=(-\infty,1)\cup(3,4)}$. I punti $3$ e $4$ non sono interni perché ogni loro intorno contiene punti esterni a $D$; $7$ non lo è perché è isolato.</li>
+<li>Chiusura: $\boxed{\overline D=(-\infty,1]\cup[3,4]\cup\{7\}}$. Il punto $1$ si aggiunge perché ogni suo intorno incontra $D$; $7$ resta perché appartiene a $D$.</li>
+<li>Punti di accumulazione: $(-\infty,1]\cup[3,4]$. Il punto $7$ non lo è.</li>
+</ul>
+</div>
+
+<h3>Relazioni da ricordare</h3>
+$$\boxed{D^\circ\subseteq D\subseteq\overline D.}$$
+<ul>
+<li>interno $\Rightarrow$ appartenente $\Rightarrow$ aderente;</li>
+<li>interno $\Rightarrow$ di accumulazione;</li>
+<li>isolato $\Rightarrow$ appartenente e aderente, ma non di accumulazione;</li>
+<li>di accumulazione $\Rightarrow$ aderente, ma non necessariamente appartenente.</li>
+</ul>
+<p>Le categorie non sono alternative: un punto può essere interno, appartenente, aderente e di accumulazione insieme.</p>
+
+<h3>Perché servono i punti di accumulazione</h3>
+<p>Se $\widehat x$ è isolato esiste $\delta_0\gt0$ con $(B_{\delta_0}(\widehat x)\cap D)\setminus\{\widehat x\}=\varnothing$. Allora la condizione $0\lt|x-\widehat x|\lt\delta\Rightarrow|f(x)-L|\lt\varepsilon$ sarebbe soddisfatta senza alcuna verifica, per <em>qualunque</em> $L$, scegliendo $\delta\le\delta_0$. L'ipotesi di accumulazione garantisce punti del dominio arbitrariamente vicini su cui studiare la funzione.</p>
+
+<h3>Lettura geometrica del limite</h3>
+<p>Qualunque fascia verticale $(L-\varepsilon,L+\varepsilon)$ si fissi, deve esistere una fascia orizzontale $(\widehat x-\delta,\widehat x+\delta)$ tale che tutti i valori della funzione, per i punti del dominio diversi da $\widehat x$, restino nella fascia verticale. L'ordine dei quantificatori conta: $\forall\varepsilon\ \exists\delta$. Prima si fissa la precisione, poi si sceglie il raggio, che può dipendere da $\varepsilon$.</p>
+
+<h3>Limite e valore nel punto</h3>
+<p>Per la presenza di $0\lt|x-\widehat x|$, il limite non impone condizioni su $f(\widehat x)$. La funzione può non essere definita in $\widehat x$, oppure essere definita con $f(\widehat x)=L$, oppure con $f(\widehat x)\ne L$. Il legame con il valore nel punto sarà centrale nello studio della continuità.</p>
+
+<h3>Anticipazione: limiti per $x\to\pm\infty$</h3>
+<p>La lezione si chiude introducendo il comportamento a lungo termine: $x\to+\infty$ (oppure $-\infty$) con $f(x)\to L\in\mathbb R$, cioè la variabile cresce senza limite mentre i valori si stabilizzano vicino a una soglia finita. La definizione rigorosa è rimandata alla lezione successiva.</p>
+
+
+<h2>5. Errori da evitare</h2>
+<div class="box warn">
+<div class="bt">Attenzione</div>
+<ul>
+<li>Con $F_0=F_1=1$, Fibonacci è strettamente crescente solo da $n=1$.</li>
+<li>Prima di passare al limite in $r_n=1+\frac1{r_{n-1}}$ bisogna giustificare che $r_n$ converga: la monotonia di $F_n$ non basta.</li>
+<li>La positività dei termini non garantisce un limite strettamente positivo: serve un minorante positivo (qui $r_n\ge\frac32$).</li>
+<li>Nelle sottosuccessioni devono crescere gli indici, non i valori.</li>
+<li>«Aderente» non vuol dire «di bordo»: tutti i punti di $D$ sono aderenti.</li>
+<li>Un punto di accumulazione non deve appartenere a $D$; un punto isolato non è mai di accumulazione.</li>
+<li>Un punto esterno richiede un intero intorno disgiunto da $D$, non solo $\widehat x\notin D$.</li>
+<li>Nel limite si esclude $\widehat x$ ($0\lt|x-\widehat x|$): il valore $f(\widehat x)$ non conta.</li>
+<li>L'equivalenza con i limiti unilateri richiede accumulazione da entrambi i lati.</li>
+<li>Nell'algebra dei limiti il quoziente richiede $L_2\ne0$.</li>
+<li>Non confondere la chiusura $\overline D$ (presa in $\mathbb R$) con la retta estesa $\overline{\mathbb R}$.</li>
+</ul>
+</div>
+
+
+<h2>6. Riepilogo finale</h2>
+<p>Cosa devi saper fare dopo questo Day:</p>
+<ul>
+<li>definire Fibonacci per ricorrenza e dimostrarne positività, crescita e divergenza;</li>
+<li>ricavare $\ell=\varphi$ dal rapporto e sapere perché serve giustificare l'esistenza del limite;</li>
+<li>definire una sottosuccessione e dimostrare che eredita il limite;</li>
+<li>usare due sottosuccessioni con limiti diversi per escludere l'esistenza del limite;</li>
+<li>enunciare Bolzano–Weierstrass;</li>
+<li>definire intorni, punti interni, esterni, aderenti, isolati e di accumulazione, e calcolare parte interna e chiusura;</li>
+<li>scrivere la definizione $\varepsilon$–$\delta$ di limite finito e quelle unilaterali;</li>
+<li>verificare un limite con la definizione, come per $3x-1$ e $\frac{2x^2-2x}{x-1}$;</li>
+<li>enunciare l'equivalenza tra limite completo e limiti unilateri e l'algebra dei limiti finiti.</li>
+</ul>
