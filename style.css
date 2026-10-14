@@ -218,11 +218,51 @@ body:not(.side) .toc-fab[aria-expanded="true"] svg { transform: rotate(270deg); 
 .toc.closing { animation: tocout .22s ease-in forwards; pointer-events: none; }
 @keyframes tocout { from { opacity: 1; transform: none; } to { opacity: 0; transform: scale(.6); } }
 /* Scrollbar sottile e grigia, senza frecce né rettangolo bianco, staccata dagli angoli arrotondati */
-.toc, .day-menu { overscroll-behavior: contain; }
-.toc::-webkit-scrollbar, .day-menu::-webkit-scrollbar { width: 8px; }
-.toc::-webkit-scrollbar-button, .day-menu::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
-.toc::-webkit-scrollbar-track, .day-menu::-webkit-scrollbar-track { background: transparent; margin: 16px 0; }
-.toc::-webkit-scrollbar-thumb, .day-menu::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--muted) 55%, transparent); border-radius: 8px; border: 2px solid transparent; background-clip: padding-box; }
+.toc { overscroll-behavior: contain; }
+.toc::-webkit-scrollbar { width: 8px; }
+.toc::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+.toc::-webkit-scrollbar-track { background: transparent; margin: 16px 0; }
+.toc::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--muted) 55%, transparent); border-radius: 8px; border: 2px solid transparent; background-clip: padding-box; }
 @supports not selector(::-webkit-scrollbar) {
-  .toc, .day-menu { scrollbar-width: thin; scrollbar-color: color-mix(in srgb, var(--muted) 55%, transparent) transparent; }
+  .toc { scrollbar-width: thin; scrollbar-color: color-mix(in srgb, var(--muted) 55%, transparent) transparent; }
 }
+
+/* ---------- Grafici SVG nelle note ---------- */
+/* La larghezza è in rem: segue lo zoom del testo (--z) e non supera mai la colonna. */
+.fig { margin: 1.4rem 0; text-align: center; }
+.fig svg { display: inline-block; width: 22rem; max-width: 100%; height: auto; overflow: visible; }
+.fig .ax { stroke: var(--muted); stroke-width: 1; fill: none; }
+.fig .gr { stroke: var(--line); stroke-width: .8; }
+.fig .dash { stroke: var(--muted); stroke-width: .9; stroke-dasharray: 4 3.5; fill: none; }
+.fig .cv { stroke: var(--accent); stroke-width: 1.7; fill: none; stroke-linecap: round; }
+.fig .cv.thin { stroke-width: 1; opacity: .5; }
+.fig .pt { fill: var(--accent); }
+.fig .pt2 { fill: #d9822b; }
+.fig .hole { fill: var(--surface); stroke: var(--accent); stroke-width: 1.6; }
+.fig .band { fill: var(--accent-soft); stroke: none; }
+.fig text { fill: var(--ink); font: 12px var(--ui); }
+.fig text.sm { font-size: 11px; fill: var(--muted); }
+.fig figcaption { margin-top: .4rem; font: .85rem/1.4 var(--ui); color: var(--muted); }
+.fig .lgA { fill: var(--accent); }
+.fig .lgB { fill: #d9822b; }
+
+/* ---------- Grafico interattivo ε–δ ---------- */
+.fig-ctl { display: flex; flex-wrap: wrap; gap: .5rem 1.1rem; justify-content: center; align-items: center; margin-bottom: .7rem; font: 13px var(--ui); color: var(--ink); }
+.fig-ctl label { display: inline-flex; align-items: center; gap: .45rem; }
+.fig-ctl input[type="range"] { width: 7.5rem; accent-color: var(--accent); }
+.fig-ctl output { min-width: 2.8em; text-align: left; font-variant-numeric: tabular-nums; color: var(--muted); }
+.fig-ctl select { font: inherit; color: inherit; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: .25rem .5rem; }
+.fig .cvh { stroke: var(--accent); stroke-width: 3.4; fill: none; stroke-linecap: round; }
+.fig .cvh.bad { stroke: #d9822b; }
+.fig .clipb { fill: none; }
+.fig-st { margin-top: .5rem; font: .9rem/1.45 var(--ui); color: var(--muted); }
+.fig-st b { font-weight: 600; }
+.fig-st .ok { color: #2f9e8f; }
+.fig-st .no { color: #d9822b; }
+.fig .dash.faint { stroke-width: .7; opacity: .45; }
+.fig .ptf { fill: var(--muted); opacity: .7; }
+.fig text.faint { opacity: .55; }
+.fig text.main { fill: var(--ink); }
+.fig text.lgB { fill: #d9822b; }
+.fig .lgG { fill: var(--muted); }
+.fig .bar { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; }
