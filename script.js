@@ -95,6 +95,12 @@ var esercitazioni = [
     title: 'Funzioni e trasformazioni',
     file: 'appunti/esercitazione-3.html',
     date: '2026-10-05'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
+  },
+  {
+    n: 4,
+    title: 'Limiti di successioni, monotonia e fattoriali',
+    file: 'appunti/esercitazione-4.html',
+    date: '2026-10-12'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
   }
 ];
 esercitazioni.sort(function (a, b) { return a.n - b.n; });

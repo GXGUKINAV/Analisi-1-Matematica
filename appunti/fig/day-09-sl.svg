@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 230">
+<rect class="band" x="44" y="97.4" width="281" height="31.1"/>
+<line class="ax" x1="44" y1="30" x2="44" y2="196"/><line class="ax" x1="44" y1="196" x2="325" y2="196"/>
+<line class="dash" x1="44" y1="113.0" x2="325" y2="113.0"/>
+<circle class="ptf" cx="48.0" cy="10.0" r="4"/>
+<text x="57.0" y="14.0" text-anchor="start" class="sm"><tspan>a</tspan><tspan dy="3.0" font-size="0.75em">n</tspan></text>
+<circle class="pt2" cx="91.4" cy="10.0" r="4"/>
+<text x="100.4" y="14.0" text-anchor="start" class="sm"><tspan>a</tspan><tspan dy="3.0" font-size="0.75em">n</tspan><tspan dy="2.2" font-size="0.56em">k</tspan></text>
+<circle class="pt2" cx="52.8" cy="40.4" r="4.3"/>
+<text x="52.8" y="212.0" text-anchor="middle" class="sm"><tspan>0</tspan></text>
+<circle class="ptf" cx="70.3" cy="149.3" r="4.3"/>
+<text x="70.3" y="212.0" text-anchor="middle" class="sm"><tspan>1</tspan></text>
+<circle class="pt2" cx="87.9" cy="88.8" r="4.3"/>
+<text x="87.9" y="212.0" text-anchor="middle" class="sm"><tspan>2</tspan></text>
+<circle class="ptf" cx="105.5" cy="131.2" r="4.3"/>
+<text x="105.5" y="212.0" text-anchor="middle" class="sm"><tspan>3</tspan></text>
+<circle class="pt2" cx="123.0" cy="98.5" r="4.3"/>
+<text x="123.0" y="212.0" text-anchor="middle" class="sm"><tspan>4</tspan></text>
+<circle class="ptf" cx="140.6" cy="125.1" r="4.3"/>
+<text x="140.6" y="212.0" text-anchor="middle" class="sm"><tspan>5</tspan></text>
+<circle class="pt2" cx="158.2" cy="102.6" r="4.3"/>
+<text x="158.2" y="212.0" text-anchor="middle" class="sm"><tspan>6</tspan></text>
+<circle class="ptf" cx="175.7" cy="122.1" r="4.3"/>
+<text x="175.7" y="212.0" text-anchor="middle" class="sm"><tspan>7</tspan></text>
+<circle class="pt2" cx="193.3" cy="104.9" r="4.3"/>
+<text x="193.3" y="212.0" text-anchor="middle" class="sm"><tspan>8</tspan></text>
+<circle class="ptf" cx="210.8" cy="120.3" r="4.3"/>
+<text x="210.8" y="212.0" text-anchor="middle" class="sm"><tspan>9</tspan></text>
+<circle class="pt2" cx="228.4" cy="106.4" r="4.3"/>
+<text x="228.4" y="212.0" text-anchor="middle" class="sm"><tspan>10</tspan></text>
+<circle class="ptf" cx="246.0" cy="119.1" r="4.3"/>
+<text x="246.0" y="212.0" text-anchor="middle" class="sm"><tspan>11</tspan></text>
+<circle class="pt2" cx="263.5" cy="107.4" r="4.3"/>
+<text x="263.5" y="212.0" text-anchor="middle" class="sm"><tspan>12</tspan></text>
+<circle class="ptf" cx="281.1" cy="118.2" r="4.3"/>
+<text x="281.1" y="212.0" text-anchor="middle" class="sm"><tspan>13</tspan></text>
+<circle class="pt2" cx="298.7" cy="108.2" r="4.3"/>
+<text x="298.7" y="212.0" text-anchor="middle" class="sm"><tspan>14</tspan></text>
+<circle class="ptf" cx="316.2" cy="117.5" r="4.3"/>
+<text x="316.2" y="212.0" text-anchor="middle" class="sm"><tspan>15</tspan></text>
+<text x="38.0" y="101.4" text-anchor="end" class="sm faint"><tspan>L+ε</tspan></text>
+<text x="38.0" y="117.0" text-anchor="end" class="sm main"><tspan>L</tspan></text>
+<text x="38.0" y="132.6" text-anchor="end" class="sm faint"><tspan>L−ε</tspan></text>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 188">
+<line class="ax" x1="8" y1="162" x2="312" y2="162"/>
+<line class="ax" x1="92.0" y1="158" x2="92.0" y2="166"/>
+<text x="92.0" y="180.0" text-anchor="middle" class="sm main"><tspan>x̂−δ</tspan></text>
+<line class="ax" x1="160.0" y1="158" x2="160.0" y2="166"/>
+<text x="160.0" y="180.0" text-anchor="middle" class="sm main"><tspan>x̂</tspan></text>
+<line class="ax" x1="228.0" y1="158" x2="228.0" y2="166"/>
+<text x="228.0" y="180.0" text-anchor="middle" class="sm main"><tspan>x̂+δ</tspan></text>
+<text x="8.0" y="21.0" text-anchor="start" class="sm"><tspan>B</tspan><tspan dy="3.0" font-size="0.75em">δ</tspan><tspan dy="-3.0">(x̂) = (x̂−δ, x̂+δ)</tspan></text>
+<line class="cv" x1="92.0" y1="36.0" x2="228.0" y2="36.0"/>
+<circle class="hole" cx="92.0" cy="36.0" r="5"/>
+<circle class="hole" cx="228.0" cy="36.0" r="5"/>
+<text x="8.0" y="61.0" text-anchor="start" class="sm"><tspan>B</tspan><tspan dy="-4.0" font-size="0.75em">+</tspan><tspan dy="7.0" font-size="0.75em">δ</tspan><tspan dy="-3.0">(x̂) = [x̂, x̂+δ)</tspan></text>
+<line class="cv" x1="160.0" y1="76.0" x2="228.0" y2="76.0"/>
+<circle class="pt" cx="160.0" cy="76.0" r="5"/>
+<circle class="hole" cx="228.0" cy="76.0" r="5"/>
+<text x="8.0" y="101.0" text-anchor="start" class="sm"><tspan>B</tspan><tspan dy="-4.0" font-size="0.75em">−</tspan><tspan dy="7.0" font-size="0.75em">δ</tspan><tspan dy="-3.0">(x̂) = (x̂−δ, x̂]</tspan></text>
+<line class="cv" x1="92.0" y1="116.0" x2="160.0" y2="116.0"/>
+<circle class="hole" cx="92.0" cy="116.0" r="5"/>
+<circle class="pt" cx="160.0" cy="116.0" r="5"/>
+</svg>

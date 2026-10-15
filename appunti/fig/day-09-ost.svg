@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 254">
+<line class="ax" x1="44" y1="14" x2="44" y2="226"/><line class="ax" x1="44" y1="226" x2="326" y2="226"/>
+<polyline class="cv" points="44.0,183.6 51.0,181.1 58.1,178.5 65.2,176.0 72.2,173.4 79.2,170.9 86.3,168.3 93.3,165.8 100.4,163.2 107.5,160.7 114.5,158.2 121.6,155.6 128.6,153.1 135.7,150.5 142.7,148.0 149.8,145.4 156.8,142.9 163.8,140.4 170.9,137.8 177.9,135.3 185.0,132.7"/>
+<polyline class="cv" points="185.0,90.3 192.1,89.0 199.1,87.8 206.1,86.5 213.2,85.2 220.2,84.0 227.3,82.7 234.4,81.4 241.4,80.1 248.4,78.9 255.5,77.6 262.6,76.3 269.6,75.1 276.6,73.8 283.7,72.5 290.8,71.2 297.8,70.0 304.9,68.7 311.9,67.4 318.9,66.2 326.0,64.9"/>
+<line class="dash" x1="44" y1="132.7" x2="185.0" y2="132.7"/><line class="dash" x1="44" y1="90.3" x2="185.0" y2="90.3"/>
+<line class="dash" x1="185.0" y1="90.3" x2="185.0" y2="226"/>
+<circle class="hole" cx="185.0" cy="132.7" r="4.5"/><circle class="hole" cx="185.0" cy="90.3" r="4.5"/>
+<text x="38.0" y="136.7" text-anchor="end" class="sm main"><tspan>L</tspan><tspan dy="-4.0" font-size="0.75em">−</tspan></text>
+<text x="38.0" y="94.3" text-anchor="end" class="sm main"><tspan>L</tspan><tspan dy="-4.0" font-size="0.75em">+</tspan></text>
+<text x="185.0" y="242.0" text-anchor="middle" class="sm main"><tspan>x̂</tspan></text>
+<text x="48.0" y="24.0" text-anchor="start" class="sm"><tspan>y = f(x)</tspan></text>
+</svg>

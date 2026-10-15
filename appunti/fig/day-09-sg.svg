@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 215">
+<line class="ax" x1="22" y1="170" x2="325" y2="170"/>
+<circle class="ptf" cx="34.0" cy="10.0" r="4"/>
+<text x="43.0" y="14.0" text-anchor="start" class="sm"><tspan>a</tspan><tspan dy="3.0" font-size="0.75em">n</tspan></text>
+<circle class="pt2" cx="77.4" cy="10.0" r="4"/>
+<text x="86.4" y="14.0" text-anchor="start" class="sm"><tspan>a</tspan><tspan dy="3.0" font-size="0.75em">n</tspan><tspan dy="2.2" font-size="0.56em">k</tspan></text>
+<circle class="ptf" cx="42.3" cy="73.8" r="4.5"/>
+<text x="42.3" y="186.0" text-anchor="middle" class="sm"><tspan>0</tspan></text>
+<circle class="pt2" cx="66.9" cy="121.9" r="4.5"/>
+<text x="66.9" y="186.0" text-anchor="middle" class="sm lgB"><tspan>1</tspan></text>
+<circle class="ptf" cx="91.5" cy="47.5" r="4.5"/>
+<text x="91.5" y="186.0" text-anchor="middle" class="sm"><tspan>2</tspan></text>
+<circle class="pt2" cx="116.0" cy="100.0" r="4.5"/>
+<text x="116.0" y="186.0" text-anchor="middle" class="sm lgB"><tspan>3</tspan></text>
+<circle class="ptf" cx="140.6" cy="130.6" r="4.5"/>
+<text x="140.6" y="186.0" text-anchor="middle" class="sm"><tspan>4</tspan></text>
+<circle class="ptf" cx="165.2" cy="65.0" r="4.5"/>
+<text x="165.2" y="186.0" text-anchor="middle" class="sm"><tspan>5</tspan></text>
+<circle class="pt2" cx="189.8" cy="86.9" r="4.5"/>
+<text x="189.8" y="186.0" text-anchor="middle" class="sm lgB"><tspan>6</tspan></text>
+<circle class="ptf" cx="214.4" cy="139.4" r="4.5"/>
+<text x="214.4" y="186.0" text-anchor="middle" class="sm"><tspan>7</tspan></text>
+<circle class="pt2" cx="239.0" cy="56.2" r="4.5"/>
+<text x="239.0" y="186.0" text-anchor="middle" class="sm lgB"><tspan>8</tspan></text>
+<circle class="ptf" cx="263.5" cy="108.8" r="4.5"/>
+<text x="263.5" y="186.0" text-anchor="middle" class="sm"><tspan>9</tspan></text>
+<circle class="ptf" cx="288.1" cy="82.5" r="4.5"/>
+<text x="288.1" y="186.0" text-anchor="middle" class="sm"><tspan>10</tspan></text>
+<circle class="pt2" cx="312.7" cy="117.5" r="4.5"/>
+<text x="312.7" y="186.0" text-anchor="middle" class="sm lgB"><tspan>11</tspan></text>
+<text x="66.9" y="109.9" text-anchor="middle" class="sm lgB"><tspan>a</tspan><tspan dy="3.0" font-size="0.75em">n</tspan><tspan dy="2.2" font-size="0.56em">1</tspan></text>
+<text x="116.0" y="88.0" text-anchor="middle" class="sm lgB"><tspan>a</tspan><tspan dy="3.0" font-size="0.75em">n</tspan><tspan dy="2.2" font-size="0.56em">2</tspan></text>
+<text x="189.8" y="74.9" text-anchor="middle" class="sm lgB"><tspan>a</tspan><tspan dy="3.0" font-size="0.75em">n</tspan><tspan dy="2.2" font-size="0.56em">3</tspan></text>
+<text x="239.0" y="44.2" text-anchor="middle" class="sm lgB"><tspan>a</tspan><tspan dy="3.0" font-size="0.75em">n</tspan><tspan dy="2.2" font-size="0.56em">4</tspan></text>
+<text x="312.7" y="105.5" text-anchor="middle" class="sm lgB"><tspan>a</tspan><tspan dy="3.0" font-size="0.75em">n</tspan><tspan dy="2.2" font-size="0.56em">5</tspan></text>
+</svg>

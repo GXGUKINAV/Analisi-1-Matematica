@@ -1,0 +1,343 @@
+<h2>1. Definizioni</h2>
+<p>Il tema effettivo dell'esercitazione sono i limiti di successioni, più che le funzioni in generale. Si lavora sugli esercizi immediati della scheda: limiti, monotonia, fattoriali, equivalenze asintotiche e verifica con la definizione.</p>
+
+<h3>Successione reale</h3>
+<div class="box def">
+<div class="bt">Definizione — Successione reale</div>
+<p>Una successione reale è una funzione</p>
+$$a\colon\mathbb N\longrightarrow\mathbb R,\qquad n\longmapsto a_n.$$
+</div>
+<p>Negli esercizi bisogna rispettare il dominio della formula: se compare $1/n$, si considera $n\ge1$. Per il limite conta solo il comportamento da un certo indice in poi: modificare un numero finito di termini non cambia il limite.</p>
+
+<h3>Convergenza e divergenza</h3>
+<div class="box def">
+<div class="bt">Definizione — Convergenza a un limite finito</div>
+<p>$(a_n)$ converge a $\ell\in\mathbb R$ se</p>
+$$\forall\varepsilon\gt0\ \ \exists N_\varepsilon\in\mathbb N\ \ \forall n\ge N_\varepsilon:\quad|a_n-\ell|\lt\varepsilon.$$
+<p>Si scrive $\displaystyle\lim_{n\to+\infty}a_n=\ell$ oppure $a_n\to\ell$.</p>
+</div>
+<p>Qualunque precisione $\varepsilon$ si richieda, tutti i termini abbastanza avanti distano da $\ell$ meno di $\varepsilon$.</p>
+
+<div class="box def">
+<div class="bt">Definizione — Divergenza a $\pm\infty$</div>
+<p>$(a_n)$ diverge a $+\infty$ se</p>
+$$\forall M\gt0\ \ \exists N_M\in\mathbb N\ \ \forall n\ge N_M:\quad a_n\gt M.$$
+<p>Diverge a $-\infty$ se $\forall M\gt0\ \exists N_M\ \forall n\ge N_M:\ a_n\lt-M$.</p>
+</div>
+<p>«Definitivamente» significa «per tutti gli indici da un certo punto in poi».</p>
+
+<h3>Monotonia</h3>
+<div class="tbl"><table>
+<thead><tr><th>Proprietà</th><th>Condizione</th></tr></thead>
+<tbody>
+<tr><td>Crescente</td><td>$a_{n+1}\ge a_n$</td></tr>
+<tr><td>Strettamente crescente</td><td>$a_{n+1}\gt a_n$</td></tr>
+<tr><td>Decrescente</td><td>$a_{n+1}\le a_n$</td></tr>
+<tr><td>Strettamente decrescente</td><td>$a_{n+1}\lt a_n$</td></tr>
+</tbody></table></div>
+<p>Se la proprietà vale solo per $n\ge N$, la successione è <em>definitivamente</em> crescente o decrescente.</p>
+
+<h3>Equivalenza asintotica e ordine di infinito</h3>
+<div class="box def">
+<div class="bt">Definizione — Equivalenza asintotica</div>
+<p>Se $b_n\ne0$ definitivamente,</p>
+$$a_n\sim b_n\iff\frac{a_n}{b_n}\to1.$$
+</div>
+<p>Per successioni positive divergenti, $b_n$ è un infinito di <strong>ordine superiore</strong> rispetto ad $a_n$ se $\dfrac{a_n}{b_n}\to0$. «Ordine superiore» non significa «valore maggiore»: significa che il rapporto tra la quantità più lenta e quella più rapida tende a zero.</p>
+
+
+<h2>2. Teoremi</h2>
+
+<h3>Successioni geometriche</h3>
+<div class="tbl"><table>
+<thead><tr><th>Base $q$</th><th>Comportamento di $q^n$</th></tr></thead>
+<tbody>
+<tr><td>$|q|\lt1$</td><td>$q^n\to0$</td></tr>
+<tr><td>$q=1$</td><td>$q^n=1$</td></tr>
+<tr><td>$q\gt1$</td><td>$q^n\to+\infty$</td></tr>
+<tr><td>$q=-1$</td><td>il limite non esiste</td></tr>
+<tr><td>$q\lt-1$</td><td>il limite non esiste: segni alterni e modulo divergente</td></tr>
+</tbody></table></div>
+<p>In particolare</p>
+$$(-2)^n\ \text{non ha limite},\qquad(-2)^{-n}=\frac{(-1)^n}{2^n}\to0.$$
+<p>Il segno alterno, da solo, non impedisce la convergenza: bisogna guardare anche il modulo.</p>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-04-geo.svg" role="img" aria-label="Successione geometrica che converge con segni alterni"></div>
+<figcaption>$a_n=(-\tfrac12)^n=(-2)^{-n}$: i termini cambiano segno ma il modulo tende a zero. Con $\varepsilon=0{,}1$ da $n=4$ in poi (arancione) tutti i termini restano nella fascia attorno a $0$.</figcaption>
+</figure>
+
+
+<h3>Criteri di confronto</h3>
+<div class="box thm">
+<div class="bt">Teorema dei carabinieri</div>
+<p><strong>Ipotesi.</strong> $b_n\le a_n\le c_n$ definitivamente, $b_n\to\ell$, $c_n\to\ell$.</p>
+<p><strong>Tesi.</strong> $a_n\to\ell$.</p>
+</div>
+
+<div class="box thm">
+<div class="bt">Teorema — Confronto per la divergenza</div>
+<p>Se $a_n\ge b_n$ definitivamente e $b_n\to+\infty$, allora $a_n\to+\infty$.</p>
+</div>
+<p>Applicazione importante: una perturbazione limitata non può annullare una divergenza. Se $u_n\to+\infty$ e $|v_n|\le C$, allora $u_n+v_n\ge u_n-C\to+\infty$.</p>
+
+<h3>Successioni razionali fratte</h3>
+<p>Siano $P(n)=a_pn^p+\cdots$ e $Q(n)=b_qn^q+\cdots$, con $a_p,b_q\ne0$. Allora</p>
+$$\frac{P(n)}{Q(n)}\sim\frac{a_p}{b_q}\,n^{p-q}.$$
+<div class="tbl"><table>
+<thead><tr><th>Gradi</th><th>Limite</th></tr></thead>
+<tbody>
+<tr><td>$p\lt q$</td><td>$0$</td></tr>
+<tr><td>$p=q$</td><td>$\dfrac{a_p}{b_q}$</td></tr>
+<tr><td>$p\gt q$</td><td>$+\infty$ o $-\infty$, secondo il segno di $\dfrac{a_p}{b_q}$</td></tr>
+</tbody></table></div>
+<p>Giustificazione: si raccoglie la massima potenza di $n$ in ciascun polinomio,</p>
+$$\frac{P(n)}{Q(n)}=n^{p-q}\,\frac{a_p+\text{termini che tendono a }0}{b_q+\text{termini che tendono a }0}.$$
+
+<h3>Gerarchia degli infiniti</h3>
+<div class="box thm">
+<div class="bt">Teorema — Gerarchia degli infiniti</div>
+<p>Per $\alpha\gt0$ e $a\gt1$:</p>
+$$\ln n\ll n^\alpha\ll a^n\ll n!\ll n^n,$$
+<p>dove $u_n\ll v_n$ indica $u_n/v_n\to0$. Esplicitamente</p>
+$$\frac{\ln n}{n^\alpha}\to0,\qquad\frac{n^\alpha}{a^n}\to0,\qquad\frac{a^n}{n!}\to0,\qquad\frac{n!}{n^n}\to0.$$
+</div>
+<p>Le condizioni su esponenti e basi sono essenziali: per esempio $a^n$ è un infinito soltanto quando $a\gt1$.</p>
+
+<h3>Limite notevole del numero di Nepero</h3>
+<div class="box thm">
+<div class="bt">Limite notevole</div>
+$$\left(1+\frac1n\right)^n\to e.$$
+<p>Più in generale, se $u_n\to0$, $u_n\ne0$ e $1+u_n\gt0$ definitivamente, allora $(1+u_n)^{1/u_n}\to e$. Se inoltre $u_nv_n\to L\in\mathbb R$:</p>
+$$(1+u_n)^{v_n}\to e^L.$$
+</div>
+<p>La riscrittura chiave è</p>
+$$(1+u_n)^{v_n}=\Bigl[(1+u_n)^{1/u_n}\Bigr]^{u_nv_n}.$$
+<p>Se $u_nv_n\to+\infty$ il risultato è $+\infty$; se $u_nv_n\to-\infty$ è $0$.</p>
+
+
+<h2>3. Dimostrazioni ed esercizi</h2>
+
+<h3>Differenza tra potenze</h3>
+<p>Calcolare $a_n=n^2-n^3$. La forma iniziale è $+\infty-\infty$. Raccogliendo:</p>
+$$a_n=n^3\left(\frac1n-1\right).$$
+<p>Il primo fattore tende a $+\infty$ e il secondo a $-1$, quindi $\boxed{a_n\to-\infty}$. Il termine dominante è $-n^3$.</p>
+
+<h3>Tre rapporti tra polinomi</h3>
+<ul>
+<li><strong>Numeratore di grado maggiore:</strong> $\dfrac{n^2-1}{n+3}=\dfrac{n-\frac1n}{1+\frac3n}\to+\infty$.</li>
+<li><strong>Gradi uguali:</strong> $\dfrac{3-n^2}{2n^2-1}=\dfrac{\frac3{n^2}-1}{2-\frac1{n^2}}\to-\dfrac12$.</li>
+<li><strong>Denominatore di grado maggiore:</strong> $\dfrac{n-1}{n^3+4}=\dfrac{\frac1{n^2}-\frac1{n^3}}{1+\frac4{n^3}}\to0$.</li>
+</ul>
+
+<h3>Logaritmi, potenze ed esponenziali</h3>
+<p>Usando la gerarchia:</p>
+$$\sqrt n-\ln n=\sqrt n\left(1-\frac{\ln n}{\sqrt n}\right)\to+\infty,\qquad n^4-2^n=2^n\left(\frac{n^4}{2^n}-1\right)\to-\infty.$$
+<p>Per un rapporto si seleziona il termine dominante separatamente al numeratore e al denominatore:</p>
+$$\frac{2^n-\ln n}{n^4+3^n}=\left(\frac23\right)^n\frac{1-\frac{\ln n}{2^n}}{1+\frac{n^4}{3^n}}\to0.$$
+
+<h3>Potenze frazionarie</h3>
+$$\frac{\sqrt n-n^2}{2n^2-n^{4/3}}=\frac{n^{-3/2}-1}{2-n^{-2/3}}\to-\frac12,$$
+<p>perché $n^{1/2}\ll n^2$ e $n^{4/3}\ll n^2$. Analogamente</p>
+$$\frac{3n^4-n\arctan n}{\pi n^4-1}=\frac{3-\frac{\arctan n}{n^3}}{\pi-\frac1{n^4}}\to\frac3\pi,$$
+<p>perché $\arctan n$ è limitata.</p>
+
+<h3>Razionalizzazione: $\sqrt{n^2-n}-n$</h3>
+<p>Calcolare $b_n=\sqrt{n^2-n}-n$. Raccogliendo dentro la radice:</p>
+$$b_n=n\left(\sqrt{1-\frac1n}-1\right).$$
+<p>La forma è $+\infty\cdot0$, quindi indeterminata: non si può sostituire la radice con $1$ e concludere zero. Moltiplichiamo per il coniugato e usiamo $(A-B)(A+B)=A^2-B^2$:</p>
+$$b_n=\frac{(\sqrt{n^2-n}-n)(\sqrt{n^2-n}+n)}{\sqrt{n^2-n}+n}=\frac{n^2-n-n^2}{\sqrt{n^2-n}+n}=\frac{-n}{\sqrt{n^2-n}+n}.$$
+<p>Dividendo per $n\gt0$:</p>
+$$b_n=-\frac1{\sqrt{1-\frac1n}+1}\to-\frac12.$$
+$$\boxed{\lim_{n\to+\infty}\left(\sqrt{n^2-n}-n\right)=-\frac12}$$
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-04-sqrt.svg" role="img" aria-label="Successione sqrt(n^2-n)-n che tende a -1/2"></div>
+<figcaption>$b_n=\sqrt{n^2-n}-n$ tende a $-\frac12$, <em>non</em> a $0$: nonostante $\sqrt{n^2-n}\sim n$, la differenza ha limite diverso da zero.</figcaption>
+</figure>
+
+
+<h3>Verifica con la definizione: $\dfrac{2n+1}{n-1}\to2$</h3>
+<p>Per $n\gt1$:</p>
+$$\left|\frac{2n+1}{n-1}-2\right|=\left|\frac{2n+1-2n+2}{n-1}\right|=\frac3{n-1}.$$
+<p>Risolviamo</p>
+$$\frac3{n-1}\lt\varepsilon\iff n\gt1+\frac3\varepsilon.$$
+<p>Scegliamo $N_\varepsilon=\left\lfloor1+\dfrac3\varepsilon\right\rfloor+1$: per ogni $n\ge N_\varepsilon$ la disuguaglianza vale, e il limite è dimostrato.</p>
+<p>Esempio: per $\varepsilon=0{,}1$ serve $n\gt31$, quindi $N_\varepsilon=32$. Per $n=31$ la distanza è esattamente $0{,}1$, non strettamente minore.</p>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-04-eps.svg" role="img" aria-label="Fascia epsilon e soglia N per (2n+1)/(n-1)"></div>
+<figcaption>$\frac{2n+1}{n-1}\to2$ con $\varepsilon=0{,}5$: $\frac3{n-1}\lt\frac12\iff n\gt7$, quindi $N_\varepsilon=8$. Il termine $n=7$ cade esattamente sul bordo della fascia, quindi è escluso.</figcaption>
+</figure>
+
+
+<h3>Verifica con la definizione: $\dfrac{n^2-1}{n}\to+\infty$</h3>
+<p>La formula coerente con i passaggi è $b_n=\dfrac{n^2-1}{n}=n-\dfrac1n$. Fissato $M\gt0$, per $n\gt0$:</p>
+$$\frac{n^2-1}{n}\gt M\iff n^2-Mn-1\gt0.$$
+<p>Le radici sono $r_\pm=\dfrac{M\pm\sqrt{M^2+4}}2$. Poiché $r_-\lt0$, per gli indici positivi basta $n\gt r_+$. Scegliendo</p>
+$$N_M=\left\lfloor\frac{M+\sqrt{M^2+4}}2\right\rfloor+1$$
+<p>si ottiene la proprietà richiesta, quindi $\boxed{b_n\to+\infty}$. Una verifica formale non serve a «intuire» il limite: serve a costruire un indice valido per ogni precisione o soglia.</p>
+
+<h3>Monotonia: $a_n=\dfrac n{n^2+1}$</h3>
+<p>Si ha $a_{n+1}=\dfrac{n+1}{n^2+2n+2}$. I denominatori sono positivi, quindi $a_n\gt a_{n+1}$ equivale a</p>
+$$n(n^2+2n+2)\gt(n+1)(n^2+1)\iff n^3+2n^2+2n\gt n^3+n^2+n+1\iff n^2+n-1\gt0,$$
+<p>vera per ogni $n\ge1$. Inoltre $a_0=0$ e $a_1=\frac12$. Partendo da $n=0$:</p>
+<ul>
+<li>la successione cresce da $a_0$ ad $a_1$;</li>
+<li>è strettamente decrescente per $n\ge1$;</li>
+<li>ha massimo $a_1=\frac12$;</li>
+<li>tende a $0$.</li>
+</ul>
+<p>Se il dominio parte da $n=1$, è strettamente decrescente su tutto il dominio.</p>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-04-mono.svg" role="img" aria-label="Termini di n/(n^2+1)"></div>
+<figcaption>$a_n=\frac n{n^2+1}$ partendo da $n=0$: cresce fino al massimo $a_1=\frac12$ (arancione), poi è strettamente decrescente verso $0$.</figcaption>
+</figure>
+
+
+<h3>Monotonia di polinomi</h3>
+<p>Per $a_n=n^2-4n$:</p>
+$$a_{n+1}-a_n=2n-3.$$
+<p>La differenza è negativa per $n=0,1$ e positiva per $n\ge2$: la successione diminuisce fino ad $a_2$, poi cresce; il minimo è $a_2=-4$.</p>
+<p>Per $b_n=n^2+4n$ si ha $b_{n+1}-b_n=2n+5\gt0$ per ogni $n\ge0$: è strettamente crescente.</p>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-04-par.svg" role="img" aria-label="Termini di n^2-4n"></div>
+<figcaption>$a_n=n^2-4n$: diminuisce fino al minimo $a_2=-4$ (arancione), poi cresce. Il vertice della parabola è in $x=2$.</figcaption>
+</figure>
+
+
+<h3>Semplificazioni con i fattoriali</h3>
+<p>Le identità fondamentali sono</p>
+$$(n+1)!=(n+1)\,n!,\qquad(n+2)!=(n+2)(n+1)\,n!,\qquad n!=n\,(n-1)!.$$
+<p>Consideriamo</p>
+$$a_n=\frac{(n+2)!-n!}{n^3(n-1)!}.$$
+<p>Al numeratore: $(n+2)!-n!=n!\bigl[(n+2)(n+1)-1\bigr]$. Al denominatore: $n^3(n-1)!=n^2\bigl[n(n-1)!\bigr]=n^2\,n!$. Semplificando:</p>
+$$a_n=\frac{(n+2)(n+1)-1}{n^2}=\frac{n^2+3n+1}{n^2}=1+\frac3n+\frac1{n^2}\to1.$$
+<p>Il metodo è espandere i fattoriali quanto basta per ottenere un fattoriale comune, senza sviluppare tutti i fattori.</p>
+
+
+<h2>4. Esempi e osservazioni</h2>
+
+<h3>Successioni trigonometriche e parità</h3>
+<p>Per ogni $n\in\mathbb N$:</p>
+$$\sin(\pi n)=0,\qquad\cos(\pi n)=(-1)^n.$$
+<p>Sono identità, non solo affermazioni sui limiti. Per esempio</p>
+$$[\cos(\pi n)]^{n+1}=(-1)^{n(n+1)}=1,$$
+<p>perché il prodotto di due interi consecutivi è sempre pari. Invece</p>
+$$[\cos(\pi n)]^n=(-1)^{n^2}=(-1)^n,$$
+<p>quindi il limite non esiste.</p>
+
+<h3>Radice ennesima con un termine alternante</h3>
+<p>Sia $a_n=\sqrt[n]{2+\cos(\pi n)}$. Poiché $1\le2+\cos(\pi n)\le3$:</p>
+$$1\le a_n\le3^{1/n}\to1.$$
+<p>Per i carabinieri $\boxed{a_n\to1}$. Separando gli indici: $a_{2k}=3^{1/(2k)}\to1$ e $a_{2k+1}=1$.</p>
+
+<h3>Funzioni inverse goniometriche</h3>
+<p>Nella scheda compaiono $\arccos\frac1n$, $\left[\arcsin\frac1n\right]^n$, $[\arctan n]^n$ (l'esponente $n$ è presente negli esercizi 24 e 25). I risultati sono</p>
+$$\arccos\frac1n\to\frac\pi2,\qquad\left[\arcsin\frac1n\right]^n\to0,\qquad[\arctan n]^n\to+\infty.$$
+<ul>
+<li><strong>Secondo limite:</strong> la base tende a $0$ e definitivamente è compresa tra $0$ e $\frac12$, quindi $0\le\left[\arcsin\frac1n\right]^n\le\left(\frac12\right)^n\to0$.</li>
+<li><strong>Terzo limite:</strong> la base tende a $\frac\pi2\gt1$; fissato $c\in\left(1,\frac\pi2\right)$, definitivamente $[\arctan n]^n\ge c^n\to+\infty$.</li>
+</ul>
+
+<h3>Uso corretto degli equivalenti asintotici</h3>
+<p><strong>Somme.</strong> Se $u_n/v_n\to0$, allora</p>
+$$v_n+u_n=v_n\left(1+\frac{u_n}{v_n}\right)\sim v_n.$$
+<p>Per esempio $n+\ln n\sim n$.</p>
+<p><strong>Prodotti.</strong> Non si può eliminare un fattore da un prodotto:</p>
+$$n\ln n\not\sim n,\qquad\frac{n\ln n}{n}=\ln n\to+\infty,\qquad n\ll n\ln n\ll n^2.$$
+<p>Prima di confrontare quantità composte conviene semplificarle: $\ln(n^n)=n\ln n$. La gerarchia si applica all'espressione ottenuta, non solo a ciò che sta dentro il logaritmo.</p>
+<p><strong>Sottrazioni.</strong> Da $u_n\sim v_n$ non segue $u_n-v_n\to0$: l'equivalenza dice che l'errore <em>relativo</em> tende a zero, non quello assoluto. L'esempio centrale è $\sqrt{n^2-n}\sim n$, ma $\sqrt{n^2-n}-n\to-\frac12$.</p>
+
+<h3>Quando serve razionalizzare</h3>
+<ul>
+<li>Se i termini principali hanno ordini diversi, domina quello di ordine superiore.</li>
+<li>Se hanno lo stesso ordine ma coefficienti diversi, può bastare raccogliere.</li>
+<li>Se i termini principali si <strong>cancellano</strong>, serve un'analisi più precisa.</li>
+</ul>
+<p>Non basta vedere «due termini dello stesso ordine» per razionalizzare: il problema decisivo è la cancellazione. Per le radici cubiche si usa</p>
+$$(A-B)(A^2+AB+B^2)=A^3-B^3,$$
+<p>che trasforma una differenza di radici cubiche in un rapporto senza quella differenza al numeratore.</p>
+
+<h3>Forme indeterminate</h3>
+<p>La scrittura $[1^\infty]$ descrive una base che tende a $1$ e un esponente che tende a infinito: non va confusa con $1^n=1$, che è una successione costante. Analogamente $[0\cdot\infty]$ indica un infinitesimo per un infinito, non il prodotto $0\cdot n$, che vale esattamente zero.</p>
+
+<h3>Esempi riconducibili a $e$</h3>
+<p>Poiché $n!\to+\infty$ e $\ln n\to+\infty$:</p>
+$$\left(1+\frac1{n!}\right)^{n!}\to e,\qquad\left(1+\frac1{\ln n}\right)^{\ln n}\to e.$$
+<p>Qui incremento della base ed esponente sono reciproci.</p>
+
+<h3>Esponente diverso dal reciproco</h3>
+<p>Sia $a_n=\left(1+\dfrac1{\ln n}\right)^n$. Riscriviamo</p>
+$$a_n=\left[\left(1+\frac1{\ln n}\right)^{\ln n}\right]^{n/\ln n}.$$
+<p>La base tra parentesi tende a $e\gt1$, mentre $\frac n{\ln n}\to+\infty$. Quindi $\boxed{a_n\to+\infty}$. Allo stesso modo</p>
+$$\left(1+\frac1n\right)^{n^2}=\left[\left(1+\frac1n\right)^n\right]^n\to+\infty.$$
+
+<h3>Esercizio conclusivo: $\left(\dfrac{n-2}{n+1}\right)^n$</h3>
+<p>Riscriviamo la base come $1+{}$un infinitesimo:</p>
+$$\frac{n-2}{n+1}=\frac{n+1-3}{n+1}=1-\frac3{n+1}.$$
+<p>Ponendo $u_n=-\dfrac3{n+1}$ e $v_n=n$ si ottiene $u_nv_n=-\dfrac{3n}{n+1}\to-3$. La base è positiva per $n\gt2$, quindi si applica il limite notevole:</p>
+$$\boxed{\left(\frac{n-2}{n+1}\right)^n\to e^{-3}}$$
+
+<h3>Monotonia e divergenza sono proprietà diverse</h3>
+<ul>
+<li>Una successione crescente non deve necessariamente divergere: può convergere a un limite finito.</li>
+<li>Una successione che tende a $+\infty$ non deve necessariamente essere crescente: può avere diminuzioni locali, pur superando definitivamente ogni soglia.</li>
+</ul>
+<p>La monotonia riguarda il confronto tra termini consecutivi; il limite riguarda il comportamento complessivo per $n\to+\infty$.</p>
+
+<h3>«Argomento divergente» non implica «seno senza limite»</h3>
+<p>Da $x_n\to+\infty$ non si può concludere che $\sin x_n$ non abbia limite: per $x_n=\pi n\to+\infty$ si ha $\sin x_n=0$. Quindi l'affermazione informale su $\sin\left(\frac{n!}{n^2}\right)$ non è dimostrata dalla sola divergenza dell'argomento. Invece, indipendentemente dall'esistenza del limite del seno,</p>
+$$n-1\le n+\sin\left(\frac{n!}{n^2}\right)\le n+1\quad\Longrightarrow\quad n+\sin\left(\frac{n!}{n^2}\right)\to+\infty.$$
+<p>Questo è il vero motivo per cui il termine oscillante è un «distrattore».</p>
+
+<h3>Somma dei limiti: controllare le ipotesi</h3>
+<p>Per limiti finiti, il limite di una somma è la somma dei limiti. Valgono anche casi con limiti infiniti, purché non si generi una forma indeterminata. Non si può invece applicare direttamente la regola quando uno degli addendi non ha limite: in quel caso serve un confronto, come nell'esempio precedente.</p>
+
+
+<h2>5. Schema operativo</h2>
+<div class="box ex">
+<div class="bt">Procedura per gli esercizi</div>
+<ol>
+<li>Controlla il dominio e leggi bene parentesi, radici ed esponenti.</li>
+<li>Riconosci la forma iniziale: determinata o indeterminata.</li>
+<li>Se hai polinomi, raccogli le potenze dominanti.</li>
+<li>Se hai logaritmi, potenze, esponenziali o fattoriali, confronta gli ordini di crescita.</li>
+<li>Nelle somme puoi trascurare termini di ordine inferiore; nei prodotti non puoi eliminare fattori.</li>
+<li>Se una differenza cancella i termini principali, evita sostituzioni asintotiche premature e prova a razionalizzare.</li>
+<li>Per una forma $1^\infty$, scrivi la base come $1+u_n$ e studia il prodotto $u_nv_n$.</li>
+<li>Se compaiono seni o coseni, chiediti prima se basta la loro limitatezza.</li>
+<li>Per la monotonia, studia $a_{n+1}-a_n$ oppure confronta direttamente $a_{n+1}$ e $a_n$.</li>
+<li>Per una verifica con la definizione, costruisci esplicitamente $N_\varepsilon$ oppure $N_M$.</li>
+</ol>
+</div>
+<p>Il filo conduttore è distinguere tre cose: uguaglianze algebriche, equivalenze asintotiche e passaggi al limite. Confonderle porta, per esempio, a trasformare erroneamente $\sqrt{n^2-n}-n$ in zero.</p>
+
+
+<h2>6. Errori da evitare</h2>
+<div class="box warn">
+<div class="bt">Attenzione</div>
+<ul>
+<li>$(-2)^n$ non ha limite, ma $(-2)^{-n}\to0$: il segno alterno non basta, guarda anche il modulo.</li>
+<li>«Ordine superiore» non vuol dire «valore maggiore»: conta il limite del rapporto.</li>
+<li>Nelle somme si trascurano i termini di ordine inferiore, nei prodotti <strong>no</strong>: $n\ln n\not\sim n$.</li>
+<li>$u_n\sim v_n$ non implica $u_n-v_n\to0$ ($\sqrt{n^2-n}-n\to-\frac12$).</li>
+<li>Non sostituire radici equivalenti nella loro differenza: se i termini principali si cancellano, razionalizza.</li>
+<li>$[1^\infty]$ non è $1^n=1$, e $[0\cdot\infty]$ non è $0\cdot n=0$.</li>
+<li>Se $x_n\to+\infty$ non segue che $\sin x_n$ non abbia limite ($\sin\pi n=0$).</li>
+<li>Monotonia e divergenza sono indipendenti: crescente non implica divergente, divergente non implica crescente.</li>
+<li>Controlla da quale indice parte il dominio: cambia la monotonia ($\frac n{n^2+1}$ da $n=0$ o da $n=1$).</li>
+<li>Per $\varepsilon=0{,}1$ in $\frac3{n-1}\lt\varepsilon$ serve $n\gt31$, non $n\ge31$: la disuguaglianza è stretta.</li>
+</ul>
+</div>
+
+
+<h2>7. Riepilogo finale</h2>
+<p>Cosa devi saper fare dopo questa esercitazione:</p>
+<ul>
+<li>scrivere le definizioni di convergenza, divergenza e monotonia di una successione;</li>
+<li>conoscere il carattere di $q^n$ e il limite dei rapporti tra polinomi;</li>
+<li>applicare carabinieri e confronto per la divergenza, anche con termini limitati come $\sin$, $\cos$, $\arctan$;</li>
+<li>usare la gerarchia $\ln n\ll n^\alpha\ll a^n\ll n!\ll n^n$ e raccogliere il termine dominante;</li>
+<li>usare gli equivalenti asintotici solo dove sono leciti e razionalizzare quando i termini principali si cancellano;</li>
+<li>ricondurre le forme $1^\infty$ al limite notevole di Nepero;</li>
+<li>verificare un limite con la definizione costruendo $N_\varepsilon$ o $N_M$;</li>
+<li>studiare la monotonia con il segno di $a_{n+1}-a_n$ e semplificare espressioni con i fattoriali.</li>
+</ul>

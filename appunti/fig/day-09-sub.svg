@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 150">
+<line class="ax" x1="20" y1="75" x2="313" y2="75"/>
+<text x="30" y="14" class="sm"><tspan class="lgA">●</tspan> n pari: <tspan>a</tspan><tspan dy="3.0" font-size="0.75em">2k</tspan><tspan dy="-3.0"> = 1</tspan></text>
+<text x="160" y="14" class="sm"><tspan class="lgB">●</tspan> n dispari: <tspan>a</tspan><tspan dy="3.0" font-size="0.75em">2k+1</tspan><tspan dy="-3.0"> = −1</tspan></text>
+<circle class="pt" cx="30.0" cy="34.0" r="4.5"/>
+<text x="30.0" y="92" text-anchor="middle" class="sm">0</text>
+<circle class="pt2" cx="60.6" cy="116.0" r="4.5"/>
+<text x="60.6" y="92" text-anchor="middle" class="sm">1</text>
+<circle class="pt" cx="91.1" cy="34.0" r="4.5"/>
+<text x="91.1" y="92" text-anchor="middle" class="sm">2</text>
+<circle class="pt2" cx="121.7" cy="116.0" r="4.5"/>
+<text x="121.7" y="92" text-anchor="middle" class="sm">3</text>
+<circle class="pt" cx="152.2" cy="34.0" r="4.5"/>
+<text x="152.2" y="92" text-anchor="middle" class="sm">4</text>
+<circle class="pt2" cx="182.8" cy="116.0" r="4.5"/>
+<text x="182.8" y="92" text-anchor="middle" class="sm">5</text>
+<circle class="pt" cx="213.3" cy="34.0" r="4.5"/>
+<text x="213.3" y="92" text-anchor="middle" class="sm">6</text>
+<circle class="pt2" cx="243.9" cy="116.0" r="4.5"/>
+<text x="243.9" y="92" text-anchor="middle" class="sm">7</text>
+<circle class="pt" cx="274.4" cy="34.0" r="4.5"/>
+<text x="274.4" y="92" text-anchor="middle" class="sm">8</text>
+<circle class="pt2" cx="305.0" cy="116.0" r="4.5"/>
+<text x="305.0" y="92" text-anchor="middle" class="sm">9</text>
+<text x="2" y="38" class="sm">1</text><text x="0" y="120" class="sm">−1</text>
+</svg>

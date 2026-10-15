@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 278">
+<line class="gr" x1="44" y1="218.4" x2="326" y2="218.4"/>
+<line class="ax" x1="44" y1="14" x2="44" y2="236"/><line class="ax" x1="44" y1="236" x2="326" y2="236"/>
+<line class="dash" x1="44" y1="218.4" x2="326" y2="218.4"/>
+<circle class="pt" cx="61.3" cy="218.4" r="3.6"/>
+<circle class="pt2" cx="86.1" cy="42.2" r="3.6"/>
+<circle class="pt" cx="110.8" cy="77.4" r="3.6"/>
+<circle class="pt" cx="135.5" cy="112.7" r="3.6"/>
+<circle class="pt" cx="160.3" cy="135.5" r="3.6"/>
+<circle class="pt" cx="185.0" cy="150.6" r="3.6"/>
+<circle class="pt" cx="209.7" cy="161.2" r="3.6"/>
+<circle class="pt" cx="234.5" cy="169.0" r="3.6"/>
+<circle class="pt" cx="259.2" cy="175.0" r="3.6"/>
+<circle class="pt" cx="283.9" cy="179.7" r="3.6"/>
+<circle class="pt" cx="308.7" cy="183.5" r="3.6"/>
+<line class="ax" x1="61.3" y1="236" x2="61.3" y2="240"/>
+<text x="61.3" y="253.0" text-anchor="middle" class="sm main">0</text>
+<line class="ax" x1="110.8" y1="236" x2="110.8" y2="240"/>
+<text x="110.8" y="253.0" text-anchor="middle" class="sm main">2</text>
+<line class="ax" x1="160.3" y1="236" x2="160.3" y2="240"/>
+<text x="160.3" y="253.0" text-anchor="middle" class="sm main">4</text>
+<line class="ax" x1="209.7" y1="236" x2="209.7" y2="240"/>
+<text x="209.7" y="253.0" text-anchor="middle" class="sm main">6</text>
+<line class="ax" x1="259.2" y1="236" x2="259.2" y2="240"/>
+<text x="259.2" y="253.0" text-anchor="middle" class="sm main">8</text>
+<line class="ax" x1="308.7" y1="236" x2="308.7" y2="240"/>
+<text x="308.7" y="253.0" text-anchor="middle" class="sm main">10</text>
+<line class="ax" x1="40" y1="218.4" x2="44" y2="218.4"/>
+<text x="36.0" y="222.4" text-anchor="end" class="sm main">0</text>
+<line class="ax" x1="40" y1="130.3" x2="44" y2="130.3"/>
+<text x="36.0" y="134.3" text-anchor="end" class="sm main">1/4</text>
+<line class="ax" x1="40" y1="42.2" x2="44" y2="42.2"/>
+<text x="36.0" y="46.2" text-anchor="end" class="sm main">1/2</text>
+<text x="326.0" y="268.0" text-anchor="end" class="sm">n</text>
+<text x="50.0" y="24.0" text-anchor="start" class="sm">a<tspan dy="3" font-size="0.75em">n</tspan><tspan dy="-3"> = n/(n²+1)</tspan></text>
+</svg>

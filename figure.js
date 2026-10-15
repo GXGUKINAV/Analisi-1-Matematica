@@ -117,7 +117,7 @@
         }
         return null;
       }
-      /* i quattro punti "di contorno": dove il grafico tocca L±ε e x₀±δ (tratteggio leggero) */
+      /* i quattro punti "di contorno": dove il grafico tocca L±ε e x̂±δ (tratteggio leggero) */
       [c.L + eps, c.L - eps].forEach(function (lv) {
         var xc = cross(lv);
         if (xc === null || lv < c.yr[0] || lv > c.yr[1]) return;
@@ -147,7 +147,7 @@
         lab(p[0], l - 6, y + 4, 'end', k === 1 ? 'sm main' : 'sm faint');
       });
       var half = px(c.x0 + del) - px(c.x0);
-      [['x₀−δ', c.x0 - del], ['x₀', c.x0], ['x₀+δ', c.x0 + del]].forEach(function (p, k) {
+      [['x̂−δ', c.x0 - del], ['x̂', c.x0], ['x̂+δ', c.x0 + del]].forEach(function (p, k) {
         var x = px(p[1]);
         if (x < l - 4 || x > r + 4) return;
         if (k === 1 && half < 30) return;
@@ -174,9 +174,23 @@
     load('lin');
   }
 
+  /* Grafici SVG salvati in file a parte: <div class="svg-src" data-src="appunti/fig/..."></div>
+     vengono caricati e inseriti "inline", così prendono i colori del tema. */
+  function loadSvgs() {
+    var hs = document.querySelectorAll('.svg-src:not([data-ready])');
+    Array.prototype.forEach.call(hs, function (h) {
+      h.setAttribute('data-ready', '1');
+      fetch(h.getAttribute('data-src')).then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.text();
+      }).then(function (t) { h.innerHTML = t; })
+        .catch(function () { h.textContent = 'Grafico non disponibile'; });
+    });
+  }
   function scan() {
     var hs = document.querySelectorAll('.eps-delta:not([data-ready])');
     for (var i = 0; i < hs.length; i++) build(hs[i]);
+    loadSvgs();
   }
   function start() {
     scan();

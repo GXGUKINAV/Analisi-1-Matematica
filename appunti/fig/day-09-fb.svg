@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 220">
+<line class="ax" x1="30" y1="185" x2="325" y2="185"/>
+<rect class="bar" x="34.4" y="182.3" width="20.6" height="2.7"/>
+<text x="44.8" y="177.3" text-anchor="middle" class="sm"><tspan>1</tspan></text>
+<text x="44.8" y="201.0" text-anchor="middle" class="sm main"><tspan>0</tspan></text>
+<rect class="bar" x="63.9" y="182.3" width="20.6" height="2.7"/>
+<text x="74.2" y="177.3" text-anchor="middle" class="sm"><tspan>1</tspan></text>
+<text x="74.2" y="201.0" text-anchor="middle" class="sm main"><tspan>1</tspan></text>
+<rect class="bar" x="93.4" y="179.6" width="20.6" height="5.4"/>
+<text x="103.8" y="174.6" text-anchor="middle" class="sm"><tspan>2</tspan></text>
+<text x="103.8" y="201.0" text-anchor="middle" class="sm main"><tspan>2</tspan></text>
+<rect class="bar" x="122.9" y="176.9" width="20.6" height="8.1"/>
+<text x="133.2" y="171.9" text-anchor="middle" class="sm"><tspan>3</tspan></text>
+<text x="133.2" y="201.0" text-anchor="middle" class="sm main"><tspan>3</tspan></text>
+<rect class="bar" x="152.4" y="171.5" width="20.6" height="13.5"/>
+<text x="162.8" y="166.5" text-anchor="middle" class="sm"><tspan>5</tspan></text>
+<text x="162.8" y="201.0" text-anchor="middle" class="sm main"><tspan>4</tspan></text>
+<rect class="bar" x="181.9" y="163.3" width="20.6" height="21.7"/>
+<text x="192.2" y="158.3" text-anchor="middle" class="sm"><tspan>8</tspan></text>
+<text x="192.2" y="201.0" text-anchor="middle" class="sm main"><tspan>5</tspan></text>
+<rect class="bar" x="211.4" y="149.8" width="20.6" height="35.2"/>
+<text x="221.8" y="144.8" text-anchor="middle" class="sm"><tspan>13</tspan></text>
+<text x="221.8" y="201.0" text-anchor="middle" class="sm main"><tspan>6</tspan></text>
+<rect class="bar" x="240.9" y="128.1" width="20.6" height="56.9"/>
+<text x="251.2" y="123.1" text-anchor="middle" class="sm"><tspan>21</tspan></text>
+<text x="251.2" y="201.0" text-anchor="middle" class="sm main"><tspan>7</tspan></text>
+<rect class="bar" x="270.4" y="92.9" width="20.6" height="92.1"/>
+<text x="280.8" y="87.9" text-anchor="middle" class="sm"><tspan>34</tspan></text>
+<text x="280.8" y="201.0" text-anchor="middle" class="sm main"><tspan>8</tspan></text>
+<rect class="bar" x="299.9" y="36.0" width="20.6" height="149.0"/>
+<text x="310.2" y="31.0" text-anchor="middle" class="sm"><tspan>55</tspan></text>
+<text x="310.2" y="201.0" text-anchor="middle" class="sm main"><tspan>9</tspan></text>
+<text x="325.0" y="217.0" text-anchor="end" class="sm"><tspan>n</tspan></text>
+</svg>

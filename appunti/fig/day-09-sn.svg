@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 200">
+<line class="ax" x1="26" y1="165" x2="325" y2="165"/>
+<circle class="pt2" cx="46.1" cy="33.2" r="4.5"/>
+<text x="46.1" y="181.0" text-anchor="middle" class="sm lgB"><tspan>1</tspan></text>
+<text x="54.1" y="27.2" text-anchor="start" class="sm lgB"><tspan>1</tspan></text>
+<circle class="ptf" cx="70.4" cy="99.1" r="4.5"/>
+<text x="70.4" y="181.0" text-anchor="middle" class="sm"><tspan>2</tspan></text>
+<circle class="pt2" cx="94.6" cy="121.1" r="4.5"/>
+<text x="94.6" y="181.0" text-anchor="middle" class="sm lgB"><tspan>3</tspan></text>
+<text x="102.6" y="115.1" text-anchor="start" class="sm lgB"><tspan>1/3</tspan></text>
+<circle class="ptf" cx="118.9" cy="132.0" r="4.5"/>
+<text x="118.9" y="181.0" text-anchor="middle" class="sm"><tspan>4</tspan></text>
+<circle class="pt2" cx="143.1" cy="138.6" r="4.5"/>
+<text x="143.1" y="181.0" text-anchor="middle" class="sm lgB"><tspan>5</tspan></text>
+<text x="151.1" y="132.6" text-anchor="start" class="sm lgB"><tspan>1/5</tspan></text>
+<circle class="ptf" cx="167.4" cy="143.0" r="4.5"/>
+<text x="167.4" y="181.0" text-anchor="middle" class="sm"><tspan>6</tspan></text>
+<circle class="pt2" cx="191.6" cy="146.2" r="4.5"/>
+<text x="191.6" y="181.0" text-anchor="middle" class="sm lgB"><tspan>7</tspan></text>
+<text x="199.6" y="140.2" text-anchor="start" class="sm lgB"><tspan>1/7</tspan></text>
+<circle class="ptf" cx="215.9" cy="148.5" r="4.5"/>
+<text x="215.9" y="181.0" text-anchor="middle" class="sm"><tspan>8</tspan></text>
+<circle class="pt2" cx="240.1" cy="150.4" r="4.5"/>
+<text x="240.1" y="181.0" text-anchor="middle" class="sm lgB"><tspan>9</tspan></text>
+<circle class="ptf" cx="264.4" cy="151.8" r="4.5"/>
+<text x="264.4" y="181.0" text-anchor="middle" class="sm"><tspan>10</tspan></text>
+<circle class="pt2" cx="288.6" cy="153.0" r="4.5"/>
+<text x="288.6" y="181.0" text-anchor="middle" class="sm lgB"><tspan>11</tspan></text>
+<circle class="ptf" cx="312.9" cy="154.0" r="4.5"/>
+<text x="312.9" y="181.0" text-anchor="middle" class="sm"><tspan>12</tspan></text>
+</svg>

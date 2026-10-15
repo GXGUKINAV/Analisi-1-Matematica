@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 148">
+<line class="ax" x1="8" y1="122" x2="312" y2="122"/>
+<line class="ax" x1="84.4" y1="118" x2="84.4" y2="126"/>
+<text x="84.4" y="140" text-anchor="middle">0</text>
+<line class="ax" x1="175.1" y1="118" x2="175.1" y2="126"/>
+<text x="175.1" y="140" text-anchor="middle">3</text>
+<text x="8" y="21" class="sm"><tspan>D = {0} ∪ [3, +∞)</tspan></text>
+<circle class="pt" cx="84.4" cy="36" r="5"/>
+<line class="cv" x1="175.1" y1="36" x2="312.0" y2="36"/>
+<circle class="pt" cx="175.1" cy="36" r="5"/>
+<path class="pt" d="M 314.0 36 l -9 -6 v 12 z"/>
+<text x="8" y="61" class="sm"><tspan>parte interna D</tspan><tspan dy="-4.0" font-size="0.75em">°</tspan><tspan dy="4.0"> = (3, +∞)</tspan></text>
+<line class="cv" x1="175.1" y1="76" x2="312.0" y2="76"/>
+<circle class="hole" cx="175.1" cy="76" r="5"/>
+<path class="pt" d="M 314.0 76 l -9 -6 v 12 z"/>
+</svg>
