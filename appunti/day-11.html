@@ -1,0 +1,313 @@
+<p>Manteniamo le convenzioni dei Day precedenti: $\overline{\mathbb R}=\mathbb R\cup\{-\infty,+\infty\}$. Oggi si lega il limite di funzione a quello di successione, si dimostra la non esistenza di un limite, si completano i teoremi di confronto, la gerarchia degli infiniti e i limiti notevoli.</p>
+
+<h2>1. Definizioni</h2>
+
+<h3>Intorni e punto a cui tende la variabile</h3>
+<p>Siano $f\colon D\subseteq\mathbb R\to\mathbb R$ e $\widehat x\in\overline{\mathbb R}$. $I(\widehat x)$ indica un intorno di $\widehat x$:</p>
+<div class="tbl"><table>
+<thead><tr><th>Punto</th><th>Intorno</th></tr></thead>
+<tbody>
+<tr><td>$\widehat x\in\mathbb R$</td><td>$I(\widehat x)=(\widehat x-\delta,\widehat x+\delta)$, con $\delta\gt0$</td></tr>
+<tr><td>$\widehat x=+\infty$</td><td>$I(+\infty)=(M,+\infty)$</td></tr>
+<tr><td>$\widehat x=-\infty$</td><td>$I(-\infty)=(-\infty,M)$</td></tr>
+</tbody></table></div>
+<p>Si pone $D_{\widehat x}=D\setminus\{\widehat x\}$ se $\widehat x$ è finito e $D_{\widehat x}=D$ se è infinito. L'idea di fondo è la natura <strong>locale</strong> del limite: conta ciò che accade vicino a $\widehat x$, non su tutto il dominio.</p>
+
+<h3>Quando ha senso studiare un limite</h3>
+<p>Per studiare $\displaystyle\lim_{x\to\widehat x}f(x)$ ci si deve poter avvicinare a $\widehat x$ con punti del dominio diversi da $\widehat x$:</p>
+<ul>
+<li>se $\widehat x\in\mathbb R$, deve essere di accumulazione per $D$;</li>
+<li>se $\widehat x=+\infty$, $D$ deve essere illimitato superiormente;</li>
+<li>se $\widehat x=-\infty$, $D$ deve essere illimitato inferiormente.</li>
+</ul>
+<p>Per un limite all'infinito non serve che il dominio contenga un'intera semiretta: bastano punti arbitrariamente lontani nella direzione considerata.</p>
+
+<h3>Limitatezza locale</h3>
+<div class="box def">
+<div class="bt">Definizione — Limitata in un intorno bucato</div>
+<p>$f$ è limitata in un intorno bucato di $\widehat x$ se</p>
+$$\exists I(\widehat x)\ \ \exists K\gt0\ \ \forall x\in D_{\widehat x}\cap I(\widehat x):\quad|f(x)|\le K.$$
+</div>
+<p>Non vuol dire limitata su tutto il dominio: $e^x$ non è limitata superiormente su $\mathbb R$, ma lo è in ogni intervallo limitato.</p>
+
+<h3>Equivalenza asintotica</h3>
+<div class="box def">
+<div class="bt">Definizione — Asintoticamente equivalenti</div>
+<p>Siano $f,g$ definite vicino a $\widehat x$, con $g(x)\ne0$ nei punti considerati. Si scrive</p>
+$$\boxed{f(x)\sim g(x)\quad(x\to\widehat x)\iff\lim_{x\to\widehat x}\frac{f(x)}{g(x)}=1.}$$
+</div>
+<p>Il punto verso cui tende $x$ va specificato (o dev'essere chiaro dal contesto). L'equivalenza non è un'uguaglianza: dice solo che il rapporto tende a $1$.</p>
+
+<h3>Confronto tra infiniti</h3>
+<p>Siano $f\to+\infty$ e $g\to+\infty$ per $x\to\widehat x$. Si studia $\displaystyle\lim_{x\to\widehat x}\frac{f(x)}{g(x)}$:</p>
+<div class="tbl"><table>
+<thead><tr><th>Limite del rapporto</th><th>Interpretazione</th></tr></thead>
+<tbody>
+<tr><td>$+\infty$</td><td>$f$ è un infinito di ordine superiore a $g$</td></tr>
+<tr><td>$0$</td><td>$f$ è un infinito di ordine inferiore a $g$</td></tr>
+<tr><td>$\ell\in(0,+\infty)$</td><td>$f$ e $g$ sono infiniti dello stesso ordine</td></tr>
+<tr><td>non esiste</td><td>il criterio non dà un ordine</td></tr>
+</tbody></table></div>
+<p>Dello stesso ordine non vuol dire equivalenti: $2x$ e $x$ hanno rapporto $2$, non $1$.</p>
+
+<h3>Confronto tra infinitesimi</h3>
+<p>Siano $f,g$ positive vicino al punto, con $f\to0$ e $g\to0$:</p>
+<div class="tbl"><table>
+<thead><tr><th>Limite di $f/g$</th><th>Interpretazione</th></tr></thead>
+<tbody>
+<tr><td>$0$</td><td>$f$ è un infinitesimo di ordine superiore a $g$ (si annulla più in fretta)</td></tr>
+<tr><td>$+\infty$</td><td>$f$ è un infinitesimo di ordine inferiore a $g$ (si annulla più lentamente)</td></tr>
+<tr><td>$\ell\in(0,+\infty)$</td><td>dello stesso ordine</td></tr>
+<tr><td>non esiste</td><td>non confrontabili con questo criterio</td></tr>
+</tbody></table></div>
+<p>Come per le successioni, la terminologia si <strong>inverte</strong> rispetto agli infiniti. Esempio: $\dfrac{x^2}{|x|}=|x|\to0$, quindi per $x\to0$ $x^2$ è un infinitesimo di ordine superiore a $|x|$.</p>
+
+
+<h2>2. Teoremi</h2>
+<p>In tutti gli enunciati si sottintende che ci si possa avvicinare a $\widehat x$ con punti del dominio.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Caratterizzazione del limite mediante successioni</div>
+<p><strong>Ipotesi.</strong> $f\colon D\to\mathbb R$ e $\widehat x,L\in\overline{\mathbb R}$.</p>
+<p><strong>Tesi.</strong></p>
+$$\boxed{\lim_{x\to\widehat x}f(x)=L\iff\forall(x_n)\subseteq D_{\widehat x}:\ x_n\to\widehat x\Longrightarrow f(x_n)\to L.}$$
+</div>
+<p>$x_n\to\widehat x$ descrive l'avvicinamento sull'asse orizzontale, $f(x_n)\to L$ il comportamento delle immagini sull'asse verticale. La condizione $x_n\ne\widehat x$ (per $\widehat x$ finito) è essenziale: il limite non dipende dal valore di $f$ nel punto.</p>
+
+<div class="box thm">
+<div class="bt">Criterio di non esistenza del limite</div>
+<p>Se esistono due successioni $(x_n),(y_n)\subseteq D_{\widehat x}$ con $x_n\to\widehat x$, $y_n\to\widehat x$ e</p>
+$$f(x_n)\to L_1,\qquad f(y_n)\to L_2,\qquad L_1\ne L_2,$$
+<p>allora $\displaystyle\lim_{x\to\widehat x}f(x)$ <strong>non esiste</strong>.</p>
+</div>
+<p>È l'uso principale del teorema. Attenzione: due successioni con lo stesso risultato <em>non</em> bastano a provare l'esistenza, perché l'enunciato richiede <em>tutte</em> le successioni ammissibili.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Locale limitatezza</div>
+<p><strong>Ipotesi.</strong> $\displaystyle\lim_{x\to\widehat x}f(x)=L\in\mathbb R$.</p>
+<p><strong>Tesi.</strong> $\exists I(\widehat x)\ \exists K\gt0\ \forall x\in D_{\widehat x}\cap I(\widehat x):\ |f(x)|\le K$.</p>
+</div>
+<p>Quindi limite finito $\Rightarrow$ limitatezza locale. L'ipotesi $L\in\mathbb R$ è fondamentale: il risultato non vale per i limiti infiniti.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Permanenza del segno</div>
+<p><strong>Ipotesi.</strong> $\displaystyle\lim_{x\to\widehat x}f(x)=L\in\overline{\mathbb R}$.</p>
+<p><strong>Tesi.</strong> Se $L\gt0$ allora $f(x)\gt0$ in un opportuno intorno bucato di $\widehat x$; se $L\lt0$ allora $f(x)\lt0$ in un opportuno intorno bucato.</p>
+</div>
+<p>Se $L=0$ non si deduce alcun segno: $f(x)=x$ tende a $0$ ma cambia segno nell'origine.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Monotonia del limite</div>
+<p>Qui «monotonia» indica la conservazione dell'ordine passando al limite, non la monotonia delle funzioni.</p>
+<p><strong>Ipotesi.</strong> In un intorno bucato di $\widehat x$ vale $f(x)\le g(x)$, ed esistono $\displaystyle\lim_{x\to\widehat x}f=L_1$ e $\displaystyle\lim_{x\to\widehat x}g=L_2$.</p>
+<p><strong>Tesi.</strong> $\boxed{L_1\le L_2}$.</p>
+</div>
+<p>La disuguaglianza deve valere solo vicino al punto. Quella <em>stretta</em> può andare persa: $0\lt x^2$ per $x\ne0$, ma entrambi i membri tendono a $0$.</p>
+
+<div class="box thm">
+<div class="bt">Teorema dei carabinieri</div>
+<p><strong>Ipotesi.</strong> In un intorno bucato di $\widehat x$: $g(x)\le f(x)\le h(x)$, e $\displaystyle\lim_{x\to\widehat x}g=\lim_{x\to\widehat x}h=L\in\overline{\mathbb R}$.</p>
+<p><strong>Tesi.</strong> $\boxed{\displaystyle\lim_{x\to\widehat x}f(x)=L}$.</p>
+</div>
+<p>Per mostrare che $f\to0$ è utile la forma $0\le|f(x)|\le h(x)$ con $h\to0$: allora $|f|\to0$ e quindi $f\to0$.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Limiti delle funzioni monotone</div>
+<p>Una funzione monotona ammette i limiti laterali, dove ha senso considerarli, in $\overline{\mathbb R}$. Per $f$ <strong>non decrescente</strong>:</p>
+$$\lim_{x\to c^-}f(x)=\sup\{f(x):x\in D,\ x\lt c\},\qquad\lim_{x\to c^+}f(x)=\inf\{f(x):x\in D,\ x\gt c\}.$$
+<p>Per $f$ <strong>non crescente</strong> i ruoli di $\sup$ e $\inf$ si scambiano.</p>
+</div>
+<p>A lezione sono stati illustrati il limite sinistro delle crescenti e quello destro delle decrescenti; il resto segue per simmetria. Il supremo non è per forza un massimo (il valore limite può non essere raggiunto) e la monotonia non garantisce l'esistenza del limite bilatero: i due laterali possono differire.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-11-mono.svg" role="img" aria-label="Funzione non decrescente con salto in c"></div>
+<figcaption>$f$ non decrescente con un salto in $c$: $L^-=\sup\{f(x):x\lt c\}$ e $L^+=\inf\{f(x):x\gt c\}$. I limiti laterali esistono ma sono diversi, e $f(c)$ sta in mezzo: $L^-\le f(c)\le L^+$.</figcaption>
+</figure>
+
+<h3>Gerarchia degli infiniti per $x\to+\infty$</h3>
+<div class="box thm">
+<div class="bt">Teorema — Gerarchia degli infiniti</div>
+<p>Per $\alpha\gt0$, $\beta\gt0$, $a\gt1$:</p>
+$$\boxed{(\ln x)^\alpha\ll x^\beta\ll a^x\ll x^x.}$$
+<p>Qui $u\ll v$ significa $u/v\to0$. In particolare</p>
+$$\lim_{x\to+\infty}\frac{(\ln x)^\alpha}{x^\beta}=0,\qquad\lim_{x\to+\infty}\frac{x^\beta}{a^x}=0,\qquad\lim_{x\to+\infty}\frac{a^x}{x^x}=0.$$
+</div>
+<p>I logaritmi crescono più lentamente delle potenze positive, le potenze più lentamente degli esponenziali di base $\gt1$, e $x^x$ più rapidamente di ogni esponenziale a base costante.</p>
+
+<h3>Cautele nell'applicazione</h3>
+<ul>
+<li>Se $0\lt a\lt1$, $a^x\to0$ per $x\to+\infty$: non è un infinito dominante.</li>
+<li>$e^x$ cresce velocemente, ma $|\cos(e^x)|\le1$: la composizione resta limitata. Analogamente $|\arctan u|\lt\frac\pi2$.</li>
+<li>Per $x\to-\infty$ la gerarchia non si applica automaticamente: si pone $t=-x\to+\infty$.</li>
+</ul>
+
+
+<h2>3. Forme indeterminate e limiti notevoli</h2>
+<p>Una <strong>forma indeterminata</strong> è una situazione in cui i limiti dei singoli termini non bastano a determinare il limite dell'espressione. Le usuali sono</p>
+$$\frac00,\quad\frac\infty\infty,\quad0\cdot\infty,\quad+\infty-\infty,\quad1^\infty,\quad0^0,\quad\infty^0.$$
+<p>Non sono risultati: indicano che bisogna trasformare l'espressione (scomposizioni, razionalizzazioni, gerarchia degli infiniti, limiti notevoli, equivalenze).</p>
+
+<h3>I quattordici limiti notevoli</h3>
+<p>Angoli in radianti; logaritmi in base $a\gt0$, $a\ne1$; per $(1+x)^m$, $m\in\mathbb R$ fissato e $1+x\gt0$.</p>
+<div class="tbl"><table>
+<thead><tr><th>N.</th><th>Limite</th><th>Risultato</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>$\displaystyle\lim_{x\to0}\frac{\sin x}{x}$</td><td>$1$</td></tr>
+<tr><td>2</td><td>$\displaystyle\lim_{x\to0}\frac{1-\cos x}{x^2}$</td><td>$\frac12$</td></tr>
+<tr><td>3</td><td>$\displaystyle\lim_{x\to0}\frac{\ln(1+x)}{x}$</td><td>$1$</td></tr>
+<tr><td>4</td><td>$\displaystyle\lim_{x\to0}\frac{\log_a(1+x)}{x}$</td><td>$\frac1{\ln a}$</td></tr>
+<tr><td>5</td><td>$\displaystyle\lim_{x\to0}\frac{e^x-1}{x}$</td><td>$1$</td></tr>
+<tr><td>6</td><td>$\displaystyle\lim_{x\to0}\frac{a^x-1}{x}$</td><td>$\ln a$</td></tr>
+<tr><td>7</td><td>$\displaystyle\lim_{x\to0}\frac{(1+x)^m-1}{x}$</td><td>$m$</td></tr>
+<tr><td>8</td><td>$\displaystyle\lim_{x\to0}\frac{\tan x}{x}$</td><td>$1$</td></tr>
+<tr><td>9</td><td>$\displaystyle\lim_{x\to0}\frac{\arctan x}{x}$</td><td>$1$</td></tr>
+<tr><td>10</td><td>$\displaystyle\lim_{x\to0}\frac{\arcsin x}{x}$</td><td>$1$</td></tr>
+<tr><td>11</td><td>$\displaystyle\lim_{x\to0}\frac{\sinh x}{x}$</td><td>$1$</td></tr>
+<tr><td>12</td><td>$\displaystyle\lim_{x\to0}\frac{\cosh x-1}{x^2}$</td><td>$\frac12$</td></tr>
+<tr><td>13</td><td>$\displaystyle\lim_{x\to\pm\infty}\left(1+\frac1x\right)^x$</td><td>$e$</td></tr>
+<tr><td>14</td><td>$\displaystyle\lim_{x\to0}(1+x)^{1/x}$</td><td>$e$</td></tr>
+</tbody></table></div>
+<p>Nel n. 13, $+\infty$ e $-\infty$ sono due limiti distinti, entrambi uguali a $e$. A lezione sono dimostrati i primi quattro; le altre dimostrazioni sono rinviate.</p>
+
+<h3>Equivalenze corrispondenti</h3>
+<p>Per $x\to0$:</p>
+$$\sin x\sim x,\quad1-\cos x\sim\frac{x^2}2,\quad\ln(1+x)\sim x,\quad\log_a(1+x)\sim\frac x{\ln a},\quad e^x-1\sim x,$$
+$$a^x-1\sim x\ln a\ \ (a\ne1),\quad(1+x)^m-1\sim mx\ \ (m\ne0),$$
+$$\tan x\sim x,\quad\arctan x\sim x,\quad\arcsin x\sim x,\quad\sinh x\sim x,\quad\cosh x-1\sim\frac{x^2}2.$$
+<p>Le condizioni $a\ne1$ e $m\ne0$ evitano rapporti con denominatore identicamente nullo.</p>
+
+
+<h2>4. Dimostrazioni</h2>
+
+<h3>Primo limite notevole: $\sin x/x\to1$</h3>
+<p><strong>Parità.</strong> Per $f(x)=\dfrac{\sin x}x$ si ha $f(-x)=\dfrac{-\sin x}{-x}=f(x)$: basta calcolare il limite destro.</p>
+<p><strong>Primo quadrante.</strong> Sia $0\lt x\lt\frac\pi2$: seno, coseno e tangente sono positivi e si può dividere senza cambiare il verso.</p>
+<p><strong>Tre aree.</strong> Sulla circonferenza goniometrica confrontiamo il triangolo interno (cateti $\cos x$ e $\sin x$), il settore di angolo $x$ e il triangolo esterno (con la tangente in $(1,0)$):</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-11-sinx.svg" role="img" aria-label="Circonferenza goniometrica con triangolo interno, settore e triangolo esterno"></div>
+<figcaption>Il settore (in azzurro) contiene il triangolo $OHP$ ed è contenuto nel triangolo $OAQ$. Lati: $PH=\sin x$, $OH=\cos x$, $AQ=\tan x$.</figcaption>
+</figure>
+
+$$\frac12\sin x\cos x\ \le\ \frac x2\ \le\ \frac12\tan x.$$
+<p>L'area del settore vale $x/2$ perché $x$ è in radianti. Moltiplicando per $2$ e dividendo per $\sin x\gt0$:</p>
+$$\cos x\le\frac x{\sin x}\le\frac1{\cos x}\quad\Longrightarrow\quad\cos x\le\frac{\sin x}x\le\frac1{\cos x}.$$
+<p>Per $x\to0^+$ gli estremi tendono a $1$: per i carabinieri $\displaystyle\lim_{x\to0^+}\frac{\sin x}x=1$, e per parità anche da sinistra. Dunque $\boxed{\displaystyle\lim_{x\to0}\frac{\sin x}x=1}$.</p>
+
+<h3>Secondo limite notevole: $(1-\cos x)/x^2\to\frac12$</h3>
+<p>La sostituzione dà $\frac00$. Moltiplichiamo per $1+\cos x$ e usiamo $1-\cos^2x=\sin^2x$:</p>
+$$\frac{1-\cos x}{x^2}=\frac{(1-\cos x)(1+\cos x)}{x^2(1+\cos x)}=\left(\frac{\sin x}x\right)^2\frac1{1+\cos x}\longrightarrow1\cdot\frac12.$$
+<p>Quindi $\boxed{\displaystyle\lim_{x\to0}\frac{1-\cos x}{x^2}=\frac12}$, cioè $1-\cos x\sim\frac{x^2}2$.</p>
+
+<h3>Terzo limite notevole: $\ln(1+x)/x\to1$</h3>
+<p>Si usa il limite di Eulero in variabile reale, $\displaystyle\lim_{t\to\pm\infty}\left(1+\frac1t\right)^t=e$. Poniamo $t=1/x$, così $x\to0^\pm\Rightarrow t\to\pm\infty$:</p>
+$$\frac{\ln(1+x)}x=t\ln\left(1+\frac1t\right)=\ln\left[\left(1+\frac1t\right)^t\right]\longrightarrow\ln e=1,$$
+<p>per continuità del logaritmo. Dunque $\boxed{\displaystyle\lim_{x\to0}\frac{\ln(1+x)}x=1}$.</p>
+<p><strong>Precisazione logica.</strong> Il limite di Eulero per variabile <em>reale</em> va giustificato a parte: conoscerlo solo lungo gli interi non basta, perché il teorema di caratterizzazione richiede tutte le successioni reali ammissibili.</p>
+
+<h3>Quarto limite notevole: logaritmo in base $a$</h3>
+<p>Dal cambiamento di base $\log_a(1+x)=\dfrac{\ln(1+x)}{\ln a}$:</p>
+$$\frac{\log_a(1+x)}x=\frac1{\ln a}\cdot\frac{\ln(1+x)}x\longrightarrow\frac1{\ln a}.$$
+
+
+<h2>5. Esempi e osservazioni</h2>
+
+<h3>$\displaystyle\lim_{x\to0}e^{-1/x}$ non esiste</h3>
+<p>Dominio $D=\mathbb R\setminus\{0\}$. Scegliamo $x_n=\dfrac1{n+1}$ e $y_n=-\dfrac1{n+1}$: entrambe tendono a $0$, ma</p>
+$$f(x_n)=e^{-(n+1)}\to0,\qquad f(y_n)=e^{n+1}\to+\infty.$$
+<p>I limiti sono diversi, quindi il limite non esiste.</p>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-11-es.svg" role="img" aria-label="Grafico di e alla meno 1 su x con due successioni che tendono a zero"></div>
+<figcaption>$f(x)=e^{-1/x}$: lungo $x_n=\frac1{n+1}$ (blu) i valori tendono a $0$, lungo $y_n=-\frac1{n+1}$ (arancione) esplodono a $+\infty$.</figcaption>
+</figure>
+
+<h3>$\displaystyle\lim_{x\to+\infty}\sin x$ non esiste</h3>
+<p>Prendiamo $x_n=\frac\pi2+2n\pi$ e $y_n=\frac{3\pi}2+2n\pi$: entrambe tendono a $+\infty$, ma $\sin x_n=1$ e $\sin y_n=-1$. Si rende così rigorosa l'idea intuitiva «il seno continua a oscillare».</p>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-11-sin.svg" role="img" aria-label="Seno con successioni sui massimi e sui minimi"></div>
+<figcaption>Le successioni $x_n=\frac\pi2+2n\pi$ (massimi, blu) e $y_n=\frac{3\pi}2+2n\pi$ (minimi, arancione) divergono entrambe, ma danno immagini $1$ e $-1$.</figcaption>
+</figure>
+
+<h3>Esercizio assegnato: $\displaystyle\lim_{x\to0}\sin\frac1x$ non esiste</h3>
+<p>Svolgimento aggiunto: si scelgono argomenti del seno uguali a quelli dell'esempio precedente,</p>
+$$x_n=\frac1{\frac\pi2+2n\pi},\qquad y_n=\frac1{\frac{3\pi}2+2n\pi}.$$
+<p>Allora $x_n,y_n\to0^+$, ma $\sin\frac1{x_n}=1$ e $\sin\frac1{y_n}=-1$. Non esiste neppure il limite destro, e quindi nemmeno quello bilatero. Le due successioni non devono per forza arrivare da lati opposti: devono tendere allo stesso punto e dare immagini con limiti diversi.</p>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-11-isin.svg" role="img" aria-label="Grafico di seno di 1 su x vicino a zero"></div>
+<figcaption>$\sin\frac1x$ oscilla tra $-1$ e $1$ infinite volte avvicinandosi a $0$; le due successioni $x_n$ (blu) e $y_n$ (arancione) tendono a $0^+$ con immagini $1$ e $-1$.</figcaption>
+</figure>
+
+<h3>Esercizio assegnato: funzione di Heaviside</h3>
+<p>$H(x)=0$ per $x\lt0$ e $H(x)=1$ per $x\ge0$. Con $x_n=-\frac1{n+1}$ e $y_n=\frac1{n+1}$, entrambe tendenti a $0$, si ha $H(x_n)=0$ e $H(y_n)=1$: il limite per $x\to0$ non esiste. Il valore scelto per $H(0)$ non cambia la conclusione.</p>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-11-heav.svg" role="img" aria-label="Funzione di Heaviside con salto in zero"></div>
+<figcaption>Funzione di Heaviside: salto in $0$, limite sinistro $0$ e limite destro $1$ (pallino vuoto = escluso, pieno = $H(0)=1$).</figcaption>
+</figure>
+
+<h3>Carabinieri e limitatezza locale</h3>
+<p>Calcoliamo $\displaystyle\lim_{x\to0}x^2\sin\frac1x\,\arctan(x+7)\,e^x$. Per $0\lt|x|\lt2$ valgono $\left|\sin\frac1x\right|\le1$, $|\arctan(x+7)|\le\frac\pi2$ e $0\lt e^x\le e^2$. Quindi</p>
+$$0\le\left|x^2\sin\frac1x\,\arctan(x+7)\,e^x\right|\le\frac{\pi e^2}2\,x^2\longrightarrow0,$$
+<p>e per i carabinieri $\boxed{\text{il limite vale }0}$. Il seno non ha limite, ma è limitato: il fattore $x^2$ forza il prodotto a zero. Non serve limitare $e^x$ su tutto $\mathbb R$, basta vicino a $0$.</p>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-11-carab.svg" role="img" aria-label="Funzione x al quadrato per seno di 1 su x tra le parabole più e meno x al quadrato"></div>
+<figcaption>$x^2\sin\frac1x$ resta schiacciata tra $-x^2$ e $x^2$ (tratteggiate), che tendono entrambe a $0$.</figcaption>
+</figure>
+
+<h3>Gerarchia per $x\to-\infty$</h3>
+<p>Calcoliamo $\displaystyle\lim_{x\to-\infty}\frac{7^x+x^6-\ln(x^4+5)+4}{(1/9)^x+7x^6+\arctan(x^9)}$. Con $t=-x\to+\infty$:</p>
+$$\frac{7^{-t}+t^6-\ln(t^4+5)+4}{9^t+7t^6-\arctan(t^9)}.$$
+<p>Al numeratore $7^{-t}\to0$ e $\frac{\ln(t^4+5)}{t^6}\to0$, quindi vale $\sim t^6$. Al denominatore $9^t$ domina la potenza e l'arcotangente è limitata: $\sim9^t$. Perciò</p>
+$$\sim\frac{t^6}{9^t}\to0,\qquad\boxed{\text{limite}=0}.$$
+
+<h3>Differenza tra radicali: razionalizzazione e modulo</h3>
+<p>$\displaystyle\lim_{x\to-\infty}\left(\sqrt{x^2+3x+9}-\sqrt{x^2-7x+3}\right)$ è della forma $+\infty-\infty$. Razionalizziamo:</p>
+$$=\frac{(x^2+3x+9)-(x^2-7x+3)}{\sqrt{x^2+3x+9}+\sqrt{x^2-7x+3}}=\frac{10x+6}{\sqrt{x^2+3x+9}+\sqrt{x^2-7x+3}}.$$
+<p>Raccogliendo $x^2$ sotto radice compare $|x|$, e poiché $x\to-\infty$, definitivamente $|x|=-x$:</p>
+$$=\frac{10+\frac6x}{-\left(\sqrt{1+\frac3x+\frac9{x^2}}+\sqrt{1-\frac7x+\frac3{x^2}}\right)}\longrightarrow\frac{10}{-2}=\boxed{-5}.$$
+<p>Il passaggio decisivo è $\sqrt{x^2}=|x|$, non $x$ per ogni reale.</p>
+
+<h3>Forma $\frac00$: scomposizione</h3>
+<p>$\displaystyle\lim_{x\to2}\frac{(x^2-4)\arctan(3-x)}{(x^2-3x+2)\arccos(x-3)}$ dà $\frac00$. Scomponendo $x^2-4=(x-2)(x+2)$ e $x^2-3x+2=(x-2)(x-1)$, per $x\ne2$:</p>
+$$\frac{(x+2)\arctan(3-x)}{(x-1)\arccos(x-3)}\longrightarrow\frac{4\cdot\frac\pi4}{1\cdot\pi}=\boxed{1},$$
+<p>perché $\arctan1=\frac\pi4$ e $\arccos(-1)=\pi$. Dominio: $\arccos(x-3)$ richiede $x\in[2,4]$, quindi vicino a $2$ ci si avvicina solo da destra: è un limite relativo al dominio.</p>
+
+<h3>Come usare le equivalenze</h3>
+<p><strong>Guardare l'argomento.</strong> Se $u(x)\to0$ allora $\sin u(x)\sim u(x)$, $1-\cos u(x)\sim\frac{u(x)^2}2$, $\ln(1+u(x))\sim u(x)$. Non serve $x\to0$: serve che l'<em>argomento</em> tenda a zero.</p>
+<p><strong>Prodotti e quozienti.</strong> Se $f\sim F$ e $g\sim G$, allora $fg\sim FG$ e $\frac fg\sim\frac FG$, perché $\frac{fg}{FG}=\frac fF\cdot\frac gG\to1$.</p>
+<p><strong>Sottrazioni.</strong> Non si sostituiscono equivalenze in somme o differenze con cancellazione: da $\sin x\sim x$ non segue che $\sin x-x$ sia zero. La cancellazione elimina proprio il termine descritto dall'equivalenza; serve un'analisi più precisa (come la razionalizzazione).</p>
+
+<h3>Esercizi lasciati a casa</h3>
+<p>Assegnati: la non esistenza di $\sin\frac1x$ in $0$ e quella di Heaviside in $0$ (svolti sopra), un altro limite con differenza di radicali e un limite per $x\to1$ con polinomi, esponenziale e funzioni goniometriche inverse. Per questi ultimi due la formula non è ricostruibile con certezza dalla trascrizione, quindi non è riportata.</p>
+
+
+<h2>6. Errori da evitare</h2>
+<div class="box warn">
+<div class="bt">Attenzione</div>
+<ul>
+<li>Per provare che un limite <strong>non esiste</strong> servono due successioni con lo stesso limite degli argomenti e limiti diversi delle immagini; due successioni concordi non provano l'esistenza.</li>
+<li>Nelle successioni $x_n$ si esclude $\widehat x$ (se finito): il valore $f(\widehat x)$ non conta.</li>
+<li>La locale limitatezza richiede un limite <strong>finito</strong>; vale solo vicino al punto.</li>
+<li>Permanenza del segno: con $L=0$ non si deduce nulla.</li>
+<li>Passando al limite la disuguaglianza stretta può diventare larga ($0\lt x^2$ ma entrambi $\to0$).</li>
+<li>La gerarchia vale per $x\to+\infty$ con basi $\gt1$ ed esponenti positivi; per $x\to-\infty$ poni $t=-x$. Se $0\lt a\lt1$, $a^x\to0$.</li>
+<li>Una funzione limitata (come $\cos(e^x)$, $\arctan$) non ha la crescita del suo argomento.</li>
+<li>$\sqrt{x^2}=|x|$: per $x\to-\infty$ vale $-x$.</li>
+<li>Il limite di Eulero va usato per variabile reale, non solo lungo gli interi.</li>
+<li>Le equivalenze valgono quando l'<em>argomento</em> tende a zero, e si usano in prodotti e quozienti, non nelle differenze con cancellazione.</li>
+<li>«Stesso ordine» non è «equivalenti»: $2x$ e $x$ hanno rapporto $2$.</li>
+<li>Monotona non implica limite bilatero: i laterali possono essere diversi.</li>
+</ul>
+</div>
+
+
+<h2>7. Riepilogo finale</h2>
+<p>Cosa devi saper fare dopo questo Day:</p>
+<ul>
+<li>enunciare la caratterizzazione del limite mediante successioni e usarla per dimostrare che un limite non esiste ($e^{-1/x}$, $\sin x$, $\sin\frac1x$, Heaviside);</li>
+<li>enunciare locale limitatezza, permanenza del segno, monotonia del limite e carabinieri, conoscendone le cautele;</li>
+<li>scrivere i limiti delle funzioni monotone con $\sup$ e $\inf$;</li>
+<li>confrontare infiniti e infinitesimi e conoscere la gerarchia $(\ln x)^\alpha\ll x^\beta\ll a^x\ll x^x$, anche per $x\to-\infty$ con $t=-x$;</li>
+<li>riconoscere le forme indeterminate e risolverle con scomposizione, razionalizzazione, limiti notevoli ed equivalenze;</li>
+<li>conoscere i quattordici limiti notevoli e saper dimostrare i primi quattro;</li>
+<li>usare le equivalenze solo dove sono lecite.</li>
+</ul>

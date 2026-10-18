@@ -1,0 +1,250 @@
+<p>Manteniamo le convenzioni dei Day precedenti: $\overline{\mathbb R}=\mathbb R\cup\{-\infty,+\infty\}$. Oggi si completano i limiti di funzioni: limiti all'infinito, limiti infiniti in un punto, asintoti e unicità del limite.</p>
+
+<h2>1. Definizioni</h2>
+
+<h3>Punto di accumulazione e limite finito in un punto</h3>
+<p>Sia $D\subseteq\mathbb R$ non vuoto. $x_0\in\mathbb R$ è di <strong>accumulazione</strong> per $D$ se</p>
+$$\forall\delta\gt0\quad\exists x\in D:\quad0\lt|x-x_0|\lt\delta.$$
+<p>Non serve che $x_0\in D$: interessa il comportamento vicino al punto, non il valore nel punto.</p>
+
+<div class="box def">
+<div class="bt">Richiamo — Limite finito in un punto finito</div>
+<p>Siano $f\colon D\to\mathbb R$, $x_0$ di accumulazione per $D$ e $L\in\mathbb R$. Allora $\displaystyle\lim_{x\to x_0}f(x)=L$ se</p>
+$$\boxed{\forall\varepsilon\gt0\ \exists\delta\gt0\ \forall x\in D:\quad0\lt|x-x_0|\lt\delta\Longrightarrow|f(x)-L|\lt\varepsilon.}$$
+</div>
+<p>$\varepsilon$ è la precisione richiesta sui valori, $\delta$ dice quanto avvicinare $x$ a $x_0$, e $0\lt|x-x_0|$ esclude il punto $x_0$. Questa definizione è il modello di tutte le successive.</p>
+
+<h3>Limite finito all'infinito</h3>
+<div class="box def">
+<div class="bt">Definizione — Limite finito per $x\to\pm\infty$</div>
+<p>Per $f\colon(a,+\infty)\to\mathbb R$ e $L\in\mathbb R$:</p>
+$$\boxed{\lim_{x\to+\infty}f(x)=L\iff\forall\varepsilon\gt0\ \exists M\gt0\ \forall x\in(a,+\infty):\ x\gt M\Rightarrow|f(x)-L|\lt\varepsilon.}$$
+<p>Per $f\colon(-\infty,a)\to\mathbb R$:</p>
+$$\boxed{\lim_{x\to-\infty}f(x)=L\iff\forall\varepsilon\gt0\ \exists M\gt0\ \forall x\in(-\infty,a):\ x\lt-M\Rightarrow|f(x)-L|\lt\varepsilon.}$$
+</div>
+<p>Qualunque precisione si richieda, da una certa soglia in poi tutti i valori distano da $L$ meno di $\varepsilon$. Cambia solo la direzione: per avvicinarsi a $-\infty$ si prendono $x$ sufficientemente negativi.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-10-lt.svg" role="img" aria-label="Limite finito a più infinito con fascia epsilon e soglia M"></div>
+<figcaption>$\lim_{x\to+\infty}f(x)=L$: fissata la fascia $(L-\varepsilon,L+\varepsilon)$, esiste una soglia $M$ oltre la quale il grafico (tratto evidenziato) resta dentro la fascia.</figcaption>
+</figure>
+
+<h3>Asintoto orizzontale</h3>
+<div class="box def">
+<div class="bt">Definizione — Asintoto orizzontale</div>
+<p>La retta $y=L$, con $L\in\mathbb R$, è un asintoto orizzontale a $+\infty$ se $\displaystyle\lim_{x\to+\infty}f(x)=L$; a $-\infty$ se $\displaystyle\lim_{x\to-\infty}f(x)=L$.</p>
+</div>
+<p>Le due direzioni vanno studiate separatamente: il comportamento a $+\infty$ non determina quello a $-\infty$.</p>
+
+<h3>Limite infinito in un punto finito</h3>
+<div class="box def">
+<div class="bt">Definizione — Limite $\pm\infty$ in $x_0$</div>
+<p>Siano $f\colon D\to\mathbb R$ e $x_0\in\mathbb R$ di accumulazione per $D$.</p>
+$$\boxed{\lim_{x\to x_0}f(x)=+\infty\iff\forall M\gt0\ \exists\delta\gt0\ \forall x\in D:\ 0\lt|x-x_0|\lt\delta\Rightarrow f(x)\gt M.}$$
+$$\boxed{\lim_{x\to x_0}f(x)=-\infty\iff\forall M\gt0\ \exists\delta\gt0\ \forall x\in D:\ 0\lt|x-x_0|\lt\delta\Rightarrow f(x)\lt-M.}$$
+</div>
+<p>Qualunque soglia $M$ si fissi, la funzione la supera (o scende sotto $-M$) per tutti i punti del dominio abbastanza vicini a $x_0$, escluso $x_0$. A lezione questi casi sono chiamati «esplosione in tempo finito»: un limite infinito per un valore finito della variabile, che non deve rappresentare un tempo.</p>
+
+<h3>Asintoto verticale</h3>
+<div class="box def">
+<div class="bt">Definizione — Asintoto verticale</div>
+<p>Se $\displaystyle\lim_{x\to x_0}f(x)=+\infty$ oppure $-\infty$, la retta $\boxed{x=x_0}$ è un asintoto verticale per $f$.</p>
+</div>
+<p><strong>Precisazione.</strong> Basta anche un solo limite laterale infinito: $\displaystyle\lim_{x\to x_0^+}f(x)=+\infty$ rende già $x=x_0$ un asintoto verticale, senza che i due lati si comportino allo stesso modo.</p>
+
+<h3>Limiti infiniti all'infinito</h3>
+<div class="tbl"><table>
+<thead><tr><th>Limite</th><th>Definizione</th></tr></thead>
+<tbody>
+<tr><td>$\displaystyle\lim_{x\to+\infty}f(x)=+\infty$</td><td>$\forall M\gt0\ \exists N\gt0\ \forall x\in D:\ x\gt N\Rightarrow f(x)\gt M$</td></tr>
+<tr><td>$\displaystyle\lim_{x\to+\infty}f(x)=-\infty$</td><td>$\forall M\gt0\ \exists N\gt0\ \forall x\in D:\ x\gt N\Rightarrow f(x)\lt-M$</td></tr>
+<tr><td>$\displaystyle\lim_{x\to-\infty}f(x)=+\infty$</td><td>$\forall M\gt0\ \exists N\gt0\ \forall x\in D:\ x\lt-N\Rightarrow f(x)\gt M$</td></tr>
+<tr><td>$\displaystyle\lim_{x\to-\infty}f(x)=-\infty$</td><td>$\forall M\gt0\ \exists N\gt0\ \forall x\in D:\ x\lt-N\Rightarrow f(x)\lt-M$</td></tr>
+</tbody></table></div>
+<p>I ruoli sono distinti: $M$ è la soglia sui <em>valori</em> $f(x)$, $N$ è la soglia sulla <em>variabile</em> $x$. Non basta superare la barriera qualche volta: la disuguaglianza deve valere per tutti i punti del dominio oltre la soglia.</p>
+
+<h3>Asintoto obliquo</h3>
+<div class="box def">
+<div class="bt">Definizione — Asintoto obliquo</div>
+<p>Siano $m,q\in\mathbb R$ con $m\ne0$. La retta $y=mx+q$ è un asintoto obliquo per $f$ a $+\infty$ se</p>
+$$\boxed{\lim_{x\to+\infty}|f(x)-(mx+q)|=0,}$$
+<p>equivalentemente $\displaystyle\lim_{x\to+\infty}[f(x)-mx-q]=0$. A $-\infty$ la definizione è identica con la direzione cambiata.</p>
+</div>
+<p>Lo scarto verticale tra la funzione e la retta diventa arbitrariamente piccolo: la retta approssima $f$ con errore assoluto tendente a zero.</p>
+
+<h3>Retta estesa e intorni</h3>
+<p>Per trattare insieme tutti i tipi di limite si usano gli intorni di base in $\overline{\mathbb R}$:</p>
+<div class="tbl"><table>
+<thead><tr><th>Punto</th><th>Intorno di base</th></tr></thead>
+<tbody>
+<tr><td>$x_0\in\mathbb R$</td><td>$(x_0-\delta,x_0+\delta)$, con $\delta\gt0$</td></tr>
+<tr><td>$+\infty$</td><td>$(A,+\infty)$, con $A\in\mathbb R$</td></tr>
+<tr><td>$-\infty$</td><td>$(-\infty,A)$, con $A\in\mathbb R$</td></tr>
+</tbody></table></div>
+<p>Essere vicino a $+\infty$ significa essere sufficientemente grande, vicino a $-\infty$ sufficientemente negativo. Questa notazione permette di enunciare l'unicità del limite in forma generale.</p>
+
+
+<h2>2. Teoremi</h2>
+
+<div class="box thm">
+<div class="bt">Teorema — Criterio per l'asintoto obliquo</div>
+<p><strong>Ipotesi.</strong> $f\colon(a,+\infty)\to\mathbb R$ e, finiti,</p>
+$$m=\lim_{x\to+\infty}\frac{f(x)}x\ne0,\qquad q=\lim_{x\to+\infty}[f(x)-mx].$$
+<p><strong>Tesi.</strong> La retta $\boxed{y=mx+q}$ è un asintoto obliquo per $f$ a $+\infty$. Lo stesso vale a $-\infty$.</p>
+</div>
+<p><strong>Precisazione sull'enunciato.</strong> Nella trascrizione il criterio era descritto come solo sufficiente, con la richiesta aggiuntiva che $f(x)$ tenda a un infinito. In realtà le due condizioni sono <strong>necessarie e sufficienti</strong>, e la divergenza di $f$ segue già da esse perché $m\ne0$.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Asintoti delle funzioni razionali fratte</div>
+<p>Sia $f=P/Q$, con $P,Q$ polinomi non nulli, $n=\deg P$, $d=\deg Q$, e $a_n,b_d$ i coefficienti principali.</p>
+<div class="tbl"><table>
+<thead><tr><th>Gradi</th><th>Comportamento asintotico</th></tr></thead>
+<tbody>
+<tr><td>$n\lt d$</td><td>asintoto orizzontale $y=0$</td></tr>
+<tr><td>$n=d$</td><td>asintoto orizzontale $y=\dfrac{a_n}{b_d}$</td></tr>
+<tr><td>$n=d+1$</td><td>asintoto obliquo</td></tr>
+<tr><td>$n\gt d+1$</td><td>né orizzontale né obliquo</td></tr>
+</tbody></table></div>
+<p>In particolare, per le razionali fratte: $\ \text{asintoto obliquo}\iff\deg P=\deg Q+1$.</p>
+</div>
+<p>Questo criterio sui gradi vale per le funzioni razionali fratte: non va applicato automaticamente ad altre funzioni.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Unicità del limite</div>
+<p><strong>Ipotesi.</strong> $f\colon D\subseteq\mathbb R\to\mathbb R$, $x_0\in\overline{\mathbb R}$ di accumulazione per $D$ (eventualmente all'infinito), e $\displaystyle\lim_{x\to x_0}f(x)=L\in\overline{\mathbb R}$.</p>
+<p><strong>Tesi.</strong></p>
+$$\boxed{\lim_{x\to x_0}f(x)=L_1\ \text{ e }\ \lim_{x\to x_0}f(x)=L_2\Longrightarrow L_1=L_2.}$$
+</div>
+<p>Il teorema non dice che ogni funzione ha limite: dice che, se il limite esiste, non può avere due valori diversi.</p>
+
+
+<h2>3. Dimostrazioni</h2>
+
+<h3>Unicità del limite: punto e limiti finiti</h3>
+<p>È il caso svolto a lezione. Supponiamo per assurdo $\lim f=L_1$ e $\lim f=L_2$ con $x_0,L_1,L_2\in\mathbb R$ e $L_1\ne L_2$. Allora $|L_1-L_2|\gt0$: scegliamo</p>
+$$\varepsilon=\frac{|L_1-L_2|}3\gt0,\qquad\text{così che}\qquad|L_1-L_2|=3\varepsilon.$$
+<p>Dai due limiti esistono $\delta_1,\delta_2\gt0$ tali che, per $x\in D$ con $0\lt|x-x_0|\lt\delta_i$, vale rispettivamente $|f(x)-L_1|\lt\varepsilon$ e $|f(x)-L_2|\lt\varepsilon$. Poniamo $\delta=\min\{\delta_1,\delta_2\}\gt0$: si prende il minimo per restare dentro entrambi gli intorni. Poiché $x_0$ è di accumulazione, esiste $x\in D$ con $0\lt|x-x_0|\lt\delta$, e per questo $x$ valgono entrambe le stime. Aggiungendo e sottraendo $f(x)$:</p>
+$$\begin{aligned}
+|L_1-L_2|&=|(L_1-f(x))+(f(x)-L_2)|\\
+&\le|L_1-f(x)|+|f(x)-L_2|\\
+&\lt\varepsilon+\varepsilon=2\varepsilon.
+\end{aligned}$$
+<p>Ma $|L_1-L_2|=3\varepsilon$, quindi $3\varepsilon\lt2\varepsilon$, cioè $\varepsilon\lt0$: assurdo. Dunque $\boxed{L_1=L_2}$.</p>
+
+<h3>Perché funziona il criterio dell'asintoto obliquo</h3>
+<p><strong>Sufficienza.</strong> Se $f(x)-mx\to q$, allora $f(x)-mx-q\to0$, che è esattamente la definizione di asintoto $y=mx+q$.</p>
+<p><strong>Necessità.</strong> Se $y=mx+q$ è un asintoto, scriviamo $f(x)=mx+q+r(x)$ con $r(x)\to0$. Allora</p>
+$$\frac{f(x)}x=m+\frac qx+\frac{r(x)}x\longrightarrow m,\qquad f(x)-mx=q+r(x)\longrightarrow q.$$
+<p>Le due condizioni sono quindi anche necessarie.</p>
+
+<h3>Perché la differenza dei gradi individua l'asintoto obliquo</h3>
+<p>Se $\deg P=\deg Q+1$, la divisione tra polinomi dà $P(x)=(mx+q)Q(x)+R(x)$ con $m\ne0$ e $\deg R\lt\deg Q$. Quindi</p>
+$$\frac{P(x)}{Q(x)}=mx+q+\frac{R(x)}{Q(x)}.$$
+<p>Poiché il grado del resto è minore di quello del denominatore, $\frac{R(x)}{Q(x)}\to0$ per $x\to\pm\infty$, cioè $f(x)-(mx+q)\to0$. È anche un metodo rapido per calcolare l'asintoto.</p>
+
+
+<h2>4. Esempi e osservazioni</h2>
+
+<h3>Verifica di $\displaystyle\lim_{x\to+\infty}\frac{2x+7}{x+1}=2$</h3>
+<p>Il dominio è $D=\mathbb R\setminus\{-1\}$. Fissato $\varepsilon\gt0$:</p>
+$$\left|\frac{2x+7}{x+1}-2\right|=\left|\frac{2x+7-2x-2}{x+1}\right|=\frac5{|x+1|}.$$
+<p>Per $x\gt0$ il denominatore è positivo e si vuole $\frac5{x+1}\lt\varepsilon\iff x\gt\frac5\varepsilon-1$. Una soglia positiva valida per ogni $\varepsilon$ è</p>
+$$\boxed{M(\varepsilon)=\max\left\{1,\frac5\varepsilon-1\right\}.}$$
+<p>Se $x\gt M(\varepsilon)$ allora la distanza da $2$ è minore di $\varepsilon$: il limite è verificato e $y=2$ è un asintoto orizzontale a $+\infty$.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-10-ed.svg" role="img" aria-label="Funzione (2x+7)/(x+1) con fascia epsilon e soglia M"></div>
+<figcaption>Per $\varepsilon=\frac12$: $\frac5{x+1}\lt\frac12\iff x\gt9$, quindi $M=9$. Il punto $x=9$ cade esattamente sul bordo della fascia (pallino vuoto), perciò è escluso.</figcaption>
+</figure>
+
+<h3>Verifica di $\displaystyle\lim_{x\to0}\frac1{x^2}=+\infty$</h3>
+<p>Il dominio è $D=\mathbb R\setminus\{0\}$. Fissato $M\gt0$, per $x\ne0$:</p>
+$$\frac1{x^2}\gt M\iff x^2\lt\frac1M\iff|x|\lt\frac1{\sqrt M}.$$
+<p>Scegliamo $\boxed{\delta(M)=\dfrac1{\sqrt M}}$: se $0\lt|x|\lt\delta(M)$ allora $\frac1{x^2}\gt M$. La retta $x=0$ è un asintoto verticale. Più alta è la soglia $M$, più piccolo è il raggio sufficiente a superarla.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-10-vt.svg" role="img" aria-label="Funzione 1/x^2 con asintoto verticale in zero"></div>
+<figcaption>$\lim_{x\to0}\frac1{x^2}=+\infty$ con $M=4$: $\delta=\frac1{\sqrt4}=\frac12$. Per $0\lt|x|\lt\frac12$ il grafico sta sopra la retta $y=4$.</figcaption>
+</figure>
+
+<h3>Verifica di $\displaystyle\lim_{x\to+\infty}e^x=+\infty$</h3>
+<p>Fissato $M\gt0$, poiché il logaritmo naturale è strettamente crescente, $e^x\gt M\iff x\gt\ln M$. Per rispettare la convenzione $N\gt0$ scegliamo</p>
+$$\boxed{N(M)=\max\{1,\ln M\}.}$$
+<p>Allora $x\gt N(M)\Rightarrow e^x\gt M$. Il massimo garantisce una soglia positiva anche quando $0\lt M\le1$.</p>
+
+<h3>Asintoto obliquo dalla definizione</h3>
+<p>Sia $f(x)=3x+2+e^{-x}$ su $\mathbb R$. Per $x\to+\infty$, $e^{-x}\to0$, quindi il candidato è $y=3x+2$ e</p>
+$$\lim_{x\to+\infty}|f(x)-(3x+2)|=\lim_{x\to+\infty}e^{-x}=0.$$
+<p>Perciò $\boxed{y=3x+2}$ è un asintoto obliquo a $+\infty$. Quando la funzione è già «retta più termine che tende a zero», non serve calcolare $m$ e $q$.</p>
+
+<h3>Asintoto obliquo con $m$ e $q$</h3>
+<div class="box ex">
+<div class="bt">Esempio — $f(x)=\dfrac{x^3+5x-1}{x^2+2x+4}$</div>
+<ul>
+<li><strong>Dominio.</strong> $x^2+2x+4=(x+1)^2+3\gt0$, quindi $D=\mathbb R$.</li>
+<li><strong>Comportamento.</strong> $f(x)\sim\frac{x^3}{x^2}=x$, quindi $f\to+\infty$ per $x\to+\infty$ e $f\to-\infty$ per $x\to-\infty$. Il grado del numeratore supera di uno quello del denominatore: c'è un asintoto obliquo.</li>
+<li><strong>Coefficiente angolare.</strong> $\displaystyle m=\lim_{x\to+\infty}\frac{x^3+5x-1}{x^3+2x^2+4x}=1$.</li>
+<li><strong>Termine noto.</strong> 
+$$q=\lim_{x\to+\infty}\frac{x^3+5x-1-x(x^2+2x+4)}{x^2+2x+4}=\lim_{x\to+\infty}\frac{-2x^2+x-1}{x^2+2x+4}=-2.$$</li>
+</ul>
+<p>Dunque $\boxed{y=x-2}$; gli stessi calcoli a $-\infty$ danno la stessa retta.</p>
+<p><strong>Controllo con la divisione.</strong> Si ha esattamente</p>
+$$f(x)=x-2+\frac{5x+7}{x^2+2x+4},\qquad f(x)-(x-2)=\frac{5x+7}{x^2+2x+4}\to0\quad(x\to\pm\infty).$$
+</div>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-10-ob.svg" role="img" aria-label="Funzione razionale con asintoto obliquo y=x-2"></div>
+<figcaption>Il grafico di $f$ si avvicina alla retta tratteggiata $y=x-2$ sia a $+\infty$ sia a $-\infty$. Nel punto $x=-\frac75$ la attraversa.</figcaption>
+</figure>
+
+<h3>Equivalenza asintotica e asintoto non sono la stessa cosa</h3>
+<p>$f(x)\sim mx$ significa $\frac{f(x)}{mx}\to1$, ma non garantisce che esista un $q$ finito con $f(x)-mx\to q$. Controesempio: $f(x)=x+\sqrt x$ per $x\gt0$.</p>
+$$\frac{f(x)}x=1+\frac1{\sqrt x}\to1,\qquad f(x)-x=\sqrt x\to+\infty.$$
+<p>Non esiste quindi un asintoto obliquo. Nel metodo generale trovare $m\ne0$ non basta: bisogna controllare che anche $q$ esista finito.</p>
+
+<h3>Un asintoto può intersecare il grafico</h3>
+<p>La definizione di asintoto impone un comportamento al limite, non l'assenza di intersezioni. Nell'esempio razionale $f(x)-(x-2)=\frac{5x+7}{x^2+2x+4}$ si annulla per $x=-\frac75$: il grafico incontra il proprio asintoto obliquo. Allo stesso modo una funzione può toccare o attraversare un asintoto orizzontale; conta solo che lo scarto tenda a zero nella direzione considerata.</p>
+
+<h3>Schema operativo per le verifiche con la definizione</h3>
+<div class="box ex">
+<div class="bt">Procedura</div>
+<ol>
+<li>Scrivere la definizione del limite da verificare.</li>
+<li>Fissare arbitrariamente la precisione $\varepsilon\gt0$ oppure la soglia $M\gt0$.</li>
+<li>Studiare la disuguaglianza richiesta: $|f(x)-L|\lt\varepsilon$, oppure $f(x)\gt M$, oppure $f(x)\lt-M$.</li>
+<li>Ricavare una condizione sufficiente su $x$.</li>
+<li>Scegliere esplicitamente $\delta$, $M$ o $N$, secondo il caso.</li>
+<li>Verificare che la scelta sia positiva e che l'implicazione valga per tutti i punti del dominio richiesti.</li>
+</ol>
+</div>
+<p>La soglia o il raggio non devono essere i migliori possibili: devono essere sufficienti.</p>
+
+
+<h2>5. Errori da evitare</h2>
+<div class="box warn">
+<div class="bt">Attenzione</div>
+<ul>
+<li>Il comportamento a $+\infty$ non dice nulla su quello a $-\infty$: gli asintoti vanno studiati nelle due direzioni.</li>
+<li>Un solo limite laterale infinito basta per l'asintoto verticale.</li>
+<li>Non confondere $M$ (soglia sui valori $f(x)$) con $N$ (soglia sulla variabile $x$).</li>
+<li>Per l'asintoto obliquo non basta $m\ne0$: serve anche $q$ finito ($x+\sqrt x\sim x$ ma non ha asintoto).</li>
+<li>Equivalenza asintotica $\ne$ asintoto: $f\sim mx$ non implica $f-mx\to q$.</li>
+<li>Il criterio sui gradi ($\deg P=\deg Q+1$) vale solo per le funzioni razionali fratte.</li>
+<li>Un asintoto può intersecare il grafico, anche più volte.</li>
+<li>L'unicità non garantisce l'esistenza: dice solo che, se il limite esiste, è uno solo.</li>
+<li>Nella dimostrazione dell'unicità si prende il minimo $\delta=\min\{\delta_1,\delta_2\}$, e serve che $x_0$ sia di accumulazione per avere un $x$ con $0\lt|x-x_0|\lt\delta$.</li>
+<li>Nelle soglie ($M(\varepsilon)$, $N(M)$) il massimo con $1$ garantisce la positività richiesta.</li>
+</ul>
+</div>
+
+
+<h2>6. Riepilogo finale</h2>
+<p>Cosa devi saper fare dopo questo Day:</p>
+<ul>
+<li>scrivere le definizioni di limite finito e infinito, in un punto e all'infinito;</li>
+<li>definire asintoto orizzontale, verticale e obliquo, e ricordare che quello orizzontale va studiato a $+\infty$ e $-\infty$ separatamente;</li>
+<li>verificare un limite con la definizione costruendo $\delta$, $M$ o $N$ (come per $\frac{2x+7}{x+1}$, $\frac1{x^2}$, $e^x$);</li>
+<li>calcolare un asintoto obliquo con $m=\lim\frac{f(x)}x$ e $q=\lim[f(x)-mx]$, o con la divisione tra polinomi;</li>
+<li>enunciare il criterio sui gradi per le razionali fratte;</li>
+<li>enunciare e dimostrare l'unicità del limite (caso finito).</li>
+</ul>

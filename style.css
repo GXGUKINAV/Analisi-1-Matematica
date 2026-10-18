@@ -245,6 +245,7 @@ body:not(.side) .toc-fab[aria-expanded="true"] svg { transform: rotate(270deg); 
 .fig figcaption { margin-top: .4rem; font: .85rem/1.4 var(--ui); color: var(--muted); }
 .fig .lgA { fill: var(--accent); }
 .fig .lgB { fill: #d9822b; }
+.fig .arw { fill: var(--muted); stroke: none; }   /* punte delle frecce degli assi */
 
 /* ---------- Grafico interattivo ε–δ ---------- */
 .fig-ctl { display: flex; flex-wrap: wrap; gap: .5rem 1.1rem; justify-content: center; align-items: center; margin-bottom: .7rem; font: 13px var(--ui); color: var(--ink); }

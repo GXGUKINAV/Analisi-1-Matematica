@@ -13,6 +13,8 @@ Boh fra, che cazzo ne so. Appunti di Analisi 1 Matematica (fuh ts 🥀).
 7. Successioni: limiti, confronto, monotonia e successioni geometriche
 8. Successioni notevoli, teorema del rapporto e confronti asintotici
 9. Fibonacci, sottosuccessioni, topologia di R e limiti di funzioni
+10. Limiti di funzioni, asintoti e unicità del limite
+11. Limiti di funzioni: successioni, confronti, gerarchia degli infiniti e limiti notevoli
 
 ### Esercitazioni:
 1. Estremi degli insiemi

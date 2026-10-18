@@ -72,6 +72,18 @@ var days = [
     title: 'Fibonacci, sottosuccessioni, topologia di R e limiti di funzioni',
     file: 'appunti/day-09.html',
     date: '2026-10-09'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
+  },
+  {
+    n: 10,
+    title: 'Limiti di funzioni, asintoti e unicità del limite',
+    file: 'appunti/day-10.html',
+    date: '2026-10-14'
+  },
+  {
+    n: 11,
+    title: 'Limiti di funzioni: successioni, confronti, gerarchia degli infiniti e limiti notevoli',
+    file: 'appunti/day-11.html',
+    date: '2026-10-16'
   }
   
 ];

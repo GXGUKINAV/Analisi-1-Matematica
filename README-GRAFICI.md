@@ -35,6 +35,22 @@ Percorsi: nel Day si scrive `data-src="appunti/fig/day-09-<chiave>.svg"` (relati
 6. **Id univoci** per i `clipPath` (`cp1`, `cp2`, ...), altrimenti i grafici si rubano il clip a vicenda.
 7. **Ordine di generazione:** se si usa lo script Python, ridefinire le funzioni/figure *prima* di inserirle nell'HTML. (Errore già avvenuto: un grafico veniva ridefinito dopo l'inserimento e nel Day restava la versione vecchia.)
 
+## 2b. Assi, griglia e allineamento (REGOLA OBBLIGATORIA per ogni grafico nel piano)
+
+Valida per successioni a punti, funzioni, piano ε–δ e qualsiasi grafico con assi cartesiani. Stile di riferimento: piano cartesiano classico.
+
+1. **Assi che si incrociano nell'origine (0,0)**, mai assi "ad L" a sinistra/in basso. Anche se la successione parte da n=1 o i valori sono tutti negativi, l'origine resta visibile e gli assi passano da lì. Quindi si lascia un po' di spazio vuoto a sinistra dell'asse y e sotto/sopra l'asse x.
+2. **Frecce a entrambe le estremità di ciascun asse** (quattro punte: destra, sinistra, su, giù), come poligoni con classe `arw`. La linea dell'asse si ferma alla base della freccia.
+3. **Griglia leggera sullo sfondo** (classe `gr`, passo regolare `gx`, `gy`), disegnata *prima* di assi e punti. Non servono numeri su ogni quadratino: solo i **tick con numeri** sui valori utili (valori della scala, `L±ε`, soglie).
+4. **Un solo "0" di origine**, in basso a destra dell'incrocio degli assi; niente tick "0" duplicati sugli assi.
+5. **Allineamento esatto.** Punti, tick, numeri, griglia e linee di soglia (es. `N`) si calcolano **tutti con le stesse funzioni `px()` e `py()`**. Mai posizioni "a occhio" o a metà tra due indici. La linea `N=4` passa esattamente per l'ascissa 4: stessa x del tick `4` e del punto con n=4. (Errore già avvenuto: la linea cadeva a 3,5 invece di 4, e a 7,5 invece di 8.)
+6. La soglia `N` è l'**indice del primo termine dentro la fascia**: il punto con n=N è arancione e sta sulla linea tratteggiata.
+7. **Titolo del grafico (`a_n = ...`) sempre con `text-anchor="start"`**: con i `<tspan dy>` e `anchor="end"` alcuni renderer sovrappongono il testo. La x di partenza si sceglie a mano per stare in una zona vuota (alto a destra o alto a sinistra).
+8. **Scala e spazio per le etichette:** tick dell'asse x con numeri sotto l'asse (17px), tick dell'asse y con numeri a sinistra (7px dall'asse). L'estremo sinistro dell'asse y deve avere almeno ~46px di margine (`ox=46`) per etichette come `−0,1`.
+9. Valori negativi (es. `−1/2`, `−4`) con il segno meno tipografico `−`, decimali con la virgola (`0,1`).
+
+La funzione `seqplot()` dell'appendice A applica già tutte queste regole: per le successioni a punti si usa quella.
+
 ## 3. Convenzioni di notazione e linguaggio
 
 - Il punto limite si scrive **`x̂`** (nell'HTML `\widehat x`), **mai `x₀`**. Nell'SVG si usa `x` + carattere combinante `x̂`.
@@ -50,7 +66,7 @@ Percorsi: nel Day si scrive `data-src="appunti/fig/day-09-<chiave>.svg"` (relati
 |---|---|
 | Larghezza figura | `22rem` (segue lo zoom del testo), mai oltre la colonna |
 | Curva principale | `stroke-width: 1.7` |
-| Assi | `1`; griglia `.8`; tratteggi `.9` (`4 3.5`) |
+| Assi | `1`, **incrociati in (0,0) con frecce ai due estremi** (classe `arw`, punta 9×7,2); griglia `.8` regolare; tratteggi `.9` (`4 3.5`) |
 | Font nell'SVG | `12px`; etichette secondarie `11px` |
 | Fasce evidenziate | colore `--accent-soft`, **devono fermarsi alla curva** |
 | I 4 punti di contorno (`L±ε`, `x̂±δ`) | tratteggio **leggero** (`dash faint`), puntino grigio piccolo, etichette sbiadite |
@@ -82,6 +98,7 @@ Percorsi: nel Day si scrive `data-src="appunti/fig/day-09-<chiave>.svg"` (relati
 .fig figcaption { margin-top: .4rem; font: .85rem/1.4 var(--ui); color: var(--muted); }
 .fig .lgA { fill: var(--accent); }
 .fig .lgB { fill: #d9822b; }
+.fig .arw { fill: var(--muted); stroke: none; }   /* punte delle frecce degli assi */
 
 /* ---------- Grafico interattivo ε–δ ---------- */
 .fig-ctl { display: flex; flex-wrap: wrap; gap: .5rem 1.1rem; justify-content: center; align-items: center; margin-bottom: .7rem; font: 13px var(--ui); color: var(--ink); }
@@ -143,7 +160,7 @@ Percorsi: nel Day si scrive `data-src="appunti/fig/day-09-<chiave>.svg"` (relati
 | **Retta con intervalli** (`numline`) | intorni, domini, chiusura, parte interna | righe distanziate di 40, etichetta riga 15 sopra; pallino pieno/vuoto; frecce se illimitato |
 | **Piano ε–δ** (`epsdelta`) | definizione di limite, verifiche | fasce a poligono, 4 punti di contorno leggeri, `L`/`x̂` in evidenza |
 | **Salto (unilaterali)** | limite sinistro ≠ destro | due rami con pallini vuoti, etichette `L^−`, `L^+` |
-| **Successioni a punti** | sottosuccessioni, convergenza, Bolzano–Weierstrass | punti grigi = altri termini, arancione = sottosuccessione, legenda a cerchietti |
+| **Successioni a punti** (`seqplot`) | sottosuccessioni, convergenza, limiti, monotonia | assi in (0,0) con frecce, griglia, tick con numeri; blu = termini, arancione = sottosuccessione / termini da `N` in poi / massimo-minimo; fascia `band`, livello `hline`, soglia `N` esatta sul tick |
 | **Barre** | Fibonacci | classe `.bar`, valori sopra le barre |
 | **Classificazione punti** | esterno/interno/isolato/accumulazione | 4 righe distanziate 78, striscia tratteggiata = `B_δ(x̂)`, `x̂` arancione |
 
@@ -203,6 +220,11 @@ Idee già individuate per i prossimi widget: slider su `N` e `ε` per i limiti d
 - Legenda con pallini troppo piccoli → pallini veri (`<circle>`), non il carattere `●`.
 - `x₀` al posto di `x̂` → usare sempre la notazione degli appunti.
 - Cambiare `script.js`/`index.html` interi → solo righe da aggiungere.
+- Linea `N=4` non allineata al 4 sull'asse x (cadeva a 3,5) → usare `px(N)`, la stessa funzione di punti e tick (sezione 2b).
+- Assi "ad L" a sinistra/in basso, senza frecce e senza origine → assi incrociati in (0,0), frecce ai due estremi, griglia leggera (sezione 2b).
+- Titolo `a_n = ...` sovrapposto a se stesso → sempre `text-anchor="start"`.
+- Dimenticare `.fig .arw` in `style.css` → senza quella regola le frecce risultano nere e invisibili nel tema scuro.
+- **Grafici già esistenti** (Day 9: `epsdelta`, `numline2`, e il widget ε–δ in `figure.js`) usano ancora il vecchio stile con assi a sinistra/in basso: quando si rigenerano vanno portati allo stile della sezione 2b.
 
 ## 11. Prompt-tipo da dare a Claude
 
@@ -362,6 +384,76 @@ def epsdelta(fn,x0,L,eps,dl,xr,yr,yl,xl,hole,name):
     o.append(lab(l+4,t+10,name))
     return ('0 0 %d %d'%(W,H+4),'\n'.join(o))
 ```
+
+### Successioni a punti con assi in (0,0), frecce e griglia (`seqplot`)
+
+Stile obbligatorio (sezione 2b). Restituisce `(svg, px, py)`; `px`/`py` sono le stesse funzioni usate per punti, tick e linea `N`, così l'allineamento è esatto.
+
+```python
+X_TIP, X_LEFT, Y_TOP, Y_BOT = 330, 8, 10, 272     # estremi (punte) degli assi nel viewBox 340x282
+AH, AW = 9, 3.6                                    # lunghezza e semi-larghezza della punta
+def fmt(v): return ('%g' % v).replace('.', ',').replace('-', '−')
+
+def seqplot(pts, xticks, yticks, xtip, ymax_tip, ymin_tip, gx=1, gy=1,
+            band=None, hline=None, N=None, orange=lambda n: False,
+            title='', title_x=None, ox=46):
+    # pts = [(n, valore)]; xticks = [n]; yticks = [(valore, 'etichetta')]
+    # xtip / ymax_tip / ymin_tip = valori dei dati alle punte degli assi (decidono la scala e dove cade l'origine)
+    sx = (X_TIP - ox) / xtip
+    sy = (Y_BOT - Y_TOP) / (ymax_tip - ymin_tip)
+    oy = Y_TOP + ymax_tip * sy                      # l'origine (0,0) sta in (ox, oy)
+    px = lambda x: ox + x * sx
+    py = lambda y: oy - y * sy
+    o = []
+    gt, gb, gl, gr = Y_TOP + 12, Y_BOT - 12, X_LEFT + 8, X_TIP - 10
+    if band:                                        # fascia ε (da asse y a destra)
+        o.append('<rect class="band" x="%s" y="%s" width="%s" height="%s"/>' % (
+            f(ox), f(py(band[1])), f(gr - ox), f(py(band[0]) - py(band[1]))))
+    for k in range(-20, 400):                       # griglia verticale (multipli di gx)
+        x = k * gx
+        if k == 0 or px(x) < gl or px(x) > gr: continue
+        o.append('<line class="gr" x1="%s" y1="%d" x2="%s" y2="%d"/>' % (f(px(x)), gt, f(px(x)), gb))
+    for k in range(-400, 400):                      # griglia orizzontale (multipli di gy)
+        y = k * gy
+        if k == 0 or py(y) < gt or py(y) > gb: continue
+        o.append('<line class="gr" x1="%d" y1="%s" x2="%d" y2="%s"/>' % (gl, f(py(y)), gr, f(py(y))))
+    if hline is not None:                           # livello del limite
+        o.append('<line class="dash" x1="%s" y1="%s" x2="%d" y2="%s"/>' % (f(ox), f(py(hline)), gr, f(py(hline))))
+    if N is not None:                               # soglia N: ESATTAMENTE su px(N)
+        o.append('<line class="dash" x1="%s" y1="22" x2="%s" y2="%s"/>' % (f(px(N)), f(px(N)), f(oy)))
+        o.append('<text x="%s" y="16" text-anchor="middle" class="sm main">N=%d</text>' % (f(px(N)), N))
+    o.append('<line class="ax" x1="%d" y1="%s" x2="%d" y2="%s"/>' % (X_LEFT + AH, f(oy), X_TIP - AH, f(oy)))
+    o.append('<line class="ax" x1="%s" y1="%d" x2="%s" y2="%d"/>' % (f(ox), Y_TOP + AH, f(ox), Y_BOT - AH))
+    tri = lambda a, b, c: '<polygon class="arw" points="%s"/>' % ' '.join('%s,%s' % (f(p), f(q)) for p, q in (a, b, c))
+    o.append(tri((X_TIP, oy), (X_TIP - AH, oy - AW), (X_TIP - AH, oy + AW)))      # destra
+    o.append(tri((X_LEFT, oy), (X_LEFT + AH, oy - AW), (X_LEFT + AH, oy + AW)))   # sinistra
+    o.append(tri((ox, Y_TOP), (ox - AW, Y_TOP + AH), (ox + AW, Y_TOP + AH)))      # su
+    o.append(tri((ox, Y_BOT), (ox - AW, Y_BOT - AH), (ox + AW, Y_BOT - AH)))      # giù
+    for n, v in pts:
+        o.append('<circle class="%s" cx="%s" cy="%s" r="3.6"/>' % ('pt2' if orange(n) else 'pt', f(px(n)), f(py(v))))
+    for x in xticks:
+        o.append('<line class="ax" x1="%s" y1="%s" x2="%s" y2="%s"/>' % (f(px(x)), f(oy - 3), f(px(x)), f(oy + 3)))
+        o.append('<text x="%s" y="%s" text-anchor="middle" class="sm main">%s</text>' % (f(px(x)), f(oy + 17), fmt(x)))
+    for y, lb in yticks:
+        o.append('<line class="ax" x1="%s" y1="%s" x2="%s" y2="%s"/>' % (f(ox - 3), f(py(y)), f(ox + 3), f(py(y))))
+        o.append('<text x="%s" y="%s" text-anchor="end" class="sm main">%s</text>' % (f(ox - 7), f(py(y) + 4), lb))
+    o.append('<text x="%s" y="%s" text-anchor="start" class="sm main">0</text>' % (f(ox + 7), f(oy + 15)))   # origine
+    o.append('<text x="%d" y="%s" text-anchor="end" class="sm">n</text>' % (X_TIP - 4, f(oy - 9)))
+    tx = title_x if title_x is not None else ox + 10
+    o.append('<text x="%d" y="36" text-anchor="start" class="sm">%s</text>' % (tx, title))
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 282">\n%s\n</svg>\n' % '\n'.join(o), px, py
+
+def ttl(letter, rest):   # titolo con pedice: ttl('a', '= (−1/2)ⁿ')  ->  a_n = (−1/2)ⁿ
+    return '%s<tspan dy="3" font-size="0.75em">n</tspan><tspan dy="-3"> %s</tspan>' % (letter, rest)
+
+# esempio: (−1/2)^n con ε=0,1 e N=4 (da n=4 in poi i termini stanno nella fascia)
+svg, px, py = seqplot([(n, (-0.5) ** n) for n in range(0, 11)], [2, 4, 6, 8, 10],
+    [(1, '1'), (0.1, '0,1'), (-0.1, '−0,1')], 11.3, 1.25, -0.75, gx=1, gy=0.5,
+    band=(-0.1, 0.1), N=4, orange=lambda n: n >= 4, title=ttl('a', '= (−1/2)ⁿ'), title_x=240)
+open('fig/es-04-geo.svg', 'w', encoding='utf-8').write(svg)
+```
+
+Come scegliere i parametri: `xtip` = ultimo n + ~1; `ymax_tip`/`ymin_tip` = estremi dei valori + margine (per lasciare spazio ai numeri sotto l'asse x serve almeno ~35px sotto l'origine); `title_x` in una zona vuota del grafico (~215–240 alto a destra, oppure il default alto a sinistra). Controllo obbligatorio prima di consegnare: la `x` della linea `N`, del tick `N` e del punto `n=N` devono coincidere (stesso `px(N)`).
 
 Esempi d'uso:
 
