@@ -15,6 +15,8 @@ Boh fra, che cazzo ne so. Appunti di Analisi 1 Matematica (fuh ts 🥀).
 9. Fibonacci, sottosuccessioni, topologia di R e limiti di funzioni
 10. Limiti di funzioni, asintoti e unicità del limite
 11. Limiti di funzioni: successioni, confronti, gerarchia degli infiniti e limiti notevoli
+12. Limiti notevoli, relazione di Eulero e continuità
+13. Funzioni continue e teoremi globali
 
 ### Esercitazioni:
 1. Estremi degli insiemi

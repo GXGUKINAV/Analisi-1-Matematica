@@ -1,0 +1,393 @@
+<p>Manteniamo le convenzioni dei Day precedenti: $\overline{\mathbb R}=\mathbb R\cup\{-\infty,+\infty\}$. Oggi si passa dai limiti alla <strong>continuità</strong>: la funzione di Dirichlet, la stabilità della continuità, il teorema dell'innominato e i due grandi teoremi globali, Weierstrass e degli zeri. Il prof risolve molti esercizi riagganciandosi a teoremi già visti: dove succede, trovi un riquadro <strong>Richiamo</strong> con l'enunciato in breve.</p>
+
+<h2>1. Definizioni</h2>
+
+<h3>Continuità in un punto</h3>
+<div class="box def">
+<div class="bt">Definizione — Funzione continua in $x_0$</div>
+<p>Siano $D\subseteq\mathbb R$, $f\colon D\to\mathbb R$ e $x_0\in D$. $f$ è continua in $x_0$ se</p>
+$$\boxed{\forall\varepsilon\gt0\ \exists\delta\gt0\ \forall x\in D:\quad|x-x_0|\lt\delta\Longrightarrow|f(x)-f(x_0)|\lt\varepsilon.}$$
+</div>
+<p>Possiamo rendere $f(x)$ vicino a $f(x_0)$ quanto vogliamo, purché $x$ sia abbastanza vicino a $x_0$ <em>restando nel dominio</em>. Agli estremi di un intervallo chiuso si controlla quindi solo il lato consentito.</p>
+
+<div class="box ex">
+<div class="bt">Richiamo — Limite con $\varepsilon$–$\delta$ (Day 9)</div>
+<p>$\lim_{x\to\widehat x}f(x)=L$ se $\forall\varepsilon\ \exists\delta:\ 0\lt|x-\widehat x|\lt\delta\Rightarrow|f(x)-L|\lt\varepsilon$.</p>
+<p><strong>Differenza chiave:</strong> nel limite si esclude $\widehat x$ ($0\lt|x-\widehat x|$) e $f(\widehat x)$ non conta; nella continuità $x_0$ è incluso e il valore $f(x_0)$ è proprio il candidato limite.</p>
+</div>
+
+<p>Se $x_0$ è anche di accumulazione per $D$, la definizione equivale a</p>
+$$\boxed{\lim_{x\to x_0}f(x)=f(x_0).}$$
+<p>Se invece $x_0$ è un punto isolato di $D$, la condizione è soddisfatta automaticamente (basta un $\delta$ con intorno che contiene solo $x_0$): ogni funzione è continua nei punti isolati del suo dominio.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-13-cont.svg" role="img" aria-label="Continuità in x0 con fasce epsilon e delta"></div>
+<figcaption>Continuità in $x_0$: fissata la fascia orizzontale $(f(x_0)-\varepsilon,f(x_0)+\varepsilon)$, esiste una fascia verticale $(x_0-\delta,x_0+\delta)$ in cui il grafico resta dentro. Il punto $(x_0,f(x_0))$ è <em>pieno</em>: a differenza del limite, qui il valore in $x_0$ conta.</figcaption>
+</figure>
+
+
+<h3>Continuità su un insieme</h3>
+<div class="box def">
+<div class="bt">Definizione — Funzione continua in $D$</div>
+$$\boxed{f\text{ continua in }D\iff\forall x_0\in D:\ f\text{ è continua in }x_0.}$$
+</div>
+<p>Verificare un solo punto non basta per concludere la continuità su tutto il dominio.</p>
+
+<h3>Continuità e successioni</h3>
+<div class="box ex">
+<div class="bt">Richiamo — Limite e successioni (Day 11)</div>
+<p>$\lim_{x\to\widehat x}f(x)=L$ se e solo se per <strong>ogni</strong> successione $x_n\to\widehat x$ con $x_n\ne\widehat x$ si ha $f(x_n)\to L$. Per negare l'esistenza basta trovare due successioni verso lo stesso punto con immagini a limiti diversi.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Definizione equivalente — Caratterizzazione mediante successioni</div>
+<p>Siano $f\colon D\to\mathbb R$ e $x_0\in D$. Allora</p>
+$$\boxed{f\text{ continua in }x_0\iff\Bigl[\forall(x_n)\subseteq D:\ x_n\to x_0\Longrightarrow f(x_n)\to f(x_0)\Bigr].}$$
+</div>
+<p>Per dimostrare che $f$ <strong>non</strong> è continua in $x_0$ basta una successione $(x_n)\subseteq D$ con $x_n\to x_0$ e $f(x_n)\not\to f(x_0)$; oppure due successioni verso $x_0$ con immagini a limiti diversi. È lo strumento centrale delle dimostrazioni di oggi.</p>
+
+<h3>Estremi di una funzione</h3>
+<div class="box ex">
+<div class="bt">Richiamo — Estremi di una funzione (Day 5)</div>
+<p>$\sup f=\sup f(D)$ e $\inf f=\inf f(D)$ sono gli estremi dell'<em>insieme immagine</em>, non del dominio. Se l'estremo appartiene all'immagine è un massimo (o minimo); altrimenti non è raggiunto, come $\inf e^x=0$.</p>
+</div>
+
+<div class="box def">
+<div class="bt">Definizione — Punti e valori di massimo/minimo</div>
+<p>Per $f\colon D\to\mathbb R$, $x_M\in D$ è un <strong>punto di massimo assoluto</strong> se</p>
+$$f(x)\le f(x_M)\qquad\forall x\in D,$$
+<p>e $M=f(x_M)$ è il <strong>valore massimo</strong>. Analogamente $x_m$ è punto di minimo assoluto se $f(x_m)\le f(x)$ per ogni $x\in D$, e $m=f(x_m)$ è il valore minimo.</p>
+</div>
+<ul>
+<li>$x_M,x_m$ sono elementi del <strong>dominio</strong>;</li>
+<li>$M,m$ sono elementi dell'<strong>immagine</strong>;</li>
+<li>$\sup$ e $\inf$ possono non essere raggiunti; massimo e minimo, quando esistono, sì.</li>
+</ul>
+
+
+<h2>2. Teoremi</h2>
+
+<h3>La funzione di Dirichlet</h3>
+<div class="box thm">
+<div class="bt">Teorema — Dirichlet è discontinua ovunque</div>
+<p>Sia</p>
+$$D\colon\mathbb R\to\mathbb R,\qquad D(x)=\begin{cases}1,&x\in\mathbb Q,\\0,&x\in\mathbb R\setminus\mathbb Q.\end{cases}$$
+<p><strong>Tesi.</strong> $D$ è discontinua in ogni punto di $\mathbb R$.</p>
+</div>
+<p>Il fenomeno nasce dalla densità: ogni intervallo aperto non vuoto contiene sia razionali sia irrazionali, quindi vicino a qualunque punto la funzione assume sia $0$ sia $1$.</p>
+
+<div class="box ex">
+<div class="bt">Richiamo — Densità di $\mathbb Q$ in $\mathbb R$ (Day 2)</div>
+<p>Per ogni $x\in\mathbb R$ e $\varepsilon\gt0$ esiste $q\in\mathbb Q$ con $|x-q|\lt\varepsilon$: in ogni intervallo aperto c'è un razionale. Lo stesso vale per gli irrazionali.</p>
+</div>
+
+<h3>Funzioni continue note e stabilità</h3>
+<div class="box thm">
+<div class="bt">Teorema — Funzioni elementari</div>
+<p>Le funzioni elementari sono continue nel loro dominio naturale: polinomi e razionali (dove $Q(x)\ne0$), esponenziali e logaritmi (con $\log_b$ su $(0,+\infty)$, $b\gt0$, $b\ne1$), seno, coseno, tangente, cotangente, inverse goniometriche, secante e cosecante. Enunciato senza dimostrazione.</p>
+</div>
+
+<div class="box thm">
+<div class="bt">Teorema — Operazioni algebriche</div>
+<p><strong>Ipotesi.</strong> $f,g$ continue in $x_0\in D_f\cap D_g$.</p>
+<p><strong>Tesi.</strong> $f+g$, $f-g$, $fg$ sono continue in $x_0$; inoltre</p>
+$$\boxed{\frac fg\text{ è continua in }x_0\quad\text{se }g(x_0)\ne0.}$$
+</div>
+<div class="box ex">
+<div class="bt">Richiamo — Algebra dei limiti (Day 9)</div>
+<p>Se $f\to L_1$ e $g\to L_2$ (finiti), allora $f\pm g\to L_1\pm L_2$, $fg\to L_1L_2$, e $f/g\to L_1/L_2$ se $L_2\ne0$. La continuità eredita esattamente queste regole.</p>
+</div>
+
+<div class="box thm">
+<div class="bt">Teorema — Composizione</div>
+<p>Siano $f\colon D_f\to\mathbb R$, $g\colon D_g\to\mathbb R$, con $D_{g\circ f}=\{x\in D_f:f(x)\in D_g\}$.</p>
+<p><strong>Ipotesi.</strong> $x_0\in D_f$, $f(x_0)\in D_g$, $f$ continua in $x_0$, $g$ continua in $f(x_0)$.</p>
+<p><strong>Tesi.</strong> $\boxed{g\circ f\text{ è continua in }x_0}$ (relativamente al dominio della composta).</p>
+</div>
+<div class="box ex">
+<div class="bt">Richiamo — Composizione (Day 6)</div>
+<p>$(g\circ f)(x)=g(f(x))$ si applica prima $f$, poi $g$. È definita su tutto $D_f$ solo se $f(D_f)\subseteq D_g$; altrimenti il dominio si restringe a $\{x\in D_f:f(x)\in D_g\}$.</p>
+</div>
+
+<h3>Teorema dell'innominato</h3>
+<div class="box thm">
+<div class="bt">Teorema dell'innominato</div>
+<p><strong>Ipotesi.</strong> $E\subseteq\mathbb R$, $E\ne\varnothing$, $M=\sup E$, $m=\inf E$ (in $\overline{\mathbb R}$).</p>
+<p><strong>Tesi.</strong> Esistono successioni $(\overline y_n),(\underline y_n)$ di elementi di $E$ tali che</p>
+$$\boxed{\overline y_n\to M,\qquad\underline y_n\to m.}$$
+</div>
+<p>Gli estremi di un insieme si possono sempre approssimare con elementi dell'insieme stesso, anche quando non gli appartengono. «Innominato» è il nome usato dal docente. A lezione la dimostrazione è stata fatta per intervalli; sotto trovi anche quella generale.</p>
+<div class="box ex">
+<div class="bt">Richiamo — Caratterizzazione di $\sup$ e $\inf$ con $\varepsilon$ (Day 2)</div>
+<p>$M=\sup E$ se e solo se $M$ è maggiorante e $\forall\varepsilon\gt0\ \exists x_\varepsilon\in E:\ M-\varepsilon\lt x_\varepsilon\le M$. Per l'inf: $m$ minorante e $\exists x_\varepsilon\in E:\ m\le x_\varepsilon\lt m+\varepsilon$. In parole: vicino al $\sup$ c'è sempre qualche elemento dell'insieme.</p>
+</div>
+
+<h3>Weierstrass e limitatezza globale</h3>
+<div class="box thm">
+<div class="bt">Teorema di Weierstrass</div>
+<p><strong>Ipotesi.</strong> $f\colon[a,b]\to\mathbb R$ continua, con $a,b\in\mathbb R$, $a\lt b$.</p>
+<p><strong>Tesi.</strong></p>
+$$\boxed{\exists x_m,x_M\in[a,b]\ \ \forall x\in[a,b]:\quad f(x_m)\le f(x)\le f(x_M).}$$
+<p>Quindi $\min f=\inf f=f(x_m)$ e $\max f=\sup f=f(x_M)$.</p>
+</div>
+<p>Il contenuto non è che $\sup$ e $\inf$ esistano (esistono sempre in $\overline{\mathbb R}$), ma che siano <strong>finiti e raggiunti</strong>.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-13-wei.svg" role="img" aria-label="Weierstrass su un intervallo chiuso"></div>
+<figcaption>Weierstrass su $[a,b]$: $f$ continua raggiunge il valore massimo $M=f(x_M)$ e il valore minimo $m=f(x_m)$. Le due quote tratteggiate sono $\sup f$ e $\inf f$, e il grafico le tocca davvero.</figcaption>
+</figure>
+
+
+<div class="box thm">
+<div class="bt">Teorema — Limitatezza globale</div>
+<p><strong>Ipotesi.</strong> $f\colon[a,b]\to\mathbb R$ continua.</p>
+<p><strong>Tesi.</strong> $\boxed{\exists K\ge0\ \forall x\in[a,b]:\ |f(x)|\le K.}$</p>
+</div>
+<p>Conseguenza diretta di Weierstrass: continua su un chiuso e limitato implica limitata.</p>
+<div class="box ex">
+<div class="bt">Richiamo — Locale limitatezza (Day 11)</div>
+<p>Se $f\to L\in\mathbb R$ per $x\to\widehat x$, allora $f$ è limitata <em>in un intorno bucato</em> di $\widehat x$. È un risultato <strong>locale</strong>; oggi lo si rende <strong>globale</strong> su $[a,b]$, grazie a continuità e compattezza dell'intervallo.</p>
+</div>
+
+<h3>Teorema degli zeri</h3>
+<div class="box thm">
+<div class="bt">Teorema degli zeri</div>
+<p><strong>Ipotesi.</strong> $f\colon[a,b]\to\mathbb R$ continua, $a\lt b$ reali, e $f(a)f(b)\lt0$ (segni opposti agli estremi).</p>
+<p><strong>Tesi.</strong> $\boxed{\exists c\in(a,b):\ f(c)=0.}$</p>
+</div>
+<p>Poiché il prodotto è strettamente negativo, nessuno degli estremi è zero: lo zero garantito è interno. Il teorema assicura l'<strong>esistenza</strong>, non l'unicità.</p>
+
+
+<h2>3. Dimostrazioni</h2>
+
+<h3>Dirichlet nei punti razionali</h3>
+<p>Fissiamo $x_0\in\mathbb Q$ e costruiamo</p>
+$$x_n=x_0+\frac2{n+1},\qquad\widetilde x_n=x_0+\frac{\sqrt2}{n+1}.$$
+<p><strong>Entrambe tendono a $x_0$</strong>, perché $\frac2{n+1}\to0$ e $\frac{\sqrt2}{n+1}\to0$.</p>
+<p><strong>Immagini diverse.</strong> $x_n$ è razionale (somma di razionali), quindi $D(x_n)=1$ per ogni $n$ e $D(x_n)\to1$. $\widetilde x_n$ è irrazionale (razionale più irrazionale), quindi $D(\widetilde x_n)=0$ e $D(\widetilde x_n)\to0$.</p>
+<div class="box ex">
+<div class="bt">Richiamo — Due fatti sui razionali (Day 1 e Day 2)</div>
+<p>$\sqrt2\notin\mathbb Q$ (dimostrazione per assurdo del Day 1). Inoltre razionale $+$ irrazionale è irrazionale: se $q+r=s\in\mathbb Q$, allora $r=s-q\in\mathbb Q$, assurdo, perché $\mathbb Q$ è chiuso per differenza.</p>
+</div>
+<p>Due successioni verso lo stesso punto con immagini a limiti diversi: per la caratterizzazione con successioni $D$ non è continua in $x_0$.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-13-dir.svg" role="img" aria-label="Funzione di Dirichlet vicino a x0"></div>
+<figcaption>Dirichlet vicino a $x_0$: i punti $x_n=x_0+\frac2{n+1}$ (razionali, in blu) hanno immagine $1$; i punti $\widetilde x_n=x_0+\frac{\sqrt2}{n+1}$ (irrazionali, in arancione) hanno immagine $0$. Entrambe le successioni tendono a $x_0$ ma le immagini no. I puntini grigi suggeriscono che razionali e irrazionali sono densi.</figcaption>
+</figure>
+
+
+<h3>Dirichlet nei punti irrazionali</h3>
+<p>Sia $x_0\in\mathbb R\setminus\mathbb Q$, quindi $D(x_0)=0$. Per assurdo supponiamo $D$ continua in $x_0$ e scegliamo $\varepsilon=\frac12$: esiste $\delta\gt0$ tale che $|x-x_0|\lt\delta\Rightarrow|D(x)-D(x_0)|\lt\frac12$.</p>
+<p>Per la densità di $\mathbb Q$ esiste $q\in\mathbb Q$ con $|q-x_0|\lt\delta$. Allora dovrebbe valere $|D(q)-D(x_0)|\lt\frac12$, ma $D(q)=1$ e $D(x_0)=0$, cioè $1\lt\frac12$: assurdo. Quindi
+$$\boxed{D\text{ è discontinua in ogni punto di }\mathbb R.}$$
+<p>Due tecniche diverse: successioni nei razionali, definizione $\varepsilon$–$\delta$ negli irrazionali.</p>
+
+<h3>Innominato: dimostrazione per intervalli</h3>
+<ul>
+<li><strong>$E=(a,+\infty)$.</strong> Basta $\overline y_n=a+n+1\in E$, che tende a $+\infty=\sup E$.</li>
+<li><strong>$E=(-\infty,b)$.</strong> Basta $\underline y_n=b-n-1\in E$, che tende a $-\infty=\inf E$. Per $E=\mathbb R$: $n+1$ e $-n-1$.</li>
+<li><strong>Estremi finiti $m\lt M$.</strong> Si prendono $\overline y_n=M-\frac1{n+1}$ e $\underline y_n=m+\frac1{n+1}$, che tendono a $M$ e $m$. Stanno nell'intervallo <em>definitivamente</em>: per i primi indici potrebbero uscirne. Per averli in $E$ sempre, si scartano i primi termini o li si sostituisce con un elemento fissato di $E$: cambiare un numero finito di termini non cambia il limite.</li>
+<li><strong>Singoletto $E=\{c\}$.</strong> Successione costante $y_n=c$.</li>
+</ul>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-13-inn.svg" role="img" aria-label="Innominato su un intervallo aperto: successioni che tendono agli estremi"></div>
+<figcaption>Innominato su un intervallo aperto $E=(m,M)$: i termini $\overline y_n$ (blu) restano in $E$ e tendono a $M$; i termini $\underline y_n$ (arancione) tendono a $m$. Gli estremi non appartengono a $E$ (pallini vuoti), ma si approssimano dall'interno.</figcaption>
+</figure>
+
+
+<h3>Innominato: dimostrazione generale (integrazione)</h3>
+<p>Per $E$ qualunque non vuoto, vale per il $\sup$ (l'inf è simmetrico).</p>
+<ul>
+<li>Se $M=\sup E\in\mathbb R$: per la caratterizzazione con $\varepsilon$ (Day 2), scegliendo $\varepsilon=\frac1{n+1}$ esiste $\overline y_n\in E$ con $M-\frac1{n+1}\lt\overline y_n\le M$. Per i carabinieri $\overline y_n\to M$.</li>
+<li>Se $M=+\infty$: $E$ non è limitato superiormente, quindi per ogni $n$ esiste $\overline y_n\in E$ con $\overline y_n\gt n$, e $\overline y_n\to+\infty$.</li>
+</ul>
+
+<h3>Successioni massimizzanti e minimizzanti</h3>
+<p>Sia $f\colon D\to\mathbb R$ e applichiamo l'innominato a $E=f(D)$, con $M=\sup f$ e $m=\inf f$. Esistono $\overline y_n,\underline y_n\in f(D)$ con $\overline y_n\to M$, $\underline y_n\to m$. Essendo valori dell'immagine, scegliamo $\overline x_n,\underline x_n\in D$ con $f(\overline x_n)=\overline y_n$ e $f(\underline x_n)=\underline y_n$. Così</p>
+$$\boxed{f(\overline x_n)\to\sup_Df,\qquad f(\underline x_n)\to\inf_Df.}$$
+<p>$(\overline x_n)$ e $(\underline x_n)$ si chiamano successione <strong>massimizzante</strong> e <strong>minimizzante</strong>. Attenzione: non abbiamo ancora detto che gli $x_n$ convergano, e la scelta delle controimmagini non è unica.</p>
+
+<h3>Dimostrazione di Weierstrass (esistenza del massimo)</h3>
+<p><strong>Passo 1.</strong> $E=f([a,b])\ne\varnothing$, quindi $M=\sup E\in\overline{\mathbb R}$ esiste. Non sappiamo ancora se è finito né se appartiene a $E$.</p>
+<p><strong>Passo 2.</strong> Per l'innominato esistono $y_n\in E$ con $y_n\to M$; scegliamo $x_n\in[a,b]$ con $f(x_n)=y_n$. Quindi $f(x_n)\to M$.</p>
+<p><strong>Passo 3.</strong> Da $a\le x_n\le b$ la successione $(x_n)$ è limitata.</p>
+<div class="box ex">
+<div class="bt">Richiamo — Bolzano–Weierstrass (Day 9)</div>
+<p>Ogni successione limitata ha una sottosuccessione convergente. Non dice che converga tutta la successione, ma che ne esiste <em>almeno una</em> parte che converge.</p>
+</div>
+<p>Esistono quindi $(x_{n_k})$ e $x_*\in\mathbb R$ con $x_{n_k}\to x_*$. Poiché $a\le x_{n_k}\le b$, passando al limite $a\le x_*\le b$, cioè $x_*\in[a,b]$.</p>
+<div class="box ex">
+<div class="bt">Richiamo — Monotonia del limite (Day 11 e Day 7)</div>
+<p>Se $f\le g$ definitivamente e i limiti esistono, allora $L_1\le L_2$: la disuguaglianza <em>larga</em> si conserva al limite (quella stretta no). Qui serve per dire che $a\le x_*\le b$.</p>
+</div>
+<p>Le due proprietà del dominio lavorano separatamente: la <strong>limitatezza</strong> permette di usare Bolzano–Weierstrass, la <strong>chiusura</strong> garantisce che il limite resti nel dominio.</p>
+<p><strong>Passo 4.</strong> Per continuità in $x_*$, $f(x_{n_k})\to f(x_*)$. Ma $f(x_{n_k})=y_{n_k}$ è sottosuccessione di una successione che tende a $M$.</p>
+<div class="box ex">
+<div class="bt">Richiamo — Sottosuccessioni e unicità del limite (Day 9 e Day 7)</div>
+<p>Se $a_n\to L$ ogni sottosuccessione tende ancora a $L$. Il limite, se esiste, è unico.</p>
+</div>
+<p>Quindi $y_{n_k}\to M$ e, per l'unicità, $\boxed{f(x_*)=M}$. Poiché $f(x_*)\in\mathbb R$, anche $M$ è finito e $M=f(x_*)\in f([a,b])$: il $\sup$ è un massimo, $\max f=f(x_*)$.</p>
+<p>Per il minimo si ripete il ragionamento con una successione minimizzante, oppure si applica il risultato sul massimo alla funzione $-f$.</p>
+
+<h3>Limitatezza globale</h3>
+<p>Per Weierstrass esistono $m=\min f$ e $M=\max f$ con $m\le f(x)\le M$ su $[a,b]$. Posto $K=\max\{|m|,|M|\}$ si ha $-K\le m\le f(x)\le M\le K$, cioè $\boxed{|f(x)|\le K}$ per ogni $x\in[a,b]$.</p>
+<div class="box ex">
+<div class="bt">Richiamo — Limitata e modulo (Day 6)</div>
+<p>$m\le a_n\le M$ equivale a $|a_n|\le K$ con $K=\max\{|m|,|M|\}$: è la stessa riduzione già vista per le successioni.</p>
+</div>
+
+<h3>Teorema degli zeri</h3>
+<p>Supponiamo $f(a)\gt0$ e $f(b)\lt0$ (altrimenti si usa $-f$). L'idea è prendere l'<em>ultimo</em> punto in cui $f$ può essere non negativa.</p>
+<p><strong>Passo 1.</strong> Sia $E=\{x\in[a,b]:f(x)\ge0\}$. Da $f(a)\gt0$ si ha $a\in E$, quindi $E\ne\varnothing$, ed è limitato superiormente. Poniamo $c=\sup E\in[a,b]$.</p>
+<p><strong>Passo 2: $f(c)\ge0$.</strong> Per l'innominato esistono $x_n\in E$ con $x_n\to c$. Per continuità $f(x_n)\to f(c)$, e $f(x_n)\ge0$ per ogni $n$. Passando al limite la disuguaglianza larga si conserva (monotonia del limite):</p>
+$$\boxed{f(c)\ge0.}$$
+<p>In particolare $c\ne b$, perché $f(b)\lt0$: quindi $c\lt b$.</p>
+<p><strong>Passo 3: $f(c)\le0$.</strong> Sia $G=(c,b]\ne\varnothing$, con $\inf G=c$. Scegliamo $\widetilde x_n\in G$ con $\widetilde x_n\to c$, per esempio</p>
+$$\widetilde x_n=c+\frac{b-c}{n+1}.$$
+<p>Poiché $\widetilde x_n\gt c=\sup E$, nessun $\widetilde x_n$ sta in $E$, quindi $f(\widetilde x_n)\lt0$. Per continuità $f(\widetilde x_n)\to f(c)$ e per la monotonia del limite</p>
+$$\boxed{f(c)\le0.}$$
+<p>È essenziale escludere $c$ da $G$: su $c$ stiamo ancora cercando di capire il valore.</p>
+<p><strong>Conclusione.</strong> $f(c)\ge0$ e $f(c)\le0$ danno $\boxed{f(c)=0}$. Infine $c\ne a$ perché $f(a)\gt0$, quindi $c\in(a,b)$. Questo $c$ è lo zero <em>più a destra</em>: ogni zero sta in $E$, quindi non supera $\sup E=c$.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-13-zeri.svg" role="img" aria-label="Teorema degli zeri con l'insieme E e il suo estremo superiore"></div>
+<figcaption>Teorema degli zeri con $f(a)\gt0$ e $f(b)\lt0$. In arancione l'insieme $E=\{f\ge0\}$ sull'asse $x$; $c=\sup E$ è lo zero più a destra. Il grafico ha altri zeri a sinistra: il teorema ne garantisce uno, la costruzione sceglie l'ultimo.</figcaption>
+</figure>
+
+
+
+<h2>4. Esempi e osservazioni</h2>
+
+<h3>Continuità con i teoremi di stabilità</h3>
+<div class="box ex">
+<div class="bt">Esempio — $f(x)=\arctan(e^x)+\log_3(\sin^2x+9)$ in $x_0=0$</div>
+<ul>
+<li><strong>Dominio.</strong> $e^x$ è definita su $\mathbb R$ e $\arctan$ accetta ogni reale. Per il logaritmo serve $\sin^2x+9\gt0$: da $0\le\sin^2x\le1$ si ha $9\le\sin^2x+9\le10$, quindi $D_f=\mathbb R$.</li>
+<li><strong>Continuità.</strong> Elementari continue nei loro domini, composizione e somma conservano la continuità: $f$ è continua su tutto $\mathbb R$, non solo in $0$.</li>
+<li><strong>Valore.</strong> $f(0)=\arctan1+\log_39=\frac\pi4+2$.</li>
+</ul>
+$$\boxed{\lim_{x\to0}f(x)=f(0)=\frac\pi4+2.}$$
+<p>La sostituzione diretta è giustificata dai teoremi di continuità: non è una regola da applicare senza controllare dominio e struttura.</p>
+</div>
+
+<h3>Locale e globale</h3>
+<p>Una proprietà <strong>locale</strong> riguarda il comportamento vicino a un punto ($f$ continua in $x_0$). Una proprietà <strong>globale</strong> riguarda tutto l'insieme ($f$ raggiunge un massimo assoluto su $[a,b]$). Weierstrass e gli zeri trasformano la continuità, che è locale, in conclusioni sull'intero intervallo.</p>
+
+<h3>Perché le ipotesi di Weierstrass servono</h3>
+<p>Se manca un'ipotesi la conclusione <em>non è più garantita</em>: non significa che max e min manchino sempre.</p>
+<div class="box ex">
+<div class="bt">A. Dominio non limitato — $f(x)=x\sin x$ su $[0,+\infty)$</div>
+<p>Continua, dominio chiuso ma illimitato. Con $x_n=\frac\pi2+2\pi n$ si ha $f(x_n)=x_n\to+\infty$; con $z_n=\frac{3\pi}2+2\pi n$, $f(z_n)=-z_n\to-\infty$. Non esistono né massimo né minimo.</p>
+</div>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-13-xsin.svg" role="img" aria-label="Grafico di x sin x su una semiretta"></div>
+<figcaption>$x\sin x$ su $[0,+\infty)$: dominio chiuso ma illimitato. I punti $x_n=\frac\pi2+2\pi n$ (blu) toccano la retta $y=x$, i punti $z_n=\frac{3\pi}2+2\pi n$ (arancione) toccano $y=-x$: nessun massimo, nessun minimo.</figcaption>
+</figure>
+
+<div class="box ex">
+<div class="bt">B. Dominio non chiuso — $f(x)=\tan x$ su $\left(-\frac\pi2,\frac\pi2\right)$</div>
+<p>Continua su un intervallo limitato ma aperto. Agli estremi $\tan x\to-\infty$ e $\to+\infty$: nessun massimo né minimo.</p>
+</div>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-13-tan.svg" role="img" aria-label="Grafico della tangente su un intervallo aperto"></div>
+<figcaption>$\tan x$ su $\left(-\frac\pi2,\frac\pi2\right)$: dominio limitato ma aperto. Avvicinandosi agli estremi il grafico va a $\pm\infty$: nessun massimo né minimo.</figcaption>
+</figure>
+
+<div class="box ex">
+<div class="bt">C. Mancanza di continuità — esempio sostitutivo</div>
+<p>La formula del docente non è leggibile con certezza nella trascrizione, quindi uso un esempio equivalente. Su $[0,1]$ poniamo $f(x)=x$ per $0\lt x\lt1$ e $f(0)=f(1)=\frac12$. Dominio chiuso e limitato, ma discontinuità agli estremi: $f([0,1])=(0,1)$, quindi $\inf f=0$ e $\sup f=1$ non sono raggiunti.</p>
+</div>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-13-ctrx.svg" role="img" aria-label="Esempio sostitutivo di funzione discontinua sull'intervallo [0,1]"></div>
+<figcaption>Esempio sostitutivo: $f(x)=x$ su $(0,1)$ e $f(0)=f(1)=\frac12$. Gli estremi $\inf f=0$ e $\sup f=1$ (pallini vuoti) non sono raggiunti: la discontinuità agli estremi rovina Weierstrass.</figcaption>
+</figure>
+
+
+<h3>Weierstrass non dà l'unicità dei punti di estremo</h3>
+<p>Per $f(x)=\cos x$ su $[0,3\pi]$ i punti di massimo sono $x=0$ e $x=2\pi$ (valore $M=1$); quelli di minimo sono $x=\pi$ e $x=3\pi$ (valore $m=-1$). Il <strong>valore</strong> massimo è unico; i <strong>punti</strong> che lo realizzano no.</p>
+
+<h3>Neanche gli zeri sono unici</h3>
+<p>Sempre per $\cos x$ su $[0,3\pi]$: $f(0)=1$ e $f(3\pi)=-1$, ipotesi soddisfatte, ma gli zeri sono tre:</p>
+$$\boxed{\frac\pi2,\qquad\frac{3\pi}2,\qquad\frac{5\pi}2.}$$
+<p>La conclusione corretta è «<em>esiste almeno</em> uno zero», non «esiste esattamente uno zero».</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-13-cos.svg" role="img" aria-label="Coseno su [0,3 pi] con massimi, minimi e zeri"></div>
+<figcaption>$\cos x$ su $[0,3\pi]$: massimi in $x=0$ e $x=2\pi$ (blu, valore $1$), minimi in $x=\pi$ e $x=3\pi$ (blu, valore $-1$); i tre zeri $\frac\pi2,\frac{3\pi}2,\frac{5\pi}2$ sono in arancione.</figcaption>
+</figure>
+
+
+<h3>Applicazione: intersezione di due grafici</h3>
+<div class="box ex">
+<div class="bt">Esempio — $h(x)=x^4$ e $g(x)=x+2$ si intersecano in $[1,2]$</div>
+<ol>
+<li><strong>Traduzione.</strong> $h(x)=g(x)\iff x^4-x-2=0$.</li>
+<li><strong>Funzione differenza.</strong> $F(x)=h(x)-g(x)=x^4-x-2$: un'intersezione è uno zero di $F$.</li>
+<li><strong>Ipotesi.</strong> $F$ è un polinomio, quindi continua su $[1,2]$; $F(1)=-2\lt0$ e $F(2)=12\gt0$, quindi $F(1)F(2)\lt0$.</li>
+</ol>
+<p>Per il teorema degli zeri esiste $c\in(1,2)$ con $F(c)=0$, cioè $c^4=c+2$: i grafici si incontrano in $(c,c^4)=(c,c+2)$. Non serve calcolare $c$ per provarne l'esistenza.</p>
+</div>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-13-int.svg" role="img" aria-label="Intersezione tra x alla quarta e x+2"></div>
+<figcaption>$h(x)=x^4$ (blu) e $g(x)=x+2$ (arancione) su $[1,2]$ (fascia): in $x=1$ vale $h\lt g$, in $x=2$ vale $h\gt g$, quindi i grafici si incontrano in un punto $(c,c+2)$ con $c\in(1,2)$.</figcaption>
+</figure>
+
+
+<h3>Esercizio assegnato: $e^x+x=0$ ha una soluzione in $[-1,0]$</h3>
+<div class="box ex">
+<div class="bt">Svolgimento</div>
+<p>Poniamo $F(x)=e^x+x$, continua su $[-1,0]$ come somma di continue. Inoltre</p>
+$$F(-1)=e^{-1}-1\lt0,\qquad F(0)=1\gt0.$$
+<p>Per il teorema degli zeri $\boxed{\exists c\in(-1,0):\ e^c+c=0}$, cioè $e^c=-c$. Graficamente, le curve $y=e^x$ e $y=-x$ si intersecano per un'ascissa compresa tra $-1$ e $0$: è la stessa conclusione letta come zero della differenza o come intersezione di due curve.</p>
+</div>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-13-expx.svg" role="img" aria-label="Intersezione tra e alla x e meno x"></div>
+<figcaption>Le curve $y=e^x$ (blu) e $y=-x$ (arancione) si incontrano in $(c,-c)$ con $c\in(-1,0)$ (fascia): in $x=-1$ la retta sta sopra l'esponenziale, in $x=0$ sta sotto.</figcaption>
+</figure>
+
+
+<h3>Metodo per «dimostra che esiste una soluzione»</h3>
+<div class="box ex">
+<div class="bt">Procedura</div>
+<ol>
+<li>Porta tutto da una parte e definisci $F(x)=\text{(membro sinistro)}-\text{(membro destro)}$.</li>
+<li>Scegli un intervallo $[a,b]$ in cui $F$ è continua (polinomi, esponenziali, ecc.).</li>
+<li>Calcola $F(a)$ e $F(b)$ e verifica $F(a)F(b)\lt0$.</li>
+<li>Concludi con il teorema degli zeri: esiste $c\in(a,b)$ con $F(c)=0$.</li>
+</ol>
+</div>
+
+
+<h2>5. Errori da evitare</h2>
+<div class="box warn">
+<div class="bt">Attenzione</div>
+<ul>
+<li>Continuità in un punto non vuol dire continuità su tutto il dominio: va controllata in ogni punto.</li>
+<li>Nella continuità $x_0$ è <strong>incluso</strong> e conta $f(x_0)$; nel limite $x_0$ è escluso.</li>
+<li>La composta $g\circ f$ è definita su tutto $D_f$ solo se $f(D_f)\subseteq D_g$.</li>
+<li>Per provare la <strong>non</strong> continuità basta una successione (o due) «cattive»; per provare la continuità ne servono <strong>tutte</strong>.</li>
+<li>Non confondere punti ($x_M\in D$) e valori ($M\in f(D)$) di massimo.</li>
+<li>Weierstrass richiede <strong>chiuso e limitato</strong> e continuità: tutte e tre le ipotesi. Se ne manca una, la conclusione non è garantita, ma non è nemmeno detto che sia falsa.</li>
+<li>Weierstrass e gli zeri danno l'<strong>esistenza</strong>, non l'unicità (vedi $\cos x$ su $[0,3\pi]$).</li>
+<li>Nel teorema degli zeri serve $f(a)f(b)\lt0$: se il prodotto è positivo non si può concludere nulla.</li>
+<li>Passando al limite le disuguaglianze larghe si conservano, quelle strette no: nella dimostrazione si ottengono $f(c)\ge0$ e $f(c)\le0$, non disuguaglianze strette.</li>
+<li>Nella dimostrazione degli zeri la successione da destra va presa in $(c,b]$, <strong>escludendo</strong> $c$.</li>
+<li>Nell'innominato la successione sta nell'insieme solo <em>definitivamente</em> se la si costruisce con $M-\frac1{n+1}$: si possono modificare i primi termini.</li>
+</ul>
+</div>
+
+
+<h2>6. Riepilogo finale</h2>
+<p>Cosa devi saper fare dopo questo Day:</p>
+<ul>
+<li>scrivere la definizione $\varepsilon$–$\delta$ di continuità e quella con le successioni, e distinguerla da quella di limite;</li>
+<li>dimostrare che la funzione di Dirichlet è discontinua ovunque (successioni nei razionali, $\varepsilon=\frac12$ negli irrazionali);</li>
+<li>usare i teoremi di stabilità (somma, prodotto, quoziente, composizione) per studiare la continuità, controllando dominio e $g(x_0)\ne0$;</li>
+<li>enunciare e dimostrare l'innominato e ricavare le successioni massimizzanti e minimizzanti;</li>
+<li>enunciare Weierstrass, dimostrarne l'esistenza del massimo con Bolzano–Weierstrass, e derivarne la limitatezza globale;</li>
+<li>portare i controesempi che mostrano la necessità di ciascuna ipotesi di Weierstrass;</li>
+<li>enunciare e dimostrare il teorema degli zeri con $c=\sup\{x:f(x)\ge0\}$;</li>
+<li>applicare gli zeri a equazioni e intersezioni di grafici ($x^4=x+2$, $e^x+x=0$).</li>
+</ul>

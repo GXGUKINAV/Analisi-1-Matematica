@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 130">
+<line class="ax" x1="17" y1="66" x2="321" y2="66"/>
+<polygon class="arw" points="330.0,66.0 321.0,62.4 321.0,69.6"/>
+<polygon class="arw" points="8.0,66.0 17.0,62.4 17.0,69.6"/>
+<line class="cv" style="stroke-width:4" x1="50" y1="66" x2="290" y2="66"/>
+<line class="dash faint" x1="170.0" y1="36.0" x2="170.0" y2="66.0"/>
+<circle class="pt" cx="170.0" cy="30" r="3.6"/>
+<line class="dash faint" x1="170.0" y1="66.0" x2="170.0" y2="98.0"/>
+<circle class="pt2" cx="170.0" cy="104" r="3.6"/>
+<line class="dash faint" x1="210.0" y1="36.0" x2="210.0" y2="66.0"/>
+<circle class="pt" cx="210.0" cy="30" r="3.6"/>
+<line class="dash faint" x1="130.0" y1="66.0" x2="130.0" y2="98.0"/>
+<circle class="pt2" cx="130.0" cy="104" r="3.6"/>
+<line class="dash faint" x1="230.0" y1="36.0" x2="230.0" y2="66.0"/>
+<circle class="pt" cx="230.0" cy="30" r="3.6"/>
+<line class="dash faint" x1="110.0" y1="66.0" x2="110.0" y2="98.0"/>
+<circle class="pt2" cx="110.0" cy="104" r="3.6"/>
+<line class="dash faint" x1="242.0" y1="36.0" x2="242.0" y2="66.0"/>
+<circle class="pt" cx="242.0" cy="30" r="3.6"/>
+<line class="dash faint" x1="98.0" y1="66.0" x2="98.0" y2="98.0"/>
+<circle class="pt2" cx="98.0" cy="104" r="3.6"/>
+<line class="dash faint" x1="250.0" y1="36.0" x2="250.0" y2="66.0"/>
+<circle class="pt" cx="250.0" cy="30" r="3.6"/>
+<line class="dash faint" x1="90.0" y1="66.0" x2="90.0" y2="98.0"/>
+<circle class="pt2" cx="90.0" cy="104" r="3.6"/>
+<line class="dash faint" x1="255.7" y1="36.0" x2="255.7" y2="66.0"/>
+<circle class="pt" cx="255.7" cy="30" r="3.6"/>
+<line class="dash faint" x1="84.3" y1="66.0" x2="84.3" y2="98.0"/>
+<circle class="pt2" cx="84.3" cy="104" r="3.6"/>
+<line class="dash faint" x1="260.0" y1="36.0" x2="260.0" y2="66.0"/>
+<circle class="pt" cx="260.0" cy="30" r="3.6"/>
+<line class="dash faint" x1="80.0" y1="66.0" x2="80.0" y2="98.0"/>
+<circle class="pt2" cx="80.0" cy="104" r="3.6"/>
+<line class="dash faint" x1="263.3" y1="36.0" x2="263.3" y2="66.0"/>
+<circle class="pt" cx="263.3" cy="30" r="3.6"/>
+<line class="dash faint" x1="76.7" y1="66.0" x2="76.7" y2="98.0"/>
+<circle class="pt2" cx="76.7" cy="104" r="3.6"/>
+<line class="dash faint" x1="266.0" y1="36.0" x2="266.0" y2="66.0"/>
+<circle class="pt" cx="266.0" cy="30" r="3.6"/>
+<line class="dash faint" x1="74.0" y1="66.0" x2="74.0" y2="98.0"/>
+<circle class="pt2" cx="74.0" cy="104" r="3.6"/>
+<circle class="hole" cx="50" cy="66" r="5"/><circle class="hole" cx="290" cy="66" r="5"/>
+<text x="50.0" y="86.0" text-anchor="middle" class="sm main"><tspan>m</tspan></text>
+<text x="290.0" y="86.0" text-anchor="middle" class="sm main"><tspan>M</tspan></text>
+<text x="100.0" y="56.0" text-anchor="middle" class="sm main"><tspan>E</tspan></text>
+<text x="14.0" y="34.0" text-anchor="start" class="sm main"><tspan style="text-decoration:overline">y</tspan><tspan dy="3.0" font-size="0.75em">n</tspan><tspan dy="-3.0"> → M</tspan></text>
+<text x="14.0" y="108.0" text-anchor="start" class="sm main"><tspan style="text-decoration:underline">y</tspan><tspan dy="3" font-size="0.75em">n</tspan><tspan dy="-3"> → m</tspan></text>
+</svg>

@@ -84,6 +84,18 @@ var days = [
     title: 'Limiti di funzioni: successioni, confronti, gerarchia degli infiniti e limiti notevoli',
     file: 'appunti/day-11.html',
     date: '2026-10-16'
+  },
+  {
+    n: 12,
+    title: 'Limiti notevoli, relazione di Eulero e continuità',
+    file: 'appunti/day-12.html',
+    date: '2026-10-21'
+  },
+  {
+    n: 13,
+    title: 'Funzioni continue e teoremi globali (Weierstrass)',
+    file: 'appunti/day-13.html',
+    date: '2026-10-23'
   }
   
 ];

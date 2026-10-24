@@ -1,0 +1,330 @@
+<p>Manteniamo le convenzioni dei Day precedenti: $\overline{\mathbb R}=\mathbb R\cup\{-\infty,+\infty\}$. Oggi si completano i limiti notevoli, si introducono le funzioni iperboliche, si presenta in modo intuitivo la relazione di Eulero e si comincia lo studio della continuità.</p>
+
+<h2>1. Definizioni</h2>
+
+<h3>Equivalenza asintotica: richiamo</h3>
+<p>Siano $f,g$ con $g(x)\ne0$ in un intorno bucato di $x_0$. Allora</p>
+$$f(x)\sim g(x)\quad(x\to x_0)\iff\lim_{x\to x_0}\frac{f(x)}{g(x)}=1.$$
+<p>Il significato è che $g$ approssima $f$ con un errore <em>relativo</em> che tende a zero. Le equivalenze si usano in prodotti e quozienti, <strong>non</strong> automaticamente in somme e differenze.</p>
+
+<h3>Funzioni iperboliche</h3>
+<div class="box def">
+<div class="bt">Definizione — Seno e coseno iperbolico</div>
+$$\boxed{\sinh x=\frac{e^x-e^{-x}}2},\qquad\boxed{\cosh x=\frac{e^x+e^{-x}}2}.$$
+<p>Sono definite per ogni $x\in\mathbb R$, con $\sinh0=0$ e $\cosh0=1$.</p>
+</div>
+<p>Vengono introdotte per ricavarne i limiti notevoli; lo studio sistematico è rinviato.</p>
+
+<h3>Continuità in un punto</h3>
+<div class="box def">
+<div class="bt">Definizione — Funzione continua</div>
+<p>Siano $\varnothing\ne D\subseteq\mathbb R$, $f\colon D\to\mathbb R$ e $x_0\in D$. $f$ è <strong>continua in $x_0$</strong> se</p>
+$$\boxed{\forall\varepsilon\gt0\ \exists\delta\gt0\ \forall x\in D:\quad|x-x_0|\lt\delta\Longrightarrow|f(x)-f(x_0)|\lt\varepsilon.}$$
+<p>$f$ è continua in $D$ se è continua in ogni punto di $D$.</p>
+</div>
+<p>In parole: $f(x)$ si avvicina quanto si vuole a $f(x_0)$, purché $x$ sia abbastanza vicino a $x_0$ e appartenga al dominio.</p>
+<p>Con gli intorni $B_r(a)=(a-r,a+r)$ la definizione diventa</p>
+$$\forall\varepsilon\gt0\ \exists\delta\gt0:\quad f\bigl(B_\delta(x_0)\cap D\bigr)\subseteq B_\varepsilon\bigl(f(x_0)\bigr).$$
+<p>L'intersezione con $D$ è essenziale: si considerano solo i punti in cui $f$ è definita.</p>
+
+<h3>Differenza tra limite e continuità</h3>
+<div class="tbl"><table>
+<thead><tr><th>Limite per $x\to x_0$</th><th>Continuità in $x_0$</th></tr></thead>
+<tbody>
+<tr><td>$x_0$ deve essere di accumulazione per $D$</td><td>$x_0$ deve appartenere a $D$</td></tr>
+<tr><td>$f(x_0)$ può non essere definita</td><td>$f(x_0)$ deve essere definita</td></tr>
+<tr><td>Si impone $0\lt|x-x_0|\lt\delta$</td><td>Si impone $|x-x_0|\lt\delta$</td></tr>
+<tr><td>Si confronta $f(x)$ con un valore $L$</td><td>Si confronta $f(x)$ con $f(x_0)$</td></tr>
+</tbody></table></div>
+<p>Nella continuità non serve escludere $x=x_0$: in quel caso $|f(x_0)-f(x_0)|=0\lt\varepsilon$. La continuità ha quindi senso anche nei punti isolati del dominio.</p>
+
+<h3>Punti interni, isolati e di bordo</h3>
+<p>Sia $x_0\in D$.</p>
+<ul>
+<li>$x_0$ è <strong>interno</strong> se $\exists r\gt0:\ B_r(x_0)\subseteq D$;</li>
+<li>$x_0$ è <strong>isolato</strong> se $\exists r\gt0:\ B_r(x_0)\cap D=\{x_0\}$;</li>
+<li>nella suddivisione operativa della lezione, i punti di $D$ né interni né isolati si dicono <strong>di bordo</strong>.</li>
+</ul>
+<p><strong>Precisazione.</strong> In topologia anche un punto isolato è di frontiera; qui la distinzione serve solo a separare tre situazioni diverse nello studio della continuità.</p>
+
+<h3>Discontinuità e classificazione</h3>
+<p>$x_0\in D$ è un punto di <strong>discontinuità</strong> se $f$ non è continua in $x_0$. Per la classificazione si suppone $x_0$ interno a $D$ e si pongono</p>
+$$L^-=\lim_{x\to x_0^-}f(x),\qquad L^+=\lim_{x\to x_0^+}f(x).$$
+<div class="tbl"><table>
+<thead><tr><th>Tipo</th><th>Condizione</th></tr></thead>
+<tbody>
+<tr><td>Prima specie (a salto)</td><td>$L^-$ e $L^+$ esistono finiti, ma $L^-\ne L^+$</td></tr>
+<tr><td>Seconda specie</td><td>almeno un limite laterale è infinito oppure non esiste</td></tr>
+<tr><td>Terza specie (eliminabile)</td><td>$L^-=L^+=L\in\mathbb R$, ma $f(x_0)\ne L$</td></tr>
+</tbody></table></div>
+<p>Nella prima specie l'ampiezza del salto è $\boxed{|L^+-L^-|}$. Nella terza specie basta ridefinire $f(x_0)=L$ per ottenere la continuità. La numerazione delle specie può variare fra i testi: qui si segue quella del professore.</p>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-12-salto.svg" role="img" aria-label="Discontinuità di prima specie"></div>
+<figcaption>Prima specie: $L^-$ e $L^+$ sono finiti ma diversi, e il salto vale $|L^+-L^-|$. Pallino pieno = valore $f(\widehat x)$, vuoto = estremo escluso.</figcaption>
+</figure>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-12-seconda.svg" role="img" aria-label="Discontinuità di seconda specie"></div>
+<figcaption>Seconda specie: il limite sinistro è $-\infty$ e quello destro $+\infty$; la retta tratteggiata $x=\widehat x$ è un asintoto verticale.</figcaption>
+</figure>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-12-elim.svg" role="img" aria-label="Discontinuità eliminabile"></div>
+<figcaption>Terza specie: $L^-=L^+=L$ (pallino vuoto), ma $f(\widehat x)\ne L$. Ridefinendo $f(\widehat x)=L$ la funzione diventa continua.</figcaption>
+</figure>
+
+
+
+<h2>2. Teoremi</h2>
+
+<h3>Limiti notevoli completati oggi</h3>
+<p>Angoli in radianti; tutti i limiti sono per $x\to0$.</p>
+<div class="tbl"><table>
+<thead><tr><th>Funzione</th><th>Limite notevole</th><th>Equivalenza</th></tr></thead>
+<tbody>
+<tr><td>Esponenziale naturale</td><td>$\dfrac{e^x-1}x\to1$</td><td>$e^x-1\sim x$</td></tr>
+<tr><td>Esponenziale di base $a\gt0$</td><td>$\dfrac{a^x-1}x\to\ln a$</td><td>$a^x-1\sim x\ln a$, se $a\ne1$</td></tr>
+<tr><td>Potenza, $m\in\mathbb R$ fissato</td><td>$\dfrac{(1+x)^m-1}x\to m$</td><td>$(1+x)^m-1\sim mx$, se $m\ne0$</td></tr>
+<tr><td>Tangente</td><td>$\dfrac{\tan x}x\to1$</td><td>$\tan x\sim x$</td></tr>
+<tr><td>Arcotangente</td><td>$\dfrac{\arctan x}x\to1$</td><td>$\arctan x\sim x$</td></tr>
+<tr><td>Arcoseno</td><td>$\dfrac{\arcsin x}x\to1$</td><td>$\arcsin x\sim x$</td></tr>
+<tr><td>Seno iperbolico</td><td>$\dfrac{\sinh x}x\to1$</td><td>$\sinh x\sim x$</td></tr>
+<tr><td>Coseno iperbolico</td><td>$\dfrac{\cosh x-1}{x^2}\to\dfrac12$</td><td>$\cosh x-1\sim\dfrac{x^2}2$</td></tr>
+</tbody></table></div>
+<p>Per la potenza si lavora vicino a zero con $1+x\gt0$. Le restrizioni $a\ne1$ e $m\ne0$ riguardano solo le equivalenze (evitano un termine di confronto identicamente nullo): i limiti restano validi anche per $a=1$ e $m=0$.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Continuità nei punti isolati</div>
+<p><strong>Ipotesi.</strong> $f\colon D\to\mathbb R$, $x_0\in D$ isolato in $D$.</p>
+<p><strong>Tesi.</strong> $f$ è continua in $x_0$, senza condizioni su $f(x_0)$.</p>
+</div>
+
+<div class="box thm">
+<div class="bt">Teorema — Continuità e limite</div>
+<p>Se $x_0\in D$ è anche di accumulazione per $D$, allora</p>
+$$\boxed{f\text{ continua in }x_0\iff\lim_{\substack{x\to x_0\\x\in D}}f(x)=f(x_0).}$$
+<p>In particolare, se $x_0$ è interno a $D$:</p>
+$$\boxed{f\text{ continua in }x_0\iff L^-=L^+=f(x_0).}$$
+</div>
+
+<div class="box thm">
+<div class="bt">Teorema — Continuità agli estremi di un intervallo</div>
+<p>Siano $a\lt b$ e $f\colon[a,b]\to\mathbb R$. Allora</p>
+$$f\text{ continua in }a\iff\lim_{x\to a^+}f(x)=f(a),\qquad f\text{ continua in }b\iff\lim_{x\to b^-}f(x)=f(b).$$
+<p>Si considera soltanto il lato da cui il dominio permette di avvicinarsi.</p>
+</div>
+
+<div class="box thm">
+<div class="bt">Teorema — Discontinuità delle funzioni monotone</div>
+<p>Se $f\colon D\to\mathbb R$ è monotona e $x_0$ è <strong>interno</strong> a $D$, allora $f$ è continua in $x_0$ oppure ha una discontinuità di prima specie. Nei punti interni, quindi, una funzione monotona non ha discontinuità di seconda specie né eliminabili.</p>
+</div>
+<p>La restrizione ai punti interni è importante: una funzione monotona può divergere avvicinandosi a un estremo del dominio.</p>
+
+<div class="box thm">
+<div class="bt">Teorema — Caratterizzazione sequenziale della continuità</div>
+<p>Siano $f\colon D\to\mathbb R$ e $x_0\in D$. Allora</p>
+$$\boxed{f\text{ continua in }x_0\iff\bigl[x_n\in D,\ x_n\to x_0\Longrightarrow f(x_n)\to f(x_0)\bigr]}$$
+<p>per ogni successione $(x_n)$ a valori in $D$.</p>
+</div>
+<p>A lezione è enunciato per $x_0$ interno; la formulazione generale vale anche ai bordi e nei punti isolati. Non serve imporre $x_n\ne x_0$.</p>
+
+
+<h2>3. Dimostrazioni</h2>
+
+<h3>$\dfrac{e^x-1}x\to1$</h3>
+<p>Si usa $\displaystyle\lim_{t\to0}\frac{\ln(1+t)}t=1$. Poniamo $t=e^x-1$: per $x\to0$ anche $t\to0$, e $x=\ln(1+t)$. Quindi</p>
+$$\lim_{x\to0}\frac{e^x-1}x=\lim_{t\to0}\frac t{\ln(1+t)}=\lim_{t\to0}\left(\frac{\ln(1+t)}t\right)^{-1}=1.$$
+<p>L'idea è ricondurre l'esponenziale al suo inverso, il logaritmo.</p>
+
+<h3>$\dfrac{a^x-1}x\to\ln a$</h3>
+<p>Per $a\gt0$, $a^x=e^{x\ln a}$. Se $a\ne1$,</p>
+$$\frac{a^x-1}x=\frac{e^{x\ln a}-1}{x\ln a}\,\ln a.$$
+<p>Poiché $x\ln a\to0$, il primo fattore tende a $1$: il limite è $\boxed{\ln a}$. Se $a=1$ il numeratore è identicamente nullo e il risultato resta corretto, perché $\ln1=0$.</p>
+
+<h3>$\dfrac{(1+x)^m-1}x\to m$</h3>
+<p>Per $1+x\gt0$, $(1+x)^m=e^{m\ln(1+x)}$. Se $m\ne0$:</p>
+$$\frac{(1+x)^m-1}x=\frac{e^{m\ln(1+x)}-1}{m\ln(1+x)}\cdot m\cdot\frac{\ln(1+x)}x.$$
+<p>Per $x\to0$ si ha $m\ln(1+x)\to0$, quindi il primo fattore tende a $1$, come l'ultimo: il limite è $\boxed m$. Per $m=0$ il rapporto è nullo. È più rigoroso mantenere $m\ln(1+x)$ e fattorizzare, invece di sostituirlo con $mx$ dentro l'esponenziale prima di sottrarre.</p>
+
+<h3>Tangente</h3>
+<p>Da $\tan x=\frac{\sin x}{\cos x}$:</p>
+$$\frac{\tan x}x=\frac{\sin x}x\cdot\frac1{\cos x}\longrightarrow1\cdot1=1.$$
+
+<h3>Arcotangente e arcoseno</h3>
+<p>Per l'arcotangente poniamo $t=\arctan x$, cioè $x=\tan t$; per $x\to0$ anche $t\to0$:</p>
+$$\lim_{x\to0}\frac{\arctan x}x=\lim_{t\to0}\frac t{\tan t}=1.$$
+<p>Per l'arcoseno, con $t=\arcsin x$ e $x=\sin t$:</p>
+$$\lim_{x\to0}\frac{\arcsin x}x=\lim_{t\to0}\frac t{\sin t}=1.$$
+<p>In entrambi i casi si torna al limite della funzione inversa. Geometricamente, la simmetria dei grafici rispetto a $y=x$ suggerisce la sostituzione.</p>
+
+<h3>Seno iperbolico</h3>
+<p>Aggiungendo e sottraendo $1$:</p>
+$$\frac{\sinh x}x=\frac{e^x-e^{-x}}{2x}=\frac12\left[\frac{e^x-1}x+\frac{e^{-x}-1}{-x}\right]\longrightarrow\frac12(1+1)=1.$$
+
+<h3>Coseno iperbolico</h3>
+<p>A lezione il limite $\frac{\cosh x-1}{x^2}\to\frac12$ è enunciato, con dimostrazione rinviata al teorema di de l'Hôpital.</p>
+<div class="box ex">
+<div class="bt">Integrazione — Dimostrazione senza derivate</div>
+<p>Si ha</p>
+$$\cosh x-1=\frac{e^x+e^{-x}-2}2=\frac{(e^x-1)^2}{2e^x}.$$
+<p>Quindi</p>
+$$\frac{\cosh x-1}{x^2}=\frac1{2e^x}\left(\frac{e^x-1}x\right)^2\longrightarrow\frac12\cdot1^2=\frac12.$$
+</div>
+
+<h3>Continuità nei punti isolati</h3>
+<p>Poiché $x_0$ è isolato, esiste $r\gt0$ con $B_r(x_0)\cap D=\{x_0\}$. Fissato $\varepsilon\gt0$ scegliamo $\delta=r$: se $x\in D$ e $|x-x_0|\lt\delta$, necessariamente $x=x_0$, quindi $|f(x)-f(x_0)|=0\lt\varepsilon$. Abbastanza vicino a $x_0$ non ci sono altri punti del dominio da controllare.</p>
+
+<h3>Continuità di $\sqrt x$ in zero</h3>
+<p>Sia $f\colon[0,+\infty)\to\mathbb R$, $f(x)=\sqrt x$, e $x_0=0$, con $f(0)=0$. Fissato $\varepsilon\gt0$ scegliamo $\delta=\varepsilon^2$. Per $x\in D$ con $|x|\lt\delta$ si ha $0\le x\lt\varepsilon^2$, quindi</p>
+$$|f(x)-f(0)|=\sqrt x\lt\varepsilon.$$
+<p>Non serve un limite sinistro: il dominio non contiene punti negativi.</p>
+
+<h3>Perché una funzione monotona ha solo salti nei punti interni</h3>
+<p>Sia $f$ non decrescente e $x_0$ interno a $D$. Scegliamo $a,b\in D$ con $a\lt x_0\lt b$: per monotonia, vicino a $x_0$ si ha $f(a)\le f(x)\le f(b)$. I limiti laterali esistono (teorema sui limiti delle monotone) e, per questi vincoli, sono finiti. Inoltre</p>
+$$L^-\le f(x_0)\le L^+.$$
+<ol>
+<li>Se $L^-=L^+$, le disuguaglianze impongono $L^-=f(x_0)=L^+$: $f$ è continua.</li>
+<li>Se $L^-\ne L^+$, c'è una discontinuità di prima specie.</li>
+</ol>
+<p>Il caso non crescente è analogo.</p>
+
+<h3>Caratterizzazione sequenziale</h3>
+<p><strong>Continuità $\Rightarrow$ successioni.</strong> Sia $f$ continua in $x_0$ e $x_n\in D$, $x_n\to x_0$. Dato $\varepsilon\gt0$ la continuità fornisce $\delta\gt0$ tale che $|x-x_0|\lt\delta\Rightarrow|f(x)-f(x_0)|\lt\varepsilon$. Definitivamente $|x_n-x_0|\lt\delta$, quindi definitivamente $|f(x_n)-f(x_0)|\lt\varepsilon$: $f(x_n)\to f(x_0)$.</p>
+<p><strong>Successioni $\Rightarrow$ continuità.</strong> Supponiamo valga la proprietà sequenziale ma $f$ non continua in $x_0$. Negando la definizione, esiste $\varepsilon_0\gt0$ tale che per ogni $\delta\gt0$ c'è $x\in D$ con $|x-x_0|\lt\delta$ e $|f(x)-f(x_0)|\ge\varepsilon_0$. Con $\delta=1/n$ si costruisce $x_n\in D$ con</p>
+$$|x_n-x_0|\lt\frac1n,\qquad|f(x_n)-f(x_0)|\ge\varepsilon_0.$$
+<p>Allora $x_n\to x_0$ ma $f(x_n)\not\to f(x_0)$: contraddizione.</p>
+
+
+<h2>4. Relazione di Eulero: spiegazione intuitiva</h2>
+<div class="box def">
+<div class="bt">Relazione di Eulero</div>
+$$\boxed{e^{i\theta}=\cos\theta+i\sin\theta,\qquad\theta\in\mathbb R.}$$
+</div>
+<p>Il professore ne presenta un ragionamento intuitivo, avvertendo che <strong>non</strong> è ancora una dimostrazione completa.</p>
+
+<h3>Punto di partenza: De Moivre</h3>
+<p>Per ogni intero $n\ge1$,</p>
+$$\cos\theta+i\sin\theta=\left(\cos\frac\theta n+i\sin\frac\theta n\right)^n.$$
+<p>Poiché $\frac\theta n\to0$, si ha $\cos\frac\theta n\to1$ e $\sin\frac\theta n\sim\frac\theta n$. Questo suggerisce il legame con $\left(1+\frac{i\theta}n\right)^n$, analogo complesso delle espressioni che portano all'esponenziale.</p>
+
+<h3>Perché non basta come dimostrazione</h3>
+<ul>
+<li>Sostituire una base con un suo equivalente quando l'esponente $n\to\infty$ non è lecito: l'errore può essere amplificato dalla potenza. Esempio: $1+\frac1n\sim1$, ma $\left(1+\frac1n\right)^n\to e$, mentre $1^n=1$.</li>
+<li>Il limite reale che definisce $e$ non si applica automaticamente a una variabile complessa.</li>
+</ul>
+<p>La formula di Eulero è il risultato; il procedimento ne suggerisce il legame con i limiti notevoli, ma una dimostrazione pienamente rigorosa è rinviata.</p>
+
+
+<h2>5. Esempi e osservazioni sulla continuità</h2>
+
+<h3>$1/x$ è continua sul proprio dominio</h3>
+<p>Sia $f\colon\mathbb R\setminus\{0\}\to\mathbb R$, $f(x)=\frac1x$. È continua in ogni punto del suo dominio. Nella convenzione del corso <strong>non</strong> si dice che è discontinua in $0$: zero non appartiene al dominio, quindi non si può studiarne la continuità lì. Per questo l'idea di «disegnare il grafico senza staccare la penna» non è una definizione corretta.</p>
+<p>Se invece si pone</p>
+$$g(x)=\begin{cases}\dfrac1x,&x\ne0,\\-1,&x=0,\end{cases}$$
+<p>il dominio diventa $\mathbb R$ e ha senso la continuità in $0$: poiché $\lim_{x\to0^-}g=-\infty$ e $\lim_{x\to0^+}g=+\infty$, c'è una discontinuità di <strong>seconda specie</strong>.</p>
+
+<h3>Una funzione con tre tipi di punto</h3>
+<p>Sia $f(x)=\sqrt{(x-1)^2(x-2)}$. Serve $(x-1)^2(x-2)\ge0$: il fattore quadratico è positivo per $x\ne1$ e nullo in $1$, quindi</p>
+$$\boxed{D=\{1\}\cup[2,+\infty).}$$
+<ul>
+<li>$1$ è isolato: $f$ è automaticamente continua in $1$;</li>
+<li>$2$ è un estremo incluso: si considera il limite destro;</li>
+<li>ogni $x_0\gt2$, per esempio $4$, è interno: si usa il criterio dei due limiti laterali.</li>
+</ul>
+<p>La classificazione riguarda la posizione di $x_0$ nel dominio, non l'aspetto del punto sul grafico.</p>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-12-dom.svg" role="img" aria-label="Dominio con un punto isolato"></div>
+<figcaption>Il dominio di $\sqrt{(x-1)^2(x-2)}$ è $\{1\}\cup[2,+\infty)$: $1$ è isolato, $2$ è un estremo incluso, i punti $x_0\gt2$ sono interni.</figcaption>
+</figure>
+
+
+<h3>Continuità automatica in un punto isolato</h3>
+<p>Per</p>
+$$f(x)=\begin{cases}\dfrac{x-5}{x+2},&x\lt-2,\\7,&x=3,\end{cases}$$
+<p>il dominio è $D=(-\infty,-2)\cup\{3\}$. Il punto $3$ è isolato: $f$ è continua in $3$ senza calcolare alcun limite.</p>
+
+<h3>La funzione ultrapiatta</h3>
+<p>Sia $h(x)=e^{-1/x^2}$ per $x\ne0$: il dominio è $\mathbb R\setminus\{0\}$, quindi non si studia la continuità in $0$. Tuttavia $-\frac1{x^2}\to-\infty$ per $x\to0$, da cui $\lim_{x\to0}e^{-1/x^2}=0$. Definiamo</p>
+$$f(x)=\begin{cases}e^{-1/x^2},&x\ne0,\\0,&x=0.\end{cases}$$
+<p>Allora $\lim_{x\to0}f(x)=0=f(0)$: $f$ è continua in $0$. Se invece si pone</p>
+$$g(x)=\begin{cases}e^{-1/x^2},&x\ne0,\\1,&x=0,\end{cases}$$
+<p>si ha $\lim_{x\to0}g(x)=0\ne g(0)=1$: discontinuità <strong>eliminabile</strong>. Anche qui $0$ è interno al dominio $\mathbb R$: il fatto che $(0,1)$ appaia separato dal resto del grafico non lo rende un punto isolato.</p>
+<p>Il docente anticipa che il prolungamento con valore $0$ ha tutte le derivate nulle in zero: da qui il nome «ultrapiatta», da approfondire dopo le derivate.</p>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/day-12-ultra.svg" role="img" aria-label="Funzione ultrapiatta"></div>
+<figcaption>$e^{-1/x^2}$ tende a $0$ per $x\to0$. Con $f(0)=0$ (riempiendo il pallino vuoto) è continua; con $g(0)=1$ (punto arancione) la discontinuità è eliminabile.</figcaption>
+</figure>
+
+
+
+<h2>6. Esercizio riepilogativo sui limiti notevoli</h2>
+<p>Ricostruzione coerente con i passaggi svolti a voce (l'argomento $2x^5$ è confermato dal successivo quadrato $4x^{10}$):</p>
+$$\lim_{x\to0}\frac{\left(\sqrt[3]{1+3x^2}-1\right)\left(1-\cos(2x^5)\right)}{(x^2-3x)\sin(x^7)\ln(1+3x^4)}.$$
+
+<h3>Separazione in blocchi</h3>
+<p>Tutti i blocchi sono moltiplicati o divisi fra loro: si possono usare le equivalenze su ciascun fattore.</p>
+<ul>
+<li>$\sqrt[3]{1+3x^2}-1=(1+3x^2)^{1/3}-1\sim\frac13(3x^2)=x^2$;</li>
+<li>$1-\cos(2x^5)\sim\frac{(2x^5)^2}2=2x^{10}$;</li>
+<li>$\sin(x^7)\sim x^7$ e $\ln(1+3x^4)\sim3x^4$;</li>
+<li>$x^2-3x=x(x-3)$.</li>
+</ul>
+
+<h3>Semplificazione</h3>
+$$\frac{x^2\cdot2x^{10}}{x(x-3)\cdot x^7\cdot3x^4}=\frac{2x^{12}}{3x^{12}(x-3)}=\frac2{3(x-3)}\xrightarrow[x\to0]{}\boxed{-\frac29}.$$
+<p>La frase finale della trascrizione sul risultato era corrotta: il valore $-\frac29$ segue dai fattori e dalle semplificazioni ricostruiti.</p>
+
+<h3>Metodo da riutilizzare</h3>
+<ol>
+<li>Verifica a cosa tendono gli <em>argomenti</em> delle funzioni.</li>
+<li>Individua i fattori separati.</li>
+<li>Applica il limite notevole a tutto l'argomento: $1-\cos u\sim\frac{u^2}2$.</li>
+<li>Conserva coefficienti e potenze.</li>
+<li>Semplifica soltanto dopo aver trasformato tutti i blocchi.</li>
+</ol>
+
+
+<h2>7. Schema operativo per gli esercizi di continuità</h2>
+<p>La parola chiave è <strong>dominio</strong>: prima di calcolare limiti, bisogna capire dove è definita la funzione e che tipo di punto si sta studiando.</p>
+<div class="box ex">
+<div class="bt">Procedura</div>
+<ol>
+<li><strong>Il punto appartiene al dominio?</strong> Se $x_0\notin D$ non si studia la continuità (si può studiare l'eventuale limite, se $x_0$ è di accumulazione, e un possibile prolungamento continuo).</li>
+<li><strong>È isolato?</strong> Allora $f$ è automaticamente continua.</li>
+<li><strong>È interno?</strong> Calcola $L^-$, $L^+$, $f(x_0)$ e confrontali:
+$$\begin{cases}L^-=L^+=f(x_0)&\Rightarrow\text{continuità},\\ L^-,L^+\in\mathbb R,\ L^-\ne L^+&\Rightarrow\text{prima specie},\\ L^-=L^+\in\mathbb R,\ L^\pm\ne f(x_0)&\Rightarrow\text{terza specie},\\ \text{un laterale infinito o inesistente}&\Rightarrow\text{seconda specie}.\end{cases}$$</li>
+<li><strong>È un estremo incluso?</strong> Confronta con $f(x_0)$ solo il limite dal lato accessibile al dominio. Per domini più generali resta sempre valida la definizione relativa a $D$.</li>
+<li><strong>Vuoi provare che non è continua?</strong> Trova $x_n\in D$ con $x_n\to x_0$ ma $f(x_n)\not\to f(x_0)$.</li>
+</ol>
+</div>
+<p>Il professore anticipa che quest'ultimo criterio sarà applicato alla funzione di Dirichlet nella lezione successiva. Le formule di alcuni esercizi assegnati a casa erano troppo deteriorate nella trascrizione per essere riportate con certezza.</p>
+
+
+<h2>8. Errori da evitare</h2>
+<div class="box warn">
+<div class="bt">Attenzione</div>
+<ul>
+<li>La continuità si studia solo nei punti del <strong>dominio</strong>: $\frac1x$ è continua sul suo dominio, non «discontinua in $0$».</li>
+<li>«Disegnare senza staccare la penna» non è la definizione di continuità.</li>
+<li>Un punto isolato non è un punto «staccato» sul grafico: $(0,1)$ nell'esempio ultrapiatto ha $0$ interno al dominio.</li>
+<li>Nei punti isolati la continuità è automatica, senza limiti.</li>
+<li>Non sostituire equivalenze in somme o differenze, né basi equivalenti con esponente che diverge: $1+\frac1n\sim1$ ma $\left(1+\frac1n\right)^n\to e$.</li>
+<li>Nelle equivalenze $1-\cos u\sim\frac{u^2}2$ conta l'<em>argomento</em> $u$ che tende a zero, non $x$.</li>
+<li>$a\ne1$ e $m\ne0$ servono solo per scrivere le equivalenze, non per i limiti.</li>
+<li>La monotonia esclude seconda specie ed eliminabili solo nei punti <strong>interni</strong>.</li>
+<li>La formula di Eulero vista oggi è solo una giustificazione intuitiva, non una dimostrazione rigorosa.</li>
+<li>La numerazione delle specie di discontinuità cambia da testo a testo: segui quella del professore.</li>
+</ul>
+</div>
+
+
+<h2>9. Riepilogo finale</h2>
+<p>Cosa devi saper fare dopo questo Day:</p>
+<ul>
+<li>definire $\sinh$ e $\cosh$ e conoscere i limiti notevoli di $e^x$, $a^x$, $(1+x)^m$, $\tan$, $\arctan$, $\arcsin$, $\sinh$, $\cosh$, con le relative equivalenze;</li>
+<li>dimostrare i limiti notevoli riconducendoli ai precedenti (sostituzioni e fattorizzazioni);</li>
+<li>scrivere la definizione $\varepsilon$–$\delta$ di continuità e distinguerla da quella di limite;</li>
+<li>riconoscere punti interni, isolati e di bordo, e sapere che nei punti isolati la continuità è automatica;</li>
+<li>classificare le discontinuità (prima, seconda, terza specie) e calcolare l'ampiezza del salto;</li>
+<li>enunciare la caratterizzazione sequenziale e il teorema sulle funzioni monotone;</li>
+<li>usare il metodo a blocchi con le equivalenze per risolvere limiti come quello riepilogativo ($-\frac29$);</li>
+<li>seguire lo schema operativo per gli esercizi di continuità, partendo sempre dal dominio.</li>
+</ul>
