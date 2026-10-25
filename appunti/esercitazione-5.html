@@ -1,0 +1,446 @@
+<p>Manteniamo le convenzioni dei Day precedenti: $\overline{\mathbb R}=\mathbb R\cup\{-\infty,+\infty\}$ e $\log$ indica il logaritmo naturale. Questa esercitazione (docente: prof. Ferraris) mette insieme limiti di funzioni, confronti asintotici e limiti notevoli, e poi applica gli stessi strumenti alle successioni. Dove nella trascrizione una formula non si ricostruiva con certezza, è segnalato esplicitamente.</p>
+
+<h2>1. Definizioni</h2>
+
+<h3>Infinitesimi e infiniti</h3>
+<p>Sia $x_0$ un punto di accumulazione del dominio, eventualmente $+\infty$ o $-\infty$.</p>
+<div class="box def">
+<div class="bt">Definizione — Infinitesimo e infinito</div>
+<p>$f$ è un <strong>infinitesimo</strong> per $x\to x_0$ se $\displaystyle\lim_{x\to x_0}f(x)=0$. $f$ è un <strong>infinito</strong> se</p>
+$$\lim_{x\to x_0}f(x)=+\infty\qquad\text{oppure}\qquad\lim_{x\to x_0}f(x)=-\infty.$$
+</div>
+<p>Il segno è essenziale quando si considera il reciproco di un infinitesimo:</p>
+$$f(x)\to0^+\Longrightarrow\frac1{f(x)}\to+\infty,\qquad f(x)\to0^-\Longrightarrow\frac1{f(x)}\to-\infty.$$
+<p>La sola informazione $f(x)\to0$, senza controllo del segno, non permette di stabilire un unico limite infinito per il reciproco.</p>
+
+<h3>Equivalenza asintotica</h3>
+<div class="box def">
+<div class="bt">Definizione — Asintoticamente equivalenti</div>
+<p>Siano $f,g$ definite vicino al punto considerato, con $g(x)\ne0$ in un intorno bucato sufficientemente piccolo.</p>
+$$\boxed{f(x)\sim g(x)\quad\Longleftrightarrow\quad\lim_{x\to x_0}\frac{f(x)}{g(x)}=1.}$$
+</div>
+<p>Il punto verso cui tende la variabile deve essere sempre chiaro: $\sin x\sim x$ per $x\to0$, ma <strong>non</strong> per $x\to+\infty$. L'equivalenza descrive il comportamento <em>relativo</em> delle funzioni. Dire $f(x)\sim2\sqrt x$ per $x\to0^+$ significa che $f$ tende a zero come $2\sqrt x$, nel senso preciso che $\dfrac{f(x)}{2\sqrt x}\to1$.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-05-eqv.svg" role="img" aria-label="Seno e x vicino a zero: grafici quasi sovrapposti"></div>
+<figcaption>$\sin x\sim x$ per $x\to0$: vicino all'origine i grafici di $\sin x$ e di $x$ quasi coincidono; lontano dall'origine si separano.</figcaption>
+</figure>
+
+<h3>Trascurabilità e parte principale</h3>
+<div class="box def">
+<div class="bt">Definizione — Trascurabile ($o$ piccolo)</div>
+<p>Si scrive $f(x)=o(g(x))$ per $x\to x_0$ se $\dfrac{f(x)}{g(x)}\to0$; si dice che $f$ è <strong>trascurabile</strong> rispetto a $g$. Se $f(x)=g(x)+o(g(x))$, allora $f(x)\sim g(x)$ e $g$ è una <strong>parte principale</strong> di $f$.</p>
+</div>
+<p>Esempi: $x^2=o(x)$ per $x\to0$, perché $x^2/x=x\to0$; invece $x=o(x^2)$ per $x\to+\infty$, perché $x/x^2=1/x\to0$. Questo spiega perché vicino a zero e all'infinito prevalgano potenze diverse.</p>
+
+<h3>Grafico interattivo: il rapporto $f/g$</h3>
+<p>Scegli una coppia di funzioni e muovi lo slider per avvicinare $x$ al punto limite (scala logaritmica). La linea tratteggiata a $1$ è il valore che serve per l'equivalenza asintotica: se il rapporto ci arriva, $f\sim g$; se va a $0$, $f=o(g)$; se si ferma altrove, hanno lo stesso ordine ma non sono equivalenti.</p>
+<div class="w-ratio"></div>
+
+
+<h2>2. Teoremi</h2>
+
+<h3>Limite completo e limiti laterali</h3>
+<div class="box thm">
+<div class="bt">Teorema — Limite e limiti laterali</div>
+<p><strong>Ipotesi.</strong> Il dominio si accumula in $x_0$ sia da destra sia da sinistra.</p>
+<p><strong>Tesi.</strong> Per $L\in\overline{\mathbb R}$,</p>
+$$\boxed{\lim_{x\to x_0}f(x)=L\iff\lim_{x\to x_0^-}f(x)=\lim_{x\to x_0^+}f(x)=L.}$$
+</div>
+<p>Se i limiti laterali sono diversi, il limite completo non esiste. Per esempio $\displaystyle\lim_{x\to0^+}\frac1x=+\infty$ e $\displaystyle\lim_{x\to0^-}\frac1x=-\infty$, quindi $\displaystyle\lim_{x\to0}\frac1x$ non esiste. Invece</p>
+$$\boxed{\lim_{x\to0}\frac1{x^2}=+\infty,}$$
+<p>perché $x^2\to0^+$ da entrambi i lati.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-05-inv.svg" role="img" aria-label="Confronto tra 1/x e 1/x^2 vicino a zero"></div>
+<figcaption>A sinistra $1/x$: limiti laterali $-\infty$ e $+\infty$, il limite non esiste. A destra $1/x^2$: $+\infty$ da entrambi i lati.</figcaption>
+</figure>
+
+<h3>Somma di una funzione divergente e di una limitata</h3>
+<div class="box thm">
+<div class="bt">Teorema — Divergente più limitata</div>
+<p><strong>Ipotesi.</strong> $f(x)\to+\infty$ e $|g(x)|\le M$ vicino al punto considerato, per una costante $M\gt0$.</p>
+<p><strong>Tesi.</strong> $f(x)+g(x)\to+\infty$. Analogamente, se $f(x)\to-\infty$, allora $f(x)+g(x)\to-\infty$.</p>
+</div>
+<p>Non serve che $g$ ammetta limite: basta che sia limitata. Esempio:</p>
+$$\boxed{\lim_{x\to+\infty}(x+\sin x)=+\infty.}$$
+<p>La stessa conclusione <strong>non</strong> vale per il prodotto: $\displaystyle\lim_{x\to+\infty}x\sin x$ non esiste.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-05-xsin.svg" role="img" aria-label="x più seno di x contro x per seno di x"></div>
+<figcaption>$x+\sin x$ resta tra $x-1$ e $x+1$ e diverge; $x\sin x$ oscilla con ampiezza crescente e non ha limite.</figcaption>
+</figure>
+
+<h3>Operazioni con le equivalenze asintotiche</h3>
+<div class="box thm">
+<div class="bt">Teorema — Equivalenze in prodotti, quozienti e potenze</div>
+<p><strong>Ipotesi.</strong> $f\sim F$ e $g\sim G$.</p>
+<p><strong>Tesi.</strong> Dove le espressioni sono definite,</p>
+$$fg\sim FG,\qquad\frac fg\sim\frac FG.$$
+<p>Per una potenza reale fissa $\alpha$, con basi positive quando necessario, $f^\alpha\sim F^\alpha$.</p>
+</div>
+<p>Non esiste una regola generale che permetta di sostituire separatamente gli equivalenti dentro somme o differenze: i termini principali potrebbero cancellarsi.</p>
+
+<h3>Gerarchia degli infiniti</h3>
+<div class="box thm">
+<div class="bt">Teorema — Gerarchia degli infiniti</div>
+<p>Per $x\to+\infty$, con $a\gt1$, $\alpha\gt0$, $\beta\gt0$:</p>
+$$\boxed{(\log x)^\beta\ll x^\alpha\ll a^x.}$$
+<p>Il simbolo $\ll$ indica che il rapporto tra il termine a sinistra e quello a destra tende a zero:</p>
+$$\frac{(\log x)^\beta}{x^\alpha}\to0,\qquad\frac{x^\alpha}{a^x}\to0.$$
+</div>
+<p>L'esponenziale crescente domina ogni potenza fissata; ogni potenza positiva domina ogni potenza positiva fissata del logaritmo. La gerarchia è riferita a $x\to+\infty$: non si applica invariata quando $x\to0$ o $x\to-\infty$.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-05-ger.svg" role="img" aria-label="Logaritmo, potenza ed esponenziale a confronto"></div>
+<figcaption>$\log x$, $x^\alpha$ e $a^x$ per $x$ grande: l'esponenziale supera ogni potenza, la potenza supera ogni potenza del logaritmo.</figcaption>
+</figure>
+
+<h3>Grafico interattivo: la gerarchia degli infiniti</h3>
+<p>Muovi $\alpha$, $\beta$ e $a$: i due rapporti $\frac{(\log x)^\beta}{x^\alpha}$ e $\frac{x^\alpha}{a^x}$ tendono sempre a $0$, ma con $a$ vicino a $1$ o $\alpha$ grande il massimo arriva molto in là. Il limite descrive il comportamento <em>definitivo</em>.</p>
+<div class="w-ger"></div>
+
+<h3>Limiti notevoli ed equivalenti fondamentali</h3>
+<p>Per $t\to0$, con argomenti trigonometrici in radianti:</p>
+<div class="tbl"><table>
+<thead><tr><th>Limite notevole</th><th>Equivalente</th></tr></thead>
+<tbody>
+<tr><td>$\dfrac{\sin t}t\to1$</td><td>$\sin t\sim t$</td></tr>
+<tr><td>$\dfrac{\tan t}t\to1$</td><td>$\tan t\sim t$</td></tr>
+<tr><td>$\dfrac{1-\cos t}{t^2}\to\dfrac12$</td><td>$1-\cos t\sim\dfrac{t^2}2$</td></tr>
+<tr><td>$\dfrac{\log(1+t)}t\to1$</td><td>$\log(1+t)\sim t$</td></tr>
+<tr><td>$\dfrac{e^t-1}t\to1$</td><td>$e^t-1\sim t$</td></tr>
+<tr><td>$\dfrac{(1+t)^\alpha-1}t\to\alpha$</td><td>$(1+t)^\alpha-1\sim\alpha t$, se $\alpha\ne0$</td></tr>
+<tr><td>$\dfrac{\arctan t}t\to1$</td><td>$\arctan t\sim t$</td></tr>
+<tr><td>$\dfrac{\arcsin t}t\to1$</td><td>$\arcsin t\sim t$</td></tr>
+</tbody></table></div>
+<p>Per la potenza reale si considera $1+t\gt0$; se $\alpha=0$ l'espressione $(1+t)^0-1$ è identicamente nulla e non si scrive un'equivalenza con zero.</p>
+<p>La regola da riconoscere è</p>
+$$\boxed{u(x)\to0\implies\sin(u(x))\sim u(x).}$$
+<p>Analogamente $1-\cos(u(x))\sim\frac{u(x)^2}2$, $\log(1+u(x))\sim u(x)$, e così per gli altri. L'argomento deve essere infinitesimo, ma non deve necessariamente chiamarsi $x$.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-05-nota.svg" role="img" aria-label="Funzioni notevoli confrontate con le loro approssimazioni vicino a zero"></div>
+<figcaption>Le funzioni della tabella accanto alle loro parti principali ($t$, $t^2/2$, $\alpha t$) in un intorno di $0$.</figcaption>
+</figure>
+
+
+<h2>3. Dimostrazioni e passaggi logici</h2>
+<p>Le brevi dimostrazioni seguenti rendono esplicite le regole usate negli esercizi; non sono tutte dimostrazioni svolte formalmente dal docente.</p>
+
+<h3>Perché gli equivalenti si possono moltiplicare</h3>
+<p>Da $f\sim F$ e $g\sim G$ segue $\frac fF\to1$ e $\frac gG\to1$. Quindi</p>
+$$\frac{fg}{FG}=\frac fF\cdot\frac gG\to1,$$
+<p>cioè $\boxed{fg\sim FG}$. Per i quozienti: $\dfrac{f/g}{F/G}=\dfrac fF\cdot\dfrac Gg\to1$.</p>
+
+<h3>Perché non si possono sottrarre automaticamente</h3>
+<p>Per $x\to+\infty$ si ha $\sqrt{x^2-x}\sim x$. Sostituire separatamente nella differenza $\sqrt{x^2-x}-x$ porterebbe a $x-x=0$, cancellando proprio l'informazione utile. Razionalizzando:</p>
+$$\sqrt{x^2-x}-x=\frac{-x}{\sqrt{x^2-x}+x}.$$
+<p>Dividendo numeratore e denominatore per $x\gt0$:</p>
+$$\frac{-1}{\sqrt{1-\frac1x}+1}\longrightarrow-\frac12.$$
+<p>Pertanto</p>
+$$\boxed{\lim_{x\to+\infty}\left(\sqrt{x^2-x}-x\right)=-\frac12.}$$
+<p>L'equivalenza tra i due addendi non garantisce che la loro differenza tenda a zero.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-05-sqrt.svg" role="img" aria-label="Differenza tra radice di x^2-x e x che tende a -1/2"></div>
+<figcaption>$\sqrt{x^2-x}-x$ per $x\to+\infty$ tende a $-\frac12$, <em>non</em> a $0$.</figcaption>
+</figure>
+
+<h3>Perché vicino a zero prevale la potenza minore</h3>
+<p>Siano $p\lt q$. Per $x\to0^+$:</p>
+$$\frac{x^q}{x^p}=x^{q-p}\to0,$$
+<p>dunque $x^q=o(x^p)$ e</p>
+$$x^p+x^q=x^p\left(1+x^{q-p}\right)\sim x^p.$$
+<p>All'infinito accade il contrario: $\dfrac{x^p}{x^q}=x^{p-q}\to0$ per $x\to+\infty$. In sintesi:</p>
+<ul>
+<li>vicino a zero prevale la potenza con esponente <strong>minore</strong>;</li>
+<li>all'infinito prevale quella con esponente <strong>maggiore</strong>.</li>
+</ul>
+<p>Si intende il confronto tra termini non nulli, dopo aver verificato eventuali cancellazioni.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-05-pot.svg" role="img" aria-label="Potenze di x vicino a zero e all'infinito"></div>
+<figcaption>$x$, $x^2$, $x^3$ in $[0,1]$ (prevale la potenza minore) e per $x\gt1$ (prevale la maggiore).</figcaption>
+</figure>
+
+<h3>Un equivalente del coseno a partire dal seno</h3>
+<p>Usando $1-\cos t=2\sin^2\frac t2$ e $\sin\frac t2\sim\frac t2$:</p>
+$$1-\cos t\sim2\left(\frac t2\right)^2=\frac{t^2}2.$$
+<p>Quindi $\boxed{1-\cos t\sim\dfrac{t^2}2}$. Attenzione al segno:</p>
+$$\boxed{\cos t-1\sim-\frac{t^2}2.}$$
+<p>Il docente richiama questo segno nell'esercizio composto (paragrafo 5.6).</p>
+
+
+<h2>4. Esempi: limiti elementari e algebrici</h2>
+
+<h3>Composizioni: conta il comportamento dell'argomento</h3>
+<p>Per $x\to+\infty$ si ha $\frac1x\to0$, quindi $\boxed{\displaystyle\lim_{x\to+\infty}\sin\frac1x=0}$. Per $x\to0$, invece, $\boxed{\displaystyle\lim_{x\to0}\sin\frac1x\ \text{non esiste}}$. Per verificarlo già da destra scegliamo</p>
+$$x_n=\frac1{\frac\pi2+2\pi n},\qquad y_n=\frac1{\frac{3\pi}2+2\pi n}.$$
+<p>Entrambe tendono a $0^+$, ma $\sin\frac1{x_n}=1$ e $\sin\frac1{y_n}=-1$. Un'altra composizione trattata è</p>
+$$\boxed{\lim_{x\to0^-}\arctan\frac1x=-\frac\pi2,}$$
+<p>perché $\frac1x\to-\infty$.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-05-sinrec.svg" role="img" aria-label="Seno di 1 su x vicino a zero"></div>
+<figcaption>$\sin\frac1x$ oscilla tra $-1$ e $1$ infinite volte vicino a $0$; le successioni $x_n$ e $y_n$ danno immagini $1$ e $-1$.</figcaption>
+</figure>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-05-atan.svg" role="img" aria-label="Arcotangente di 1 su x con salto in zero"></div>
+<figcaption>$\arctan\frac1x$: limite sinistro $-\frac\pi2$ e destro $+\frac\pi2$ in $0$; asintoto orizzontale $y=0$ a $\pm\infty$.</figcaption>
+</figure>
+
+<h3>Funzioni polinomiali</h3>
+<p>Sia $P(x)=a_mx^m+\cdots+a_0$ con $a_m\ne0$. Per $x\to\pm\infty$,</p>
+$$\boxed{P(x)\sim a_mx^m.}$$
+<p>Per stabilire il segno del limite bisogna considerare il coefficiente principale, la parità del grado e il verso dell'infinito. Esempio: $x^3-x^2\sim x^3$, quindi</p>
+$$\lim_{x\to+\infty}(x^3-x^2)=+\infty,\qquad\lim_{x\to-\infty}(x^3-x^2)=-\infty.$$
+<p>Per $x\to c\in\mathbb R$, invece, la continuità dà $\boxed{\displaystyle\lim_{x\to c}P(x)=P(c).}$</p>
+
+<h3>Funzioni razionali fratte all'infinito</h3>
+<p>Siano $P(x)\sim a_mx^m$ e $Q(x)\sim b_nx^n$. Allora</p>
+$$\boxed{\frac{P(x)}{Q(x)}\sim\frac{a_m}{b_n}x^{m-n}.}$$
+<ul>
+<li>se $m\lt n$, il limite è $0$;</li>
+<li>se $m=n$, il limite è $a_m/b_n$;</li>
+<li>se $m\gt n$, il modulo tende a infinito, con segno da determinare.</li>
+</ul>
+<p>Esempio: $\boxed{\displaystyle\lim_{x\to-\infty}\frac{2x^2-1}{x^2+3x}=2.}$</p>
+
+<h3>Funzioni razionali fratte in un punto finito</h3>
+<p>Il primo tentativo è sostituire il valore verso cui tende $x$.</p>
+<p><strong>Denominatore con limite non nullo.</strong> $\displaystyle\lim_{x\to1}\frac{x^2+3}{x^2+1}=\frac42=\boxed2.$</p>
+<p><strong>Numeratore non nullo e denominatore infinitesimo.</strong> Consideriamo</p>
+$$\frac{x^2+3}{x^2-1}=\frac{x^2+3}{(x-1)(x+1)}.$$
+<p>Vicino a $1$ il numeratore è positivo e $x+1\gt0$: il segno dipende da $x-1$. Quindi</p>
+$$\lim_{x\to1^+}\frac{x^2+3}{x^2-1}=+\infty,\qquad\lim_{x\to1^-}\frac{x^2+3}{x^2-1}=-\infty,$$
+<p>e il limite completo non esiste. La forma informale «$4/0$» <strong>non</strong> è una forma indeterminata: manca soltanto l'analisi del segno.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-05-rat.svg" role="img" aria-label="Funzione razionale con asintoto verticale in 1"></div>
+<figcaption>$\frac{x^2+3}{x^2-1}$: $+\infty$ da destra e $-\infty$ da sinistra in $x=1$ (asintoto verticale), e analogo comportamento in $x=-1$.</figcaption>
+</figure>
+
+<p><strong>Forma indeterminata $0/0$.</strong> Calcoliamo $\displaystyle\lim_{x\to1}\frac{x^3-1}{x^2-1}$. Scomponendo $x^3-1=(x-1)(x^2+x+1)$ e $x^2-1=(x-1)(x+1)$, per $x\ne1$:</p>
+$$\frac{x^3-1}{x^2-1}=\frac{x^2+x+1}{x+1}\quad\Longrightarrow\quad\boxed{\lim_{x\to1}\frac{x^3-1}{x^2-1}=\frac32.}$$
+<p>La semplificazione è lecita perché nel limite si studiano punti vicini a $1$, diversi da $1$. La scomposizione riguarda qui rapporti di polinomi: non è un metodo universale per ogni forma $0/0$.</p>
+
+<h3>Radicali: razionalizzazione</h3>
+<p>Calcoliamo $\displaystyle\lim_{x\to+\infty}\left(\sqrt{x^2-x}-\sqrt{x^2+1}\right)$. Razionalizzando:</p>
+$$\sqrt{x^2-x}-\sqrt{x^2+1}=\frac{-x-1}{\sqrt{x^2-x}+\sqrt{x^2+1}}.$$
+<p>Per $x\to+\infty$, $-x-1\sim-x$ e $\sqrt{x^2-x}+\sqrt{x^2+1}\sim2x$. Pertanto</p>
+$$\boxed{\lim_{x\to+\infty}\left(\sqrt{x^2-x}-\sqrt{x^2+1}\right)=-\frac12.}$$
+<p>Per i limiti a $-\infty$ ricordare sempre $\boxed{\sqrt{x^2}=|x|}$, non semplicemente $x$.</p>
+
+<h3>Stessa espressione, punti limite diversi</h3>
+<p>La gerarchia dà $\displaystyle\lim_{x\to+\infty}(e^x-x^4)=+\infty$. Invece</p>
+$$\lim_{x\to0}(e^x-x^4)=1,\qquad\lim_{x\to-\infty}(e^x-x^4)=-\infty.$$
+<p>Nell'ultimo caso $e^x\to0^+$ mentre $x^4\to+\infty$. Il punto verso cui tende la variabile va letto prima di scegliere il metodo.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-05-expx4.svg" role="img" aria-label="Grafico di e alla x meno x alla quarta"></div>
+<figcaption>$e^x-x^4$: tende a $-\infty$ per $x\to-\infty$, vale $1$ in $0$, e torna a $+\infty$ per $x\to+\infty$.</figcaption>
+</figure>
+
+
+<h2>5. Esercizi con i limiti notevoli</h2>
+
+<h3>Riconoscere l'infinitesimo composto</h3>
+<p>$\displaystyle\lim_{x\to1}\frac{\sin(\log x)}{\log x}$. Poiché $\log x\to0$, si riconosce direttamente il limite notevole:</p>
+$$\boxed{\lim_{x\to1}\frac{\sin(\log x)}{\log x}=1.}$$
+<p>Equivalentemente, con $t=\log x$: $\displaystyle\lim_{t\to0}\frac{\sin t}t=1$.</p>
+
+<h3>Un prodotto composto</h3>
+<p>Il ragionamento della trascrizione corrisponde a</p>
+$$f(x)=\frac{\sin x\,\tan(x+x^2)}{x-x^3},\qquad x\to0.$$
+<p>Infatti $\sin x\sim x$, $\tan(x+x^2)\sim x+x^2\sim x$ e $x-x^3=x(1-x^2)\sim x$. Quindi $f(x)\sim\frac{x\cdot x}x=x$ e</p>
+$$\boxed{\lim_{x\to0}f(x)=0.}$$
+<p>L'equivalente $f(x)\sim x$ dà più informazione del solo limite: descrive il comportamento locale della funzione.</p>
+
+<h3>Potenze di seno e coseno</h3>
+<p>Consideriamo</p>
+$$f(x)=\frac{\log(1+x)\,\sin^2(x^3)}{(1-\cos x)^4}.$$
+<p>Per $x\to0$: $\log(1+x)\sim x$, $\sin^2(x^3)\sim(x^3)^2=x^6$ e $(1-\cos x)^4\sim\left(\frac{x^2}2\right)^4=\frac{x^8}{16}$. Pertanto</p>
+$$\boxed{f(x)\sim\frac{x^7}{x^8/16}=\frac{16}x.}$$
+<p>Da cui $\displaystyle\lim_{x\to0^+}f(x)=+\infty$ e $\displaystyle\lim_{x\to0^-}f(x)=-\infty$: il limite completo non esiste.</p>
+
+<h3>Esercizio con parametro</h3>
+<p>Studiamo, per $\alpha\in\mathbb R$,</p>
+$$L_\alpha=\lim_{x\to0^+}\frac{\log(1+x)\,\sin^2(x^3)}{(1-\cos x)^4+x^\alpha}.$$
+<p>Il limite è da destra anche per rendere $x^\alpha$ ben definita per ogni parametro reale. Il numeratore è equivalente a $x^7$. Al denominatore confrontiamo $\frac{x^8}{16}$ e $x^\alpha$: i termini sono positivi, quindi non ci sono cancellazioni.</p>
+<ul>
+<li><strong>Caso $\alpha\lt8$.</strong> Domina $x^\alpha$ e $f_\alpha(x)\sim x^{7-\alpha}$. Quindi: $\alpha\lt7\Rightarrow L_\alpha=0$; $\alpha=7\Rightarrow L_\alpha=1$; $7\lt\alpha\lt8\Rightarrow L_\alpha=+\infty$.</li>
+<li><strong>Caso $\alpha=8$.</strong> $(1-\cos x)^4+x^8\sim\left(\frac1{16}+1\right)x^8=\frac{17}{16}x^8$, quindi $f_8(x)\sim\frac{16}{17x}\to+\infty$.</li>
+<li><strong>Caso $\alpha\gt8$.</strong> Domina $\frac{x^8}{16}$ e $f_\alpha(x)\sim\frac{16}x\to+\infty$.</li>
+</ul>
+<p>La classificazione finale è</p>
+$$\boxed{L_\alpha=\begin{cases}0,&\alpha\lt7,\\[2pt]1,&\alpha=7,\\[2pt]+\infty,&\alpha\gt7.\end{cases}}$$
+<p>Il valore $8$ cambia la parte principale del denominatore; il valore $7$ cambia il risultato del limite. Sono due soglie con ruoli diversi.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-05-param.svg" role="img" aria-label="Limite in funzione del parametro alpha con le soglie 7 e 8"></div>
+<figcaption>Retta dei valori di $\alpha$ con le soglie $7$ (cambia il limite) e $8$ (cambia la parte principale del denominatore).</figcaption>
+</figure>
+
+<h3>Grafico interattivo: il parametro $\alpha$</h3>
+<p>Muovi $\alpha$ e osserva il comportamento di $f_\alpha(x)\approx\frac{x^7}{x^8/16+x^\alpha}$ per $x\to0^+$ (parte principale del numeratore e del denominatore): attraversa le soglie $7$ e $8$.</p>
+<div class="w-alpha"></div>
+
+<h3>Una differenza di radicali senza razionalizzare</h3>
+<p>Riprendiamo $\sqrt{x^2-x}-x$ per $x\to+\infty$. Raccogliendo:</p>
+$$\sqrt{x^2-x}-x=x\left[\left(1-\frac1x\right)^{1/2}-1\right].$$
+<p>Con $(1+t)^{1/2}-1\sim\frac t2$ e $t=-\frac1x\to0$:</p>
+$$x\left[\left(1-\frac1x\right)^{1/2}-1\right]\sim x\left(-\frac1{2x}\right)=-\frac12.$$
+<p>Otteniamo di nuovo $\boxed{-\frac12}$. La mossa importante è creare il blocco $(1+t)^\alpha-1$, anziché sostituire separatamente i due termini della differenza.</p>
+
+<h3>Esercizio composto: scomporre in problemi piccoli</h3>
+<p>Nella trascrizione compare un rapporto del tipo</p>
+$$F(x)=100\,\frac{\left(\cos\frac x3-1\right)\left((1+x^2)^{1/r}-1\right)\sin(81x)}{\arctan x\,\log(1+x^3)\,(7x^2+x)},\qquad x\to0^+.$$
+<div class="box warn">
+<div class="bt">Dato ambiguo nella trascrizione</div>
+<p>L'indice $r$ della radice non è chiaro: in un punto sembra quarta, ma nel calcolo il docente usa $\alpha=1/5$. Manteniamo quindi $r$ e distinguiamo i risultati.</p>
+</div>
+<p>I singoli equivalenti sono</p>
+$$\cos\tfrac x3-1\sim-\frac{x^2}{18},\quad(1+x^2)^{1/r}-1\sim\frac{x^2}r,\quad\sin(81x)\sim81x,$$
+$$\arctan x\sim x,\quad\log(1+x^3)\sim x^3,\quad7x^2+x\sim x.$$
+<p>Pertanto</p>
+$$F(x)\sim100\,\frac{\left(-\frac{x^2}{18}\right)\left(\frac{x^2}r\right)81x}{x\cdot x^3\cdot x}=-\frac{450}r.$$
+<p>Quindi</p>
+$$\boxed{\lim_{x\to0^+}F(x)=\begin{cases}-90,&r=5,\\[2pt]-\dfrac{225}2,&r=4.\end{cases}}$$
+<p>L'insegnamento è separare il conteggio delle potenze dal calcolo dei coefficienti: numeratore e denominatore hanno entrambi ordine $x^5$, perciò resta un limite finito non nullo.</p>
+
+
+<h2>6. Applicazioni alle successioni</h2>
+
+<h3>Gli stessi equivalenti con $1/n$</h3>
+<p>Poiché $\frac1n\to0$, per $n\to+\infty$:</p>
+$$\sin\frac1n\sim\frac1n,\qquad1-\cos\frac1n\sim\frac1{2n^2},\qquad\log\left(1+\frac1n\right)\sim\frac1n,\qquad e^{1/n}-1\sim\frac1n,$$
+$$\left(1+\frac1n\right)^\alpha-1\sim\frac\alpha n\quad(\alpha\ne0).$$
+<p>Non si applica l'equivalente $\sin t\sim t$ a $\sin n$: l'argomento $n$ non tende a zero.</p>
+
+<h3>Differenza di radicali</h3>
+<p>Consideriamo $A_n=\sqrt{n^2+5n+1}-\sqrt{n^2-n-1}$. Aggiungiamo e sottraiamo $n$:</p>
+$$A_n=\left(\sqrt{n^2+5n+1}-n\right)+\left(n-\sqrt{n^2-n-1}\right).$$
+<p><strong>Primo blocco.</strong></p>
+$$\sqrt{n^2+5n+1}-n=n\left[\sqrt{1+\tfrac5n+\tfrac1{n^2}}-1\right]\sim\frac n2\left(\frac5n+\frac1{n^2}\right)\to\frac52.$$
+<p><strong>Secondo blocco.</strong></p>
+$$n-\sqrt{n^2-n-1}=-n\left[\sqrt{1-\tfrac1n-\tfrac1{n^2}}-1\right]\sim-\frac n2\left(-\frac1n-\frac1{n^2}\right)\to\frac12.$$
+<p>Quindi $\boxed{A_n\to3,\quad A_n\sim3.}$ Qui è lecito sommare i risultati perché abbiamo calcolato i limiti dei due blocchi, entrambi finiti, e la loro somma non è nulla.</p>
+
+<h3>Fattoriali ed esponenziali</h3>
+<p>Un altro blocco della lezione è</p>
+$$B_n=\frac{(n+1)!+2^n-\cos(n^n)+1}{e^{-n}+1}.$$
+<p>Al numeratore $(n+1)!$ domina $2^n$, il coseno è limitato e la costante è trascurabile. Al denominatore $e^{-n}+1\to1$. Pertanto</p>
+$$\boxed{B_n\sim(n+1)!.}$$
+<p>Inoltre $\boxed{e^{1/n!}-1\sim\dfrac1{n!}}$. Combinando questi blocchi con il precedente:</p>
+$$A_n\left(e^{1/n!}-1\right)B_n\sim3\,\frac{(n+1)!}{n!}=3(n+1).$$
+
+<h3>Il rapporto tra $n^n$ e $(n+1)^n$</h3>
+<p>Nell'esercizio finale compare la semplificazione</p>
+$$\frac{(n+1)\,n^n}{(n+1)^{n+1}}=\frac{n^n}{(n+1)^n}=\frac1{\left(1+\frac1n\right)^n}.$$
+<p>Poiché $\left(1+\frac1n\right)^n\to e$,</p>
+$$\boxed{\frac{n^n}{(n+1)^n}\to\frac1e.}$$
+<div class="box warn">
+<div class="bt">Dato non leggibile nella trascrizione</div>
+<p>La posizione esatta del fattore con parametro $\beta$ non è leggibile con certezza: non è prudente assegnare il valore finale nel caso $\beta=0$ senza il testo scritto. Il docente indica comunque di distinguere $\beta\gt0$, $\beta=0$, $\beta\lt0$, secondo il comportamento del fattore esponenziale.</p>
+</div>
+
+
+<h2>7. Attenzioni importanti: esponenziali, logaritmi e potenze variabili</h2>
+
+<h3>Gli esponenziali non conservano gli equivalenti</h3>
+<p>Per $x\to+\infty$ si ha $x^2+x\sim x^2$. Tuttavia</p>
+$$\frac{e^{x^2+x}}{e^{x^2}}=e^x\to+\infty.$$
+<p>Dunque $\boxed{f\sim g\ \not\Rightarrow\ e^f\sim e^g.}$ La condizione corretta è</p>
+$$\boxed{e^f\sim e^g\iff f-g\to0,}$$
+<p>perché il rapporto degli esponenziali è $e^{f-g}$.</p>
+
+<h3>Anche le potenze con esponente variabile richiedono cautela</h3>
+<p>È vero che $n+1\sim n$, ma</p>
+$$\frac{(n+1)^n}{n^n}=\left(1+\frac1n\right)^n\to e\ne1.$$
+<p>Quindi $\boxed{(n+1)^n\not\sim n^n.}$ L'esponente variabile può amplificare una piccola differenza relativa tra le basi.</p>
+
+<h3>I logaritmi richiedono ipotesi</h3>
+<p>Se $f\sim g$ con $f,g\gt0$, allora $\log f-\log g=\log\frac fg\to0$. Per concludere anche $\log f\sim\log g$ bisogna controllare il denominatore:</p>
+$$\frac{\log f}{\log g}=1+\frac{\log(f/g)}{\log g}.$$
+<p>La conclusione vale se $g\to+\infty$, perché $\log g\to+\infty$. Non vale in generale quando $f,g\to1$: infatti $1+x\sim1+2x$ per $x\to0$, ma</p>
+$$\frac{\log(1+x)}{\log(1+2x)}\to\frac12.$$
+<p>Questa precisazione rende rigorosa l'osservazione informale della lezione secondo cui i logaritmi «schiacciano» le differenze.</p>
+
+<h3>Forme $1^\infty$: la regola corretta</h3>
+<p>Per una base positiva si scrive</p>
+$$(1+u(x))^{v(x)}=\exp\bigl(v(x)\log(1+u(x))\bigr).$$
+<p>Se $u(x)\to0$ e $u(x)v(x)\to L\in\overline{\mathbb R}$, poiché $\log(1+u)\sim u$,</p>
+$$\boxed{(1+u(x))^{v(x)}\to e^L,}$$
+<p>con le convenzioni $e^{-\infty}=0$, $e^{+\infty}=+\infty$. Ma non si può affermare automaticamente l'equivalenza $(1+u)^v\sim e^{uv}$: questa richiede $v\bigl(\log(1+u)-u\bigr)\to0$. Per esempio, con $u=\frac1n$, $v=n^2$:</p>
+$$\frac{(1+1/n)^{n^2}}{e^n}=\left[\left(1+\frac1n\right)^ne^{-1}\right]^n\to e^{-1/2}\ne1.$$
+<p>Dunque il passaggio finale della trascrizione va letto come regola per determinare il <em>limite</em>, non come equivalenza asintotica universale.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-05-expbase.svg" role="img" aria-label="Rapporto tra esponenziali di funzioni equivalenti"></div>
+<figcaption>$\frac{e^{x^2+x}}{e^{x^2}}=e^x$ cresce senza limite, nonostante $x^2+x\sim x^2$.</figcaption>
+</figure>
+
+
+<h2>8. Schema operativo per gli esercizi</h2>
+<div class="box ex">
+<div class="bt">Procedura</div>
+<ol>
+<li><strong>Controlla dominio e punto limite:</strong> $0$, $0^\pm$, un valore finito oppure $\pm\infty$.</li>
+<li><strong>Prova la sostituzione diretta.</strong> Se ottieni una forma determinata, non servono manipolazioni.</li>
+<li><strong>Se trovi una forma indeterminata, scegli lo strumento:</strong>
+<ul>
+<li>polinomi all'infinito: grado massimo;</li>
+<li>polinomi vicino a zero: grado minimo non nullo;</li>
+<li>rapporti di polinomi $0/0$: scomposizione;</li>
+<li>differenze di radicali: razionalizzazione oppure limite notevole della potenza;</li>
+<li>prodotti e quozienti con argomenti infinitesimi: equivalenti;</li>
+<li>potenze $1^\infty$: logaritmo della base.</li>
+</ul></li>
+<li><strong>Prima di sostituire equivalenti in somme o differenze,</strong> verifica se i termini principali si cancellano.</li>
+<li><strong>Conserva coefficienti, segni ed esponenti:</strong> $\cos\frac x3-1\sim-\frac{x^2}{18}$, non semplicemente $x^2$.</li>
+<li><strong>Se il risultato assomiglia a $1/x$,</strong> studia i due lati; se assomiglia a $1/x^2$, il segno è positivo da entrambi i lati.</li>
+<li><strong>Negli esercizi con parametro,</strong> distingui i valori che cambiano il termine dominante da quelli che cambiano il limite finale.</li>
+</ol>
+</div>
+<p>La distinzione da tenere sempre ferma è tra uguaglianza, limite ed equivalenza:</p>
+$$f(x)=g(x),\qquad f(x)\to L,\qquad f(x)\sim g(x)$$
+<p>sono tre affermazioni diverse, e ciascuna autorizza operazioni diverse.</p>
+
+
+<h2>9. Errori da evitare</h2>
+<div class="box warn">
+<div class="bt">Attenzione</div>
+<ul>
+<li>Il reciproco di un infinitesimo richiede il controllo del segno: $f\to0$ non basta per dire che $1/f$ ha un limite infinito.</li>
+<li>L'equivalenza va sempre riferita al punto limite: $\sin x\sim x$ solo per $x\to0$.</li>
+<li>Divergente $+$ limitata diverge; divergente $\times$ limitata no ($x\sin x$).</li>
+<li>Vicino a zero prevale la potenza con esponente <strong>minore</strong>, all'infinito quella con esponente maggiore.</li>
+<li>La gerarchia degli infiniti vale per $x\to+\infty$, non per $x\to0$ o $x\to-\infty$.</li>
+<li>Non sostituire equivalenti in somme o differenze con cancellazione: $\sqrt{x^2-x}-x\to-\frac12$, non $0$.</li>
+<li>$\sqrt{x^2}=|x|$: per $x\to-\infty$ vale $-x$.</li>
+<li>$1-\cos t\sim\frac{t^2}2$ ma $\cos t-1\sim-\frac{t^2}2$: attenzione al segno.</li>
+<li>«$4/0$» non è una forma indeterminata: si studia il segno e i due lati.</li>
+<li>$f\sim g\not\Rightarrow e^f\sim e^g$: serve $f-g\to0$.</li>
+<li>$n+1\sim n$ ma $(n+1)^n\not\sim n^n$: l'esponente variabile amplifica la differenza.</li>
+<li>$\log f\sim\log g$ non segue da $f\sim g$ se $f,g\to1$.</li>
+<li>$(1+u)^v\to e^L$ è una regola per il limite, non un'equivalenza $(1+u)^v\sim e^{uv}$.</li>
+<li>Non usare $\sin t\sim t$ su $\sin n$: l'argomento deve tendere a zero.</li>
+</ul>
+</div>
+
+
+<h2>10. Riepilogo finale</h2>
+<p>Cosa devi saper fare dopo questa esercitazione:</p>
+<ul>
+<li>definire infinitesimi, infiniti, equivalenza asintotica e trascurabilità, riferendoli sempre a un punto limite;</li>
+<li>usare limiti laterali per decidere l'esistenza del limite completo ($1/x$ contro $1/x^2$);</li>
+<li>sapere che divergente più limitata diverge, e che per il prodotto non è vero;</li>
+<li>usare le equivalenze in prodotti, quozienti e potenze, ma non in somme e differenze con cancellazione;</li>
+<li>conoscere la gerarchia $(\log x)^\beta\ll x^\alpha\ll a^x$ e la regola delle potenze vicino a zero e all'infinito;</li>
+<li>conoscere la tabella dei limiti notevoli e riconoscere l'infinitesimo composto;</li>
+<li>risolvere limiti di polinomi, razionali fratte e differenze di radicali (scomposizione, razionalizzazione, blocco $(1+t)^\alpha-1$);</li>
+<li>svolgere esercizi con parametro distinguendo le soglie che cambiano la parte principale da quelle che cambiano il limite;</li>
+<li>trasportare gli equivalenti alle successioni con $1/n$;</li>
+<li>riconoscere i casi in cui le equivalenze non passano a esponenziali, logaritmi e potenze con esponente variabile, e trattare le forme $1^\infty$ con $u\,v\to L$.</li>
+</ul>

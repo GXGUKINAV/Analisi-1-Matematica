@@ -23,6 +23,7 @@ Boh fra, che cazzo ne so. Appunti di Analisi 1 Matematica (fuh ts 🥀).
 2. Numeri complessi: forme, radici, equazioni e luoghi geometrici
 3. Funzioni e trasformazioni
 4. Limiti di successioni, monotonia e fattoriali
+5. Limiti di funzioni, limiti notevoli e confronti asintotici
 
 ### Tutorato:
 1. Goniometria e numeri complessi

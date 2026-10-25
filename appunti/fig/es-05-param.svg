@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 150">
+<line class="ax" x1="10" y1="122" x2="322" y2="122"/>
+<polygon class="arw" points="332,122 324,118.8 324,125.2"/>
+<line class="ax" x1="26.0" y1="119" x2="26.0" y2="125"/>
+<text x="26.0" y="138.0" text-anchor="middle" class="sm main">3</text>
+<line class="ax" x1="62.0" y1="119" x2="62.0" y2="125"/>
+<text x="62.0" y="138.0" text-anchor="middle" class="sm main">4</text>
+<line class="ax" x1="98.0" y1="119" x2="98.0" y2="125"/>
+<text x="98.0" y="138.0" text-anchor="middle" class="sm main">5</text>
+<line class="ax" x1="134.0" y1="119" x2="134.0" y2="125"/>
+<text x="134.0" y="138.0" text-anchor="middle" class="sm main">6</text>
+<line class="ax" x1="170.0" y1="119" x2="170.0" y2="125"/>
+<text x="170.0" y="138.0" text-anchor="middle" class="sm main">7</text>
+<line class="ax" x1="206.0" y1="119" x2="206.0" y2="125"/>
+<text x="206.0" y="138.0" text-anchor="middle" class="sm main">8</text>
+<line class="ax" x1="242.0" y1="119" x2="242.0" y2="125"/>
+<text x="242.0" y="138.0" text-anchor="middle" class="sm main">9</text>
+<line class="ax" x1="278.0" y1="119" x2="278.0" y2="125"/>
+<text x="278.0" y="138.0" text-anchor="middle" class="sm main">10</text>
+<line class="ax" x1="314.0" y1="119" x2="314.0" y2="125"/>
+<text x="314.0" y="138.0" text-anchor="middle" class="sm main">11</text>
+<text x="334.0" y="114.0" text-anchor="end" class="sm">α</text>
+<line class="dash" x1="170.0" y1="36" x2="170.0" y2="122"/>
+<line class="dash" x1="206.0" y1="36" x2="206.0" y2="122"/>
+<line class="cv" x1="26.0" y1="104" x2="170.0" y2="104"/>
+<circle class="hole" cx="170.0" cy="104" r="4"/>
+<circle class="pt2" cx="170.0" cy="104" r="4.4"/>
+<line class="cv" x1="170.0" y1="104" x2="314.0" y2="104" style="stroke:#d9822b"/>
+<circle class="hole" cx="170.0" cy="104" r="4"/>
+<circle class="pt2" cx="170.0" cy="104" r="4.4"/>
+<text x="98.0" y="95.0" text-anchor="middle" class="lgA">L = 0</text>
+<text x="170.0" y="104.0" text-anchor="middle" class="sm"></text>
+<text x="256.4" y="95.0" text-anchor="middle" class="lgB">L = +∞</text>
+<text x="166.0" y="95.0" text-anchor="end" class="lgB">1</text>
+<line class="cv" x1="26.0" y1="64" x2="206.0" y2="64"/>
+<circle class="hole" cx="206.0" cy="64" r="4"/>
+<line class="cv" x1="206.0" y1="64" x2="314.0" y2="64" style="stroke:var(--muted)"/>
+<circle class="hole" cx="206.0" cy="64" r="4"/>
+<circle class="pt" cx="206.0" cy="64" r="4"/>
+<text x="116.0" y="55.0" text-anchor="middle" class="lgA">domina x^α</text>
+<text x="263.6" y="55.0" text-anchor="middle" class="lgG">domina x⁸/16</text>
+<text x="206.0" y="24.0" text-anchor="middle" class="sm main">α = 8: (17/16)x⁸</text>
+<text x="170.0" y="44.0" text-anchor="middle" class="sm"></text>
+</svg>

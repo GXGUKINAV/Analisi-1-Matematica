@@ -125,6 +125,12 @@ var esercitazioni = [
     title: 'Limiti di successioni, monotonia e fattoriali',
     file: 'appunti/esercitazione-4.html',
     date: '2026-10-12'   /* aaaa-mm-gg: facoltativa, se manca non viene mostrata */
+  },
+  {
+    n: 5,
+    title: 'Limiti di funzioni, limiti notevoli e confronti asintotici',
+    file: 'appunti/esercitazione-5.html',
+    date: '2026-10-19'
   }
 ];
 esercitazioni.sort(function (a, b) { return a.n - b.n; });
