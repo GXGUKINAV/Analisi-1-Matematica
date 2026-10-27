@@ -222,6 +222,11 @@ $$\boxed{z\in\left\{0,\ \frac{\sqrt3}{2}-\frac i2,\ i,\ -\frac{\sqrt3}{2}-\frac 
 </tbody></table></div>
 <p>Non confondere circonferenza e disco: la prima contiene solo i punti a distanza esattamente $r$, il secondo anche quelli interni.</p>
 
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-02-loci1.svg" role="img" aria-label="Circonferenza e disco di centro z0 e raggio r nel piano di Gauss"></div>
+<figcaption>$|z-z_0|=r$ è la circonferenza (il bordo arancione segna $z_0$); l'area colorata è il disco $|z-z_0|\lt r$.</figcaption>
+</figure>
+
 <h3>Parte immaginaria del reciproco</h3>
 <p>Consideriamo</p>
 $$A=\left\{z\in\mathbb C\setminus\{0\}:\operatorname{Im}\left(\frac1z\right)=-1\right\}.$$
@@ -256,6 +261,16 @@ $$\boxed{B=\{w:|w+1|=1\}\setminus\{0\}.}$$
 <p>Successivamente si considera $C=\{v:v=\overline w,\ w\in B\}$. La circonferenza di centro $-1$ e raggio $1$ è simmetrica rispetto all'asse reale; anche il punto escluso rimane invariato. Pertanto</p>
 $$\boxed{C=B}.$$
 
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-02-ex12ab.svg" role="img" aria-label="Circonferenza A trasformata in B tramite moltiplicazione per 2i"></div>
+<figcaption>$B=2iA$: il centro $\frac i2$ ruota di $\frac\pi2$ e si allontana di un fattore $2$, arrivando in $-1$; il raggio raddoppia da $\frac12$ a $1$. Il punto escluso resta $0$ in entrambi i casi (pallino vuoto).</figcaption>
+</figure>
+<p><strong>Collegamento con l'Esercizio 12.</strong> È esattamente questo tipo di calcolo: trasformare un luogo geometrico applicando una funzione a ogni suo punto si riduce quasi sempre a capire dove va il <em>centro</em> e come cambia il <em>raggio</em> (e se un punto escluso resta escluso). Per una traslazione $z\mapsto z+a$ il raggio non cambia affatto, cambia solo il centro:</p>
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-02-ex12de.svg" role="img" aria-label="Circonferenza A traslata per ottenere D e E"></div>
+<figcaption>Traslare $A$ di $i$ (ottenendo $D=A+i$) o di $-5+3i$ (ottenendo $E=A-5+3i$) sposta solo il centro e il punto escluso della stessa quantità; il raggio $\frac12$ resta invariato.</figcaption>
+</figure>
+
 <h3>Punti equidistanti</h3>
 <p>Consideriamo $|z|=|z+i|$. Il primo modulo è la distanza dall'origine; il secondo è la distanza dal punto $-i$, perché $z+i=z-(-i)$. Il luogo è quindi l'asse del segmento che unisce $0$ e $-i$.</p>
 <p><strong>Verifica algebrica.</strong> Con $z=x+iy$:</p>
@@ -263,10 +278,20 @@ $$\sqrt{x^2+y^2}=\sqrt{x^2+(y+1)^2}.$$
 <p>Entrambi i membri sono non negativi, quindi eleviamo al quadrato: $x^2+y^2=x^2+y^2+2y+1$, da cui $2y+1=0$. Pertanto</p>
 $$\boxed{y=-\frac12}.$$
 
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-02-loci2.svg" role="img" aria-label="Asse del segmento tra z0 e z1"></div>
+<figcaption>$|z-z_0|=|z-z_1|$ è l'asse del segmento di estremi $z_0$ e $z_1$: la retta dei punti equidistanti dai due.</figcaption>
+</figure>
+
 <h3>Intersezione di semipiani</h3>
 <p>La condizione discussa in aula,</p>
 $$\operatorname{Re}z\lt1,\qquad\operatorname{Im}z\gt-1,$$
 <p>diventa $x\lt1$, $y\gt-1$. Il luogo è la regione contemporaneamente a sinistra della retta $x=1$ e sopra la retta $y=-1$, con entrambi i bordi esclusi.</p>
+
+<figure class="fig">
+<div class="svg-src" data-src="appunti/fig/es-02-loci3.svg" role="img" aria-label="Intersezione dei semipiani Re z minore di 1 e Im z maggiore di meno 1"></div>
+<figcaption>La regione colorata è $\{\operatorname{Re}z\lt1\}\cap\{\operatorname{Im}z\gt-1\}$: entrambi i bordi (rette blu) sono esclusi.</figcaption>
+</figure>
 
 
 <h2>5. Metodo e precisazioni</h2>
